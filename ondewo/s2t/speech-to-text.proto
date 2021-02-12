@@ -133,6 +133,12 @@ message CtcAcousticModels {
     string type = 1;
     Quartznet quartznet = 2;
     QuartznetTriton quartznet_triton = 3;
+    Wav2Vec wav2vec = 4;
+}
+
+message Wav2Vec {
+    string model_path = 1;
+    bool use_gpu = 2;
 }
 
 message Quartznet {
