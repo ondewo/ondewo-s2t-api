@@ -140,12 +140,14 @@ message CtcAcousticModels {
 }
 
 message CtcDecoders{
-    repeated string active_decoders = 1;
-    BeamSearchDefault beam_search_default = 2;
+    repeated string active_decoders_ids = 1;
+    repeated CtcDecoderConfig ctc_decoders_configs = 2;
 }
 
-message BeamSearchDefault{
-    LanguageModel language_model =1;
+message CtcDecoderConfig{
+    string id = 1;
+    CTCDecoding type = 2;
+    LanguageModel language_model =3;
 }
 
 message Wav2Vec {
