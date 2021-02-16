@@ -67,8 +67,8 @@ message TranscribeFileRequest {
 }
 
 enum CTCDecoding {
-    GREEDY = 0;
-    BEAM_SEARCH_WITH_LM = 1;
+    GREEDY_DEFAULT = 0;
+    BEAM_SEARCH_DEFAULT = 1;
 }
 
 message TranscribeFileResponse {
@@ -129,7 +129,7 @@ message Description {
 
 message Inference {
     CtcAcousticModels ctc_acoustic_models = 1;
-    LanguageModel language_model = 2;
+    CtcDecoders ctc_decoders = 2;
 }
 
 message CtcAcousticModels {
@@ -137,6 +137,15 @@ message CtcAcousticModels {
     Quartznet quartznet = 2;
     QuartznetTriton quartznet_triton = 3;
     Wav2Vec wav2vec = 4;
+}
+
+message CtcDecoders{
+    repeated string active_decoders = 1;
+    BeamSearchDefault beam_search_default = 2;
+}
+
+message BeamSearchDefault{
+    LanguageModel language_model =1;
 }
 
 message Wav2Vec {
