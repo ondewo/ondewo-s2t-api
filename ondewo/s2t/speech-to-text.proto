@@ -10,7 +10,9 @@
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
-// limitations under the License. (editesyntax = "proto3";
+// limitations under the License.https://ondewo.slack.com/archives/CAWPP61NY
+
+syntax = "proto3";
 
 package ondewo.s2t;
 import "google/protobuf/empty.proto";
@@ -134,6 +136,12 @@ message CtcAcousticModels {
     string type = 1;
     Quartznet quartznet = 2;
     QuartznetTriton quartznet_triton = 3;
+    Wav2Vec wav2vec = 4;
+}
+
+message Wav2Vec {
+    string model_path = 1;
+    bool use_gpu = 2;
 }
 
 message Quartznet {
