@@ -33,6 +33,10 @@ service Speech2Text {
     };
     rpc ListS2tPipelines (ListS2tPipelinesRequest) returns (ListS2tPipelinesResponse) {
     };
+    rpc ListS2tLanguages (ListS2tLanguagesRequest) returns (ListS2tLanguagesResponse) {
+    };
+    rpc ListS2tDomains (ListS2tDomainsRequest) returns (ListS2tDomainsResponse) {
+    };
 }
 
 ///////////////////////
@@ -44,7 +48,8 @@ message TranscribeStreamRequest {
     bytes audio_chunk = 2; // wav file to transcribe
     CTCDecoding ctc_decoding = 3; // CTC decoding type
     bool spelling_correction = 4;
-    bool end_of_stream = 5;
+    bool disable_normalization = 5;
+    bool end_of_stream = 6;
 }
 
 
@@ -63,7 +68,8 @@ message TranscribeFileRequest {
     bytes audio_file = 2; // wav file to transcribe
     CTCDecoding ctc_decoding = 3; // CTC decoding type
     bool spelling_correction = 4;
-    bool include_timing = 5;
+    bool disable_normalization = 5;
+    bool include_timing = 6;
 }
 
 enum CTCDecoding {
@@ -91,9 +97,9 @@ message S2tPipelineId {
     string id = 1; // id of the model that will generate audio
 }
 
-////////////////////////////
-// LIST ALL S2T PIPELINES //
-////////////////////////////
+////////////////////////
+// LIST S2T PIPELINES //
+////////////////////////
 
 message ListS2tPipelinesRequest {
     repeated string languages = 1;
@@ -103,6 +109,32 @@ message ListS2tPipelinesRequest {
 
 message ListS2tPipelinesResponse {
     repeated Speech2TextConfig pipeline_configs = 1;
+}
+
+////////////////////////
+// LIST S2T LANGUAGES //
+////////////////////////
+
+message ListS2tLanguagesRequest {
+    repeated string domains = 1;
+    repeated string pipeline_owners = 2;
+}
+
+message ListS2tLanguagesResponse {
+    repeated string languages = 1;
+}
+
+//////////////////////
+// LIST S2T DOMAINS //
+//////////////////////
+
+message ListS2tDomainsRequest {
+    repeated string languages = 1;
+    repeated string pipeline_owners = 2;
+}
+
+message ListS2tDomainsResponse {
+    repeated string domains = 1;
 }
 
 ///////////////////////////////////
