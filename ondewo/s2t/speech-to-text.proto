@@ -48,7 +48,8 @@ message TranscribeStreamRequest {
     bytes audio_chunk = 2; // wav file to transcribe
     CTCDecoding ctc_decoding = 3; // CTC decoding type
     bool spelling_correction = 4;
-    bool end_of_stream = 5;
+    bool disable_normalization = 5;
+    bool end_of_stream = 6;
 }
 
 
@@ -67,7 +68,8 @@ message TranscribeFileRequest {
     bytes audio_file = 2; // wav file to transcribe
     CTCDecoding ctc_decoding = 3; // CTC decoding type
     bool spelling_correction = 4;
-    bool include_timing = 5;
+    bool disable_normalization = 5;
+    bool include_timing = 6;
 }
 
 enum CTCDecoding {
