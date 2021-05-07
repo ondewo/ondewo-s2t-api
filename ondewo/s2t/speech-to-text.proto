@@ -37,6 +37,8 @@ service Speech2Text {
     };
     rpc ListS2tDomains (ListS2tDomainsRequest) returns (ListS2tDomainsResponse) {
     };
+    rpc GetServiceInfo (google.protobuf.Empty) returns (GetServiceInfoResponse) {
+    };
 }
 
 ///////////////////////
@@ -135,6 +137,14 @@ message ListS2tDomainsRequest {
 
 message ListS2tDomainsResponse {
     repeated string domains = 1;
+}
+
+//////////////////////
+// GET SERVICE INFO //
+//////////////////////
+
+message GetServiceInfoResponse {
+    string version = 1;
 }
 
 ///////////////////////////////////
