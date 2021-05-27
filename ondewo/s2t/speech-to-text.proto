@@ -181,6 +181,7 @@ message Quartznet {
     string load_type = 2;
     PtFiles pt_files = 3;
     CkptFile ckpt_file = 4;
+    bool use_gpu = 5;
 }
 
 message PtFiles {
