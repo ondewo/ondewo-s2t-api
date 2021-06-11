@@ -57,6 +57,8 @@ message TranscribeStreamResponse {
     string transcription = 1;
     float time = 2;
     bool final = 3;
+    bytes audio = 4;
+    bool speech_detected = 5;
 }
 
 /////////////////////
