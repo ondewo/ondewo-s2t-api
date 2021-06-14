@@ -50,7 +50,8 @@ message TranscribeStreamRequest {
     bool spelling_correction = 4;
     bool disable_normalization = 5;
     bool end_of_stream = 6;
-    bool return_audio = 7;
+    bool detect_speech = 7;
+    bool return_audio = 8;
 }
 
 
@@ -58,8 +59,9 @@ message TranscribeStreamResponse {
     string transcription = 1;
     float time = 2;
     bool final = 3;
-    bytes audio = 4;
-    bool speech_detected = 5;
+    bool return_audio = 4;
+    bytes audio = 5;
+    bool speech_detected = 6;
 }
 
 /////////////////////
