@@ -52,7 +52,6 @@ message TranscribeStreamRequest {
     bool end_of_stream = 6;  // if it's the final chunk of the stream
     bool return_start_of_speech = 7;  // should server make response indicating that the beginnning of the speech was detected
     bool return_audio = 8; // should s2t server return audio bytes of transcribed utterance
-    float timeout = 9; // defines timeout for audio chunks - if no chunk comes for <timeout> sec, stream will be disconnected
 }
 
 
@@ -226,7 +225,7 @@ message StreamingSpeechRecognition {
     int64 min_audio_chunk_size = 4;
     float start_of_utterance_threshold = 5;
     float end_of_utterance_threshold = 6;
-
+    float next_chunk_timeout = 7; // if time between audio chunks exceeds next_chunk_timeout, stream will be stopped
 }
 
 message VoiceActivityDetection {
