@@ -235,7 +235,7 @@ message StreamingSpeechRecognition {
     int64 min_audio_chunk_size = 4;
     float start_of_utterance_threshold = 5;
     float end_of_utterance_threshold = 6;
-
+    float next_chunk_timeout = 7; // if time between audio chunks exceeds next_chunk_timeout, stream will be stopped
 }
 
 message VoiceActivityDetection {
