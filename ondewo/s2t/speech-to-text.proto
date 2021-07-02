@@ -37,6 +37,8 @@ service Speech2Text {
     };
     rpc ListS2tDomains (ListS2tDomainsRequest) returns (ListS2tDomainsResponse) {
     };
+    rpc GetServiceInfo (google.protobuf.Empty) returns (GetServiceInfoResponse) {
+    };
 }
 
 ///////////////////////
@@ -47,9 +49,11 @@ message TranscribeStreamRequest {
     string s2t_pipeline_id = 1; // id of the pipeline (model setup) that will generate audio
     bytes audio_chunk = 2; // wav file to transcribe
     CTCDecoding ctc_decoding = 3; // CTC decoding type
-    bool spelling_correction = 4;
-    bool disable_normalization = 5;
-    bool end_of_stream = 6;
+    bool spelling_correction = 4; // make spelling correction of the transcription
+    bool disable_normalization = 5; // no postprocess normalization is applied to transcription
+    bool end_of_stream = 6;  // if it's the final chunk of the stream
+    bool return_start_of_speech = 7;  // should server make response indicating that the beginnning of the speech was detected
+    bool return_audio = 8; // should s2t server return audio bytes of transcribed utterance
 }
 
 
@@ -57,6 +61,9 @@ message TranscribeStreamResponse {
     string transcription = 1;
     float time = 2;
     bool final = 3;
+    bool return_audio = 4; // is audio bytes of the utterance in response
+    bytes audio = 5; // audio bytes of the transcribed utterance
+    bool utterance_start = 6; // is it a start of the utterance
 }
 
 /////////////////////
@@ -135,6 +142,14 @@ message ListS2tDomainsRequest {
 
 message ListS2tDomainsResponse {
     repeated string domains = 1;
+}
+
+//////////////////////
+// GET SERVICE INFO //
+//////////////////////
+
+message GetServiceInfoResponse {
+    string version = 1;
 }
 
 ///////////////////////////////////
@@ -220,7 +235,7 @@ message StreamingSpeechRecognition {
     int64 min_audio_chunk_size = 4;
     float start_of_utterance_threshold = 5;
     float end_of_utterance_threshold = 6;
-
+    float next_chunk_timeout = 7; // if time between audio chunks exceeds next_chunk_timeout, stream will be stopped
 }
 
 message VoiceActivityDetection {
