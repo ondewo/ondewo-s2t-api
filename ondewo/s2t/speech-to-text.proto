@@ -19,26 +19,28 @@ import "google/protobuf/empty.proto";
 
 // endpoints of speech-to-text service
 service Speech2Text {
-    rpc TranscribeFile (TranscribeFileRequest) returns (TranscribeFileResponse) {
-    };
-    rpc TranscribeStream (stream TranscribeStreamRequest) returns (stream TranscribeStreamResponse) {
-    };
-    rpc GetS2tPipeline (S2tPipelineId) returns (Speech2TextConfig) {
-    };
-    rpc CreateS2tPipeline (Speech2TextConfig) returns (S2tPipelineId) {
-    };
-    rpc DeleteS2tPipeline (S2tPipelineId) returns (google.protobuf.Empty) {
-    };
-    rpc UpdateS2tPipeline (Speech2TextConfig) returns (google.protobuf.Empty) {
-    };
-    rpc ListS2tPipelines (ListS2tPipelinesRequest) returns (ListS2tPipelinesResponse) {
-    };
-    rpc ListS2tLanguages (ListS2tLanguagesRequest) returns (ListS2tLanguagesResponse) {
-    };
-    rpc ListS2tDomains (ListS2tDomainsRequest) returns (ListS2tDomainsResponse) {
-    };
-    rpc GetServiceInfo (google.protobuf.Empty) returns (GetServiceInfoResponse) {
-    };
+  rpc TranscribeFile (TranscribeFileRequest) returns (TranscribeFileResponse) {
+  };
+  rpc TranscribeStream (stream TranscribeStreamRequest) returns (stream TranscribeStreamResponse) {
+  };
+  rpc GetS2tPipeline (S2tPipelineId) returns (Speech2TextConfig) {
+  };
+  rpc CreateS2tPipeline (Speech2TextConfig) returns (S2tPipelineId) {
+  };
+  rpc DeleteS2tPipeline (S2tPipelineId) returns (google.protobuf.Empty) {
+  };
+  rpc UpdateS2tPipeline (Speech2TextConfig) returns (google.protobuf.Empty) {
+  };
+  rpc ListS2tPipelines (ListS2tPipelinesRequest) returns (ListS2tPipelinesResponse) {
+  };
+  rpc ListS2tLanguages (ListS2tLanguagesRequest) returns (ListS2tLanguagesResponse) {
+  };
+  rpc ListS2tDomains (ListS2tDomainsRequest) returns (ListS2tDomainsResponse) {
+  };
+  rpc GetServiceInfo (google.protobuf.Empty) returns (GetServiceInfoResponse) {
+  };
+  rpc ListS2tLanguageModels (ListS2tLanguageModelsRequest) returns (ListS2tLanguageModelsResponse) {
+  };
 }
 
 ///////////////////////
@@ -282,6 +284,26 @@ message Normalization {
 }
 
 message Logging {
-    string type = 1;
-    string path = 2;
+  string type = 1;
+  string path = 2;
 }
+
+
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+
+message ListS2tLanguageModelsRequest {
+  repeated int64 ids = 1;
+}
+
+message LanguageModelPipelineId {
+  string pipeline_id = 1;
+  repeated string model_names = 2;
+}
+
+message ListS2tLanguageModelsResponse {
+  repeated LanguageModelPipelineId lm_pipeline_id = 1;
+}
+
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
