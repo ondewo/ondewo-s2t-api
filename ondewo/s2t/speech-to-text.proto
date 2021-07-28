@@ -178,7 +178,7 @@ message Description {
 
 message Inference {
     CtcAcousticModels ctc_acoustic_models = 1;
-    LanguageModel language_model = 2;
+    LanguageModels language_models = 2;
 }
 
 message CtcAcousticModels {
@@ -216,11 +216,12 @@ message QuartznetTriton {
     string triton_model = 3;
 }
 
-message LanguageModel {
+message LanguageModels {
     string path = 1;
     int64 beam_size = 2;
-    float beam_search_scorer_alpha = 3;
-    float beam_search_scorer_beta = 4;
+    string default_lm =3;
+    float beam_search_scorer_alpha = 4;
+    float beam_search_scorer_beta = 5;
 }
 
 message StreamingServer {
