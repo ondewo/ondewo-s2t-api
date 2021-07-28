@@ -294,7 +294,7 @@ message Logging {
 //////////////////////////////////////////////////////
 
 message ListS2tLanguageModelsRequest {
-  repeated int64 ids = 1;
+  repeated string ids = 1;
 }
 
 message LanguageModelPipelineId {
