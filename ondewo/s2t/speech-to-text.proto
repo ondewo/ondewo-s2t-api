@@ -303,7 +303,7 @@ message LanguageModelPipelineId {
 }
 
 message ListS2tLanguageModelsResponse {
-  repeated LanguageModelPipelineId lm_pipeline_id = 1;
+  repeated LanguageModelPipelineId lm_pipeline_ids = 1;
 }
 
 //////////////////////////////////////////////////////
