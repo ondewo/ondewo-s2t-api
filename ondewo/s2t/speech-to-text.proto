@@ -217,9 +217,9 @@ message QuartznetTriton {
 }
 
 message LanguageModels {
-    string path = 1;
+    string path = 1; // Path to the directory of language models
     int64 beam_size = 2;
-    string default_lm =3;
+    string default_lm =3; // this language model will be selected if none is given
     float beam_search_scorer_alpha = 4;
     float beam_search_scorer_beta = 5;
 }
