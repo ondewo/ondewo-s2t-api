@@ -295,17 +295,17 @@ message Logging {
 ///////////////////////////////////////////
 
 message ListS2tLanguageModelsRequest {
-  repeated string ids = 1;
+  repeated string ids = 1; // List of pipeline id(s) to see their available language models
 }
 
 message LanguageModelPipelineId {
-  string pipeline_id = 1;
-  repeated string model_names = 2;
+  string pipeline_id = 1; // One pipeline id
+  repeated string model_names = 2; // A list of all available language models for above pipeline id
 }
 
 message ListS2tLanguageModelsResponse {
   repeated LanguageModelPipelineId lm_pipeline_ids = 1;
+  // Response is a dictionary of type Dict[pipeline id, List of available language models]
 }
 
-///////////////////////////////////////////
-///////////////////////////////////////////
+
