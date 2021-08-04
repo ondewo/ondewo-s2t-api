@@ -51,11 +51,12 @@ message TranscribeStreamRequest {
     string s2t_pipeline_id = 1; // id of the pipeline (model setup) that will generate audio
     bytes audio_chunk = 2; // wav file to transcribe
     CTCDecoding ctc_decoding = 3; // CTC decoding type
-    bool spelling_correction = 4; // make spelling correction of the transcription
-    bool disable_normalization = 5; // no postprocess normalization is applied to transcription
-    bool end_of_stream = 6;  // if it's the final chunk of the stream
-    bool return_start_of_speech = 7;  // should server make response indicating that the beginnning of the speech was detected
-    bool return_audio = 8; // should s2t server return audio bytes of transcribed utterance
+    string language_model = 4; // language model for decoding (in none, default will be taken from config file)
+    bool spelling_correction = 5; // make spelling correction of the transcription
+    bool disable_normalization = 6; // no postprocess normalization is applied to transcription
+    bool end_of_stream = 7;  // if it's the final chunk of the stream
+    bool return_start_of_speech = 8;  // should server make response indicating that the beginnning of the speech was detected
+    bool return_audio = 9; // should s2t server return audio bytes of transcribed utterance
 }
 
 
@@ -76,9 +77,10 @@ message TranscribeFileRequest {
     string s2t_pipeline_id = 1; // id of the pipeline (model setup) that will generate audio
     bytes audio_file = 2; // wav file to transcribe
     CTCDecoding ctc_decoding = 3; // CTC decoding type
-    bool spelling_correction = 4;
-    bool disable_normalization = 5;
-    bool include_timing = 6;
+    string language_model = 4; // language model for decoding (default will chosen if none is given)
+    bool spelling_correction = 5;
+    bool disable_normalization = 6;
+    bool include_timing = 7;
 }
 
 enum CTCDecoding {
