@@ -51,7 +51,7 @@ message TranscribeStreamRequest {
     string s2t_pipeline_id = 1; // id of the pipeline (model setup) that will generate audio
     bytes audio_chunk = 2; // wav file to transcribe
     CTCDecoding ctc_decoding = 3; // CTC decoding type
-    string language_model = 4; // language model for decoding (in none, default will be taken from config file)
+    string language_model_name = 4; // language model name for decoding (in none, default will be taken from config file)
     bool spelling_correction = 5; // make spelling correction of the transcription
     bool disable_normalization = 6; // no postprocess normalization is applied to transcription
     bool end_of_stream = 7;  // if it's the final chunk of the stream
@@ -77,7 +77,7 @@ message TranscribeFileRequest {
     string s2t_pipeline_id = 1; // id of the pipeline (model setup) that will generate audio
     bytes audio_file = 2; // wav file to transcribe
     CTCDecoding ctc_decoding = 3; // CTC decoding type
-    string language_model = 4; // language model for decoding (default will chosen if none is given)
+    string language_model_name = 4; // language model name for decoding (default will chosen if none is given)
     bool spelling_correction = 5;
     bool disable_normalization = 6;
     bool include_timing = 7;
