@@ -84,8 +84,9 @@ message TranscribeFileRequest {
 }
 
 enum CTCDecoding {
-  GREEDY = 0;
-  BEAM_SEARCH_WITH_LM = 1;
+  DEFAULT = 0;
+  GREEDY = 1;
+  BEAM_SEARCH_WITH_LM = 2;
 }
 
 message TranscribeFileResponse {
