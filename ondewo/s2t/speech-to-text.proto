@@ -84,8 +84,9 @@ message TranscribeFileRequest {
 }
 
 enum CTCDecoding {
-  GREEDY = 0;
-  BEAM_SEARCH_WITH_LM = 1;
+  DEFAULT = 0; // decoding will be defined by the pipeline config
+  GREEDY = 1; // greedy decoding will be used independently on pipeline config
+  BEAM_SEARCH_WITH_LM = 2; // beam search will be used independently on pipeline config
 }
 
 message TranscribeFileResponse {
