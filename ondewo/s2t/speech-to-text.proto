@@ -43,6 +43,52 @@ service Speech2Text {
   };
 }
 
+///////////////////////////
+// Configuration Message //
+///////////////////////////
+
+message TranscribeRequestConfig {
+  CTCDecoding ctc_decoding = 1; // CTC decoding type
+  string language_model_name = 2; // language model name for decoding (in none, default will be taken from config file)
+
+  SpellingCorrectionConfig spelling_correction = 3; // make spelling correction of the transcription
+  NormalizationConfig normalization = 4; // configuration of the postprocess normalization applied to transcription
+
+  TranscriptionReturnConfig return_config = 5; // specify which data to return
+  UtteranceDetectionConfig utterance_detection = 6; // Configuration for the detection of utterances
+  VoiceActivityDetectionMethod voice_activity_detection_method = 7; // Which method to be used for voice activity detection
+
+  bool include_timing = 8; // Whether or not to include timing. Only used in TranscribeFile.
+}
+
+message TranscriptionReturnConfig {
+  bool return_start_of_speech = 1;  // should server make response indicating that the beginning of the speech was detected
+  bool return_audio = 2; // should s2t server return audio bytes of transcribed utterance
+  bool return_alternative_transcriptions = 3; // Whether or not to return alternative results from beam-search
+  bool return_confidence_score = 4; // Whether or not to return
+}
+
+message UtteranceDetectionConfig {
+  bool transcribe_not_final = 1;
+  float start_of_utterance_threshold = 2;
+  float end_of_utterance_threshold = 3;
+  float next_chunk_timeout = 4; // if time between audio chunks exceeds next_chunk_timeout, stream will be stopped
+}
+
+message SpellingCorrectionConfig {
+  bool active = 1;
+  oneof SpellingCorrectionOptions {
+    int32 max_dictionary_edit_distance = 2;
+  }
+}
+
+message NormalizationConfig {
+  bool active = 1;
+  oneof NormalizationOptions {
+    string language = 2;
+  }
+}
+
 ///////////////////////
 // TRANSCRIBE STREAM //
 ///////////////////////
@@ -50,18 +96,21 @@ service Speech2Text {
 message TranscribeStreamRequest {
   string s2t_pipeline_id = 1; // id of the pipeline (model setup) that will generate audio
   bytes audio_chunk = 2; // wav file to transcribe
-  CTCDecoding ctc_decoding = 3; // CTC decoding type
-  string language_model_name = 4; // language model name for decoding (in none, default will be taken from config file)
-  bool spelling_correction = 5; // make spelling correction of the transcription
-  bool disable_normalization = 6; // no postprocess normalization is applied to transcription
-  bool end_of_stream = 7;  // if it's the final chunk of the stream
-  bool return_start_of_speech = 8;  // should server make response indicating that the beginnning of the speech was detected
-  bool return_audio = 9; // should s2t server return audio bytes of transcribed utterance
+  bool end_of_stream = 3;  // if it's the final chunk of the stream
+
+  // Optional. The configuration to override the default configuration
+  oneof _TranscribeRequestConfig {
+    TranscribeRequestConfig config = 4;
+  }
 }
 
+message Transcription {
+  string transcription = 1;
+  float confidence_score = 2;
+}
 
 message TranscribeStreamResponse {
-  string transcription = 1;
+  repeated Transcription transcriptions = 1; // List of transcriptions with confidence level
   float time = 2;
   bool final = 3;
   bool return_audio = 4; // is audio bytes of the utterance in response
@@ -76,11 +125,9 @@ message TranscribeStreamResponse {
 message TranscribeFileRequest {
   string s2t_pipeline_id = 1; // id of the pipeline (model setup) that will generate audio
   bytes audio_file = 2; // wav file to transcribe
-  CTCDecoding ctc_decoding = 3; // CTC decoding type
-  string language_model_name = 4; // language model name for decoding (default will chosen if none is given)
-  bool spelling_correction = 5;
-  bool disable_normalization = 6;
-  bool include_timing = 7;
+  oneof _TranscribeRequestConfig {
+    TranscribeRequestConfig config = 3;
+  }
 }
 
 enum CTCDecoding {
@@ -90,7 +137,7 @@ enum CTCDecoding {
 }
 
 message TranscribeFileResponse {
-  string transcription = 1;
+  repeated Transcription transcriptions = 1; // List of transcriptions with confidence level
   float time = 2;
   repeated WordTiming word_timing = 3;
 }
@@ -242,6 +289,11 @@ message StreamingSpeechRecognition {
   float start_of_utterance_threshold = 5;
   float end_of_utterance_threshold = 6;
   float next_chunk_timeout = 7; // if time between audio chunks exceeds next_chunk_timeout, stream will be stopped
+}
+
+enum VoiceActivityDetectionMethod {
+  PYANNOTE = 0;
+  MATCHBOX = 1;
 }
 
 message VoiceActivityDetection {
