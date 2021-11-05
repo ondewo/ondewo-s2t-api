@@ -362,5 +362,3 @@ message ListS2tLanguageModelsResponse {
   repeated LanguageModelPipelineId lm_pipeline_ids = 1;
   // Response is a dictionary of type Dict[pipeline id, List of available language models]
 }
-
-
