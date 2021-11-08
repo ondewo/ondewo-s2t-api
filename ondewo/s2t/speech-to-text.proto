@@ -77,16 +77,12 @@ message UtteranceDetectionConfig {
 
 message SpellingCorrectionConfig {
   bool active = 1;
-  oneof SpellingCorrectionOptions {
-    int32 max_dictionary_edit_distance = 2;
-  }
+  int32 max_dictionary_edit_distance = 2;
 }
 
 message NormalizationConfig {
   bool active = 1;
-  oneof NormalizationOptions {
-    string language = 2;
-  }
+  string language = 2;
 }
 
 ///////////////////////
