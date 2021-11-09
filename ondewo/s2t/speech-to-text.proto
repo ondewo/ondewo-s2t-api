@@ -57,13 +57,9 @@ message TranscribeRequestConfig {
 
   UtteranceDetectionOptions utterance_detection = 5; // Optional. Configuration for the detection of utterances
   VoiceActivityDetectionMethod voice_activity_detection_method = 6; // Optional. Which method to be used for voice activity detection
+  TranscriptionReturnOptions return_options = 7; // Optional. Specify which data to return
 
-  oneof _return_options {
-    TranscriptionReturnOptions return_options = 7; // Optional. Specify which data to return
-  }
-  oneof _include_timing {
-    bool include_timing = 8; // Optional. Whether or not to include timing. Only used in TranscribeFile.
-  }
+  bool include_timing = 8; // Optional. Whether or not to include timing. Only used in TranscribeFile.
 }
 
 message TranscriptionReturnOptions {
