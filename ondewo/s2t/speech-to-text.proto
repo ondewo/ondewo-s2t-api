@@ -53,15 +53,14 @@ message TranscribeRequestConfig {
   CTCDecoding ctc_decoding = 2; // Optional. CTC decoding type
   string language_model_name = 3; // Optional. Language model name for decoding (in none, default will be taken from config file)
 
-  oneof _post_processing {
-    PostProcessingOptions post_processing = 4; // Optional. Configuration of spelling correction and normalization
-  }
-  oneof _return_options {
-    TranscriptionReturnOptions return_options = 5; // Optional. Specify which data to return
-  }
-  UtteranceDetectionOptions utterance_detection = 6; // Optional. Configuration for the detection of utterances
-  VoiceActivityDetectionMethod voice_activity_detection_method = 7; // Optional. Which method to be used for voice activity detection
+  PostProcessingOptions post_processing = 4; // Optional. Configuration of spelling correction and normalization
 
+  UtteranceDetectionOptions utterance_detection = 5; // Optional. Configuration for the detection of utterances
+  VoiceActivityDetectionMethod voice_activity_detection_method = 6; // Optional. Which method to be used for voice activity detection
+
+  oneof _return_options {
+    TranscriptionReturnOptions return_options = 7; // Optional. Specify which data to return
+  }
   oneof _include_timing {
     bool include_timing = 8; // Optional. Whether or not to include timing. Only used in TranscribeFile.
   }
@@ -87,7 +86,9 @@ message PostProcessingOptions {
   bool spelling_correction = 1;
   bool disable_normalization = 2;
 
-  PostProcessors config = 3;
+  oneof _config {
+    PostProcessors config = 3;
+  }
 }
 
 ///////////////////////
