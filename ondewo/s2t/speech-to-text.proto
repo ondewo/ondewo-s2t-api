@@ -53,13 +53,18 @@ message TranscribeRequestConfig {
   CTCDecoding ctc_decoding = 2; // Optional. CTC decoding type
   string language_model_name = 3; // Optional. Language model name for decoding (in none, default will be taken from config file)
 
-  PostProcessingOptions post_processing = 4; // Optional. Configuration of spelling correction and normalization
-
-  TranscriptionReturnOptions return_options = 5; // Optional. Specify which data to return
+  oneof _post_processing {
+    PostProcessingOptions post_processing = 4; // Optional. Configuration of spelling correction and normalization
+  }
+  oneof _return_options {
+    TranscriptionReturnOptions return_options = 5; // Optional. Specify which data to return
+  }
   UtteranceDetectionOptions utterance_detection = 6; // Optional. Configuration for the detection of utterances
   VoiceActivityDetectionMethod voice_activity_detection_method = 7; // Optional. Which method to be used for voice activity detection
 
-  bool include_timing = 8; // Optional. Whether or not to include timing. Only used in TranscribeFile.
+  oneof _include_timing {
+    bool include_timing = 8; // Optional. Whether or not to include timing. Only used in TranscribeFile.
+  }
 }
 
 message TranscriptionReturnOptions {
@@ -70,7 +75,9 @@ message TranscriptionReturnOptions {
 }
 
 message UtteranceDetectionOptions {
-  bool transcribe_not_final = 1;
+  oneof _transcribe_not_final {
+    bool transcribe_not_final = 1;
+  }
   float start_of_utterance_threshold = 2;
   float end_of_utterance_threshold = 3;
   float next_chunk_timeout = 4; // if time between audio chunks exceeds next_chunk_timeout, stream will be stopped
