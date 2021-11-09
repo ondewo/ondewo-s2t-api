@@ -53,7 +53,7 @@ message TranscribeRequestConfig {
   CTCDecoding ctc_decoding = 2; // Optional. CTC decoding type
   string language_model_name = 3; // Optional. Language model name for decoding (in none, default will be taken from config file)
 
-  PostProcessingOptions postprocessing = 4; // Optional. Configuration of spelling correction and normalization
+  PostProcessingOptions post_processing = 4; // Optional. Configuration of spelling correction and normalization
 
   TranscriptionReturnOptions return_options = 5; // Optional. Specify which data to return
   UtteranceDetectionOptions utterance_detection = 6; // Optional. Configuration for the detection of utterances
@@ -66,7 +66,7 @@ message TranscriptionReturnOptions {
   bool return_start_of_speech = 1;  // should server make response indicating that the beginning of the speech was detected
   bool return_audio = 2; // should s2t server return audio bytes of transcribed utterance
   bool return_alternative_transcriptions = 3; // Whether or not to return alternative results from beam-search
-  bool return_confidence_score = 4; // Whether or not to return
+  bool return_confidence_score = 4; // Whether or not to return confidence scores
 }
 
 message UtteranceDetectionOptions {
