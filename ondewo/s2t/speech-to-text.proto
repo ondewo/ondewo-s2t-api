@@ -85,10 +85,7 @@ message UtteranceDetectionOptions {
 message PostProcessingOptions {
   bool spelling_correction = 1;
   bool disable_normalization = 2;
-
-  oneof _config {
-    PostProcessors config = 3;
-  }
+  PostProcessors config = 3;
 }
 
 ///////////////////////
