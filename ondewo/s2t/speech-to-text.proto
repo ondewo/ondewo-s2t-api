@@ -85,17 +85,22 @@ message TranscriptionReturnOptions {
 }
 
 message UtteranceDetectionOptions {
+  // Whether or not to transcribe unfinished utterances.
   oneof _transcribe_not_final {
     bool transcribe_not_final = 1;
   }
-  float start_of_utterance_threshold = 2;
-  float end_of_utterance_threshold = 3;
+  float start_of_utterance_threshold = 2; // Specifies the threshold to indicate the begin of an utterance
+  float end_of_utterance_threshold = 3; // Specifies the threshold to indicate the end of an utterance
   float next_chunk_timeout = 4; // if time between audio chunks exceeds next_chunk_timeout, stream will be stopped
 }
 
 message PostProcessingOptions {
+  // Whether or not to use spelling correction
   bool spelling_correction = 1;
+  // Whether or not to disable normalization
   bool disable_normalization = 2;
+  // Post-processing configuration specifying the active post-processors in the pipeline, as well as their individual
+  // configuration. If not set, all values are replaced by the ones in current pipeline.
   PostProcessing config = 3;
 }
 
@@ -111,17 +116,26 @@ message TranscribeStreamRequest {
 }
 
 message Transcription {
+  // The transcribed text
   string transcription = 1;
+  // The corresponding confidence score
   float confidence_score = 2;
 }
 
 message TranscribeStreamResponse {
-  repeated Transcription transcriptions = 1; // List of transcriptions with confidence level
+  // List of transcriptions with confidence level
+  repeated Transcription transcriptions = 1;
+  // The time the transcription took
   float time = 2;
+  // Whether or not this transcription is final (transcribed texts might change if transcription is
+  // started before the end of an utterance).
   bool final = 3;
-  bool return_audio = 4; // is audio bytes of the utterance in response
-  bytes audio = 5; // audio bytes of the transcribed utterance
-  bool utterance_start = 6; // is it a start of the utterance
+  // is audio bytes of the utterance in response
+  bool return_audio = 4;
+  // audio bytes of the transcribed utterance
+  bytes audio = 5;
+  // is it a start of the utterance
+  bool utterance_start = 6;
 }
 
 /////////////////////
