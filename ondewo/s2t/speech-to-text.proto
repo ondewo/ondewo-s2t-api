@@ -21,24 +21,39 @@ import "google/protobuf/empty.proto";
 service Speech2Text {
   rpc TranscribeFile (TranscribeFileRequest) returns (TranscribeFileResponse) {
   };
+
+  // Transcribes an audio stream.
   rpc TranscribeStream (stream TranscribeStreamRequest) returns (stream TranscribeStreamResponse) {
   };
+  // Gets a speech to text pipeline corresponding to the id specified in S2tPipelineId. If no corresponding id is
+  // found, raises ModuleNotFoundError in server.
   rpc GetS2tPipeline (S2tPipelineId) returns (Speech2TextConfig) {
   };
+  // Creates a new speech to text pipeline from a Speech2TextConfig and registers the new pipeline in the server.
   rpc CreateS2tPipeline (Speech2TextConfig) returns (S2tPipelineId) {
   };
+  // Deletes a pipeline corresponding to the id parsed in S2TPipelineId. If no corresponding id is
+  // found, raises ModuleNotFoundError in server.
   rpc DeleteS2tPipeline (S2tPipelineId) returns (google.protobuf.Empty) {
   };
+  // Updates a pipeline with the id specified in Speech2TextConfig with the new config. If no corresponding id is
+  // found, raises ModuleNotFoundError in server.
   rpc UpdateS2tPipeline (Speech2TextConfig) returns (google.protobuf.Empty) {
   };
+  // Lists all speech to text pipelines.
   rpc ListS2tPipelines (ListS2tPipelinesRequest) returns (ListS2tPipelinesResponse) {
   };
+  // Returns a message containing a list of all languages for which there exist pipelines.
   rpc ListS2tLanguages (ListS2tLanguagesRequest) returns (ListS2tLanguagesResponse) {
   };
+  // Returns a message containing a list of all domains for which there exist pipelines.
   rpc ListS2tDomains (ListS2tDomainsRequest) returns (ListS2tDomainsResponse) {
   };
+  // Returns a message containing the version of the running speech to text server.
   rpc GetServiceInfo (google.protobuf.Empty) returns (GetServiceInfoResponse) {
   };
+  // Given a list of pipeline ids, returns a list of LanguageModelPipelineId messages containing the pipeline
+  // id and a list of the language models loaded in the pipeline.
   rpc ListS2tLanguageModels (ListS2tLanguageModelsRequest) returns (ListS2tLanguageModelsResponse) {
   };
 }
@@ -81,7 +96,7 @@ message UtteranceDetectionOptions {
 message PostProcessingOptions {
   bool spelling_correction = 1;
   bool disable_normalization = 2;
-  PostProcessors config = 3;
+  PostProcessing config = 3;
 }
 
 ///////////////////////

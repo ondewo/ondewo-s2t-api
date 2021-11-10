@@ -251,11 +251,11 @@
                 </li>
               
                 <li>
-                  <a href="#ondewo.s2t.NormalizationConfig"><span class="badge">M</span>NormalizationConfig</a>
+                  <a href="#ondewo.s2t.PostProcessing"><span class="badge">M</span>PostProcessing</a>
                 </li>
               
                 <li>
-                  <a href="#ondewo.s2t.PostProcessing"><span class="badge">M</span>PostProcessing</a>
+                  <a href="#ondewo.s2t.PostProcessingOptions"><span class="badge">M</span>PostProcessingOptions</a>
                 </li>
               
                 <li>
@@ -284,10 +284,6 @@
               
                 <li>
                   <a href="#ondewo.s2t.Speech2TextConfig"><span class="badge">M</span>Speech2TextConfig</a>
-                </li>
-              
-                <li>
-                  <a href="#ondewo.s2t.SpellingCorrectionConfig"><span class="badge">M</span>SpellingCorrectionConfig</a>
                 </li>
               
                 <li>
@@ -327,11 +323,11 @@
                 </li>
               
                 <li>
-                  <a href="#ondewo.s2t.TranscriptionReturnConfig"><span class="badge">M</span>TranscriptionReturnConfig</a>
+                  <a href="#ondewo.s2t.TranscriptionReturnOptions"><span class="badge">M</span>TranscriptionReturnOptions</a>
                 </li>
               
                 <li>
-                  <a href="#ondewo.s2t.UtteranceDetectionConfig"><span class="badge">M</span>UtteranceDetectionConfig</a>
+                  <a href="#ondewo.s2t.UtteranceDetectionOptions"><span class="badge">M</span>UtteranceDetectionOptions</a>
                 </li>
               
                 <li>
@@ -941,37 +937,6 @@
 
         
       
-        <h3 id="ondewo.s2t.NormalizationConfig">NormalizationConfig</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>active</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>language</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="ondewo.s2t.PostProcessing">PostProcessing</h3>
         <p></p>
 
@@ -991,6 +956,44 @@
               
                 <tr>
                   <td>post_processors</td>
+                  <td><a href="#ondewo.s2t.PostProcessors">PostProcessors</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.PostProcessingOptions">PostProcessingOptions</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>spelling_correction</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>disable_normalization</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>config</td>
                   <td><a href="#ondewo.s2t.PostProcessors">PostProcessors</a></td>
                   <td></td>
                   <td><p> </p></td>
@@ -1318,37 +1321,6 @@
 
         
       
-        <h3 id="ondewo.s2t.SpellingCorrectionConfig">SpellingCorrectionConfig</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>active</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>max_dictionary_edit_distance</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="ondewo.s2t.StreamingServer">StreamingServer</h3>
         <p></p>
 
@@ -1509,13 +1481,6 @@
             <tbody>
               
                 <tr>
-                  <td>s2t_pipeline_id</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>id of the pipeline (model setup) that will generate audio </p></td>
-                </tr>
-              
-                <tr>
                   <td>audio_file</td>
                   <td><a href="#bytes">bytes</a></td>
                   <td></td>
@@ -1526,7 +1491,7 @@
                   <td>config</td>
                   <td><a href="#ondewo.s2t.TranscribeRequestConfig">TranscribeRequestConfig</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The configuration to override the default configuration </p></td>
                 </tr>
               
             </tbody>
@@ -1585,59 +1550,59 @@
             <tbody>
               
                 <tr>
+                  <td>s2t_pipeline_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Required. id of the pipeline (model setup) that will generate audio </p></td>
+                </tr>
+              
+                <tr>
                   <td>ctc_decoding</td>
                   <td><a href="#ondewo.s2t.CTCDecoding">CTCDecoding</a></td>
                   <td></td>
-                  <td><p>CTC decoding type </p></td>
+                  <td><p>Optional. CTC decoding type </p></td>
                 </tr>
               
                 <tr>
                   <td>language_model_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>language model name for decoding (in none, default will be taken from config file) </p></td>
+                  <td><p>Optional. Language model name for decoding (in none, default will be taken from config file) </p></td>
                 </tr>
               
                 <tr>
-                  <td>spelling_correction</td>
-                  <td><a href="#ondewo.s2t.SpellingCorrectionConfig">SpellingCorrectionConfig</a></td>
+                  <td>post_processing</td>
+                  <td><a href="#ondewo.s2t.PostProcessingOptions">PostProcessingOptions</a></td>
                   <td></td>
-                  <td><p>make spelling correction of the transcription </p></td>
-                </tr>
-              
-                <tr>
-                  <td>normalization</td>
-                  <td><a href="#ondewo.s2t.NormalizationConfig">NormalizationConfig</a></td>
-                  <td></td>
-                  <td><p>configuration of the postprocess normalization applied to transcription </p></td>
-                </tr>
-              
-                <tr>
-                  <td>return_config</td>
-                  <td><a href="#ondewo.s2t.TranscriptionReturnConfig">TranscriptionReturnConfig</a></td>
-                  <td></td>
-                  <td><p>specify which data to return </p></td>
+                  <td><p>Optional. Configuration of spelling correction and normalization </p></td>
                 </tr>
               
                 <tr>
                   <td>utterance_detection</td>
-                  <td><a href="#ondewo.s2t.UtteranceDetectionConfig">UtteranceDetectionConfig</a></td>
+                  <td><a href="#ondewo.s2t.UtteranceDetectionOptions">UtteranceDetectionOptions</a></td>
                   <td></td>
-                  <td><p>Configuration for the detection of utterances </p></td>
+                  <td><p>Optional. Configuration for the detection of utterances </p></td>
                 </tr>
               
                 <tr>
                   <td>voice_activity_detection_method</td>
                   <td><a href="#ondewo.s2t.VoiceActivityDetectionMethod">VoiceActivityDetectionMethod</a></td>
                   <td></td>
-                  <td><p>Which method to be used for voice activity detection </p></td>
+                  <td><p>Optional. Which method to be used for voice activity detection </p></td>
+                </tr>
+              
+                <tr>
+                  <td>return_options</td>
+                  <td><a href="#ondewo.s2t.TranscriptionReturnOptions">TranscriptionReturnOptions</a></td>
+                  <td></td>
+                  <td><p>Optional. Specify which data to return </p></td>
                 </tr>
               
                 <tr>
                   <td>include_timing</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Whether or not to include timing. Only used in TranscribeFile. </p></td>
+                  <td><p>Optional. Whether or not to include timing. Only used in TranscribeFile. </p></td>
                 </tr>
               
             </tbody>
@@ -1658,13 +1623,6 @@
             <tbody>
               
                 <tr>
-                  <td>s2t_pipeline_id</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>id of the pipeline (model setup) that will generate audio </p></td>
-                </tr>
-              
-                <tr>
                   <td>audio_chunk</td>
                   <td><a href="#bytes">bytes</a></td>
                   <td></td>
@@ -1682,7 +1640,7 @@
                   <td>config</td>
                   <td><a href="#ondewo.s2t.TranscribeRequestConfig">TranscribeRequestConfig</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The configuration to override the default configuration </p></td>
                 </tr>
               
             </tbody>
@@ -1782,7 +1740,7 @@
 
         
       
-        <h3 id="ondewo.s2t.TranscriptionReturnConfig">TranscriptionReturnConfig</h3>
+        <h3 id="ondewo.s2t.TranscriptionReturnOptions">TranscriptionReturnOptions</h3>
         <p></p>
 
         
@@ -1817,7 +1775,7 @@
                   <td>return_confidence_score</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Whether or not to return </p></td>
+                  <td><p>Whether or not to return confidence scores </p></td>
                 </tr>
               
             </tbody>
@@ -1827,7 +1785,7 @@
 
         
       
-        <h3 id="ondewo.s2t.UtteranceDetectionConfig">UtteranceDetectionConfig</h3>
+        <h3 id="ondewo.s2t.UtteranceDetectionOptions">UtteranceDetectionOptions</h3>
         <p></p>
 
         
@@ -2063,70 +2021,74 @@
                 <td>TranscribeStream</td>
                 <td><a href="#ondewo.s2t.TranscribeStreamRequest">TranscribeStreamRequest</a> stream</td>
                 <td><a href="#ondewo.s2t.TranscribeStreamResponse">TranscribeStreamResponse</a> stream</td>
-                <td><p></p></td>
+                <td><p>Transcribes an audio stream.</p></td>
               </tr>
             
               <tr>
                 <td>GetS2tPipeline</td>
                 <td><a href="#ondewo.s2t.S2tPipelineId">S2tPipelineId</a></td>
                 <td><a href="#ondewo.s2t.Speech2TextConfig">Speech2TextConfig</a></td>
-                <td><p></p></td>
+                <td><p>Gets a speech to text pipeline corresponding to the id specified in S2tPipelineId. If no corresponding id is
+found, raises ModuleNotFoundError in server.</p></td>
               </tr>
             
               <tr>
                 <td>CreateS2tPipeline</td>
                 <td><a href="#ondewo.s2t.Speech2TextConfig">Speech2TextConfig</a></td>
                 <td><a href="#ondewo.s2t.S2tPipelineId">S2tPipelineId</a></td>
-                <td><p></p></td>
+                <td><p>Creates a new speech to text pipeline from a Speech2TextConfig and registers the new pipeline in the server.</p></td>
               </tr>
             
               <tr>
                 <td>DeleteS2tPipeline</td>
                 <td><a href="#ondewo.s2t.S2tPipelineId">S2tPipelineId</a></td>
                 <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
-                <td><p></p></td>
+                <td><p>Deletes a pipeline corresponding to the id parsed in S2TPipelineId. If no corresponding id is
+found, raises ModuleNotFoundError in server.</p></td>
               </tr>
             
               <tr>
                 <td>UpdateS2tPipeline</td>
                 <td><a href="#ondewo.s2t.Speech2TextConfig">Speech2TextConfig</a></td>
                 <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
-                <td><p></p></td>
+                <td><p>Updates a pipeline with the id specified in Speech2TextConfig with the new config. If no corresponding id is
+found, raises ModuleNotFoundError in server.</p></td>
               </tr>
             
               <tr>
                 <td>ListS2tPipelines</td>
                 <td><a href="#ondewo.s2t.ListS2tPipelinesRequest">ListS2tPipelinesRequest</a></td>
                 <td><a href="#ondewo.s2t.ListS2tPipelinesResponse">ListS2tPipelinesResponse</a></td>
-                <td><p></p></td>
+                <td><p>Lists all speech to text pipelines.</p></td>
               </tr>
             
               <tr>
                 <td>ListS2tLanguages</td>
                 <td><a href="#ondewo.s2t.ListS2tLanguagesRequest">ListS2tLanguagesRequest</a></td>
                 <td><a href="#ondewo.s2t.ListS2tLanguagesResponse">ListS2tLanguagesResponse</a></td>
-                <td><p></p></td>
+                <td><p>Returns a message containing a list of all languages for which there exist pipelines.</p></td>
               </tr>
             
               <tr>
                 <td>ListS2tDomains</td>
                 <td><a href="#ondewo.s2t.ListS2tDomainsRequest">ListS2tDomainsRequest</a></td>
                 <td><a href="#ondewo.s2t.ListS2tDomainsResponse">ListS2tDomainsResponse</a></td>
-                <td><p></p></td>
+                <td><p>Returns a message containing a list of all domains for which there exist pipelines.</p></td>
               </tr>
             
               <tr>
                 <td>GetServiceInfo</td>
                 <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
                 <td><a href="#ondewo.s2t.GetServiceInfoResponse">GetServiceInfoResponse</a></td>
-                <td><p></p></td>
+                <td><p>Returns a message containing the version of the running speech to text server.</p></td>
               </tr>
             
               <tr>
                 <td>ListS2tLanguageModels</td>
                 <td><a href="#ondewo.s2t.ListS2tLanguageModelsRequest">ListS2tLanguageModelsRequest</a></td>
                 <td><a href="#ondewo.s2t.ListS2tLanguageModelsResponse">ListS2tLanguageModelsResponse</a></td>
-                <td><p></p></td>
+                <td><p>Given a list of pipeline ids, returns a list of LanguageModelPipelineId messages containing the pipeline
+id and a list of the language models loaded in the pipeline.</p></td>
               </tr>
             
           </tbody>
