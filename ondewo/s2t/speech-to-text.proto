@@ -337,22 +337,31 @@ message Matchbox {
 }
 
 message PostProcessing {
+  // List of names of active post-processors
   repeated string pipeline = 1;
+  // Post-processor configurations.
   PostProcessors post_processors = 2;
 }
 
 message PostProcessors {
+  // Configuration of the sym-spell spelling correction
   SymSpell sym_spell = 1;
+  // Configuration of the normalization object
   Normalization normalization = 2;
 }
 
 message SymSpell {
+  // Path to the dictionary used by symspell
   string dict_path = 1;
+  // The maximal edit-distance to consider for spelling correction (affects performance - bigger number
+  // takes longer to process!)
   int64 max_dictionary_edit_distance = 2;
+  // The length (number of characters) of the prefix to consider for filtering
   int64 prefix_length = 3;
 }
 
 message Normalization {
+  // In which language to normalization transcription.
   string language = 1;
 }
 

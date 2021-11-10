@@ -982,21 +982,22 @@
                   <td>spelling_correction</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Whether or not to use spelling correction </p></td>
                 </tr>
               
                 <tr>
                   <td>disable_normalization</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Whether or not to disable normalization </p></td>
                 </tr>
               
                 <tr>
                   <td>config</td>
-                  <td><a href="#ondewo.s2t.PostProcessors">PostProcessors</a></td>
+                  <td><a href="#ondewo.s2t.PostProcessing">PostProcessing</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Post-processing configuration specifying the active post-processors in the pipeline, as well as their individual
+configuration. If not set, all values are replaced by the ones in current pipeline. </p></td>
                 </tr>
               
             </tbody>
@@ -1671,14 +1672,15 @@
                   <td>time</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The time the transcription took </p></td>
                 </tr>
               
                 <tr>
                   <td>final</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Whether or not this transcription is final (transcribed texts might change if transcription is
+started before the end of an utterance). </p></td>
                 </tr>
               
                 <tr>
@@ -1723,14 +1725,14 @@
                   <td>transcription</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The transcribed text </p></td>
                 </tr>
               
                 <tr>
                   <td>confidence_score</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The corresponding confidence score </p></td>
                 </tr>
               
             </tbody>
@@ -1806,14 +1808,14 @@
                   <td>start_of_utterance_threshold</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Specifies the threshold to indicate the begin of an utterance </p></td>
                 </tr>
               
                 <tr>
                   <td>end_of_utterance_threshold</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Specifies the threshold to indicate the end of an utterance </p></td>
                 </tr>
               
                 <tr>
