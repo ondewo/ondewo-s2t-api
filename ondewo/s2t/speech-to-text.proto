@@ -63,16 +63,33 @@ service Speech2Text {
 ///////////////////////////
 
 message TranscribeRequestConfig {
-  string s2t_pipeline_id = 1; // Required. id of the pipeline (model setup) that will generate audio
+  // Required. id of the pipeline (model setup) that will generate audio
+  string s2t_pipeline_id = 1;
 
-  CTCDecoding ctc_decoding = 2; // Optional. CTC decoding type
-  string language_model_name = 3; // Optional. Language model name for decoding (in none, default will be taken from config file)
-
-  PostProcessingOptions post_processing = 4; // Optional. Configuration of spelling correction and normalization
-
-  UtteranceDetectionOptions utterance_detection = 5; // Optional. Configuration for the detection of utterances
-  VoiceActivityDetectionMethod voice_activity_detection_method = 6; // Optional. Which method to be used for voice activity detection
-  TranscriptionReturnOptions return_options = 7; // Optional. Specify which data to return
+  // Optional. CTC decoding type
+  oneof _ctc_decoding {
+    CTCDecoding ctc_decoding = 2;
+  }
+  // Optional. Language model name for decoding (in none, default will be taken from config file)
+  oneof _language_model_name {
+    string language_model_name = 3;
+  }
+  // Optional. Configuration of spelling correction and normalization
+  oneof _post_processing {
+    PostProcessingOptions post_processing = 4;
+  }
+  // Optional. Configuration for the detection of utterances
+  oneof _utterance_detection {
+    UtteranceDetectionOptions utterance_detection = 5;
+  }
+  // Optional. Which method to be used for voice activity detection
+  oneof _voice_activity_detection_method {
+    VoiceActivityDetectionMethod voice_activity_detection_method = 6;
+  }
+  // Optional. Specify which data to return
+  oneof _return_options {
+    TranscriptionReturnOptions return_options = 7;
+  }
 }
 
 message TranscriptionReturnOptions {
