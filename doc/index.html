@@ -927,7 +927,7 @@
                   <td>language</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>In which language to normalization transcription. </p></td>
                 </tr>
               
             </tbody>
@@ -951,14 +951,14 @@
                   <td>pipeline</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>List of names of active post-processors </p></td>
                 </tr>
               
                 <tr>
                   <td>post_processors</td>
                   <td><a href="#ondewo.s2t.PostProcessors">PostProcessors</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Post-processor configurations. </p></td>
                 </tr>
               
             </tbody>
@@ -1021,14 +1021,14 @@ configuration. If not set, all values are replaced by the ones in current pipeli
                   <td>sym_spell</td>
                   <td><a href="#ondewo.s2t.SymSpell">SymSpell</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Configuration of the sym-spell spelling correction </p></td>
                 </tr>
               
                 <tr>
                   <td>normalization</td>
                   <td><a href="#ondewo.s2t.Normalization">Normalization</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Configuration of the normalization object </p></td>
                 </tr>
               
             </tbody>
@@ -1447,21 +1447,22 @@ configuration. If not set, all values are replaced by the ones in current pipeli
                   <td>dict_path</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Path to the dictionary used by symspell </p></td>
                 </tr>
               
                 <tr>
                   <td>max_dictionary_edit_distance</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The maximal edit-distance to consider for spelling correction (affects performance - bigger number
+takes longer to process!) </p></td>
                 </tr>
               
                 <tr>
                   <td>prefix_length</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The length (number of characters) of the prefix to consider for filtering </p></td>
                 </tr>
               
             </tbody>

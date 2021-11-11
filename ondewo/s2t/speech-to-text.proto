@@ -74,7 +74,7 @@ message TranscribeRequestConfig {
   VoiceActivityDetectionMethod voice_activity_detection_method = 6; // Optional. Which method to be used for voice activity detection
   TranscriptionReturnOptions return_options = 7; // Optional. Specify which data to return
 
-  bool include_timing = 8; // Optional. Whether or not to include timing. Only used in TranscribeFile.
+  bool include_word_timing = 8; // Optional. Whether or not to include timing. Only used in TranscribeFile.
 }
 
 message TranscriptionReturnOptions {
@@ -98,7 +98,7 @@ message PostProcessingOptions {
   // Whether or not to use spelling correction
   bool spelling_correction = 1;
   // Whether or not to disable normalization
-  bool disable_normalization = 2;
+  bool normalization = 2;
   // Post-processing configuration specifying the active post-processors in the pipeline, as well as their individual
   // configuration. If not set, all values are replaced by the ones in current pipeline.
   PostProcessing config = 3;
@@ -136,6 +136,8 @@ message TranscribeStreamResponse {
   bytes audio = 5;
   // is it a start of the utterance
   bool utterance_start = 6;
+  // id of the transcribed audio file
+  string audio_uuid = 7;
 }
 
 /////////////////////
@@ -154,14 +156,22 @@ enum CTCDecoding {
 }
 
 message TranscribeFileResponse {
-  repeated Transcription transcriptions = 1; // List of transcriptions with confidence level
+  // List of transcriptions with confidence level
+  repeated Transcription transcriptions = 1;
+  // The time the transcription took
   float time = 2;
+  // List of words with timestamps for their start and end
   repeated WordTiming word_timing = 3;
+  // id of the transcribed audio file
+  string audio_uuid = 4;
 }
 
 message WordTiming {
+  // Transcribed word
   string word = 1;
+  // Timestamp for start of word
   int32 begin = 2;
+  // Timestamp for end of word
   int32 end = 3;
 }
 
