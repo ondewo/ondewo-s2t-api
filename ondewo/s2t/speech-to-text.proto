@@ -73,8 +73,6 @@ message TranscribeRequestConfig {
   UtteranceDetectionOptions utterance_detection = 5; // Optional. Configuration for the detection of utterances
   VoiceActivityDetectionMethod voice_activity_detection_method = 6; // Optional. Which method to be used for voice activity detection
   TranscriptionReturnOptions return_options = 7; // Optional. Specify which data to return
-
-  bool include_word_timing = 8; // Optional. Whether or not to include timing. Only used in TranscribeFile.
 }
 
 message TranscriptionReturnOptions {
@@ -82,6 +80,7 @@ message TranscriptionReturnOptions {
   bool return_audio = 2; // should s2t server return audio bytes of transcribed utterance
   bool return_alternative_transcriptions = 3; // Whether or not to return alternative results from beam-search
   bool return_confidence_score = 4; // Whether or not to return confidence scores
+  bool return_word_timing = 8; // Optional. Whether or not to return timestamps of start and end of the words. Only used in TranscribeFile.
 }
 
 message UtteranceDetectionOptions {
