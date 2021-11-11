@@ -109,12 +109,15 @@ message PostProcessingOptions {
 ///////////////////////
 
 message TranscribeStreamRequest {
-  bytes audio_chunk = 1; // wav file to transcribe
-  bool end_of_stream = 2;  // if it's the final chunk of the stream
-
-  TranscribeRequestConfig config = 3; // The configuration to override the default configuration
+  // wav file to transcribe
+  bytes audio_chunk = 1;
+  // if it's the final chunk of the stream
+  bool end_of_stream = 2;
+  // The configuration to override the default configuration
+  oneof _config {
+    TranscribeRequestConfig config = 3;
+  }
 }
-
 message Transcription {
   // The transcribed text
   string transcription = 1;
@@ -146,7 +149,9 @@ message TranscribeStreamResponse {
 
 message TranscribeFileRequest {
   bytes audio_file = 1; // wav file to transcribe
-  TranscribeRequestConfig config = 2; // The configuration to override the default configuration
+  oneof _config {
+    TranscribeRequestConfig config = 2; // The configuration to override the default configuration
+  }
 }
 
 enum CTCDecoding {
