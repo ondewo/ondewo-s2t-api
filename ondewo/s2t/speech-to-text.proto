@@ -83,8 +83,8 @@ message TranscribeRequestConfig {
     UtteranceDetectionOptions utterance_detection = 5;
   }
   // Optional. Which method to be used for voice activity detection
-  oneof _voice_activity_detection_method {
-    VoiceActivityDetectionMethod voice_activity_detection_method = 6;
+  oneof _voice_activity_detection {
+    VoiceActivityDetection voice_activity_detection = 6;
   }
   // Optional. Specify which data to return
   oneof _return_options {
@@ -337,11 +337,6 @@ message StreamingSpeechRecognition {
   float start_of_utterance_threshold = 5;
   float end_of_utterance_threshold = 6;
   float next_chunk_timeout = 7; // if time between audio chunks exceeds next_chunk_timeout, stream will be stopped
-}
-
-enum VoiceActivityDetectionMethod {
-  PYANNOTE = 0;
-  MATCHBOX = 1;
 }
 
 message VoiceActivityDetection {
