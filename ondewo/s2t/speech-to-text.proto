@@ -83,12 +83,13 @@ message TranscribeRequestConfig {
     UtteranceDetectionOptions utterance_detection = 5;
   }
   // Optional. Which method to be used for voice activity detection
-  oneof _voice_activity_detection {
-    VoiceActivityDetection voice_activity_detection = 6;
+  oneof voice_activity_detection {
+    Pyannote pyannote = 6;
+    Matchbox matchbox = 7;
   }
   // Optional. Specify which data to return
   oneof _return_options {
-    TranscriptionReturnOptions return_options = 7;
+    TranscriptionReturnOptions return_options = 8;
   }
 }
 
@@ -351,7 +352,9 @@ message Pyannote {
   int64 min_audio_size = 2;
   float offset = 3;
   float onset = 4;
-  bool log_scale = 5;
+  oneof _log_scale {
+    bool log_scale = 5;
+  }
   float min_duration_off = 6;
   float min_duration_on = 7;
 }
