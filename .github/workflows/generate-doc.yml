@@ -28,10 +28,10 @@ jobs:
 
       - uses: ondewo/ondewo-protoc-gen-doc-action@main
 
-#      - name: Deploy 🚀
-#        if: ${{ !env.ACT }}
-#        uses: JamesIves/github-pages-deploy-action@4.1.4
-#        with:
-#          branch: gh-pages
-#          folder: docs # The folder, of which contents the action should deploy.
-#          target-folder: docs # The target folder, to which the action should deploy the folder contents
+      - name: Deploy 🚀
+        if: ${{ !env.ACT }}
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages
+          folder: docs # The folder, of which contents the action should deploy.
+          target-folder: docs # The target folder, to which the action should deploy the folder contents
