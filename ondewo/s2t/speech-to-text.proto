@@ -157,7 +157,9 @@ message TranscribeStreamResponse {
   // id of the transcribed audio file
   string audio_uuid = 7;
   // The configuration to override the default configuration
-  TranscribeRequestConfig config = 8;
+  oneof _config {
+    TranscribeRequestConfig config = 8;
+  }
 }
 
 /////////////////////
