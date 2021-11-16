@@ -6,9 +6,9 @@ name: Generate Documentation
 on:
   # Triggers the workflow on push
   push:
-    branches: [ master ]
+    branches: [ OND231-271-create-protobuf-message-for-s ]
   pull_request:
-    branches: [ master ]
+    branches: [ OND231-271-create-protobuf-message-for-s ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
