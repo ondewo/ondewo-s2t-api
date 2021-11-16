@@ -131,9 +131,7 @@ message TranscribeStreamRequest {
   // if it's the final chunk of the stream
   bool end_of_stream = 2;
   // The configuration to override the default configuration
-  oneof _config {
-    TranscribeRequestConfig config = 3;
-  }
+  TranscribeRequestConfig config = 3;
 }
 message Transcription {
   // The transcribed text
@@ -158,6 +156,8 @@ message TranscribeStreamResponse {
   bool utterance_start = 6;
   // id of the transcribed audio file
   string audio_uuid = 7;
+  // The configuration to override the default configuration
+  TranscribeRequestConfig config = 8;
 }
 
 /////////////////////
@@ -166,9 +166,7 @@ message TranscribeStreamResponse {
 
 message TranscribeFileRequest {
   bytes audio_file = 1; // wav file to transcribe
-  oneof _config {
-    TranscribeRequestConfig config = 2; // The configuration to override the default configuration
-  }
+  TranscribeRequestConfig config = 2; // The configuration to override the default configuration
 }
 
 enum CTCDecoding {
