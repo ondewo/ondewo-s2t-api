@@ -3,15 +3,7 @@
 name: Generate Documentation
 
 # Controls when the action will run. 
-on:
-  # Triggers the workflow on push
-  push:
-    branches: [ OND231-271-create-protobuf-message-for-s ]
-  pull_request:
-    branches: [ OND231-271-create-protobuf-message-for-s ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+on: [push, pull]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -40,6 +32,5 @@ jobs:
         if: ${{ !env.ACT }}
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
-          branch: gh-pages # The branch the action should deploy to.
           folder: docs # The folder, of which contents the action should deploy.
           target-folder: docs # The target folder, to which the action should deploy the folder contents
