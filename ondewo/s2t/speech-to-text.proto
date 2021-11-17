@@ -106,9 +106,12 @@ message UtteranceDetectionOptions {
   oneof _transcribe_not_final {
     bool transcribe_not_final = 1;
   }
-  float start_of_utterance_threshold = 2; // Specifies the threshold to indicate the begin of an utterance
-  float end_of_utterance_threshold = 3; // Specifies the threshold to indicate the end of an utterance
-  float next_chunk_timeout = 4; // if time between audio chunks exceeds next_chunk_timeout, stream will be stopped
+  // Specifies the minimal duration of voice signal to indicate the start of an utterance
+  float start_of_utterance_threshold = 2;
+  // Specifies the minimal duration of a non-voice signal to indicate the end of an utterance
+  float end_of_utterance_threshold = 3;
+  // if time between audio chunks exceeds next_chunk_timeout, stream will be stopped
+  float next_chunk_timeout = 4;
 }
 
 message PostProcessingOptions {
