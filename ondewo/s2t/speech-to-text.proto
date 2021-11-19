@@ -67,9 +67,8 @@ message TranscribeRequestConfig {
   string s2t_pipeline_id = 1;
 
   // Optional. CTC decoding type
-  oneof _ctc_decoding {
-    CTCDecoding ctc_decoding = 2;
-  }
+  CTCDecoding ctc_decoding = 2;
+
   // Optional. Language model name for decoding (in none, default will be taken from config file)
   oneof _language_model_name {
     string language_model_name = 3;
