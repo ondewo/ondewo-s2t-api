@@ -608,7 +608,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | s2t_pipeline_id | [string](#string) |  | Required. id of the pipeline (model setup) that will generate audio |
-| ctc_decoding | [CTCDecoding](#ondewo.s2t.CTCDecoding) |  |  |
+| ctc_decoding | [CTCDecoding](#ondewo.s2t.CTCDecoding) |  | Optional. CTC decoding type |
 | language_model_name | [string](#string) |  |  |
 | post_processing | [PostProcessingOptions](#ondewo.s2t.PostProcessingOptions) |  |  |
 | utterance_detection | [UtteranceDetectionOptions](#ondewo.s2t.UtteranceDetectionOptions) |  |  |
@@ -704,8 +704,8 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | transcribe_not_final | [bool](#bool) |  |  |
-| start_of_utterance_threshold | [float](#float) |  | Specifies the threshold to indicate the begin of an utterance |
-| end_of_utterance_threshold | [float](#float) |  | Specifies the threshold to indicate the end of an utterance |
+| start_of_utterance_threshold | [float](#float) |  | Specifies the minimal duration of voice signal to indicate the start of an utterance |
+| end_of_utterance_threshold | [float](#float) |  | Specifies the minimal duration of a non-voice signal to indicate the end of an utterance |
 | next_chunk_timeout | [float](#float) |  | if time between audio chunks exceeds next_chunk_timeout, stream will be stopped |
 
 
