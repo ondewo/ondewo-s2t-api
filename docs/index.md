@@ -608,7 +608,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | s2t_pipeline_id | [string](#string) |  | Required. id of the pipeline (model setup) that will generate audio |
-| ctc_decoding | [CTCDecoding](#ondewo.s2t.CTCDecoding) |  |  |
+| ctc_decoding | [CTCDecoding](#ondewo.s2t.CTCDecoding) |  | Optional. CTC decoding type |
 | language_model_name | [string](#string) |  |  |
 | post_processing | [PostProcessingOptions](#ondewo.s2t.PostProcessingOptions) |  |  |
 | utterance_detection | [UtteranceDetectionOptions](#ondewo.s2t.UtteranceDetectionOptions) |  |  |
