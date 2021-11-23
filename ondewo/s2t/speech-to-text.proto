@@ -117,7 +117,7 @@ message PostProcessingOptions {
   // Whether or not to use spelling correction
   bool spelling_correction = 1;
   // Whether or not to disable normalization
-  bool normalization = 2;
+  bool normalize = 2;
   // Post-processing configuration specifying the active post-processors in the pipeline, as well as their individual
   // configuration. If not set, all values are replaced by the ones in current pipeline.
   PostProcessing config = 3;
