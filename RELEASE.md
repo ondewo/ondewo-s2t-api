@@ -1,5 +1,13 @@
 # Release History
 *****************
+## Release ONDEWO APIS 2.0.0
+
+### Breaking Changes
+
+* [[OND231-271]] -
+Implement configuration messages for TranscribeFileRequest and TranscribeStreamRequest to the speech-to-text server.
+
+*****************
 
 ## Release ONDEWO APIS 0.2.2
 
