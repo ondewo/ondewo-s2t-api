@@ -5,7 +5,7 @@
 ### Breaking Changes
 
 * [[OND231-271]] -
-Implement configuration messages for requests to the speech-to-text server.
+Implement configuration messages for TranscribeFileRequest and TranscribeStreamRequest to the speech-to-text server.
 
 *****************
 
