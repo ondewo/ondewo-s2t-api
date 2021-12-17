@@ -346,7 +346,7 @@ message VoiceActivityDetection {
   string active = 1;
   int64 sampling_rate = 2;
   Pyannote pyannote = 3;
-  Matchbox matchbox = 4;
+  Marbelnet marbelnet = 4;
 }
 
 message Pyannote {
@@ -361,10 +361,8 @@ message Pyannote {
   float min_duration_on = 7;
 }
 
-message Matchbox {
-  string model_config = 1;
-  string encoder_path = 2;
-  string decoder_path = 3;
+message Marbelnet {
+  string model_path = 1;
 }
 
 message PostProcessing {
