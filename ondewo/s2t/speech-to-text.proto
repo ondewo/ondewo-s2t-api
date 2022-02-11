@@ -50,7 +50,7 @@ service Speech2Text {
   rpc ListS2tDomains (ListS2tDomainsRequest) returns (ListS2tDomainsResponse) {
   };
   // Returns a message containing the version of the running speech to text server.
-  rpc GetServiceInfo (google.protobuf.Empty) returns (GetServiceInfoResponse) {
+  rpc GetServiceInfo (google.protobuf.Empty) returns (S2TGetServiceInfoResponse) {
   };
   // Given a list of pipeline ids, returns a list of LanguageModelPipelineId messages containing the pipeline
   // id and a list of the language models loaded in the pipeline.
@@ -251,7 +251,7 @@ message ListS2tDomainsResponse {
 // GET SERVICE INFO //
 //////////////////////
 
-message GetServiceInfoResponse {
+message S2TGetServiceInfoResponse {
   string version = 1;
 }
 
@@ -261,23 +261,23 @@ message GetServiceInfoResponse {
 
 message Speech2TextConfig {
   string id = 1;
-  Description description = 2;
+  S2TDescription description = 2;
   bool active = 3;
-  Inference inference = 4;
+  S2TInference inference = 4;
   StreamingServer streaming_server = 5;
   VoiceActivityDetection voice_activity_detection = 6;
   PostProcessing post_processing = 7;
   Logging logging = 8;
 }
 
-message Description {
+message S2TDescription {
   string language = 1;
   string pipeline_owner = 2;
   string domain = 3;
   string comments = 4;
 }
 
-message Inference {
+message S2TInference {
   CtcAcousticModels ctc_acoustic_models = 1;
   LanguageModels language_models = 2;
 }
@@ -378,7 +378,7 @@ message PostProcessors {
   // Configuration of the sym-spell spelling correction
   SymSpell sym_spell = 1;
   // Configuration of the normalization object
-  Normalization normalization = 2;
+  S2TNormalization normalization = 2;
 }
 
 message SymSpell {
@@ -391,7 +391,7 @@ message SymSpell {
   int64 prefix_length = 3;
 }
 
-message Normalization {
+message S2TNormalization {
   // In which language to normalization transcription.
   string language = 1;
 }
