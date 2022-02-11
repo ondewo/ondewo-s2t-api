@@ -83,18 +83,6 @@
                       </li>
                     
                       <li>
-                        <a href="#ondewo.s2t.Description" class="title-badge message">Description</a>
-                      </li>
-                    
-                      <li>
-                        <a href="#ondewo.s2t.GetServiceInfoResponse" class="title-badge message">GetServiceInfoResponse</a>
-                      </li>
-                    
-                      <li>
-                        <a href="#ondewo.s2t.Inference" class="title-badge message">Inference</a>
-                      </li>
-                    
-                      <li>
                         <a href="#ondewo.s2t.LanguageModelPipelineId" class="title-badge message">LanguageModelPipelineId</a>
                       </li>
                     
@@ -143,10 +131,6 @@
                       </li>
                     
                       <li>
-                        <a href="#ondewo.s2t.Normalization" class="title-badge message">Normalization</a>
-                      </li>
-                    
-                      <li>
                         <a href="#ondewo.s2t.PostProcessing" class="title-badge message">PostProcessing</a>
                       </li>
                     
@@ -172,6 +156,22 @@
                     
                       <li>
                         <a href="#ondewo.s2t.QuartznetTriton" class="title-badge message">QuartznetTriton</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.S2TDescription" class="title-badge message">S2TDescription</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.S2TGetServiceInfoResponse" class="title-badge message">S2TGetServiceInfoResponse</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.S2TInference" class="title-badge message">S2TInference</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.S2TNormalization" class="title-badge message">S2TNormalization</a>
                       </li>
                     
                       <li>
@@ -338,7 +338,7 @@ found, raises ModuleNotFoundError in server.
         
           <h4 id="ondewo.s2t.Speech2Text.GetServiceInfo" class="title-badge method">GetServiceInfo</h4>
 
-          <pre>rpc GetServiceInfo (<a href="#google.protobuf.Empty">.google.protobuf.Empty</a>) returns (<a href="#ondewo.s2t.GetServiceInfoResponse">GetServiceInfoResponse)</a></pre>
+          <pre>rpc GetServiceInfo (<a href="#google.protobuf.Empty">.google.protobuf.Empty</a>) returns (<a href="#ondewo.s2t.S2TGetServiceInfoResponse">S2TGetServiceInfoResponse)</a></pre>
 
           Returns a message containing the version of the running speech to text server.
         
@@ -416,106 +416,6 @@ id and a list of the language models loaded in the pipeline.
                 <tr>
                   <td>wav2vec</td>
                   <td><a href="#ondewo.s2t.Wav2Vec">Wav2Vec</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="ondewo.s2t.Description" class="title-badge message">Description</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>language</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pipeline_owner</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>domain</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>comments</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="ondewo.s2t.GetServiceInfoResponse" class="title-badge message">GetServiceInfoResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>version</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="ondewo.s2t.Inference" class="title-badge message">Inference</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>ctc_acoustic_models</td>
-                  <td><a href="#ondewo.s2t.CtcAcousticModels">CtcAcousticModels</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>language_models</td>
-                  <td><a href="#ondewo.s2t.LanguageModels">LanguageModels</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -899,30 +799,6 @@ id and a list of the language models loaded in the pipeline.
 
         
       
-        <h3 id="ondewo.s2t.Normalization" class="title-badge message">Normalization</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>language</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>In which language to normalization transcription. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="ondewo.s2t.PostProcessing" class="title-badge message">PostProcessing</h3>
         <p></p>
 
@@ -972,7 +848,7 @@ id and a list of the language models loaded in the pipeline.
                 </tr>
               
                 <tr>
-                  <td>normalization</td>
+                  <td>normalize</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>Whether or not to disable normalization </p></td>
@@ -1012,7 +888,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
               
                 <tr>
                   <td>normalization</td>
-                  <td><a href="#ondewo.s2t.Normalization">Normalization</a></td>
+                  <td><a href="#ondewo.s2t.S2TNormalization">S2TNormalization</a></td>
                   <td></td>
                   <td><p>Configuration of the normalization object </p></td>
                 </tr>
@@ -1211,6 +1087,130 @@ configuration. If not set, all values are replaced by the ones in current pipeli
 
         
       
+        <h3 id="ondewo.s2t.S2TDescription" class="title-badge message">S2TDescription</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>language</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pipeline_owner</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>domain</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>comments</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.S2TGetServiceInfoResponse" class="title-badge message">S2TGetServiceInfoResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>version</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.S2TInference" class="title-badge message">S2TInference</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>ctc_acoustic_models</td>
+                  <td><a href="#ondewo.s2t.CtcAcousticModels">CtcAcousticModels</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>language_models</td>
+                  <td><a href="#ondewo.s2t.LanguageModels">LanguageModels</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.S2TNormalization" class="title-badge message">S2TNormalization</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>language</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>In which language to normalization transcription. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="ondewo.s2t.S2tPipelineId" class="title-badge message">S2tPipelineId</h3>
         <p></p>
 
@@ -1254,7 +1254,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
               
                 <tr>
                   <td>description</td>
-                  <td><a href="#ondewo.s2t.Description">Description</a></td>
+                  <td><a href="#ondewo.s2t.S2TDescription">S2TDescription</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -1268,7 +1268,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
               
                 <tr>
                   <td>inference</td>
-                  <td><a href="#ondewo.s2t.Inference">Inference</a></td>
+                  <td><a href="#ondewo.s2t.S2TInference">S2TInference</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>

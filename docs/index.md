@@ -6,9 +6,6 @@
 - [ondewo/s2t/speech-to-text.proto](#ondewo/s2t/speech-to-text.proto)
     - [CkptFile](#ondewo.s2t.CkptFile)
     - [CtcAcousticModels](#ondewo.s2t.CtcAcousticModels)
-    - [Description](#ondewo.s2t.Description)
-    - [GetServiceInfoResponse](#ondewo.s2t.GetServiceInfoResponse)
-    - [Inference](#ondewo.s2t.Inference)
     - [LanguageModelPipelineId](#ondewo.s2t.LanguageModelPipelineId)
     - [LanguageModels](#ondewo.s2t.LanguageModels)
     - [ListS2tDomainsRequest](#ondewo.s2t.ListS2tDomainsRequest)
@@ -21,7 +18,6 @@
     - [ListS2tPipelinesResponse](#ondewo.s2t.ListS2tPipelinesResponse)
     - [Logging](#ondewo.s2t.Logging)
     - [Matchbox](#ondewo.s2t.Matchbox)
-    - [Normalization](#ondewo.s2t.Normalization)
     - [PostProcessing](#ondewo.s2t.PostProcessing)
     - [PostProcessingOptions](#ondewo.s2t.PostProcessingOptions)
     - [PostProcessors](#ondewo.s2t.PostProcessors)
@@ -29,6 +25,10 @@
     - [Pyannote](#ondewo.s2t.Pyannote)
     - [Quartznet](#ondewo.s2t.Quartznet)
     - [QuartznetTriton](#ondewo.s2t.QuartznetTriton)
+    - [S2TDescription](#ondewo.s2t.S2TDescription)
+    - [S2TGetServiceInfoResponse](#ondewo.s2t.S2TGetServiceInfoResponse)
+    - [S2TInference](#ondewo.s2t.S2TInference)
+    - [S2TNormalization](#ondewo.s2t.S2TNormalization)
     - [S2tPipelineId](#ondewo.s2t.S2tPipelineId)
     - [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig)
     - [StreamingServer](#ondewo.s2t.StreamingServer)
@@ -88,55 +88,6 @@
 | quartznet | [Quartznet](#ondewo.s2t.Quartznet) |  |  |
 | quartznet_triton | [QuartznetTriton](#ondewo.s2t.QuartznetTriton) |  |  |
 | wav2vec | [Wav2Vec](#ondewo.s2t.Wav2Vec) |  |  |
-
-
-
-
-
-
-<a name="ondewo.s2t.Description"></a>
-
-### Description
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| language | [string](#string) |  |  |
-| pipeline_owner | [string](#string) |  |  |
-| domain | [string](#string) |  |  |
-| comments | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="ondewo.s2t.GetServiceInfoResponse"></a>
-
-### GetServiceInfoResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| version | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="ondewo.s2t.Inference"></a>
-
-### Inference
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ctc_acoustic_models | [CtcAcousticModels](#ondewo.s2t.CtcAcousticModels) |  |  |
-| language_models | [LanguageModels](#ondewo.s2t.LanguageModels) |  |  |
 
 
 
@@ -335,21 +286,6 @@
 
 
 
-<a name="ondewo.s2t.Normalization"></a>
-
-### Normalization
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| language | [string](#string) |  | In which language to normalization transcription. |
-
-
-
-
-
-
 <a name="ondewo.s2t.PostProcessing"></a>
 
 ### PostProcessing
@@ -375,7 +311,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | spelling_correction | [bool](#bool) |  | Whether or not to use spelling correction |
-| normalization | [bool](#bool) |  | Whether or not to disable normalization |
+| normalize | [bool](#bool) |  | Whether or not to disable normalization |
 | config | [PostProcessing](#ondewo.s2t.PostProcessing) |  | Post-processing configuration specifying the active post-processors in the pipeline, as well as their individual configuration. If not set, all values are replaced by the ones in current pipeline. |
 
 
@@ -392,7 +328,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | sym_spell | [SymSpell](#ondewo.s2t.SymSpell) |  | Configuration of the sym-spell spelling correction |
-| normalization | [Normalization](#ondewo.s2t.Normalization) |  | Configuration of the normalization object |
+| normalization | [S2TNormalization](#ondewo.s2t.S2TNormalization) |  | Configuration of the normalization object |
 
 
 
@@ -472,6 +408,70 @@
 
 
 
+<a name="ondewo.s2t.S2TDescription"></a>
+
+### S2TDescription
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| language | [string](#string) |  |  |
+| pipeline_owner | [string](#string) |  |  |
+| domain | [string](#string) |  |  |
+| comments | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2TGetServiceInfoResponse"></a>
+
+### S2TGetServiceInfoResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| version | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2TInference"></a>
+
+### S2TInference
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ctc_acoustic_models | [CtcAcousticModels](#ondewo.s2t.CtcAcousticModels) |  |  |
+| language_models | [LanguageModels](#ondewo.s2t.LanguageModels) |  |  |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2TNormalization"></a>
+
+### S2TNormalization
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| language | [string](#string) |  | In which language to normalization transcription. |
+
+
+
+
+
+
 <a name="ondewo.s2t.S2tPipelineId"></a>
 
 ### S2tPipelineId
@@ -496,9 +496,9 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  |  |
-| description | [Description](#ondewo.s2t.Description) |  |  |
+| description | [S2TDescription](#ondewo.s2t.S2TDescription) |  |  |
 | active | [bool](#bool) |  |  |
-| inference | [Inference](#ondewo.s2t.Inference) |  |  |
+| inference | [S2TInference](#ondewo.s2t.S2TInference) |  |  |
 | streaming_server | [StreamingServer](#ondewo.s2t.StreamingServer) |  |  |
 | voice_activity_detection | [VoiceActivityDetection](#ondewo.s2t.VoiceActivityDetection) |  |  |
 | post_processing | [PostProcessing](#ondewo.s2t.PostProcessing) |  |  |
@@ -799,7 +799,7 @@ endpoints of speech-to-text service
 | ListS2tPipelines | [ListS2tPipelinesRequest](#ondewo.s2t.ListS2tPipelinesRequest) | [ListS2tPipelinesResponse](#ondewo.s2t.ListS2tPipelinesResponse) | Lists all speech to text pipelines. |
 | ListS2tLanguages | [ListS2tLanguagesRequest](#ondewo.s2t.ListS2tLanguagesRequest) | [ListS2tLanguagesResponse](#ondewo.s2t.ListS2tLanguagesResponse) | Returns a message containing a list of all languages for which there exist pipelines. |
 | ListS2tDomains | [ListS2tDomainsRequest](#ondewo.s2t.ListS2tDomainsRequest) | [ListS2tDomainsResponse](#ondewo.s2t.ListS2tDomainsResponse) | Returns a message containing a list of all domains for which there exist pipelines. |
-| GetServiceInfo | [.google.protobuf.Empty](#google.protobuf.Empty) | [GetServiceInfoResponse](#ondewo.s2t.GetServiceInfoResponse) | Returns a message containing the version of the running speech to text server. |
+| GetServiceInfo | [.google.protobuf.Empty](#google.protobuf.Empty) | [S2TGetServiceInfoResponse](#ondewo.s2t.S2TGetServiceInfoResponse) | Returns a message containing the version of the running speech to text server. |
 | ListS2tLanguageModels | [ListS2tLanguageModelsRequest](#ondewo.s2t.ListS2tLanguageModelsRequest) | [ListS2tLanguageModelsResponse](#ondewo.s2t.ListS2tLanguageModelsResponse) | Given a list of pipeline ids, returns a list of LanguageModelPipelineId messages containing the pipeline id and a list of the language models loaded in the pipeline. |
 
  <!-- end services -->
