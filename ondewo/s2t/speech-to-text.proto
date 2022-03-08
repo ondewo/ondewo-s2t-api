@@ -135,7 +135,7 @@ message TranscribeStreamRequest {
   // The configuration to override the default configuration
   TranscribeRequestConfig config = 3;
   // Whether or not to mute the audio signal. Defaults to false.
-  bool mute_audio = 9;
+  bool mute_audio = 4;
 }
 message Transcription {
   // The transcribed text
