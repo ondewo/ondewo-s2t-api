@@ -90,9 +90,6 @@ message TranscribeRequestConfig {
   oneof oneof_return_options {
     TranscriptionReturnOptions return_options = 8;
   }
-
-  // Whether or not to mute the audio signal. Defaults to false.
-  bool mute_audio = 9;
 }
 
 message TranscriptionReturnOptions {
@@ -137,6 +134,8 @@ message TranscribeStreamRequest {
   bool end_of_stream = 2;
   // The configuration to override the default configuration
   TranscribeRequestConfig config = 3;
+  // Whether or not to mute the audio signal. Defaults to false.
+  bool mute_audio = 9;
 }
 message Transcription {
   // The transcribed text
