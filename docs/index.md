@@ -632,6 +632,7 @@
 | audio_chunk | [bytes](#bytes) |  | wav file to transcribe |
 | end_of_stream | [bool](#bool) |  | if it's the final chunk of the stream |
 | config | [TranscribeRequestConfig](#ondewo.s2t.TranscribeRequestConfig) |  | The configuration to override the default configuration |
+| mute_audio | [bool](#bool) |  | Whether or not to mute the audio signal. Defaults to false. |
 
 
 
