@@ -1,5 +1,12 @@
 # Release History
 *****************
+## Release ONDEWO APIS 3.1.0
+
+### New Features
+* [[OND231-338]] -
+Add mute_audio field in TranscribeStreamRequest.
+
+*****************
 ## Release ONDEWO APIS 3.0.0
 
 ### Breaking Changes
