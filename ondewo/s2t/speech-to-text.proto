@@ -217,6 +217,9 @@ message ListS2tPipelinesRequest {
   repeated string languages = 1;
   repeated string pipeline_owners = 2;
   repeated string domains = 3;
+  // If true, return only registered pipelines.
+  // Default false: return registered and persisted (from config files) configs.
+  bool registered_only = 4;
 }
 
 message ListS2tPipelinesResponse {
