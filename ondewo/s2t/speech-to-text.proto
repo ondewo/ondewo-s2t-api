@@ -292,11 +292,21 @@ message CtcAcousticModels {
   Quartznet quartznet = 2;
   QuartznetTriton quartznet_triton = 3;
   Wav2Vec wav2vec = 4;
+  Wav2VecTriton wav2vec_triton = 5;
 }
 
 message Wav2Vec {
   string model_path = 1;
   bool use_gpu = 2;
+}
+
+message Wav2VecTriton {
+  string processor_path = 1;
+  string triton_url = 2;
+  string triton_model = 3;
+  string triton_model_version = 4;
+  string input_name = 5;
+  string output_name = 6;
 }
 
 message Quartznet {
