@@ -302,11 +302,8 @@ message Wav2Vec {
 
 message Wav2VecTriton {
   string processor_path = 1;
-  string triton_url = 2;
-  string triton_model = 3;
-  string triton_model_version = 4;
-  string input_name = 5;
-  string output_name = 6;
+  string triton_model = 2;
+  string triton_model_version = 3;
 }
 
 message Quartznet {
