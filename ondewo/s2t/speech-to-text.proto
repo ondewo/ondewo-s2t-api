@@ -300,15 +300,11 @@ message Wav2Vec {
   bool use_gpu = 2;
 }
 
-message Triton {
-  string triton_model_name = 1;
-  string triton_model_version = 2;
-  int64 check_status_timeout = 3;
-}
-
 message Wav2VecTriton {
   string processor_path = 1;
-  Triton triton_config = 2;
+  string triton_model_name = 2;
+  string triton_model_version = 3;
+  int64 check_status_timeout = 4;
 }
 
 message Quartznet {
