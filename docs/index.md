@@ -44,6 +44,7 @@
     - [UtteranceDetectionOptions](#ondewo.s2t.UtteranceDetectionOptions)
     - [VoiceActivityDetection](#ondewo.s2t.VoiceActivityDetection)
     - [Wav2Vec](#ondewo.s2t.Wav2Vec)
+    - [Wav2VecTriton](#ondewo.s2t.Wav2VecTriton)
     - [WordTiming](#ondewo.s2t.WordTiming)
   
     - [CTCDecoding](#ondewo.s2t.CTCDecoding)
@@ -88,6 +89,7 @@
 | quartznet | [Quartznet](#ondewo.s2t.Quartznet) |  |  |
 | quartznet_triton | [QuartznetTriton](#ondewo.s2t.QuartznetTriton) |  |  |
 | wav2vec | [Wav2Vec](#ondewo.s2t.Wav2Vec) |  |  |
+| wav2vec_triton | [Wav2VecTriton](#ondewo.s2t.Wav2VecTriton) |  |  |
 
 
 
@@ -232,6 +234,7 @@
 | languages | [string](#string) | repeated |  |
 | pipeline_owners | [string](#string) | repeated |  |
 | domains | [string](#string) | repeated |  |
+| registered_only | [bool](#bool) |  | If true, return only registered pipelines. Default false: return registered and persisted (from config files) configs. |
 
 
 
@@ -742,6 +745,24 @@
 | ----- | ---- | ----- | ----------- |
 | model_path | [string](#string) |  |  |
 | use_gpu | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="ondewo.s2t.Wav2VecTriton"></a>
+
+### Wav2VecTriton
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| processor_path | [string](#string) |  |  |
+| triton_model_name | [string](#string) |  |  |
+| triton_model_version | [string](#string) |  |  |
+| check_status_timeout | [int64](#int64) |  |  |
 
 
 

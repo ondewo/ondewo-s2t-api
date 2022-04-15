@@ -235,6 +235,10 @@
                       </li>
                     
                       <li>
+                        <a href="#ondewo.s2t.Wav2VecTriton" class="title-badge message">Wav2VecTriton</a>
+                      </li>
+                    
+                      <li>
                         <a href="#ondewo.s2t.WordTiming" class="title-badge message">WordTiming</a>
                       </li>
                     
@@ -416,6 +420,13 @@ id and a list of the language models loaded in the pipeline.
                 <tr>
                   <td>wav2vec</td>
                   <td><a href="#ondewo.s2t.Wav2Vec">Wav2Vec</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>wav2vec_triton</td>
+                  <td><a href="#ondewo.s2t.Wav2VecTriton">Wav2VecTriton</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -697,6 +708,14 @@ id and a list of the language models loaded in the pipeline.
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>registered_only</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>If true, return only registered pipelines.
+Default false: return registered and persisted (from config files) configs. </p></td>
                 </tr>
               
             </tbody>
@@ -1919,6 +1938,51 @@ started before the end of an utterance). </p></td>
                 <tr>
                   <td>use_gpu</td>
                   <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.Wav2VecTriton" class="title-badge message">Wav2VecTriton</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>processor_path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>triton_model_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>triton_model_version</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>check_status_timeout</td>
+                  <td><a href="#int64">int64</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
