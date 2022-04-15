@@ -1,5 +1,11 @@
 # Release History
 *****************
+## Release ONDEWO APIS 3.1.1
+
+### New Features
+* Add `bool registered_only` option in ListS2tPipelinesRequest. 
+
+*****************
 ## Release ONDEWO APIS 3.1.0
 
 ### New Features
