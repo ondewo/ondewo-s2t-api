@@ -1,48 +1,52 @@
 # Release History
 *****************
-## Release ONDEWO APIS 3.1.1
+## Release ONDEWO S2T API 3.2.0
+
+### New Features
+* [[OND211-2039]](https://ondewo.atlassian.net/browse/OND211-2039) - Automated Release Process 
+
+
+*****************
+## Release ONDEWO S2T API 3.1.1
 
 ### New Features
 * Add `bool registered_only` option in ListS2tPipelinesRequest. 
 
 *****************
-## Release ONDEWO APIS 3.1.0
+## Release ONDEWO S2T API 3.1.0
 
 ### New Features
-* [[OND231-338]] -
-Add mute_audio field in TranscribeStreamRequest.
+ * [[OND231-338]](https://ondewo.atlassian.net/browse/OND231-338) - Add mute_audio field in TranscribeStreamRequest. 
 
 *****************
-## Release ONDEWO APIS 3.0.0
+## Release ONDEWO S2T API 3.0.0
 
 ### Breaking Changes
-* [[OND231-334]] -
-Rename Description, GetServiceInfoResponse, Inference and Normalization messages to include S2T
+ * [[OND231-334]](https://ondewo.atlassian.net/browse/OND231-338) - Rename Description, GetServiceInfoResponse, Inference and Normalization messages to include S2T 
 
 *****************
 
-## Release ONDEWO APIS 2.0.0
+## Release ONDEWO S2T API 2.0.0
 
 ### Breaking Changes
 
-* [[OND231-271]] -
-Implement configuration messages for TranscribeFileRequest and TranscribeStreamRequest to the speech-to-text server.
+ * [[OND231-271]](https://ondewo.atlassian.net/browse/OND231-271) - Implement configuration messages for TranscribeFileRequest and TranscribeStreamRequest to the speech-to-text server.
 
 *****************
 
-## Release ONDEWO APIS 0.2.2
+## Release ONDEWO S2T API 0.2.2
 
 ### Improvements
 Updated README.
 
 *****************
-## Release ONDEWO APIS 0.2.1
+## Release ONDEWO S2T API 0.2.1
 
 ### Bug fixes
 Updated licenses.
 
 *****************
-## Release ONDEWO APIS 0.2.0
+## Release ONDEWO S2T API 0.2.0
 
 ### New Features
 
