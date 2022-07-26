@@ -467,4 +467,5 @@ message DeleteUserLanguageModelRequest {
 
 message TrainUserLanguageModelRequest {
   string language_model_name = 1; // Name of the language model to train
+  int64 order = 2; // Order n of the ngram
 }
