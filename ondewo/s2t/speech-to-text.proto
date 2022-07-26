@@ -62,6 +62,9 @@ service Speech2Text {
   // Delete a user language model.
   rpc DeleteUserLanguageModel (DeleteUserLanguageModelRequest) returns (google.protobuf.Empty) {
   };
+  // Train a user language model.
+  rpc TrainUserLanguageModel (TrainUserLanguageModelRequest) returns (google.protobuf.Empty) {
+  };
 }
 
 ///////////////////////////
@@ -455,4 +458,13 @@ message CreateUserLanguageModelRequest {
 
 message DeleteUserLanguageModelRequest {
   string language_model_name = 1; // Name of the language model to delete
+}
+
+
+///////////////////////////////
+// TRAIN USER LANGUAGE MODEL //
+///////////////////////////////
+
+message TrainUserLanguageModelRequest {
+  string language_model_name = 1; // Name of the language model to train
 }
