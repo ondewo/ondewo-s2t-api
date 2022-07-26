@@ -57,7 +57,7 @@ service Speech2Text {
   rpc ListS2tLanguageModels (ListS2tLanguageModelsRequest) returns (ListS2tLanguageModelsResponse) {
   };
   // Create a user language model.
-  rpc CreateUserLanguageModel (CreateUserLanguageModelRequest) returns (CreateUserLanguageModelResponse) {
+  rpc CreateUserLanguageModel (CreateUserLanguageModelRequest) returns (google.protobuf.Empty) {
   };
 }
 
@@ -442,9 +442,5 @@ message ListS2tLanguageModelsResponse {
 ////////////////////////////////
 
 message CreateUserLanguageModelRequest {
-  repeated string sentences = 1; // List of sentences to estimate the language model on
-}
-
-message CreateUserLanguageModelResponse {
-  string pipeline_id = 1; // One pipeline id
+  string language_model_name = 1; // Name of the language model to create
 }
