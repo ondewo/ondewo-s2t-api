@@ -56,6 +56,9 @@ service Speech2Text {
   // id and a list of the language models loaded in the pipeline.
   rpc ListS2tLanguageModels (ListS2tLanguageModelsRequest) returns (ListS2tLanguageModelsResponse) {
   };
+  // Create a user language model.
+  rpc CreateUserLanguageModel (CreateUserLanguageModelRequest) returns (CreateUserLanguageModelResponse) {
+  };
 }
 
 ///////////////////////////
@@ -431,4 +434,17 @@ message LanguageModelPipelineId {
 message ListS2tLanguageModelsResponse {
   repeated LanguageModelPipelineId lm_pipeline_ids = 1;
   // Response is a dictionary of type Dict[pipeline id, List of available language models]
+}
+
+
+////////////////////////////////
+// CREATE USER LANGUAGE MODEL //
+////////////////////////////////
+
+message CreateUserLanguageModelRequest {
+  repeated string sentences = 1; // List of sentences to estimate the language model on
+}
+
+message CreateUserLanguageModelResponse {
+  string pipeline_id = 1; // One pipeline id
 }
