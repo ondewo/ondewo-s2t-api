@@ -16,7 +16,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - uses: ondewo/ondewo-protoc-gen-doc-action@main
+      - uses: ondewo/ondewo-protoc-gen-doc-action@master
 
       - name: Deploy 🚀
         if: ${{ !env.ACT }}
