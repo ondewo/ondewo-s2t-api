@@ -2,7 +2,7 @@
 
 name: Generate Documentation
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on: [release]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -22,6 +22,6 @@ jobs:
         if: ${{ !env.ACT }}
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
-          branch: master
+          branch: gh-pages
           folder: docs # The folder, of which contents the action should deploy.
           target-folder: docs # The target folder, to which the action should deploy the folder contents
