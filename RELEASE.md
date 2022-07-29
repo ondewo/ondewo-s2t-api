@@ -1,28 +1,35 @@
 # Release History
 *****************
+## Release ONDEWO S2T API 3.3.0
+
+### New Features
+* [[OND211-2039]](https://ondewo.atlassian.net/browse/OND211-2039) - Refactor Automatic Release
+* Added Endpoints for User Creation Language Models
+
+*****************
 ## Release ONDEWO S2T API 3.2.0
 
 ### New Features
-* [[OND211-2039]](https://ondewo.atlassian.net/browse/OND211-2039) - Automated Release Process 
+* [[OND211-2039]](https://ondewo.atlassian.net/browse/OND211-2039) - Automated Release Process
 
 
 *****************
 ## Release ONDEWO S2T API 3.1.1
 
 ### New Features
-* Add `bool registered_only` option in ListS2tPipelinesRequest. 
+* Add `bool registered_only` option in ListS2tPipelinesRequest.
 
 *****************
 ## Release ONDEWO S2T API 3.1.0
 
 ### New Features
- * [[OND231-338]](https://ondewo.atlassian.net/browse/OND231-338) - Add mute_audio field in TranscribeStreamRequest. 
+ * [[OND231-338]](https://ondewo.atlassian.net/browse/OND231-338) - Add mute_audio field in TranscribeStreamRequest.
 
 *****************
 ## Release ONDEWO S2T API 3.0.0
 
 ### Breaking Changes
- * [[OND231-334]](https://ondewo.atlassian.net/browse/OND231-338) - Rename Description, GetServiceInfoResponse, Inference and Normalization messages to include S2T 
+ * [[OND231-334]](https://ondewo.atlassian.net/browse/OND231-338) - Rename Description, GetServiceInfoResponse, Inference and Normalization messages to include S2T
 
 *****************
 
