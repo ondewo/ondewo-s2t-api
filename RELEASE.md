@@ -1,5 +1,12 @@
 # Release History
 *****************
+## Release ONDEWO S2T API 3.3.0
+
+### New Features
+* [[OND211-2039]](https://ondewo.atlassian.net/browse/OND211-2039) - Refactor Automatic Release
+* Added Endpoints for User Creation Language Models
+
+*****************
 ## Release ONDEWO S2T API 3.2.0
 
 ### New Features
