@@ -94,8 +94,7 @@ GENERIC_CLIENT?=
 RELEASEMD?=
 GENERIC_RELEASE_NOTES="\n***************** \n\\\#\\\# Release ONDEWO S2T REPONAME Client ${ONDEWO_S2T_API_VERSION} \n \
 	\n\\\#\\\#\\\# Improvements \n \
-	* Tracking API Version ${ONDEWO_S2T_API_VERSION} \n"
-
+	* Tracking API Version [${ONDEWO_S2T_API_VERSION}](https://github.com/ondewo/ondewo-s2t-api/releases/tag/${ONDEWO_S2T_API_VERSION}) ( [Documentation](https://ondewo.github.io/ondewo-s2t-api/) ) \n"
 
 release_client:
 	$(eval REPO_NAME:= $(shell echo ${GENERIC_CLIENT} | cut -c 41- | cut -d '.' -f 1))
@@ -120,16 +119,10 @@ release_client:
 	cd ${REPO_DIR} && sed -i -e 's/S2T_API_GIT_BRANCH=tags\/[0-9]*.[0-9]*.[0-9]/S2T_API_GIT_BRANCH=tags\/${ONDEWO_S2T_API_VERSION}/' Makefile && head -30 Makefile
 
 # Build new code
-	make -C ${REPO_DIR} build | tee build_log_${REPO_NAME}.txt
-	make -C ${REPO_DIR} check_build
-	git -C ${REPO_DIR} status >> build_log_${REPO_NAME}.txt
-	git -C ${REPO_DIR} add .
-	echo "AFTER GIT ADD" >> build_log_${REPO_NAME}.txt && git -C ${REPO_DIR} status >> build_log_${REPO_NAME}.txt
-	git -C ${REPO_DIR} commit -m "API-Release: Preparing for Release ${ONDEWO_S2T_API_VERSION}"
-	git -C ${REPO_DIR} push
-	make -C ${REPO_DIR} ondewo_release
+	make -C ${REPO_DIR} ondewo_release | tee build_log_${REPO_NAME}.txt
+	make -C ${REPO_DIR} TEST
 # Remove everything from Release
-	rm -rf ${REPO_DIR}
+	sudo rm -rf ${REPO_DIR}
 	rm -f temp-notes
 
 
