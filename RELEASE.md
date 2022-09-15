@@ -1,5 +1,12 @@
 # Release History
 *****************
+## Release ONDEWO S2T API 4.0.0
+
+### New Features
+* Synchronize API Client Versions
+
+*****************
+
 ## Release ONDEWO S2T API 3.3.0
 
 ### New Features
