@@ -305,8 +305,8 @@ message CtcAcousticModels {
   QuartznetTriton quartznet_triton = 3;
   Wav2Vec wav2vec = 4;
   Wav2VecTriton wav2vec_triton = 5;
-  Whisper wav2vec = 6;
-  WhisperTriton wav2vec_triton = 7;
+  Whisper whisper = 6;
+  WhisperTriton whisper_triton = 7;
 }
 
 message Whisper {
