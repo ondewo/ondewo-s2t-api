@@ -305,6 +305,20 @@ message CtcAcousticModels {
   QuartznetTriton quartznet_triton = 3;
   Wav2Vec wav2vec = 4;
   Wav2VecTriton wav2vec_triton = 5;
+  Whisper wav2vec = 6;
+  WhisperTriton wav2vec_triton = 7;
+}
+
+message Whisper {
+  string model_path = 1;
+  bool use_gpu = 2;
+}
+
+message WhisperTriton {
+  string processor_path = 1;
+  string triton_model_name = 2;
+  string triton_model_version = 3;
+  int64 check_status_timeout = 4;
 }
 
 message Wav2Vec {
