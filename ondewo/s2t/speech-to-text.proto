@@ -312,6 +312,7 @@ message CtcAcousticModels {
 message Whisper {
   string model_path = 1;
   bool use_gpu = 2;
+  string language = 3;
 }
 
 message WhisperTriton {
