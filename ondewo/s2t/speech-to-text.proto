@@ -191,6 +191,7 @@ enum CTCDecoding {
   DEFAULT = 0; // decoding will be defined by the pipeline config
   GREEDY = 1; // greedy decoding will be used independently on pipeline config
   BEAM_SEARCH_WITH_LM = 2; // beam search will be used independently on pipeline config
+  NO_CTC_DECODER = 3; // no independent decoder is used on pipeline, for encoder-decoder models like whisper.
 }
 
 message TranscribeFileResponse {
