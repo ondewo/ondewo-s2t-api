@@ -191,7 +191,7 @@ enum CTCDecoding {
   DEFAULT = 0; // decoding will be defined by the pipeline config
   GREEDY = 1; // greedy decoding will be used independently on pipeline config
   BEAM_SEARCH_WITH_LM = 2; // beam search will be used independently on pipeline config
-  NO_CTC_DECODER = 3; // no independent decoder is used on pipeline, for encoder-decoder models like whisper.
+  BEAM_SEARCH = 3; // beam search whitout LM head, to configure decoding mode for seq2seq models.
 }
 
 message TranscribeFileResponse {
@@ -296,18 +296,19 @@ message S2TDescription {
 }
 
 message S2TInference {
-  CtcAcousticModels ctc_acoustic_models = 1;
+  AcousticModels acoustic_models = 1;
   LanguageModels language_models = 2;
 }
 
-message CtcAcousticModels {
+message AcousticModels {
   string type = 1;
-  Quartznet quartznet = 2;
-  QuartznetTriton quartznet_triton = 3;
-  Wav2Vec wav2vec = 4;
-  Wav2VecTriton wav2vec_triton = 5;
-  Whisper whisper = 6;
-  WhisperTriton whisper_triton = 7;
+  string architecture = 2
+  Quartznet quartznet = 3;
+  QuartznetTriton quartznet_triton = 4;
+  Wav2Vec wav2vec = 5;
+  Wav2VecTriton wav2vec_triton = 6;
+  Whisper whisper = 7;
+  WhisperTriton whisper_triton = 8;
 }
 
 message Whisper {
