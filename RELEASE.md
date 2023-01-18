@@ -4,7 +4,7 @@
 
 *****************
 
-## Release ONDEWO S2T API 4.1.0
+## Release ONDEWO S2T API 5.0.0
 
 ### New Features
 
@@ -13,7 +13,7 @@
 
 ### Breaking Changes
 
-* CTCDecoders are now named Decoders only
+* [[OND231-390]](https://ondewo.atlassian.net/browse/OND231-390) CTCDecoders are now named Decoders only
 
 *****************
 
