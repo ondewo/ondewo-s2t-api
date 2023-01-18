@@ -1,5 +1,16 @@
 # Release History
 *****************
+
+*****************
+## Release ONDEWO S2T API 4.1.0
+
+### New Features
+* [[OND231-389]](https://ondewo.atlassian.net/browse/OND231-389) - Add Whisper and WhisperTriton
+* [[OND231-390]](https://ondewo.atlassian.net/browse/OND231-390) - Generalize Decoders for adding Seq2Seq models
+
+### Breaking Changes
+* CTCDecoders are now named Decoders only
+
 ## Release ONDEWO S2T API 4.0.0
 
 ### New Features
