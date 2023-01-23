@@ -1,5 +1,24 @@
 # Release History
 *****************
+
+## Release ONDEWO S2T API 5.1.0
+
+### Breaking Changes
+
+* [[OND231-390]](https://ondewo.atlassian.net/browse/OND231-390) Removing architecture parameter from config
+*****************
+
+## Release ONDEWO S2T API 5.0.0
+
+### New Features
+
+* [[OND231-389]](https://ondewo.atlassian.net/browse/OND231-389) - Add Whisper and WhisperTriton
+* [[OND231-390]](https://ondewo.atlassian.net/browse/OND231-390) - Generalize Decoders for adding Seq2Seq models
+
+### Breaking Changes
+
+* [[OND231-390]](https://ondewo.atlassian.net/browse/OND231-390) CTCDecoders are now named Decoders only
+*****************
 ## Release ONDEWO S2T API 4.0.0
 
 ### New Features

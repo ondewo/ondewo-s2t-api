@@ -194,11 +194,6 @@ enum Decoding {
   BEAM_SEARCH = 3; // beam search whitout LM head, to configure decoding mode for seq2seq models.
 }
 
-enum Architecture {
-  CTC = 0; // ctc acoustic models (encoder models): wav2vec
-  SEQ2SEQ = 1; // sequence to sequence models (encoder-decoder models): whisper
-}
-
 message TranscribeFileResponse {
   // List of transcriptions with confidence level
   repeated Transcription transcriptions = 1;
@@ -307,13 +302,12 @@ message S2TInference {
 
 message AcousticModels {
   string type = 1;
-  string architecture = 2;
-  Quartznet quartznet = 3;
-  QuartznetTriton quartznet_triton = 4;
-  Wav2Vec wav2vec = 5;
-  Wav2VecTriton wav2vec_triton = 6;
-  Whisper whisper = 7;
-  WhisperTriton whisper_triton = 8;
+  Quartznet quartznet = 2;
+  QuartznetTriton quartznet_triton = 3;
+  Wav2Vec wav2vec = 4;
+  Wav2VecTriton wav2vec_triton = 5;
+  Whisper whisper = 6;
+  WhisperTriton whisper_triton = 7;
 }
 
 message Whisper {
