@@ -2,6 +2,14 @@
 
 *****************
 
+## Release ONDEWO S2T API 5.2.0
+
+### Breaking Changes
+
+* Same as 5.1.0 - python pypi release fixed
+
+*****************
+
 ## Release ONDEWO S2T API 5.1.0
 
 ### Breaking Changes
