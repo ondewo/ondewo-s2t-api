@@ -53,7 +53,6 @@
     - [WhisperTriton](#ondewo.s2t.WhisperTriton)
     - [WordTiming](#ondewo.s2t.WordTiming)
   
-    - [Architecture](#ondewo.s2t.Architecture)
     - [Decoding](#ondewo.s2t.Decoding)
   
     - [Speech2Text](#ondewo.s2t.Speech2Text)
@@ -78,7 +77,6 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | type | [string](#string) |  |  |
-| architecture | [string](#string) |  |  |
 | quartznet | [Quartznet](#ondewo.s2t.Quartznet) |  |  |
 | quartznet_triton | [QuartznetTriton](#ondewo.s2t.QuartznetTriton) |  |  |
 | wav2vec | [Wav2Vec](#ondewo.s2t.Wav2Vec) |  |  |
@@ -893,18 +891,6 @@
 
 
  <!-- end messages -->
-
-
-<a name="ondewo.s2t.Architecture"></a>
-
-### Architecture
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| CTC | 0 | ctc acoustic models (encoder models): wav2vec |
-| SEQ2SEQ | 1 | sequence to sequence models (encoder-decoder models): whisper |
-
 
 
 <a name="ondewo.s2t.Decoding"></a>
