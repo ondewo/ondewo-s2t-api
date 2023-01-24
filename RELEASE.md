@@ -6,7 +6,7 @@
 
 ### Breaking Changes
 
-* Same as 5.1.0 - python pypi release fixed
+* [[OND231-390]](https://ondewo.atlassian.net/browse/OND231-390) Removing architecture parameter from config
 
 *****************
 
