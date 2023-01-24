@@ -1,4 +1,5 @@
 # Release History
+
 *****************
 
 ## Release ONDEWO S2T API 5.1.0
@@ -6,6 +7,7 @@
 ### Breaking Changes
 
 * [[OND231-390]](https://ondewo.atlassian.net/browse/OND231-390) Removing architecture parameter from config
+
 *****************
 
 ## Release ONDEWO S2T API 5.0.0
@@ -18,10 +20,13 @@
 ### Breaking Changes
 
 * [[OND231-390]](https://ondewo.atlassian.net/browse/OND231-390) CTCDecoders are now named Decoders only
+
 *****************
+
 ## Release ONDEWO S2T API 4.0.0
 
 ### New Features
+
 * Synchronize API Client Versions
 
 *****************
@@ -29,33 +34,42 @@
 ## Release ONDEWO S2T API 3.3.0
 
 ### New Features
+
 * [[OND211-2039]](https://ondewo.atlassian.net/browse/OND211-2039) - Refactor Automatic Release
 * Added Endpoints for User Creation Language Models
 
 *****************
+
 ## Release ONDEWO S2T API 3.2.0
 
 ### New Features
+
 * [[OND211-2039]](https://ondewo.atlassian.net/browse/OND211-2039) - Automated Release Process
 
-
 *****************
+
 ## Release ONDEWO S2T API 3.1.1
 
 ### New Features
+
 * Add `bool registered_only` option in ListS2tPipelinesRequest.
 
 *****************
+
 ## Release ONDEWO S2T API 3.1.0
 
 ### New Features
- * [[OND231-338]](https://ondewo.atlassian.net/browse/OND231-338) - Add mute_audio field in TranscribeStreamRequest.
+
+* [[OND231-338]](https://ondewo.atlassian.net/browse/OND231-338) - Add mute_audio field in TranscribeStreamRequest.
 
 *****************
+
 ## Release ONDEWO S2T API 3.0.0
 
 ### Breaking Changes
- * [[OND231-334]](https://ondewo.atlassian.net/browse/OND231-338) - Rename Description, GetServiceInfoResponse, Inference and Normalization messages to include S2T
+
+* [[OND231-334]](https://ondewo.atlassian.net/browse/OND231-338) - Rename Description, GetServiceInfoResponse, Inference
+  and Normalization messages to include S2T
 
 *****************
 
@@ -63,22 +77,27 @@
 
 ### Breaking Changes
 
- * [[OND231-271]](https://ondewo.atlassian.net/browse/OND231-271) - Implement configuration messages for TranscribeFileRequest and TranscribeStreamRequest to the speech-to-text server.
+* [[OND231-271]](https://ondewo.atlassian.net/browse/OND231-271) - Implement configuration messages for
+  TranscribeFileRequest and TranscribeStreamRequest to the speech-to-text server.
 
 *****************
 
 ## Release ONDEWO S2T API 0.2.2
 
 ### Improvements
+
 Updated README.
 
 *****************
+
 ## Release ONDEWO S2T API 0.2.1
 
 ### Bug fixes
+
 Updated licenses.
 
 *****************
+
 ## Release ONDEWO S2T API 0.2.0
 
 ### New Features

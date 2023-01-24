@@ -4,10 +4,10 @@
 ## Table of Contents
 
 - [ondewo/s2t/speech-to-text.proto](#ondewo/s2t/speech-to-text.proto)
+    - [AcousticModels](#ondewo.s2t.AcousticModels)
     - [AddDataToUserLanguageModelRequest](#ondewo.s2t.AddDataToUserLanguageModelRequest)
     - [CkptFile](#ondewo.s2t.CkptFile)
     - [CreateUserLanguageModelRequest](#ondewo.s2t.CreateUserLanguageModelRequest)
-    - [CtcAcousticModels](#ondewo.s2t.CtcAcousticModels)
     - [DeleteUserLanguageModelRequest](#ondewo.s2t.DeleteUserLanguageModelRequest)
     - [LanguageModelPipelineId](#ondewo.s2t.LanguageModelPipelineId)
     - [LanguageModels](#ondewo.s2t.LanguageModels)
@@ -49,9 +49,12 @@
     - [VoiceActivityDetection](#ondewo.s2t.VoiceActivityDetection)
     - [Wav2Vec](#ondewo.s2t.Wav2Vec)
     - [Wav2VecTriton](#ondewo.s2t.Wav2VecTriton)
+    - [Whisper](#ondewo.s2t.Whisper)
+    - [WhisperTriton](#ondewo.s2t.WhisperTriton)
     - [WordTiming](#ondewo.s2t.WordTiming)
   
-    - [CTCDecoding](#ondewo.s2t.CTCDecoding)
+    - [Architecture](#ondewo.s2t.Architecture)
+    - [Decoding](#ondewo.s2t.Decoding)
   
     - [Speech2Text](#ondewo.s2t.Speech2Text)
   
@@ -63,6 +66,28 @@
 <p align="right"><a href="#top">Top</a></p>
 
 ## ondewo/s2t/speech-to-text.proto
+
+
+
+<a name="ondewo.s2t.AcousticModels"></a>
+
+### AcousticModels
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [string](#string) |  |  |
+| architecture | [string](#string) |  |  |
+| quartznet | [Quartznet](#ondewo.s2t.Quartznet) |  |  |
+| quartznet_triton | [QuartznetTriton](#ondewo.s2t.QuartznetTriton) |  |  |
+| wav2vec | [Wav2Vec](#ondewo.s2t.Wav2Vec) |  |  |
+| wav2vec_triton | [Wav2VecTriton](#ondewo.s2t.Wav2VecTriton) |  |  |
+| whisper | [Whisper](#ondewo.s2t.Whisper) |  |  |
+| whisper_triton | [WhisperTriton](#ondewo.s2t.WhisperTriton) |  |  |
+
+
+
 
 
 
@@ -106,25 +131,6 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | language_model_name | [string](#string) |  | Name of the language model to create |
-
-
-
-
-
-
-<a name="ondewo.s2t.CtcAcousticModels"></a>
-
-### CtcAcousticModels
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| type | [string](#string) |  |  |
-| quartznet | [Quartznet](#ondewo.s2t.Quartznet) |  |  |
-| quartznet_triton | [QuartznetTriton](#ondewo.s2t.QuartznetTriton) |  |  |
-| wav2vec | [Wav2Vec](#ondewo.s2t.Wav2Vec) |  |  |
-| wav2vec_triton | [Wav2VecTriton](#ondewo.s2t.Wav2VecTriton) |  |  |
 
 
 
@@ -502,7 +508,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| ctc_acoustic_models | [CtcAcousticModels](#ondewo.s2t.CtcAcousticModels) |  |  |
+| acoustic_models | [AcousticModels](#ondewo.s2t.AcousticModels) |  |  |
 | language_models | [LanguageModels](#ondewo.s2t.LanguageModels) |  |  |
 
 
@@ -589,7 +595,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | transcribe_not_final | [bool](#bool) |  |  |
-| ctc_decoding_method | [string](#string) |  |  |
+| decoding_method | [string](#string) |  |  |
 | sampling_rate | [int64](#int64) |  |  |
 | min_audio_chunk_size | [int64](#int64) |  |  |
 | start_of_utterance_threshold | [float](#float) |  |  |
@@ -677,7 +683,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | s2t_pipeline_id | [string](#string) |  | Required. id of the pipeline (model setup) that will generate audio |
-| ctc_decoding | [CTCDecoding](#ondewo.s2t.CTCDecoding) |  | Optional. CTC decoding type |
+| decoding | [Decoding](#ondewo.s2t.Decoding) |  | Optional. decoding type |
 | language_model_name | [string](#string) |  |  |
 | post_processing | [PostProcessingOptions](#ondewo.s2t.PostProcessingOptions) |  |  |
 | utterance_detection | [UtteranceDetectionOptions](#ondewo.s2t.UtteranceDetectionOptions) |  |  |
@@ -835,6 +841,41 @@
 
 
 
+<a name="ondewo.s2t.Whisper"></a>
+
+### Whisper
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| model_path | [string](#string) |  |  |
+| use_gpu | [bool](#bool) |  |  |
+| language | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="ondewo.s2t.WhisperTriton"></a>
+
+### WhisperTriton
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| processor_path | [string](#string) |  |  |
+| triton_model_name | [string](#string) |  |  |
+| triton_model_version | [string](#string) |  |  |
+| check_status_timeout | [int64](#int64) |  |  |
+
+
+
+
+
+
 <a name="ondewo.s2t.WordTiming"></a>
 
 ### WordTiming
@@ -854,9 +895,21 @@
  <!-- end messages -->
 
 
-<a name="ondewo.s2t.CTCDecoding"></a>
+<a name="ondewo.s2t.Architecture"></a>
 
-### CTCDecoding
+### Architecture
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| CTC | 0 | ctc acoustic models (encoder models): wav2vec |
+| SEQ2SEQ | 1 | sequence to sequence models (encoder-decoder models): whisper |
+
+
+
+<a name="ondewo.s2t.Decoding"></a>
+
+### Decoding
 
 
 | Name | Number | Description |
@@ -864,6 +917,7 @@
 | DEFAULT | 0 | decoding will be defined by the pipeline config |
 | GREEDY | 1 | greedy decoding will be used independently on pipeline config |
 | BEAM_SEARCH_WITH_LM | 2 | beam search will be used independently on pipeline config |
+| BEAM_SEARCH | 3 | beam search whitout LM head, to configure decoding mode for seq2seq models. |
 
 
  <!-- end enums -->

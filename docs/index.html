@@ -83,6 +83,10 @@
                   <ul>
                     
                       <li>
+                        <a href="#ondewo.s2t.AcousticModels" class="title-badge message">AcousticModels</a>
+                      </li>
+                    
+                      <li>
                         <a href="#ondewo.s2t.AddDataToUserLanguageModelRequest" class="title-badge message">AddDataToUserLanguageModelRequest</a>
                       </li>
                     
@@ -92,10 +96,6 @@
                     
                       <li>
                         <a href="#ondewo.s2t.CreateUserLanguageModelRequest" class="title-badge message">CreateUserLanguageModelRequest</a>
-                      </li>
-                    
-                      <li>
-                        <a href="#ondewo.s2t.CtcAcousticModels" class="title-badge message">CtcAcousticModels</a>
                       </li>
                     
                       <li>
@@ -263,6 +263,14 @@
                       </li>
                     
                       <li>
+                        <a href="#ondewo.s2t.Whisper" class="title-badge message">Whisper</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.WhisperTriton" class="title-badge message">WhisperTriton</a>
+                      </li>
+                    
+                      <li>
                         <a href="#ondewo.s2t.WordTiming" class="title-badge message">WordTiming</a>
                       </li>
                     
@@ -273,7 +281,11 @@
                   <ul>
                     
                       <li>
-                        <a href="#ondewo.s2t.CTCDecoding" class="title-badge enum">CTCDecoding</a>
+                        <a href="#ondewo.s2t.Architecture" class="title-badge enum">Architecture</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.Decoding" class="title-badge enum">Decoding</a>
                       </li>
                     
                   </ul>
@@ -410,6 +422,79 @@ id and a list of the language models loaded in the pipeline.
       
       <div id="ondewo/s2t/speech-to-text.proto-messages" class="object-category">Messages</div>
       
+        <h3 id="ondewo.s2t.AcousticModels" class="title-badge message">AcousticModels</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>architecture</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>quartznet</td>
+                  <td><a href="#ondewo.s2t.Quartznet">Quartznet</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>quartznet_triton</td>
+                  <td><a href="#ondewo.s2t.QuartznetTriton">QuartznetTriton</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>wav2vec</td>
+                  <td><a href="#ondewo.s2t.Wav2Vec">Wav2Vec</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>wav2vec_triton</td>
+                  <td><a href="#ondewo.s2t.Wav2VecTriton">Wav2VecTriton</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>whisper</td>
+                  <td><a href="#ondewo.s2t.Whisper">Whisper</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>whisper_triton</td>
+                  <td><a href="#ondewo.s2t.WhisperTriton">WhisperTriton</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="ondewo.s2t.AddDataToUserLanguageModelRequest" class="title-badge message">AddDataToUserLanguageModelRequest</h3>
         <p></p>
 
@@ -480,58 +565,6 @@ id and a list of the language models loaded in the pipeline.
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Name of the language model to create </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="ondewo.s2t.CtcAcousticModels" class="title-badge message">CtcAcousticModels</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>type</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>quartznet</td>
-                  <td><a href="#ondewo.s2t.Quartznet">Quartznet</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>quartznet_triton</td>
-                  <td><a href="#ondewo.s2t.QuartznetTriton">QuartznetTriton</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>wav2vec</td>
-                  <td><a href="#ondewo.s2t.Wav2Vec">Wav2Vec</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>wav2vec_triton</td>
-                  <td><a href="#ondewo.s2t.Wav2VecTriton">Wav2VecTriton</a></td>
-                  <td></td>
-                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -1313,8 +1346,8 @@ configuration. If not set, all values are replaced by the ones in current pipeli
             <tbody>
               
                 <tr>
-                  <td>ctc_acoustic_models</td>
-                  <td><a href="#ondewo.s2t.CtcAcousticModels">CtcAcousticModels</a></td>
+                  <td>acoustic_models</td>
+                  <td><a href="#ondewo.s2t.AcousticModels">AcousticModels</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -1517,7 +1550,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
                 </tr>
               
                 <tr>
-                  <td>ctc_decoding_method</td>
+                  <td>decoding_method</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
@@ -1729,10 +1762,10 @@ takes longer to process!) </p></td>
                 </tr>
               
                 <tr>
-                  <td>ctc_decoding</td>
-                  <td><a href="#ondewo.s2t.CTCDecoding">CTCDecoding</a></td>
+                  <td>decoding</td>
+                  <td><a href="#ondewo.s2t.Decoding">Decoding</a></td>
                   <td></td>
-                  <td><p>Optional. CTC decoding type </p></td>
+                  <td><p>Optional. decoding type </p></td>
                 </tr>
               
                 <tr>
@@ -2152,6 +2185,89 @@ started before the end of an utterance). </p></td>
 
         
       
+        <h3 id="ondewo.s2t.Whisper" class="title-badge message">Whisper</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>model_path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_gpu</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>language</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.WhisperTriton" class="title-badge message">WhisperTriton</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>processor_path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>triton_model_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>triton_model_version</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>check_status_timeout</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="ondewo.s2t.WordTiming" class="title-badge message">WordTiming</h3>
         <p></p>
 
@@ -2195,7 +2311,30 @@ started before the end of an utterance). </p></td>
       
       <div id="ondewo/s2t/speech-to-text.proto-enums" class="object-category">Enums</div>
       
-        <h3 id="ondewo.s2t.CTCDecoding" class="title-badge enum">CTCDecoding</h3>
+        <h3 id="ondewo.s2t.Architecture" class="title-badge enum">Architecture</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>CTC</td>
+                <td>0</td>
+                <td><p>ctc acoustic models (encoder models): wav2vec</p></td>
+              </tr>
+            
+              <tr>
+                <td>SEQ2SEQ</td>
+                <td>1</td>
+                <td><p>sequence to sequence models (encoder-decoder models): whisper</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="ondewo.s2t.Decoding" class="title-badge enum">Decoding</h3>
         <p></p>
         <table class="enum-table">
           <thead>
@@ -2219,6 +2358,12 @@ started before the end of an utterance). </p></td>
                 <td>BEAM_SEARCH_WITH_LM</td>
                 <td>2</td>
                 <td><p>beam search will be used independently on pipeline config</p></td>
+              </tr>
+            
+              <tr>
+                <td>BEAM_SEARCH</td>
+                <td>3</td>
+                <td><p>beam search whitout LM head, to configure decoding mode for seq2seq models.</p></td>
               </tr>
             
           </tbody>
