@@ -71,6 +71,18 @@ service Speech2Text {
 }
 
 ///////////////////////////
+//         Enums         //
+///////////////////////////
+
+enum InferenceBackend {
+  INFERENCE_BACKEND_UNKNOWN = 0;
+  // wether running model on pytorch backend
+  INFERENCE_BACKEND_PYTORCH = 1;
+  // wether running flax model
+  INFERENCE_BACKEND_FLAX = 2;
+}
+
+///////////////////////////
 // Configuration Message //
 ///////////////////////////
 
@@ -304,14 +316,6 @@ message S2TDescription {
   string pipeline_owner = 2;
   string domain = 3;
   string comments = 4;
-}
-
-enum InferenceBackend {
-  INFERENCE_BACKEND_UNKNOWN = 0;
-  // wether running model on pytorch backend
-  INFERENCE_BACKEND_PYTORCH = 1;
-  // wether running flax model
-  INFERENCE_BACKEND_FLAX = 2;
 }
 
 message S2TInference {
