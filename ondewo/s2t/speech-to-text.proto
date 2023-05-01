@@ -306,6 +306,14 @@ message S2TDescription {
   string comments = 4;
 }
 
+enum InferenceBackend {
+  INFERENCE_BACKEND_UNKNOWN = 0;
+  // wether running model on pytorch backend
+  INFERENCE_BACKEND_PYTORCH = 1;
+  // wether running flax model
+  INFERENCE_BACKEND_FLAX = 2;
+}
+
 message S2TInference {
   AcousticModels acoustic_models = 1;
   LanguageModels language_models = 2;
@@ -378,13 +386,6 @@ message LanguageModels {
   string default_lm = 3;
   float beam_search_scorer_alpha = 4;
   float beam_search_scorer_beta = 5;
-}
-
-message InferenceBackend {
-  // wether running model on pytorch backend
-  bool pytorch = 1;
-  // wether running flax model
-  bool flax = 2;
 }
 
 message StreamingServer {
