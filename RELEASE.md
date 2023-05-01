@@ -12,7 +12,7 @@
 
 ### Breaking Changes
 
-* TranscriptionReturnOptions have changed the sorting order of the grpc message
+* Grpc message sorting order of TranscriptionReturnOptions have changed to be more intuitive
 
 *****************
 
