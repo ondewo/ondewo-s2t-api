@@ -14,7 +14,7 @@
 
 ### Breaking Changes
 
-* [[OND231-390]](https://ondewo.atlassian.net/browse/OND231-390) Resolve a bug from the last version
+* [[OND231-390]](https://ondewo.atlassian.net/browse/OND231-390) Removing architecture parameter from config
 
 *****************
 
