@@ -105,11 +105,22 @@ message TranscribeRequestConfig {
 }
 
 message TranscriptionReturnOptions {
-  bool return_start_of_speech = 1;  // should server make response indicating that the beginning of the speech was detected
-  bool return_audio = 2; // should s2t server return audio bytes of transcribed utterance
-  bool return_alternative_transcriptions = 3; // Whether or not to return alternative results from beam-search
-  bool return_confidence_score = 4; // Whether or not to return confidence scores
-  bool return_word_timing = 8; // Optional. Whether or not to return timestamps of start and end of the words. Only used in TranscribeFile.
+  // should server make response indicating that the beginning of the speech was detected
+  bool return_start_of_speech = 1;
+  // should s2t server return audio bytes of transcribed utterance
+  bool return_audio = 2;
+  // Whether or not to return confidence scores
+  bool return_confidence_score = 3;
+  // Whether or not to return alternative results from beam-search
+  bool return_alternative_transcriptions = 4;
+  // Optional. Number of alternative transciptions results from beam-search or greedy-search
+  int32 return_alternative_transcriptions_nr = 5;
+  // Whether or not to return alternative results from beam-search
+  bool return_alternative_words = 6;
+  // Optional. Number of alternative words to results
+  int32 return_alternative_words_nr = 7;
+  // Optional. Whether or not to return timestamps of start and end of the words. Only used in TranscribeFile.
+  bool return_word_timing = 8;
 }
 
 message UtteranceDetectionOptions {
@@ -298,6 +309,7 @@ message S2TDescription {
 message S2TInference {
   AcousticModels acoustic_models = 1;
   LanguageModels language_models = 2;
+  InferenceBackend inference_backend = 3;
 }
 
 message AcousticModels {
@@ -359,11 +371,20 @@ message QuartznetTriton {
 }
 
 message LanguageModels {
-  string path = 1; // Path to the directory of language models
+  // Path to the directory of language models
+  string path = 1;
   int64 beam_size = 2;
-  string default_lm = 3; // this language model will be selected if none is given
+  // this language model will be selected if none is given
+  string default_lm = 3;
   float beam_search_scorer_alpha = 4;
   float beam_search_scorer_beta = 5;
+}
+
+message InferenceBackend {
+  // wether running model on pytorch backend
+  bool pytorch = 1;
+  // wether running flax model
+  bool flax = 2;
 }
 
 message StreamingServer {
@@ -380,7 +401,8 @@ message StreamingSpeechRecognition {
   int64 min_audio_chunk_size = 4;
   float start_of_utterance_threshold = 5;
   float end_of_utterance_threshold = 6;
-  float next_chunk_timeout = 7; // if time between audio chunks exceeds next_chunk_timeout, stream will be stopped
+  // if time between audio chunks exceeds next_chunk_timeout, stream will be stopped
+  float next_chunk_timeout = 7; 
 }
 
 message VoiceActivityDetection {

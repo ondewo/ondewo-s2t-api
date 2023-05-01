@@ -2,6 +2,22 @@
 
 *****************
 
+## Release ONDEWO S2T API 5.3.0
+
+### Breaking Changes
+
+* [[OND231-390]](https://ondewo.atlassian.net/browse/OND231-390) Add transcription alternative numbers and InferenceBackend to configs
+
+*****************
+
+## Release ONDEWO S2T API 5.2.0
+
+### Breaking Changes
+
+* [[OND231-390]](https://ondewo.atlassian.net/browse/OND231-390) Resolve a bug from the last version
+
+*****************
+
 ## Release ONDEWO S2T API 5.1.0
 
 ### Breaking Changes
