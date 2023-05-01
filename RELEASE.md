@@ -2,6 +2,20 @@
 
 *****************
 
+## Release ONDEWO S2T API 5.3.0
+
+### Improvement
+
+* [[OND231-390]](https://ondewo.atlassian.net/browse/OND231-390) Add transcription alternative numbers and
+  InferenceBackend config
+* Improvement of the documentation
+
+### Breaking Changes
+
+* Grpc message sorting order of TranscriptionReturnOptions have changed to be more intuitive
+
+*****************
+
 ## Release ONDEWO S2T API 5.2.0
 
 ### Breaking Changes
