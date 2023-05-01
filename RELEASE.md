@@ -6,7 +6,7 @@
 
 ### Breaking Changes
 
-* [[OND231-390]](https://ondewo.atlassian.net/browse/OND231-390) Add transcription alternative numbers and InferenceBackend to configs
+* [[OND231-390]](https://ondewo.atlassian.net/browse/OND231-390) Add transcription alternative numbers and InferenceBackend config
 
 *****************
 
