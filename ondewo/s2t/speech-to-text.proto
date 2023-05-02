@@ -208,9 +208,9 @@ message PostProcessingOptions {
 
 }
 
-///////////////////////
-//TRANSCRIIPTION TYPE//
-///////////////////////
+///////////////////////////
+//  TRANSCRIIPTION TYPE  //
+///////////////////////////
 
 // The transcription message
 message Transcription {
