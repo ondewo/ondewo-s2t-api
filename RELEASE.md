@@ -2,6 +2,15 @@
 
 *****************
 
+## Release ONDEWO S2T API 5.4.0
+
+### Improvement
+
+* [[OND231-418]](https://ondewo.atlassian.net/browse/OND231-418) Update Transcription message to support 
+  alternative transcriptions and words, based on the Google speech-to-text output format.
+
+*****************
+
 ## Release ONDEWO S2T API 5.3.0
 
 ### Improvement
