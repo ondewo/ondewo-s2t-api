@@ -44,6 +44,7 @@
     - [TranscribeStreamRequest](#ondewo.s2t.TranscribeStreamRequest)
     - [TranscribeStreamResponse](#ondewo.s2t.TranscribeStreamResponse)
     - [Transcription](#ondewo.s2t.Transcription)
+    - [TranscriptionAlternative](#ondewo.s2t.TranscriptionAlternative)
     - [TranscriptionReturnOptions](#ondewo.s2t.TranscriptionReturnOptions)
     - [UtteranceDetectionOptions](#ondewo.s2t.UtteranceDetectionOptions)
     - [VoiceActivityDetection](#ondewo.s2t.VoiceActivityDetection)
@@ -51,7 +52,8 @@
     - [Wav2VecTriton](#ondewo.s2t.Wav2VecTriton)
     - [Whisper](#ondewo.s2t.Whisper)
     - [WhisperTriton](#ondewo.s2t.WhisperTriton)
-    - [WordTiming](#ondewo.s2t.WordTiming)
+    - [WordAlternative](#ondewo.s2t.WordAlternative)
+    - [WordDetail](#ondewo.s2t.WordDetail)
   
     - [Decoding](#ondewo.s2t.Decoding)
     - [InferenceBackend](#ondewo.s2t.InferenceBackend)
@@ -666,7 +668,6 @@ The response message for a transcribe file request
 | ----- | ---- | ----- | ----------- |
 | transcriptions | [Transcription](#ondewo.s2t.Transcription) | repeated | List of transcriptions with confidence level |
 | time | [float](#float) |  | The time the transcription took |
-| word_timing | [WordTiming](#ondewo.s2t.WordTiming) | repeated | List of words with timestamps for their start and end |
 | audio_uuid | [string](#string) |  | id of the transcribed audio file |
 
 
@@ -745,7 +746,26 @@ The transcription message
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | transcription | [string](#string) |  | The transcribed text |
-| confidence_score | [float](#float) |  | The corresponding confidence score |
+| confidence_score | [float](#float) |  | The corresponding confidence score. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. |
+| words | [WordDetail](#ondewo.s2t.WordDetail) | repeated | List of the words of transcription with their confidence scores and probable alternatives |
+| alternatives | [TranscriptionAlternative](#ondewo.s2t.TranscriptionAlternative) | repeated | List of alternative transcriptions, confidece scores, words timings and alternative words |
+
+
+
+
+
+
+<a name="ondewo.s2t.TranscriptionAlternative"></a>
+
+### TranscriptionAlternative
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| transcript | [string](#string) |  | The alternative transcribed text |
+| confidence | [float](#float) |  | The corresponding confidence score to the alternative transcript. |
+| words | [WordDetail](#ondewo.s2t.WordDetail) | repeated | A list of word-specific information for each recognized word, including word timings, confidence score of the word and alternative words. |
 
 
 
@@ -879,17 +899,35 @@ WhisperTriton contains information about the Whisper model using Triton.
 
 
 
-<a name="ondewo.s2t.WordTiming"></a>
+<a name="ondewo.s2t.WordAlternative"></a>
 
-### WordTiming
-Message structure for word timings
+### WordAlternative
+
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| word | [string](#string) |  | Transcribed word |
-| begin | [int32](#int32) |  | Timestamp for start of word |
-| end | [int32](#int32) |  | Timestamp for end of word |
+| word | [string](#string) |  | The recognized word corresponding to this set of information. |
+| confidence | [float](#float) |  | The corresponding confidence score to the alternative word. |
+
+
+
+
+
+
+<a name="ondewo.s2t.WordDetail"></a>
+
+### WordDetail
+WordDetail provides word-specific information for recognized words.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| start_time | [float](#float) |  | The start time of the spoken word relative to the beginning of the audio. The accuracy of the time offset can vary, and this is an experimental feature. |
+| end_time | [float](#float) |  | The end time of the spoken word relative to the beginning of the audio. The accuracy of the time offset can vary, and this is an experimental feature. |
+| word | [string](#string) |  | The recognized word corresponding to this set of information. |
+| confidence | [float](#float) |  | The corresponding confidence score to the word. |
+| word_alternatives | [WordAlternative](#ondewo.s2t.WordAlternative) | repeated | List of alternative words and confidece scores of each. |
 
 
 

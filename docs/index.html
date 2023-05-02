@@ -243,6 +243,10 @@
                       </li>
                     
                       <li>
+                        <a href="#ondewo.s2t.TranscriptionAlternative" class="title-badge message">TranscriptionAlternative</a>
+                      </li>
+                    
+                      <li>
                         <a href="#ondewo.s2t.TranscriptionReturnOptions" class="title-badge message">TranscriptionReturnOptions</a>
                       </li>
                     
@@ -271,7 +275,11 @@
                       </li>
                     
                       <li>
-                        <a href="#ondewo.s2t.WordTiming" class="title-badge message">WordTiming</a>
+                        <a href="#ondewo.s2t.WordAlternative" class="title-badge message">WordAlternative</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.WordDetail" class="title-badge message">WordDetail</a>
                       </li>
                     
                   </ul>
@@ -1732,13 +1740,6 @@ takes longer to process!) </p></td>
                 </tr>
               
                 <tr>
-                  <td>word_timing</td>
-                  <td><a href="#ondewo.s2t.WordTiming">WordTiming</a></td>
-                  <td>repeated</td>
-                  <td><p>List of words with timestamps for their start and end </p></td>
-                </tr>
-              
-                <tr>
                   <td>audio_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -1965,7 +1966,61 @@ started before the end of an utterance). </p></td>
                   <td>confidence_score</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p>The corresponding confidence score </p></td>
+                  <td><p>The corresponding confidence score. The confidence estimate between 0.0 and 1.0. A higher number
+indicates an estimated greater likelihood that the recognized words are correct. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>words</td>
+                  <td><a href="#ondewo.s2t.WordDetail">WordDetail</a></td>
+                  <td>repeated</td>
+                  <td><p>List of the words of transcription with their confidence scores and probable alternatives </p></td>
+                </tr>
+              
+                <tr>
+                  <td>alternatives</td>
+                  <td><a href="#ondewo.s2t.TranscriptionAlternative">TranscriptionAlternative</a></td>
+                  <td>repeated</td>
+                  <td><p>List of alternative transcriptions, confidece scores, words timings and alternative words </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.TranscriptionAlternative" class="title-badge message">TranscriptionAlternative</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>transcript</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The alternative transcribed text </p></td>
+                </tr>
+              
+                <tr>
+                  <td>confidence</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p>The corresponding confidence score to the alternative transcript. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>words</td>
+                  <td><a href="#ondewo.s2t.WordDetail">WordDetail</a></td>
+                  <td>repeated</td>
+                  <td><p>A list of word-specific information for each recognized word, including word timings, confidence score of 
+the word and alternative words. </p></td>
                 </tr>
               
             </tbody>
@@ -2297,8 +2352,8 @@ started before the end of an utterance). </p></td>
 
         
       
-        <h3 id="ondewo.s2t.WordTiming" class="title-badge message">WordTiming</h3>
-        <p>Message structure for word timings</p>
+        <h3 id="ondewo.s2t.WordAlternative" class="title-badge message">WordAlternative</h3>
+        <p></p>
 
         
           <table class="field-table">
@@ -2311,21 +2366,68 @@ started before the end of an utterance). </p></td>
                   <td>word</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Transcribed word </p></td>
+                  <td><p>The recognized word corresponding to this set of information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>begin</td>
-                  <td><a href="#int32">int32</a></td>
+                  <td>confidence</td>
+                  <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p>Timestamp for start of word </p></td>
+                  <td><p>The corresponding confidence score to the alternative word. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.WordDetail" class="title-badge message">WordDetail</h3>
+        <p>WordDetail provides word-specific information for recognized words.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>start_time</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p>The start time of the spoken word relative to the beginning of the audio.
+The accuracy of the time offset can vary, and this is an experimental feature. </p></td>
                 </tr>
               
                 <tr>
-                  <td>end</td>
-                  <td><a href="#int32">int32</a></td>
+                  <td>end_time</td>
+                  <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p>Timestamp for end of word </p></td>
+                  <td><p>The end time of the spoken word relative to the beginning of the audio.
+The accuracy of the time offset can vary, and this is an experimental feature. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>word</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The recognized word corresponding to this set of information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>confidence</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p>The corresponding confidence score to the word. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>word_alternatives</td>
+                  <td><a href="#ondewo.s2t.WordAlternative">WordAlternative</a></td>
+                  <td>repeated</td>
+                  <td><p>List of alternative words and confidece scores of each. </p></td>
                 </tr>
               
             </tbody>
