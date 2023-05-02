@@ -160,7 +160,7 @@ message TranscriptionReturnOptions {
     // Whether or not to return alternative results from beam-search
     bool return_alternative_transcriptions = 4;
 
-    // Optional. Number of alternative transciptions results from beam-search or greedy-search
+    // Optional. Number of alternative transcriptions results from beam-search or greedy-search
     int32 return_alternative_transcriptions_nr = 5;
 
     // Whether or not to return alternative results from beam-search
@@ -209,7 +209,7 @@ message PostProcessingOptions {
 }
 
 ///////////////////////////
-//  TRANSCRIIPTION TYPE  //
+//  TRANSCRIPTION TYPE  //
 ///////////////////////////
 
 // The transcription message
@@ -225,7 +225,7 @@ message Transcription {
     // List of the words of transcription with their confidence scores and probable alternatives
     repeated WordDetail words = 3;
 
-    // List of alternative transcriptions, confidece scores, words timings and alternative words
+    // List of alternative transcriptions, confidence scores, words timings and alternative words
     repeated TranscriptionAlternative alternatives = 4;
 
 }
@@ -238,7 +238,7 @@ message TranscriptionAlternative{
     // The corresponding confidence score to the alternative transcript.
     float confidence = 2;
 
-    // A list of word-specific information for each recognized word, including word timings, confidence score of 
+    // A list of word-specific information for each recognized word, including word timings, confidence score of
     // the word and alternative words.
     repeated WordDetail words = 3;
 
@@ -249,7 +249,7 @@ message WordDetail {
 
     // The start time of the spoken word relative to the beginning of the audio.
     // The accuracy of the time offset can vary, and this is an experimental feature.
-   float start_time = 1;
+    float start_time = 1;
 
     // The end time of the spoken word relative to the beginning of the audio.
     // The accuracy of the time offset can vary, and this is an experimental feature.
@@ -261,20 +261,20 @@ message WordDetail {
     // The corresponding confidence score to the word.
     float confidence = 4;
 
-    // List of alternative words and confidece scores of each.
+    // List of alternative words and confidence scores of each.
     repeated WordAlternative word_alternatives = 5;
 
-  }
+}
 
-  message WordAlternative{
+message WordAlternative{
 
     // The recognized word corresponding to this set of information.
     string word = 1;
 
     // The corresponding confidence score to the alternative word.
     float confidence = 2;
-    
-  }
+
+}
 
 ///////////////////////
 // TRANSCRIBE STREAM //
@@ -354,7 +354,7 @@ message TranscribeFileResponse {
     float time = 2;
 
     // id of the transcribed audio file
-    string audio_uuid = 4;
+    string audio_uuid = 3;
 
 }
 
