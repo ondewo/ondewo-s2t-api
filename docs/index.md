@@ -748,7 +748,7 @@ The transcription message
 | transcription | [string](#string) |  | The transcribed text |
 | confidence_score | [float](#float) |  | The corresponding confidence score. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. |
 | words | [WordDetail](#ondewo.s2t.WordDetail) | repeated | List of the words of transcription with their confidence scores and probable alternatives |
-| alternatives | [TranscriptionAlternative](#ondewo.s2t.TranscriptionAlternative) | repeated | List of alternative transcriptions, confidece scores, words timings and alternative words |
+| alternatives | [TranscriptionAlternative](#ondewo.s2t.TranscriptionAlternative) | repeated | List of alternative transcriptions, confidence scores, words timings and alternative words |
 
 
 
@@ -784,7 +784,7 @@ Configuration of the return values of a transcribe request
 | return_audio | [bool](#bool) |  | should s2t server return audio bytes of transcribed utterance |
 | return_confidence_score | [bool](#bool) |  | Whether or not to return confidence scores |
 | return_alternative_transcriptions | [bool](#bool) |  | Whether or not to return alternative results from beam-search |
-| return_alternative_transcriptions_nr | [int32](#int32) |  | Optional. Number of alternative transciptions results from beam-search or greedy-search |
+| return_alternative_transcriptions_nr | [int32](#int32) |  | Optional. Number of alternative transcriptions results from beam-search or greedy-search |
 | return_alternative_words | [bool](#bool) |  | Whether or not to return alternative results from beam-search |
 | return_alternative_words_nr | [int32](#int32) |  | Optional. Number of alternative words to results |
 | return_word_timing | [bool](#bool) |  | Optional. Whether or not to return timestamps of start and end of the words. Only used in TranscribeFile. |
@@ -927,7 +927,7 @@ WordDetail provides word-specific information for recognized words.
 | end_time | [float](#float) |  | The end time of the spoken word relative to the beginning of the audio. The accuracy of the time offset can vary, and this is an experimental feature. |
 | word | [string](#string) |  | The recognized word corresponding to this set of information. |
 | confidence | [float](#float) |  | The corresponding confidence score to the word. |
-| word_alternatives | [WordAlternative](#ondewo.s2t.WordAlternative) | repeated | List of alternative words and confidece scores of each. |
+| word_alternatives | [WordAlternative](#ondewo.s2t.WordAlternative) | repeated | List of alternative words and confidence scores of each. |
 
 
 
