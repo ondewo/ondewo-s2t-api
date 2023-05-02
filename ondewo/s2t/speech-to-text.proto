@@ -75,6 +75,23 @@ service Speech2Text {
 //         Enums         //
 ///////////////////////////
 
+// The decoding configuration
+enum Decoding {
+
+    // decoding will be defined by the pipeline config
+    DEFAULT = 0;
+
+    // greedy decoding will be used independently on pipeline config
+    GREEDY = 1;
+
+    // beam search will be used independently on pipeline config
+    BEAM_SEARCH_WITH_LM = 2;
+
+    // beam search without LM head, to configure decoding mode for seq2seq models.
+    BEAM_SEARCH = 3;
+
+}
+
 enum InferenceBackend {
 
     // Not set
@@ -212,14 +229,42 @@ message TranscribeStreamRequest {
 
 }
 
+// // The transcription message
+// message Transcription {
+
+//     // The transcribed text
+//     string transcription = 1;
+
+//     // The corresponding confidence score
+//     float confidence_score = 2;
+
+// }
+
 // The transcription message
 message Transcription {
 
     // The transcribed text
-    string transcription = 1;
-
-    // The corresponding confidence score
-    float confidence_score = 2;
+    message Result {
+        message Alternatives {
+            // The transcribed text
+            string transcript = 1;
+            // The corresponding confidence score    
+            float confidence = 2;
+            message Words{
+                message AlternativeWords{
+                    string word = 1;
+                    float confidence = 2;
+                }
+                optional float startTime = 1;
+                optional float endTime = 2;
+                repeated AlternativeWords word = 3;
+            }
+            repeated Words words = 1;
+        }
+        repeated Alternatives alternatives = 1;
+        string languageCode = 2;
+    }
+    Result results = 1;
 
 }
 
@@ -267,23 +312,6 @@ message TranscribeFileRequest {
 
     // The configuration to override the default configuration
     TranscribeRequestConfig config = 2;
-
-}
-
-// The decoding configuration
-enum Decoding {
-
-    // decoding will be defined by the pipeline config
-    DEFAULT = 0;
-
-    // greedy decoding will be used independently on pipeline config
-    GREEDY = 1;
-
-    // beam search will be used independently on pipeline config
-    BEAM_SEARCH_WITH_LM = 2;
-
-    // beam search without LM head, to configure decoding mode for seq2seq models.
-    BEAM_SEARCH = 3;
 
 }
 
