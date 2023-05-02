@@ -209,25 +209,8 @@ message PostProcessingOptions {
 }
 
 ///////////////////////
-// TRANSCRIBE STREAM //
+//TRANSCRIIPTION TYPE//
 ///////////////////////
-
-// Request to transcribe an audio stream
-message TranscribeStreamRequest {
-
-    // wav file to transcribe
-    bytes audio_chunk = 1;
-
-    // if it's the final chunk of the stream
-    bool end_of_stream = 2;
-
-    // The configuration to override the default configuration
-    TranscribeRequestConfig config = 3;
-
-    // Whether or not to mute the audio signal. Defaults to false.
-    bool mute_audio = 4;
-
-}
 
 // The transcription message
 message Transcription {
@@ -293,6 +276,27 @@ message WordDetail {
     
   }
 
+///////////////////////
+// TRANSCRIBE STREAM //
+///////////////////////
+
+// Request to transcribe an audio stream
+message TranscribeStreamRequest {
+
+    // wav file to transcribe
+    bytes audio_chunk = 1;
+
+    // if it's the final chunk of the stream
+    bool end_of_stream = 2;
+
+    // The configuration to override the default configuration
+    TranscribeRequestConfig config = 3;
+
+    // Whether or not to mute the audio signal. Defaults to false.
+    bool mute_audio = 4;
+
+}
+
 // The response message of a stream transcription
 message TranscribeStreamResponse {
 
@@ -349,27 +353,10 @@ message TranscribeFileResponse {
     // The time the transcription took
     float time = 2;
 
-    // // List of words with timestamps for their start and end
-    // repeated WordTiming word_timing = 3;
-
     // id of the transcribed audio file
     string audio_uuid = 4;
 
 }
-
-// // Message structure for word timings
-// message WordTiming {
-
-//     // Transcribed word
-//     string word = 1;
-
-//     // Timestamp for start of word
-//     int32 begin = 2;
-
-//     // Timestamp for end of word
-//     int32 end = 3;
-
-// }
 
 //////////////////////
 // GET S2T PIPELINE //
