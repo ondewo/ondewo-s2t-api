@@ -75,6 +75,23 @@ service Speech2Text {
 //         Enums         //
 ///////////////////////////
 
+// The decoding configuration
+enum Decoding {
+
+    // decoding will be defined by the pipeline config
+    DEFAULT = 0;
+
+    // greedy decoding will be used independently on pipeline config
+    GREEDY = 1;
+
+    // beam search will be used independently on pipeline config
+    BEAM_SEARCH_WITH_LM = 2;
+
+    // beam search without LM head, to configure decoding mode for seq2seq models.
+    BEAM_SEARCH = 3;
+
+}
+
 enum InferenceBackend {
 
     // Not set
@@ -143,7 +160,7 @@ message TranscriptionReturnOptions {
     // Whether or not to return alternative results from beam-search
     bool return_alternative_transcriptions = 4;
 
-    // Optional. Number of alternative transciptions results from beam-search or greedy-search
+    // Optional. Number of alternative transcriptions results from beam-search or greedy-search
     int32 return_alternative_transcriptions_nr = 5;
 
     // Whether or not to return alternative results from beam-search
@@ -191,6 +208,74 @@ message PostProcessingOptions {
 
 }
 
+///////////////////////////
+//  TRANSCRIPTION TYPE  //
+///////////////////////////
+
+// The transcription message
+message Transcription {
+
+    // The transcribed text
+    string transcription = 1;
+
+    // The corresponding confidence score. The confidence estimate between 0.0 and 1.0. A higher number
+    // indicates an estimated greater likelihood that the recognized words are correct.
+    float confidence_score = 2;
+
+    // List of the words of transcription with their confidence scores and probable alternatives
+    repeated WordDetail words = 3;
+
+    // List of alternative transcriptions, confidence scores, words timings and alternative words
+    repeated TranscriptionAlternative alternatives = 4;
+
+}
+
+message TranscriptionAlternative{
+
+    // The alternative transcribed text
+    string transcript = 1;
+
+    // The corresponding confidence score to the alternative transcript.
+    float confidence = 2;
+
+    // A list of word-specific information for each recognized word, including word timings, confidence score of
+    // the word and alternative words.
+    repeated WordDetail words = 3;
+
+}
+
+// WordDetail provides word-specific information for recognized words.
+message WordDetail {
+
+    // The start time of the spoken word relative to the beginning of the audio.
+    // The accuracy of the time offset can vary, and this is an experimental feature.
+    float start_time = 1;
+
+    // The end time of the spoken word relative to the beginning of the audio.
+    // The accuracy of the time offset can vary, and this is an experimental feature.
+    float end_time = 2;
+
+    // The recognized word corresponding to this set of information.
+    string word = 3;
+
+    // The corresponding confidence score to the word.
+    float confidence = 4;
+
+    // List of alternative words and confidence scores of each.
+    repeated WordAlternative word_alternatives = 5;
+
+}
+
+message WordAlternative{
+
+    // The recognized word corresponding to this set of information.
+    string word = 1;
+
+    // The corresponding confidence score to the alternative word.
+    float confidence = 2;
+
+}
+
 ///////////////////////
 // TRANSCRIBE STREAM //
 ///////////////////////
@@ -209,17 +294,6 @@ message TranscribeStreamRequest {
 
     // Whether or not to mute the audio signal. Defaults to false.
     bool mute_audio = 4;
-
-}
-
-// The transcription message
-message Transcription {
-
-    // The transcribed text
-    string transcription = 1;
-
-    // The corresponding confidence score
-    float confidence_score = 2;
 
 }
 
@@ -270,23 +344,6 @@ message TranscribeFileRequest {
 
 }
 
-// The decoding configuration
-enum Decoding {
-
-    // decoding will be defined by the pipeline config
-    DEFAULT = 0;
-
-    // greedy decoding will be used independently on pipeline config
-    GREEDY = 1;
-
-    // beam search will be used independently on pipeline config
-    BEAM_SEARCH_WITH_LM = 2;
-
-    // beam search without LM head, to configure decoding mode for seq2seq models.
-    BEAM_SEARCH = 3;
-
-}
-
 // The response message for a transcribe file request
 message TranscribeFileResponse {
 
@@ -296,25 +353,8 @@ message TranscribeFileResponse {
     // The time the transcription took
     float time = 2;
 
-    // List of words with timestamps for their start and end
-    repeated WordTiming word_timing = 3;
-
     // id of the transcribed audio file
-    string audio_uuid = 4;
-
-}
-
-// Message structure for word timings
-message WordTiming {
-
-    // Transcribed word
-    string word = 1;
-
-    // Timestamp for start of word
-    int32 begin = 2;
-
-    // Timestamp for end of word
-    int32 end = 3;
+    string audio_uuid = 3;
 
 }
 
