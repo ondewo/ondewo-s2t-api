@@ -110,7 +110,7 @@ enum Language {
     UNKNOWN = 0;
 
     // Multiple language
-    ALL = 1;
+    MULTI = 1;
 
     // Arabic language
     AR = 2;
