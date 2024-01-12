@@ -597,7 +597,7 @@ message WhisperTriton {
     string triton_server_host = 7;
 
     // Port number of triton inference server that serves the WhisperTriton model
-    string triton_server_port = 8;
+    int64 triton_server_port = 8;
 
 }
 
@@ -631,7 +631,7 @@ message Wav2VecTriton {
     string triton_server_host = 5;
 
     // Port number of triton inference server that serves the Wav2VecTriton model
-    string triton_server_port = 6;
+    int64 triton_server_port = 6;
 }
 
 // PtFiles contains information about PT files.
@@ -750,7 +750,7 @@ message Pyannote {
     string triton_server_host = 5;
 
     // Port number of triton inference server that serves the Pyannote model
-    string triton_server_port = 6;
+    int64 triton_server_port = 6;
 
 }
 
