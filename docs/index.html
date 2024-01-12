@@ -147,10 +147,6 @@
                       </li>
                     
                       <li>
-                        <a href="#ondewo.s2t.Matchbox" class="title-badge message">Matchbox</a>
-                      </li>
-                    
-                      <li>
                         <a href="#ondewo.s2t.PostProcessing" class="title-badge message">PostProcessing</a>
                       </li>
                     
@@ -168,14 +164,6 @@
                     
                       <li>
                         <a href="#ondewo.s2t.Pyannote" class="title-badge message">Pyannote</a>
-                      </li>
-                    
-                      <li>
-                        <a href="#ondewo.s2t.Quartznet" class="title-badge message">Quartznet</a>
-                      </li>
-                    
-                      <li>
-                        <a href="#ondewo.s2t.QuartznetTriton" class="title-badge message">QuartznetTriton</a>
                       </li>
                     
                       <li>
@@ -445,20 +433,6 @@ id and a list of the language models loaded in the pipeline.
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Type of the acoustic model. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>quartznet</td>
-                  <td><a href="#ondewo.s2t.Quartznet">Quartznet</a></td>
-                  <td></td>
-                  <td><p>Configuration for the Quartznet model. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>quartznet_triton</td>
-                  <td><a href="#ondewo.s2t.QuartznetTriton">QuartznetTriton</a></td>
-                  <td></td>
-                  <td><p>Configuration for the Quartznet model using Triton. </p></td>
                 </tr>
               
                 <tr>
@@ -949,44 +923,6 @@ description: {language: "fr"}, active: true, ...}] </p></td>
 
         
       
-        <h3 id="ondewo.s2t.Matchbox" class="title-badge message">Matchbox</h3>
-        <p>Matchbox contains configuration for the Matchbox voice activity detection model.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>model_config</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Path to the Matchbox model configuration. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>encoder_path</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Path to the Matchbox encoder. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>decoder_path</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Path to the Matchbox decoder. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="ondewo.s2t.PostProcessing" class="title-badge message">PostProcessing</h3>
         <p>PostProcessing contains the configuration for post-processing.</p>
 
@@ -1130,10 +1066,10 @@ configuration. If not set, all values are replaced by the ones in current pipeli
             <tbody>
               
                 <tr>
-                  <td>model_path</td>
+                  <td>model_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Path to the Pyannote model. </p></td>
+                  <td><p>Full name of the Pyannote model. </p></td>
                 </tr>
               
                 <tr>
@@ -1141,27 +1077,6 @@ configuration. If not set, all values are replaced by the ones in current pipeli
                   <td><a href="#int64">int64</a></td>
                   <td></td>
                   <td><p>Minimum audio size for processing. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>offset</td>
-                  <td><a href="#float">float</a></td>
-                  <td></td>
-                  <td><p>Offset for voice activity detection. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>onset</td>
-                  <td><a href="#float">float</a></td>
-                  <td></td>
-                  <td><p>Onset for voice activity detection. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>log_scale</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>whether to use log scale </p></td>
                 </tr>
               
                 <tr>
@@ -1176,96 +1091,6 @@ configuration. If not set, all values are replaced by the ones in current pipeli
                   <td><a href="#float">float</a></td>
                   <td></td>
                   <td><p>Minimum duration for an on segment. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="ondewo.s2t.Quartznet" class="title-badge message">Quartznet</h3>
-        <p>Quartznet contains information about the Quartznet model.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>config_path</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Path to the configuration file. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>load_type</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Type of loading for the model. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pt_files</td>
-                  <td><a href="#ondewo.s2t.PtFiles">PtFiles</a></td>
-                  <td></td>
-                  <td><p>Configuration for PT files. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>ckpt_file</td>
-                  <td><a href="#ondewo.s2t.CkptFile">CkptFile</a></td>
-                  <td></td>
-                  <td><p>Configuration for checkpoint files. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>use_gpu</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Indicates if GPU is used. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="ondewo.s2t.QuartznetTriton" class="title-badge message">QuartznetTriton</h3>
-        <p>QuartznetTriton contains information about the Quartznet model using Triton.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>config_path</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Path to the configuration file. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>triton_url</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>URL for the Triton server. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>triton_model</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Triton model name. </p></td>
                 </tr>
               
             </tbody>
@@ -1806,17 +1631,24 @@ takes longer to process!) </p></td>
                 </tr>
               
                 <tr>
-                  <td>matchbox</td>
-                  <td><a href="#ondewo.s2t.Matchbox">Matchbox</a></td>
+                  <td>return_options</td>
+                  <td><a href="#ondewo.s2t.TranscriptionReturnOptions">TranscriptionReturnOptions</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>return_options</td>
-                  <td><a href="#ondewo.s2t.TranscriptionReturnOptions">TranscriptionReturnOptions</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td>language</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Specify language of transcription to return </p></td>
+                </tr>
+              
+                <tr>
+                  <td>task</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Specify task of s2t model, e.g. 'transcribe' and 'translate' </p></td>
                 </tr>
               
             </tbody>
@@ -2179,13 +2011,6 @@ the word and alternative words. </p></td>
                   <td><p>Configuration for the Pyannote model. </p></td>
                 </tr>
               
-                <tr>
-                  <td>matchbox</td>
-                  <td><a href="#ondewo.s2t.Matchbox">Matchbox</a></td>
-                  <td></td>
-                  <td><p>Configuration for the Matchbox model. </p></td>
-                </tr>
-              
             </tbody>
           </table>
 
@@ -2296,8 +2121,15 @@ the word and alternative words. </p></td>
                 <tr>
                   <td>language</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Language of the model. </p></td>
+                  <td>optional</td>
+                  <td><p>Default language of the model. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>task</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Default task of the model. </p></td>
                 </tr>
               
             </tbody>
@@ -2343,6 +2175,20 @@ the word and alternative words. </p></td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
                   <td><p>Timeout for checking model status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>language</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Default language of the model. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>task</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Default task of the model. E.g., transcribe, translate, etc. </p></td>
                 </tr>
               
             </tbody>

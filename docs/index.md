@@ -20,14 +20,11 @@
     - [ListS2tPipelinesRequest](#ondewo.s2t.ListS2tPipelinesRequest)
     - [ListS2tPipelinesResponse](#ondewo.s2t.ListS2tPipelinesResponse)
     - [Logging](#ondewo.s2t.Logging)
-    - [Matchbox](#ondewo.s2t.Matchbox)
     - [PostProcessing](#ondewo.s2t.PostProcessing)
     - [PostProcessingOptions](#ondewo.s2t.PostProcessingOptions)
     - [PostProcessors](#ondewo.s2t.PostProcessors)
     - [PtFiles](#ondewo.s2t.PtFiles)
     - [Pyannote](#ondewo.s2t.Pyannote)
-    - [Quartznet](#ondewo.s2t.Quartznet)
-    - [QuartznetTriton](#ondewo.s2t.QuartznetTriton)
     - [S2TDescription](#ondewo.s2t.S2TDescription)
     - [S2TGetServiceInfoResponse](#ondewo.s2t.S2TGetServiceInfoResponse)
     - [S2TInference](#ondewo.s2t.S2TInference)
@@ -80,8 +77,6 @@ AcousticModels contains information about different types of acoustic models.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | type | [string](#string) |  | Type of the acoustic model. |
-| quartznet | [Quartznet](#ondewo.s2t.Quartznet) |  | Configuration for the Quartznet model. |
-| quartznet_triton | [QuartznetTriton](#ondewo.s2t.QuartznetTriton) |  | Configuration for the Quartznet model using Triton. |
 | wav2vec | [Wav2Vec](#ondewo.s2t.Wav2Vec) |  | Configuration for the Wav2Vec model. |
 | wav2vec_triton | [Wav2VecTriton](#ondewo.s2t.Wav2VecTriton) |  | Configuration for the Wav2Vec model using Triton. |
 | whisper | [Whisper](#ondewo.s2t.Whisper) |  | Configuration for the Whisper model. |
@@ -329,23 +324,6 @@ Logging contains configuration for logging.
 
 
 
-<a name="ondewo.s2t.Matchbox"></a>
-
-### Matchbox
-Matchbox contains configuration for the Matchbox voice activity detection model.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| model_config | [string](#string) |  | Path to the Matchbox model configuration. |
-| encoder_path | [string](#string) |  | Path to the Matchbox encoder. |
-| decoder_path | [string](#string) |  | Path to the Matchbox decoder. |
-
-
-
-
-
-
 <a name="ondewo.s2t.PostProcessing"></a>
 
 ### PostProcessing
@@ -419,49 +397,10 @@ Pyannote contains configuration for the Pyannote voice activity detection model.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| model_path | [string](#string) |  | Path to the Pyannote model. |
+| model_name | [string](#string) |  | Full name of the Pyannote model. |
 | min_audio_size | [int64](#int64) |  | Minimum audio size for processing. |
-| offset | [float](#float) |  | Offset for voice activity detection. |
-| onset | [float](#float) |  | Onset for voice activity detection. |
-| log_scale | [bool](#bool) |  | whether to use log scale |
 | min_duration_off | [float](#float) |  | Minimum duration for an off segment. |
 | min_duration_on | [float](#float) |  | Minimum duration for an on segment. |
-
-
-
-
-
-
-<a name="ondewo.s2t.Quartznet"></a>
-
-### Quartznet
-Quartznet contains information about the Quartznet model.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| config_path | [string](#string) |  | Path to the configuration file. |
-| load_type | [string](#string) |  | Type of loading for the model. |
-| pt_files | [PtFiles](#ondewo.s2t.PtFiles) |  | Configuration for PT files. |
-| ckpt_file | [CkptFile](#ondewo.s2t.CkptFile) |  | Configuration for checkpoint files. |
-| use_gpu | [bool](#bool) |  | Indicates if GPU is used. |
-
-
-
-
-
-
-<a name="ondewo.s2t.QuartznetTriton"></a>
-
-### QuartznetTriton
-QuartznetTriton contains information about the Quartznet model using Triton.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| config_path | [string](#string) |  | Path to the configuration file. |
-| triton_url | [string](#string) |  | URL for the Triton server. |
-| triton_model | [string](#string) |  | Triton model name. |
 
 
 
@@ -689,8 +628,9 @@ Configuration for a request to transcribe audio
 | post_processing | [PostProcessingOptions](#ondewo.s2t.PostProcessingOptions) |  |  |
 | utterance_detection | [UtteranceDetectionOptions](#ondewo.s2t.UtteranceDetectionOptions) |  |  |
 | pyannote | [Pyannote](#ondewo.s2t.Pyannote) |  |  |
-| matchbox | [Matchbox](#ondewo.s2t.Matchbox) |  |  |
 | return_options | [TranscriptionReturnOptions](#ondewo.s2t.TranscriptionReturnOptions) |  |  |
+| language | [string](#string) | optional | Optional. Specify language of transcription to return |
+| task | [string](#string) | optional | Optional. Specify task of s2t model, e.g. 'transcribe' and 'translate' |
 
 
 
@@ -823,7 +763,6 @@ VoiceActivityDetection contains information about voice activity detection setti
 | active | [string](#string) |  | Indicates if voice activity detection is active. |
 | sampling_rate | [int64](#int64) |  | Sampling rate for voice activity detection. |
 | pyannote | [Pyannote](#ondewo.s2t.Pyannote) |  | Configuration for the Pyannote model. |
-| matchbox | [Matchbox](#ondewo.s2t.Matchbox) |  | Configuration for the Matchbox model. |
 
 
 
@@ -874,7 +813,8 @@ Whisper contains information about the Whisper model.
 | ----- | ---- | ----- | ----------- |
 | model_path | [string](#string) |  | Path to the model. |
 | use_gpu | [bool](#bool) |  | Indicates if GPU is used. |
-| language | [string](#string) |  | Language of the model. |
+| language | [string](#string) | optional | Default language of the model. |
+| task | [string](#string) | optional | Default task of the model. |
 
 
 
@@ -893,6 +833,8 @@ WhisperTriton contains information about the Whisper model using Triton.
 | triton_model_name | [string](#string) |  | Name of the Triton model. |
 | triton_model_version | [string](#string) |  | Version of the Triton model. |
 | check_status_timeout | [int64](#int64) |  | Timeout for checking model status. |
+| language | [string](#string) | optional | Default language of the model. |
+| task | [string](#string) | optional | Default task of the model. E.g., transcribe, translate, etc. |
 
 
 
