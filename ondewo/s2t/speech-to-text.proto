@@ -639,7 +639,11 @@ message Whisper {
     bool use_gpu = 2;
 
     // Language of the model.
-    string language = 3;
+    Language language = 3;
+
+    // Task of the model.
+    Task task = 4;
+    
 
 }
 
@@ -657,6 +661,12 @@ message WhisperTriton {
 
     // Timeout for checking model status.
     int64 check_status_timeout = 4;
+
+    // Language of the model.
+    Language language = 5;
+
+    // Task of the model.
+    Task task = 6;
 
 }
 
@@ -828,24 +838,24 @@ message VoiceActivityDetection {
 // Pyannote contains configuration for the Pyannote voice activity detection model.
 message Pyannote {
 
-    // Path to the Pyannote model.
-    string model_path = 1;
+    // Full name of the Pyannote model.
+    string model_name = 1;
 
     // Minimum audio size for processing.
     int64 min_audio_size = 2;
 
-    // Offset for voice activity detection.
-    float offset = 3;
+    // // Offset for voice activity detection.
+    // float offset = 3;
 
-    // Onset for voice activity detection.
-    float onset = 4;
+    // // Onset for voice activity detection.
+    // float onset = 4;
 
-    // Log scale configuration for the model.
-    oneof oneof_log_scale {
+    // // Log scale configuration for the model.
+    // oneof oneof_log_scale {
 
-        // whether to use log scale
-        bool log_scale = 5;
-    }
+    //     // whether to use log scale
+    //     bool log_scale = 5;
+    // }
 
     // Minimum duration for an off segment.
     float min_duration_off = 6;
