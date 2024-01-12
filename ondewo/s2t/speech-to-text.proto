@@ -104,6 +104,72 @@ enum InferenceBackend {
     INFERENCE_BACKEND_FLAX = 2;
 }
 
+enum Language {
+
+    // Not set
+    UNKNOWN = 0;
+
+    // Multiple language
+    ALL = 1;
+
+    // Arabic language
+    AR = 2;
+
+    // Czeck language
+    CS = 3;
+
+    // Danish language
+    DA = 4;
+
+    // German language
+    DE = 5;
+
+    // English language
+    EN = 6;
+
+    // Spanish language
+    ES = 7;
+
+    // Finnish language
+    FI = 8;
+    
+    // French language
+    FR = 9;
+
+    // Italian language
+    IT = 10;
+
+    // Dutch language
+    NL = 11;
+
+    // Norwegian language
+    NO = 12;  
+
+    // Portuguese language
+    PT = 13;
+
+    // Russian language
+    RU = 14;
+
+    // Swedish language
+    SV = 15;
+
+    // Turkish language
+    TR = 16;
+}
+
+enum Task {
+
+    // Not set
+    UNKNOWN = 0;
+
+    // Transcribe task
+    TRANSCRIBE = 1;
+
+    // Translate task
+    TRANSLATE = 2;
+}
+
 ///////////////////////////
 // Configuration Message //
 ///////////////////////////
@@ -141,6 +207,16 @@ message TranscribeRequestConfig {
     // Optional. Specify which data to return
     oneof oneof_return_options {
         TranscriptionReturnOptions return_options = 8;
+    }
+
+    // Optional. Specify language of transcription to return
+    oneof oneof_language {
+        Language language = 9;
+    }
+
+    // Optional. Specify task of s2t model, one from 'transcribe' and 'translate'
+    oneof oneof_task {
+        Task task = 10;
     }
 
 }
