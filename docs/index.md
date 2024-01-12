@@ -402,7 +402,7 @@ Pyannote contains configuration for the Pyannote voice activity detection model.
 | min_duration_off | [float](#float) |  | Minimum duration for an off segment. |
 | min_duration_on | [float](#float) |  | Minimum duration for an on segment. |
 | triton_server_host | [string](#string) |  | Host name of triton inference server that serves the Pyannote model |
-| triton_server_port | [string](#string) |  | Port number of triton inference server that serves the Pyannote model |
+| triton_server_port | [int64](#int64) |  | Port number of triton inference server that serves the Pyannote model |
 
 
 
@@ -800,7 +800,7 @@ Wav2VecTriton contains information about the Wav2Vec model using Triton.
 | triton_model_version | [string](#string) |  | Version of the Triton model. |
 | check_status_timeout | [int64](#int64) |  | Timeout for checking model status. |
 | triton_server_host | [string](#string) |  | Host name of triton inference server that serves the Wav2VecTriton model |
-| triton_server_port | [string](#string) |  | Port number of triton inference server that serves the Wav2VecTriton model |
+| triton_server_port | [int64](#int64) |  | Port number of triton inference server that serves the Wav2VecTriton model |
 
 
 
@@ -840,7 +840,7 @@ WhisperTriton contains information about the Whisper model using Triton.
 | language | [string](#string) | optional | Default language of the model. |
 | task | [string](#string) | optional | Default task of the model. E.g., transcribe, translate, etc. |
 | triton_server_host | [string](#string) |  | Host name of triton inference server that serves the WhisperTriton model |
-| triton_server_port | [string](#string) |  | Port number of triton inference server that serves the WhisperTriton model |
+| triton_server_port | [int64](#int64) |  | Port number of triton inference server that serves the WhisperTriton model |
 
 
 
