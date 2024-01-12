@@ -6,8 +6,8 @@
 
 ### Improvement
 
-* [[OND231-500]](https://ondewo.atlassian.net/browse/OND231-500) Update TranscriptionRequestConfig, Whisper and 
-  WhisperTriton messages to get language and task of S2T model. 
+* [[OND231-500]](https://ondewo.atlassian.net/browse/OND231-500) Update TranscriptionRequestConfig, Whisper and
+  WhisperTriton messages to get language and task of S2T model.
 
 ### Breaking Changes
 
@@ -20,7 +20,7 @@
 
 ### Improvement
 
-* [[OND231-418]](https://ondewo.atlassian.net/browse/OND231-418) Update Transcription message to support 
+* [[OND231-418]](https://ondewo.atlassian.net/browse/OND231-418) Update Transcription message to support
   alternative transcriptions and words, based on the Google speech-to-text output format.
 
 *****************
