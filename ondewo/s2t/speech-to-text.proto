@@ -137,7 +137,6 @@ message TranscribeRequestConfig {
     // Optional. Which method to be used for voice activity detection
     oneof voice_activity_detection {
         Pyannote pyannote = 6;
-        Matchbox matchbox = 7;
     }
 
     // Optional. Specify which data to return
@@ -541,23 +540,17 @@ message AcousticModels {
     // Type of the acoustic model.
     string type = 1;
 
-    // Configuration for the Quartznet model.
-    Quartznet quartznet = 2;
-
-    // Configuration for the Quartznet model using Triton.
-    QuartznetTriton quartznet_triton = 3;
-
     // Configuration for the Wav2Vec model.
-    Wav2Vec wav2vec = 4;
+    Wav2Vec wav2vec = 2;
 
     // Configuration for the Wav2Vec model using Triton.
-    Wav2VecTriton wav2vec_triton = 5;
+    Wav2VecTriton wav2vec_triton = 3;
 
     // Configuration for the Whisper model.
-    Whisper whisper = 6;
+    Whisper whisper = 4;
 
     // Configuration for the Whisper model using Triton.
-    WhisperTriton whisper_triton = 7;
+    WhisperTriton whisper_triton = 5;
 
 }
 
@@ -724,9 +717,6 @@ message VoiceActivityDetection {
 
     // Configuration for the Pyannote model.
     Pyannote pyannote = 3;
-
-    // Configuration for the Matchbox model.
-    Matchbox matchbox = 4;
 
 }
 
