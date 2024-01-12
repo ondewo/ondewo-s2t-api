@@ -593,6 +593,12 @@ message WhisperTriton {
     // Default task of the model. E.g., transcribe, translate, etc.
     optional string task = 6;
 
+    // Host name of triton inference server that serves the WhisperTriton model
+    string triton_server_host = 7;
+
+    // Port number of triton inference server that serves the WhisperTriton model
+    string triton_server_port = 8;
+
 }
 
 // Wav2Vec contains information about the Wav2Vec model.
@@ -621,6 +627,11 @@ message Wav2VecTriton {
     // Timeout for checking model status.
     int64 check_status_timeout = 4;
 
+    // Host name of triton inference server that serves the Wav2VecTriton model
+    string triton_server_host = 5;
+
+    // Port number of triton inference server that serves the Wav2VecTriton model
+    string triton_server_port = 6;
 }
 
 // PtFiles contains information about PT files.
@@ -734,6 +745,12 @@ message Pyannote {
 
     // Minimum duration for an on segment.
     float min_duration_on = 4;
+
+    // Host name of triton inference server that serves the Pyannote model
+    string triton_server_host = 5;
+
+    // Port number of triton inference server that serves the Pyannote model
+    string triton_server_port = 6;
 
 }
 
