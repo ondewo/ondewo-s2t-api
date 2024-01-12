@@ -807,24 +807,11 @@ message Pyannote {
     // Minimum audio size for processing.
     int64 min_audio_size = 2;
 
-    // // Offset for voice activity detection.
-    // float offset = 3;
-
-    // // Onset for voice activity detection.
-    // float onset = 4;
-
-    // // Log scale configuration for the model.
-    // oneof oneof_log_scale {
-
-    //     // whether to use log scale
-    //     bool log_scale = 5;
-    // }
-
     // Minimum duration for an off segment.
-    float min_duration_off = 6;
+    float min_duration_off = 3;
 
     // Minimum duration for an on segment.
-    float min_duration_on = 7;
+    float min_duration_on = 4;
 
 }
 
