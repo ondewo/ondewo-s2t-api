@@ -699,25 +699,25 @@ message Wav2VecTriton {
 }
 
 
-// Quartznet contains information about the Quartznet model.
-message Quartznet {
+// // Quartznet contains information about the Quartznet model.
+// message Quartznet {
 
-    // Path to the configuration file.
-    string config_path = 1;
+//     // Path to the configuration file.
+//     string config_path = 1;
 
-    // Type of loading for the model.
-    string load_type = 2;
+//     // Type of loading for the model.
+//     string load_type = 2;
 
-    // Configuration for PT files.
-    PtFiles pt_files = 3;
+//     // Configuration for PT files.
+//     PtFiles pt_files = 3;
 
-    // Configuration for checkpoint files.
-    CkptFile ckpt_file = 4;
+//     // Configuration for checkpoint files.
+//     CkptFile ckpt_file = 4;
 
-    // Indicates if GPU is used.
-    bool use_gpu = 5;
+//     // Indicates if GPU is used.
+//     bool use_gpu = 5;
 
-}
+// }
 
 
 
@@ -740,19 +740,19 @@ message CkptFile {
 
 }
 
-// QuartznetTriton contains information about the Quartznet model using Triton.
-message QuartznetTriton {
+// // QuartznetTriton contains information about the Quartznet model using Triton.
+// message QuartznetTriton {
 
-    // Path to the configuration file.
-    string config_path = 1;
+//     // Path to the configuration file.
+//     string config_path = 1;
 
-    // URL for the Triton server.
-    string triton_url = 2;
+//     // URL for the Triton server.
+//     string triton_url = 2;
 
-    // Triton model name.
-    string triton_model = 3;
+//     // Triton model name.
+//     string triton_model = 3;
 
-}
+// }
 
 
 // LanguageModels contains information about language models.
@@ -865,19 +865,19 @@ message Pyannote {
 
 }
 
-// Matchbox contains configuration for the Matchbox voice activity detection model.
-message Matchbox {
+// // Matchbox contains configuration for the Matchbox voice activity detection model.
+// message Matchbox {
 
-    // Path to the Matchbox model configuration.
-    string model_config = 1;
+//     // Path to the Matchbox model configuration.
+//     string model_config = 1;
 
-    // Path to the Matchbox encoder.
-    string encoder_path = 2;
+//     // Path to the Matchbox encoder.
+//     string encoder_path = 2;
 
-    // Path to the Matchbox decoder.
-    string decoder_path = 3;
+//     // Path to the Matchbox decoder.
+//     string decoder_path = 3;
 
-}
+// }
 
 // PostProcessing contains the configuration for post-processing.
 message PostProcessing {
