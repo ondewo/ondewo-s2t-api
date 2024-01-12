@@ -638,10 +638,10 @@ message Whisper {
     // Indicates if GPU is used.
     bool use_gpu = 2;
 
-    // Language of the model.
+    // Default language of the model.
     Language language = 3;
 
-    // Task of the model.
+    // Default task of the model.
     Task task = 4;
     
 
@@ -662,10 +662,10 @@ message WhisperTriton {
     // Timeout for checking model status.
     int64 check_status_timeout = 4;
 
-    // Language of the model.
+    // Default language of the model.
     Language language = 5;
 
-    // Task of the model.
+    // Default task of the model.
     Task task = 6;
 
 }
