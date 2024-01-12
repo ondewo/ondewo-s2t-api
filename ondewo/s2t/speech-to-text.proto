@@ -104,6 +104,72 @@ enum InferenceBackend {
     INFERENCE_BACKEND_FLAX = 2;
 }
 
+enum Language {
+
+    // Not set
+    UNKNOWN = 0;
+
+    // Multiple language
+    MULTI = 1;
+
+    // Arabic language
+    AR = 2;
+
+    // Czeck language
+    CS = 3;
+
+    // Danish language
+    DA = 4;
+
+    // German language
+    DE = 5;
+
+    // English language
+    EN = 6;
+
+    // Spanish language
+    ES = 7;
+
+    // Finnish language
+    FI = 8;
+    
+    // French language
+    FR = 9;
+
+    // Italian language
+    IT = 10;
+
+    // Dutch language
+    NL = 11;
+
+    // Norwegian language
+    NO = 12;  
+
+    // Portuguese language
+    PT = 13;
+
+    // Russian language
+    RU = 14;
+
+    // Swedish language
+    SV = 15;
+
+    // Turkish language
+    TR = 16;
+}
+
+enum Task {
+
+    // Not set
+    UNKNOWN = 0;
+
+    // Transcribe task
+    TRANSCRIBE = 1;
+
+    // Translate task
+    TRANSLATE = 2;
+}
+
 ///////////////////////////
 // Configuration Message //
 ///////////////////////////
@@ -141,6 +207,16 @@ message TranscribeRequestConfig {
     // Optional. Specify which data to return
     oneof oneof_return_options {
         TranscriptionReturnOptions return_options = 8;
+    }
+
+    // Optional. Specify language of transcription to return
+    oneof oneof_language {
+        Language language = 9;
+    }
+
+    // Optional. Specify task of s2t model, one from 'transcribe' and 'translate'
+    oneof oneof_task {
+        Task task = 10;
     }
 
 }
@@ -562,8 +638,12 @@ message Whisper {
     // Indicates if GPU is used.
     bool use_gpu = 2;
 
-    // Language of the model.
-    string language = 3;
+    // Default language of the model.
+    Language language = 3;
+
+    // Default task of the model.
+    Task task = 4;
+    
 
 }
 
@@ -581,6 +661,12 @@ message WhisperTriton {
 
     // Timeout for checking model status.
     int64 check_status_timeout = 4;
+
+    // Default language of the model.
+    Language language = 5;
+
+    // Default task of the model.
+    Task task = 6;
 
 }
 
@@ -612,29 +698,6 @@ message Wav2VecTriton {
 
 }
 
-
-// Quartznet contains information about the Quartznet model.
-message Quartznet {
-
-    // Path to the configuration file.
-    string config_path = 1;
-
-    // Type of loading for the model.
-    string load_type = 2;
-
-    // Configuration for PT files.
-    PtFiles pt_files = 3;
-
-    // Configuration for checkpoint files.
-    CkptFile ckpt_file = 4;
-
-    // Indicates if GPU is used.
-    bool use_gpu = 5;
-
-}
-
-
-
 // PtFiles contains information about PT files.
 message PtFiles {
 
@@ -651,20 +714,6 @@ message CkptFile {
 
     // Path to the checkpoint file.
     string path = 1;
-
-}
-
-// QuartznetTriton contains information about the Quartznet model using Triton.
-message QuartznetTriton {
-
-    // Path to the configuration file.
-    string config_path = 1;
-
-    // URL for the Triton server.
-    string triton_url = 2;
-
-    // Triton model name.
-    string triton_model = 3;
 
 }
 
@@ -752,44 +801,17 @@ message VoiceActivityDetection {
 // Pyannote contains configuration for the Pyannote voice activity detection model.
 message Pyannote {
 
-    // Path to the Pyannote model.
-    string model_path = 1;
+    // Full name of the Pyannote model.
+    string model_name = 1;
 
     // Minimum audio size for processing.
     int64 min_audio_size = 2;
 
-    // Offset for voice activity detection.
-    float offset = 3;
-
-    // Onset for voice activity detection.
-    float onset = 4;
-
-    // Log scale configuration for the model.
-    oneof oneof_log_scale {
-
-        // whether to use log scale
-        bool log_scale = 5;
-    }
-
     // Minimum duration for an off segment.
-    float min_duration_off = 6;
+    float min_duration_off = 3;
 
     // Minimum duration for an on segment.
-    float min_duration_on = 7;
-
-}
-
-// Matchbox contains configuration for the Matchbox voice activity detection model.
-message Matchbox {
-
-    // Path to the Matchbox model configuration.
-    string model_config = 1;
-
-    // Path to the Matchbox encoder.
-    string encoder_path = 2;
-
-    // Path to the Matchbox decoder.
-    string decoder_path = 3;
+    float min_duration_on = 4;
 
 }
 

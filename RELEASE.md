@@ -2,6 +2,20 @@
 
 *****************
 
+## Release ONDEWO S2T API 5.5.0
+
+### Improvement
+
+* [[OND231-500]](https://ondewo.atlassian.net/browse/OND231-500) Update TranscriptionRequestConfig, Whisper and 
+  WhisperTriton messages to get language and task of S2T model. 
+
+### Breaking Changes
+
+* [[OND231-500]](https://ondewo.atlassian.net/browse/OND231-500) Matchbox, Quartznet and QuartznetTriton models are
+  deprecated and removed from API.
+
+*****************
+
 ## Release ONDEWO S2T API 5.4.0
 
 ### Improvement
