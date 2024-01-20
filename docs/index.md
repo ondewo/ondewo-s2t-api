@@ -817,8 +817,8 @@ Whisper contains information about the Whisper model.
 | ----- | ---- | ----- | ----------- |
 | model_path | [string](#string) |  | Path to the model. |
 | use_gpu | [bool](#bool) |  | Indicates if GPU is used. |
-| language | [string](#string) | optional | Default language of the model. |
-| task | [string](#string) | optional | Default task of the model. |
+| language | [string](#string) |  | Default language of the model. |
+| task | [string](#string) |  | Default task of the model. |
 
 
 
@@ -837,8 +837,8 @@ WhisperTriton contains information about the Whisper model using Triton.
 | triton_model_name | [string](#string) |  | Name of the Triton model. |
 | triton_model_version | [string](#string) |  | Version of the Triton model. |
 | check_status_timeout | [int64](#int64) |  | Timeout for checking model status. |
-| language | [string](#string) | optional | Default language of the model. |
-| task | [string](#string) | optional | Default task of the model. E.g., transcribe, translate, etc. |
+| language | [string](#string) |  | Default language of the model. |
+| task | [string](#string) |  | Default task of the model. E.g., transcribe, translate, etc. |
 | triton_server_host | [string](#string) |  | Host name of triton inference server that serves the WhisperTriton model |
 | triton_server_port | [int64](#int64) |  | Port number of triton inference server that serves the WhisperTriton model |
 
