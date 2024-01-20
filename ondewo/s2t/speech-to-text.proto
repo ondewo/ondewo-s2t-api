@@ -564,10 +564,10 @@ message Whisper {
     bool use_gpu = 2;
 
     // Default language of the model.
-    optional string language = 3;
+    string language = 3;
 
     // Default task of the model.
-    optional string task = 4;
+    string task = 4;
 
 
 }
@@ -588,10 +588,10 @@ message WhisperTriton {
     int64 check_status_timeout = 4;
 
     // Default language of the model.
-    optional string language = 5;
+    string language = 5;
 
     // Default task of the model. E.g., transcribe, translate, etc.
-    optional string task = 6;
+    string task = 6;
 
     // Host name of triton inference server that serves the WhisperTriton model
     string triton_server_host = 7;
