@@ -121,26 +121,36 @@ message TranscribeRequestConfig {
 
     // Optional. Language model name for decoding (in none, default will be taken from config file)
     oneof oneof_language_model_name {
+
+        // Name of the language model
         string language_model_name = 3;
     }
 
     // Optional. Configuration of spelling correction and normalization
     oneof oneof_post_processing {
+
+        // The postprocessing options
         PostProcessingOptions post_processing = 4;
     }
 
     // Optional. Configuration for the detection of utterances
     oneof oneof_utterance_detection {
+
+        // The utterance detection options
         UtteranceDetectionOptions utterance_detection = 5;
     }
 
     // Optional. Which method to be used for voice activity detection
     oneof voice_activity_detection {
+
+        // Voice activity detection with pyannote
         Pyannote pyannote = 6;
     }
 
     // Optional. Specify which data to return
     oneof oneof_return_options {
+
+        // The transcribe return options
         TranscriptionReturnOptions return_options = 8;
     }
 
@@ -186,6 +196,8 @@ message UtteranceDetectionOptions {
 
     // Whether or not to transcribe unfinished utterances.
     oneof oneof_transcribe_not_final {
+
+        // Return also immediate transcription results
         bool transcribe_not_final = 1;
     }
 
@@ -331,6 +343,8 @@ message TranscribeStreamResponse {
 
     // The configuration to override the default configuration
     oneof oneof_config {
+
+        // The configuration for the transcription
         TranscribeRequestConfig config = 8;
     }
 
