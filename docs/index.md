@@ -626,11 +626,11 @@ Configuration for a request to transcribe audio
 | ----- | ---- | ----- | ----------- |
 | s2t_pipeline_id | [string](#string) |  | Required. id of the pipeline (model setup) that will generate audio |
 | decoding | [Decoding](#ondewo.s2t.Decoding) |  | Optional. decoding type |
-| language_model_name | [string](#string) |  |  |
-| post_processing | [PostProcessingOptions](#ondewo.s2t.PostProcessingOptions) |  |  |
-| utterance_detection | [UtteranceDetectionOptions](#ondewo.s2t.UtteranceDetectionOptions) |  |  |
-| pyannote | [Pyannote](#ondewo.s2t.Pyannote) |  |  |
-| return_options | [TranscriptionReturnOptions](#ondewo.s2t.TranscriptionReturnOptions) |  |  |
+| language_model_name | [string](#string) |  | Name of the language model |
+| post_processing | [PostProcessingOptions](#ondewo.s2t.PostProcessingOptions) |  | The postprocessing options |
+| utterance_detection | [UtteranceDetectionOptions](#ondewo.s2t.UtteranceDetectionOptions) |  | The utterance detection options |
+| pyannote | [Pyannote](#ondewo.s2t.Pyannote) |  | Voice activity detection with pyannote |
+| return_options | [TranscriptionReturnOptions](#ondewo.s2t.TranscriptionReturnOptions) |  | The transcribe return options |
 | language | [string](#string) | optional | Optional. Specify language of transcription to return |
 | task | [string](#string) | optional | Optional. Specify task of s2t model, e.g. 'transcribe' and 'translate' |
 
@@ -672,7 +672,7 @@ The response message of a stream transcription
 | audio | [bytes](#bytes) |  | audio bytes of the transcribed utterance |
 | utterance_start | [bool](#bool) |  | is it a start of the utterance |
 | audio_uuid | [string](#string) |  | id of the transcribed audio file |
-| config | [TranscribeRequestConfig](#ondewo.s2t.TranscribeRequestConfig) |  |  |
+| config | [TranscribeRequestConfig](#ondewo.s2t.TranscribeRequestConfig) |  | The configuration for the transcription |
 
 
 
@@ -744,7 +744,7 @@ Configuration of the options to detect utterances
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| transcribe_not_final | [bool](#bool) |  |  |
+| transcribe_not_final | [bool](#bool) |  | Return also immediate transcription results |
 | start_of_utterance_threshold | [float](#float) |  | Specifies the minimal duration of voice signal to indicate the start of an utterance |
 | end_of_utterance_threshold | [float](#float) |  | Specifies the minimal duration of a non-voice signal to indicate the end of an utterance |
 | next_chunk_timeout | [float](#float) |  | if time between audio chunks exceeds next_chunk_timeout, stream will be stopped |
