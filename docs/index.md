@@ -393,14 +393,15 @@ PtFiles contains information about PT files.
 
 ### Pyannote
 Pyannote contains configuration for the Pyannote voice activity detection model.
+Library: [pyannote-audio](https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb)
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | model_name | [string](#string) |  | Full name of the Pyannote model. |
 | min_audio_size | [int64](#int64) |  | Minimum audio size for processing. |
-| min_duration_off | [float](#float) |  | Minimum duration for an off segment. |
-| min_duration_on | [float](#float) |  | Minimum duration for an on segment. |
+| min_duration_off | [float](#float) |  | Fill inactive regions shorter than that many seconds. Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb) |
+| min_duration_on | [float](#float) |  | Remove active regions shorter than that many seconds Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb) |
 | triton_server_host | [string](#string) |  | Host name of triton inference server that serves the Pyannote model |
 | triton_server_port | [int64](#int64) |  | Port number of triton inference server that serves the Pyannote model |
 
@@ -541,8 +542,6 @@ StreamingSpeechRecognition contains information about streaming speech recogniti
 | decoding_method | [string](#string) |  | Decoding method for speech recognition. |
 | sampling_rate | [int64](#int64) |  | Sampling rate for audio input. |
 | min_audio_chunk_size | [int64](#int64) |  | Minimum audio chunk size for processing. |
-| start_of_utterance_threshold | [float](#float) |  | Threshold for detecting the start of an utterance. |
-| end_of_utterance_threshold | [float](#float) |  | Threshold for detecting the end of an utterance. |
 | next_chunk_timeout | [float](#float) |  | Timeout between audio chunks; if exceeded, the stream will be stopped. |
 
 
@@ -745,8 +744,6 @@ Configuration of the options to detect utterances
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | transcribe_not_final | [bool](#bool) |  | Return also immediate transcription results |
-| start_of_utterance_threshold | [float](#float) |  | Specifies the minimal duration of voice signal to indicate the start of an utterance |
-| end_of_utterance_threshold | [float](#float) |  | Specifies the minimal duration of a non-voice signal to indicate the end of an utterance |
 | next_chunk_timeout | [float](#float) |  | if time between audio chunks exceeds next_chunk_timeout, stream will be stopped |
 
 

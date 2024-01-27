@@ -1056,7 +1056,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
         
       
         <h3 id="ondewo.s2t.Pyannote" class="title-badge message">Pyannote</h3>
-        <p>Pyannote contains configuration for the Pyannote voice activity detection model.</p>
+        <p>Pyannote contains configuration for the Pyannote voice activity detection model.</p><p>Library: [pyannote-audio](https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb)</p>
 
         
           <table class="field-table">
@@ -1083,14 +1083,16 @@ configuration. If not set, all values are replaced by the ones in current pipeli
                   <td>min_duration_off</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p>Minimum duration for an off segment. </p></td>
+                  <td><p>Fill inactive regions shorter than that many seconds.
+Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb) </p></td>
                 </tr>
               
                 <tr>
                   <td>min_duration_on</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p>Minimum duration for an on segment. </p></td>
+                  <td><p>Remove active regions shorter than that many seconds
+Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb) </p></td>
                 </tr>
               
                 <tr>
@@ -1423,20 +1425,6 @@ configuration. If not set, all values are replaced by the ones in current pipeli
                   <td><a href="#int64">int64</a></td>
                   <td></td>
                   <td><p>Minimum audio chunk size for processing. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>start_of_utterance_threshold</td>
-                  <td><a href="#float">float</a></td>
-                  <td></td>
-                  <td><p>Threshold for detecting the start of an utterance. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>end_of_utterance_threshold</td>
-                  <td><a href="#float">float</a></td>
-                  <td></td>
-                  <td><p>Threshold for detecting the end of an utterance. </p></td>
                 </tr>
               
                 <tr>
@@ -1964,20 +1952,6 @@ the word and alternative words. </p></td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>Return also immediate transcription results </p></td>
-                </tr>
-              
-                <tr>
-                  <td>start_of_utterance_threshold</td>
-                  <td><a href="#float">float</a></td>
-                  <td></td>
-                  <td><p>Specifies the minimal duration of voice signal to indicate the start of an utterance </p></td>
-                </tr>
-              
-                <tr>
-                  <td>end_of_utterance_threshold</td>
-                  <td><a href="#float">float</a></td>
-                  <td></td>
-                  <td><p>Specifies the minimal duration of a non-voice signal to indicate the end of an utterance </p></td>
                 </tr>
               
                 <tr>
