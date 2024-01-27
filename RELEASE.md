@@ -2,6 +2,15 @@
 
 *****************
 
+## Release ONDEWO S2T API 5.6.0
+
+### Improvement
+
+* [[OND231-469]](https://ondewo.atlassian.net/browse/OND231-500) Removed start_of_utterance_threshold and
+  end_of_utterance_threshold from StreamingSpeechRecognition and UtteranceDetectionOptions
+
+*****************
+
 ## Release ONDEWO S2T API 5.5.0
 
 ### Improvement

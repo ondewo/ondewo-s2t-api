@@ -201,14 +201,8 @@ message UtteranceDetectionOptions {
         bool transcribe_not_final = 1;
     }
 
-    // Specifies the minimal duration of voice signal to indicate the start of an utterance
-    float start_of_utterance_threshold = 2;
-
-    // Specifies the minimal duration of a non-voice signal to indicate the end of an utterance
-    float end_of_utterance_threshold = 3;
-
     // if time between audio chunks exceeds next_chunk_timeout, stream will be stopped
-    float next_chunk_timeout = 4;
+    float next_chunk_timeout = 2;
 
 }
 
@@ -720,14 +714,8 @@ message StreamingSpeechRecognition {
     // Minimum audio chunk size for processing.
     int64 min_audio_chunk_size = 4;
 
-    // Threshold for detecting the start of an utterance.
-    float start_of_utterance_threshold = 5;
-
-    // Threshold for detecting the end of an utterance.
-    float end_of_utterance_threshold = 6;
-
     // Timeout between audio chunks; if exceeded, the stream will be stopped.
-    float next_chunk_timeout = 7;
+    float next_chunk_timeout = 5;
 
 }
 
@@ -746,6 +734,7 @@ message VoiceActivityDetection {
 }
 
 // Pyannote contains configuration for the Pyannote voice activity detection model.
+// Library: [pyannote-audio](https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb)
 message Pyannote {
 
     // Full name of the Pyannote model.
@@ -754,10 +743,12 @@ message Pyannote {
     // Minimum audio size for processing.
     int64 min_audio_size = 2;
 
-    // Minimum duration for an off segment.
+    // Fill inactive regions shorter than that many seconds.
+    // Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb)
     float min_duration_off = 3;
 
-    // Minimum duration for an on segment.
+    // Remove active regions shorter than that many seconds
+    // Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb)
     float min_duration_on = 4;
 
     // Host name of triton inference server that serves the Pyannote model
