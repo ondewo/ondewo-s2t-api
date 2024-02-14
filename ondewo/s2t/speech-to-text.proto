@@ -809,6 +809,20 @@ message NormalizationLanguage {
 
     // List of names of active normalizations.
     repeated string pipeline = 1;
+    
+    // Configuration of the sub-normalization objects.
+    SubNormalizer sub_normalizer = 2;
+
+}
+
+// SubNormalizer contains configuration for each of the speech-to-text sub-normalizers.
+message SubNormalizer {
+
+    // Configuration of the nemo_normalizer sub-normalizer
+    string nemo_normalizer = 1;
+    
+    // Configuration of the ondewo_normalizer sub-normalizer
+    string ondewo_normalizer = 2;
 
 }
 
