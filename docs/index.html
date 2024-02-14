@@ -147,6 +147,10 @@
                       </li>
                     
                       <li>
+                        <a href="#ondewo.s2t.NormalizationLanguage" class="title-badge message">NormalizationLanguage</a>
+                      </li>
+                    
+                      <li>
                         <a href="#ondewo.s2t.PostProcessing" class="title-badge message">PostProcessing</a>
                       </li>
                     
@@ -196,6 +200,10 @@
                     
                       <li>
                         <a href="#ondewo.s2t.StreamingSpeechRecognition" class="title-badge message">StreamingSpeechRecognition</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.SubNormalizer" class="title-badge message">SubNormalizer</a>
                       </li>
                     
                       <li>
@@ -923,6 +931,37 @@ description: {language: "fr"}, active: true, ...}] </p></td>
 
         
       
+        <h3 id="ondewo.s2t.NormalizationLanguage" class="title-badge message">NormalizationLanguage</h3>
+        <p>S2TNormalizationLanguage contains configuration for each of the speech-to-text normalization languages.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>pipeline</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>List of names of active normalizations. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sub_normalizer</td>
+                  <td><a href="#ondewo.s2t.SubNormalizer">SubNormalizer</a></td>
+                  <td></td>
+                  <td><p>Configuration of the sub-normalization objects. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="ondewo.s2t.PostProcessing" class="title-badge message">PostProcessing</h3>
         <p>PostProcessing contains the configuration for post-processing.</p>
 
@@ -1235,8 +1274,8 @@ Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutor
               
                 <tr>
                   <td>language</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td><a href="#ondewo.s2t.NormalizationLanguage">NormalizationLanguage</a></td>
+                  <td>repeated</td>
                   <td><p>Language for normalization of transcriptions. </p></td>
                 </tr>
               
@@ -1432,6 +1471,37 @@ Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutor
                   <td><a href="#float">float</a></td>
                   <td></td>
                   <td><p>Timeout between audio chunks; if exceeded, the stream will be stopped. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.SubNormalizer" class="title-badge message">SubNormalizer</h3>
+        <p>SubNormalizer contains configuration for each of the speech-to-text sub-normalizers.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>nemo_normalizer</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Configuration of the nemo_normalizer sub-normalizer </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ondewo_normalizer</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Configuration of the ondewo_normalizer sub-normalizer </p></td>
                 </tr>
               
             </tbody>
