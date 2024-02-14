@@ -800,7 +800,15 @@ message SymSpell {
 message S2TNormalization {
 
     // Language for normalization of transcriptions.
-    string language = 1;
+    repeated NormalizationLanguage language = 1;
+
+}
+
+// S2TNormalizationLanguage contains configuration for each of the speech-to-text normalization languages.
+message NormalizationLanguage {
+
+    // List of names of active normalizations.
+    repeated string pipeline = 1;
 
 }
 
