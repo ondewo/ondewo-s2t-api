@@ -20,7 +20,6 @@
     - [ListS2tPipelinesRequest](#ondewo.s2t.ListS2tPipelinesRequest)
     - [ListS2tPipelinesResponse](#ondewo.s2t.ListS2tPipelinesResponse)
     - [Logging](#ondewo.s2t.Logging)
-    - [NormalizationLanguage](#ondewo.s2t.NormalizationLanguage)
     - [PostProcessing](#ondewo.s2t.PostProcessing)
     - [PostProcessingOptions](#ondewo.s2t.PostProcessingOptions)
     - [PostProcessors](#ondewo.s2t.PostProcessors)
@@ -34,7 +33,6 @@
     - [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig)
     - [StreamingServer](#ondewo.s2t.StreamingServer)
     - [StreamingSpeechRecognition](#ondewo.s2t.StreamingSpeechRecognition)
-    - [SubNormalizer](#ondewo.s2t.SubNormalizer)
     - [SymSpell](#ondewo.s2t.SymSpell)
     - [TrainUserLanguageModelRequest](#ondewo.s2t.TrainUserLanguageModelRequest)
     - [TranscribeFileRequest](#ondewo.s2t.TranscribeFileRequest)
@@ -326,22 +324,6 @@ Logging contains configuration for logging.
 
 
 
-<a name="ondewo.s2t.NormalizationLanguage"></a>
-
-### NormalizationLanguage
-S2TNormalizationLanguage contains configuration for each of the speech-to-text normalization languages.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| pipeline | [string](#string) | repeated | List of names of active normalizations. |
-| sub_normalizer | [SubNormalizer](#ondewo.s2t.SubNormalizer) |  | Configuration of the sub-normalization objects. |
-
-
-
-
-
-
 <a name="ondewo.s2t.PostProcessing"></a>
 
 ### PostProcessing
@@ -351,7 +333,8 @@ PostProcessing contains the configuration for post-processing.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | pipeline | [string](#string) | repeated | List of names of active post-processors. |
-| post_processors | [PostProcessors](#ondewo.s2t.PostProcessors) |  | Post-processor configurations. |
+| sym_spell | [SymSpell](#ondewo.s2t.SymSpell) |  | Sym_spell configurations. |
+| normalization | [S2TNormalization](#ondewo.s2t.S2TNormalization) |  | Normalization configurations. |
 
 
 
@@ -486,7 +469,8 @@ S2TNormalization contains configuration for the speech-to-text normalization.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language | [NormalizationLanguage](#ondewo.s2t.NormalizationLanguage) | repeated | Language for normalization of transcriptions. |
+| language | [string](#string) |  | Language for normalization of transcriptions. |
+| pipeline | [string](#string) | repeated | List of names of active normalizations. |
 
 
 
@@ -561,22 +545,6 @@ StreamingSpeechRecognition contains information about streaming speech recogniti
 | sampling_rate | [int64](#int64) |  | Sampling rate for audio input. |
 | min_audio_chunk_size | [int64](#int64) |  | Minimum audio chunk size for processing. |
 | next_chunk_timeout | [float](#float) |  | Timeout between audio chunks; if exceeded, the stream will be stopped. |
-
-
-
-
-
-
-<a name="ondewo.s2t.SubNormalizer"></a>
-
-### SubNormalizer
-SubNormalizer contains configuration for each of the speech-to-text sub-normalizers.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| nemo_normalizer | [string](#string) |  | Configuration of the nemo_normalizer sub-normalizer |
-| ondewo_normalizer | [string](#string) |  | Configuration of the ondewo_normalizer sub-normalizer |
 
 
 
