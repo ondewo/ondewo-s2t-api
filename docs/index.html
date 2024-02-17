@@ -167,19 +167,19 @@
                       </li>
                     
                       <li>
-                        <a href="#ondewo.s2t.S2TDescription" class="title-badge message">S2TDescription</a>
+                        <a href="#ondewo.s2t.S2tDescription" class="title-badge message">S2tDescription</a>
                       </li>
                     
                       <li>
-                        <a href="#ondewo.s2t.S2TGetServiceInfoResponse" class="title-badge message">S2TGetServiceInfoResponse</a>
+                        <a href="#ondewo.s2t.S2tGetServiceInfoResponse" class="title-badge message">S2tGetServiceInfoResponse</a>
                       </li>
                     
                       <li>
-                        <a href="#ondewo.s2t.S2TInference" class="title-badge message">S2TInference</a>
+                        <a href="#ondewo.s2t.S2tInference" class="title-badge message">S2tInference</a>
                       </li>
                     
                       <li>
-                        <a href="#ondewo.s2t.S2TNormalization" class="title-badge message">S2TNormalization</a>
+                        <a href="#ondewo.s2t.S2tNormalization" class="title-badge message">S2tNormalization</a>
                       </li>
                     
                       <li>
@@ -344,7 +344,7 @@ found, raises ModuleNotFoundError in server.
 
           <pre>rpc DeleteS2tPipeline (<a href="#ondewo.s2t.S2tPipelineId">S2tPipelineId</a>) returns (<a href="#google.protobuf.Empty">.google.protobuf.Empty)</a></pre>
 
-          Deletes a pipeline corresponding to the id parsed in S2TPipelineId. If no corresponding id is
+          Deletes a pipeline corresponding to the id parsed in S2tPipelineId. If no corresponding id is
 found, raises ModuleNotFoundError in server.
         
           <h4 id="ondewo.s2t.Speech2Text.UpdateS2tPipeline" class="title-badge method">UpdateS2tPipeline</h4>
@@ -374,7 +374,7 @@ found, raises ModuleNotFoundError in server.
         
           <h4 id="ondewo.s2t.Speech2Text.GetServiceInfo" class="title-badge method">GetServiceInfo</h4>
 
-          <pre>rpc GetServiceInfo (<a href="#google.protobuf.Empty">.google.protobuf.Empty</a>) returns (<a href="#ondewo.s2t.S2TGetServiceInfoResponse">S2TGetServiceInfoResponse)</a></pre>
+          <pre>rpc GetServiceInfo (<a href="#google.protobuf.Empty">.google.protobuf.Empty</a>) returns (<a href="#ondewo.s2t.S2tGetServiceInfoResponse">S2tGetServiceInfoResponse)</a></pre>
 
           Returns a message containing the version of the running speech to text server.
         
@@ -941,17 +941,10 @@ description: {language: "fr"}, active: true, ...}] </p></td>
                 </tr>
               
                 <tr>
-                  <td>sym_spell</td>
-                  <td><a href="#ondewo.s2t.SymSpell">SymSpell</a></td>
+                  <td>post_processors</td>
+                  <td><a href="#ondewo.s2t.PostProcessors">PostProcessors</a></td>
                   <td></td>
-                  <td><p>Sym_spell configurations. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>normalization</td>
-                  <td><a href="#ondewo.s2t.S2TNormalization">S2TNormalization</a></td>
-                  <td></td>
-                  <td><p>Normalization configurations. </p></td>
+                  <td><p>post_processors configurations. </p></td>
                 </tr>
               
             </tbody>
@@ -1019,7 +1012,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
               
                 <tr>
                   <td>normalization</td>
-                  <td><a href="#ondewo.s2t.S2TNormalization">S2TNormalization</a></td>
+                  <td><a href="#ondewo.s2t.S2tNormalization">S2tNormalization</a></td>
                   <td></td>
                   <td><p>Configuration of the normalization object. </p></td>
                 </tr>
@@ -1123,8 +1116,8 @@ Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutor
 
         
       
-        <h3 id="ondewo.s2t.S2TDescription" class="title-badge message">S2TDescription</h3>
-        <p>S2TDescription contains descriptive information about the speech-to-text pipeline.</p>
+        <h3 id="ondewo.s2t.S2tDescription" class="title-badge message">S2tDescription</h3>
+        <p>S2tDescription contains descriptive information about the speech-to-text pipeline.</p>
 
         
           <table class="field-table">
@@ -1168,8 +1161,8 @@ Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutor
 
         
       
-        <h3 id="ondewo.s2t.S2TGetServiceInfoResponse" class="title-badge message">S2TGetServiceInfoResponse</h3>
-        <p>S2TGetServiceInfoResponse is used to return version information about the speech-to-text service.</p>
+        <h3 id="ondewo.s2t.S2tGetServiceInfoResponse" class="title-badge message">S2tGetServiceInfoResponse</h3>
+        <p>S2tGetServiceInfoResponse is used to return version information about the speech-to-text service.</p>
 
         
           <table class="field-table">
@@ -1192,8 +1185,8 @@ Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutor
 
         
       
-        <h3 id="ondewo.s2t.S2TInference" class="title-badge message">S2TInference</h3>
-        <p>S2TInference contains information about inference models used in the speech-to-text pipeline.</p>
+        <h3 id="ondewo.s2t.S2tInference" class="title-badge message">S2tInference</h3>
+        <p>S2tInference contains information about inference models used in the speech-to-text pipeline.</p>
 
         
           <table class="field-table">
@@ -1230,8 +1223,8 @@ Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutor
 
         
       
-        <h3 id="ondewo.s2t.S2TNormalization" class="title-badge message">S2TNormalization</h3>
-        <p>S2TNormalization contains configuration for the speech-to-text normalization.</p>
+        <h3 id="ondewo.s2t.S2tNormalization" class="title-badge message">S2tNormalization</h3>
+        <p>S2tNormalization contains configuration for the speech-to-text normalization.</p>
 
         
           <table class="field-table">
@@ -1304,7 +1297,7 @@ Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutor
               
                 <tr>
                   <td>description</td>
-                  <td><a href="#ondewo.s2t.S2TDescription">S2TDescription</a></td>
+                  <td><a href="#ondewo.s2t.S2tDescription">S2tDescription</a></td>
                   <td></td>
                   <td><p>Description of the speech-to-text system. </p></td>
                 </tr>
@@ -1318,7 +1311,7 @@ Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutor
               
                 <tr>
                   <td>inference</td>
-                  <td><a href="#ondewo.s2t.S2TInference">S2TInference</a></td>
+                  <td><a href="#ondewo.s2t.S2tInference">S2tInference</a></td>
                   <td></td>
                   <td><p>Configuration for inference models. </p></td>
                 </tr>

@@ -25,10 +25,10 @@
     - [PostProcessors](#ondewo.s2t.PostProcessors)
     - [PtFiles](#ondewo.s2t.PtFiles)
     - [Pyannote](#ondewo.s2t.Pyannote)
-    - [S2TDescription](#ondewo.s2t.S2TDescription)
-    - [S2TGetServiceInfoResponse](#ondewo.s2t.S2TGetServiceInfoResponse)
-    - [S2TInference](#ondewo.s2t.S2TInference)
-    - [S2TNormalization](#ondewo.s2t.S2TNormalization)
+    - [S2tDescription](#ondewo.s2t.S2tDescription)
+    - [S2tGetServiceInfoResponse](#ondewo.s2t.S2tGetServiceInfoResponse)
+    - [S2tInference](#ondewo.s2t.S2tInference)
+    - [S2tNormalization](#ondewo.s2t.S2tNormalization)
     - [S2tPipelineId](#ondewo.s2t.S2tPipelineId)
     - [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig)
     - [StreamingServer](#ondewo.s2t.StreamingServer)
@@ -333,8 +333,7 @@ PostProcessing contains the configuration for post-processing.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | pipeline | [string](#string) | repeated | List of names of active post-processors. |
-| sym_spell | [SymSpell](#ondewo.s2t.SymSpell) |  | Sym_spell configurations. |
-| normalization | [S2TNormalization](#ondewo.s2t.S2TNormalization) |  | Normalization configurations. |
+| post_processors | [PostProcessors](#ondewo.s2t.PostProcessors) |  | post_processors configurations. |
 
 
 
@@ -367,7 +366,7 @@ PostProcessors contains configurations for post-processors.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | sym_spell | [SymSpell](#ondewo.s2t.SymSpell) |  | Configuration of the SymSpell spelling correction. |
-| normalization | [S2TNormalization](#ondewo.s2t.S2TNormalization) |  | Configuration of the normalization object. |
+| normalization | [S2tNormalization](#ondewo.s2t.S2tNormalization) |  | Configuration of the normalization object. |
 
 
 
@@ -411,10 +410,10 @@ Library: [pyannote-audio](https://github.com/pyannote/pyannote-audio/blob/develo
 
 
 
-<a name="ondewo.s2t.S2TDescription"></a>
+<a name="ondewo.s2t.S2tDescription"></a>
 
-### S2TDescription
-S2TDescription contains descriptive information about the speech-to-text pipeline.
+### S2tDescription
+S2tDescription contains descriptive information about the speech-to-text pipeline.
 
 
 | Field | Type | Label | Description |
@@ -429,10 +428,10 @@ S2TDescription contains descriptive information about the speech-to-text pipelin
 
 
 
-<a name="ondewo.s2t.S2TGetServiceInfoResponse"></a>
+<a name="ondewo.s2t.S2tGetServiceInfoResponse"></a>
 
-### S2TGetServiceInfoResponse
-S2TGetServiceInfoResponse is used to return version information about the speech-to-text service.
+### S2tGetServiceInfoResponse
+S2tGetServiceInfoResponse is used to return version information about the speech-to-text service.
 
 
 | Field | Type | Label | Description |
@@ -444,10 +443,10 @@ S2TGetServiceInfoResponse is used to return version information about the speech
 
 
 
-<a name="ondewo.s2t.S2TInference"></a>
+<a name="ondewo.s2t.S2tInference"></a>
 
-### S2TInference
-S2TInference contains information about inference models used in the speech-to-text pipeline.
+### S2tInference
+S2tInference contains information about inference models used in the speech-to-text pipeline.
 
 
 | Field | Type | Label | Description |
@@ -461,10 +460,10 @@ S2TInference contains information about inference models used in the speech-to-t
 
 
 
-<a name="ondewo.s2t.S2TNormalization"></a>
+<a name="ondewo.s2t.S2tNormalization"></a>
 
-### S2TNormalization
-S2TNormalization contains configuration for the speech-to-text normalization.
+### S2tNormalization
+S2tNormalization contains configuration for the speech-to-text normalization.
 
 
 | Field | Type | Label | Description |
@@ -501,9 +500,9 @@ Speech2TextConfig is a configuration message for the speech-to-text pipeline
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | Unique identifier for the configuration. |
-| description | [S2TDescription](#ondewo.s2t.S2TDescription) |  | Description of the speech-to-text system. |
+| description | [S2tDescription](#ondewo.s2t.S2tDescription) |  | Description of the speech-to-text system. |
 | active | [bool](#bool) |  | Indicates if the configuration is active. |
-| inference | [S2TInference](#ondewo.s2t.S2TInference) |  | Configuration for inference models. |
+| inference | [S2tInference](#ondewo.s2t.S2tInference) |  | Configuration for inference models. |
 | streaming_server | [StreamingServer](#ondewo.s2t.StreamingServer) |  | Configuration for the streaming server. |
 | voice_activity_detection | [VoiceActivityDetection](#ondewo.s2t.VoiceActivityDetection) |  | Configuration for voice activity detection. |
 | post_processing | [PostProcessing](#ondewo.s2t.PostProcessing) |  | Configuration for post-processing. |
@@ -925,12 +924,12 @@ Speech-to-text service
 | TranscribeStream | [TranscribeStreamRequest](#ondewo.s2t.TranscribeStreamRequest) stream | [TranscribeStreamResponse](#ondewo.s2t.TranscribeStreamResponse) stream | Transcribes an audio stream. |
 | GetS2tPipeline | [S2tPipelineId](#ondewo.s2t.S2tPipelineId) | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | Gets a speech to text pipeline corresponding to the id specified in S2tPipelineId. If no corresponding id is found, raises ModuleNotFoundError in server. |
 | CreateS2tPipeline | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | [S2tPipelineId](#ondewo.s2t.S2tPipelineId) | Creates a new speech to text pipeline from a Speech2TextConfig and registers the new pipeline in the server. |
-| DeleteS2tPipeline | [S2tPipelineId](#ondewo.s2t.S2tPipelineId) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes a pipeline corresponding to the id parsed in S2TPipelineId. If no corresponding id is found, raises ModuleNotFoundError in server. |
+| DeleteS2tPipeline | [S2tPipelineId](#ondewo.s2t.S2tPipelineId) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes a pipeline corresponding to the id parsed in S2tPipelineId. If no corresponding id is found, raises ModuleNotFoundError in server. |
 | UpdateS2tPipeline | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | [.google.protobuf.Empty](#google.protobuf.Empty) | Updates a pipeline with the id specified in Speech2TextConfig with the new config. If no corresponding id is found, raises ModuleNotFoundError in server. |
 | ListS2tPipelines | [ListS2tPipelinesRequest](#ondewo.s2t.ListS2tPipelinesRequest) | [ListS2tPipelinesResponse](#ondewo.s2t.ListS2tPipelinesResponse) | Lists all speech to text pipelines. |
 | ListS2tLanguages | [ListS2tLanguagesRequest](#ondewo.s2t.ListS2tLanguagesRequest) | [ListS2tLanguagesResponse](#ondewo.s2t.ListS2tLanguagesResponse) | Returns a message containing a list of all languages for which there exist pipelines. |
 | ListS2tDomains | [ListS2tDomainsRequest](#ondewo.s2t.ListS2tDomainsRequest) | [ListS2tDomainsResponse](#ondewo.s2t.ListS2tDomainsResponse) | Returns a message containing a list of all domains for which there exist pipelines. |
-| GetServiceInfo | [.google.protobuf.Empty](#google.protobuf.Empty) | [S2TGetServiceInfoResponse](#ondewo.s2t.S2TGetServiceInfoResponse) | Returns a message containing the version of the running speech to text server. |
+| GetServiceInfo | [.google.protobuf.Empty](#google.protobuf.Empty) | [S2tGetServiceInfoResponse](#ondewo.s2t.S2tGetServiceInfoResponse) | Returns a message containing the version of the running speech to text server. |
 | ListS2tLanguageModels | [ListS2tLanguageModelsRequest](#ondewo.s2t.ListS2tLanguageModelsRequest) | [ListS2tLanguageModelsResponse](#ondewo.s2t.ListS2tLanguageModelsResponse) | Given a list of pipeline ids, returns a list of LanguageModelPipelineId messages containing the pipeline id and a list of the language models loaded in the pipeline. |
 | CreateUserLanguageModel | [CreateUserLanguageModelRequest](#ondewo.s2t.CreateUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Create a user language model. |
 | DeleteUserLanguageModel | [DeleteUserLanguageModelRequest](#ondewo.s2t.DeleteUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Delete a user language model. |
