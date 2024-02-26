@@ -2,6 +2,14 @@
 
 *****************
 
+## Release ONDEWO S2T API 5.7.0
+
+### Improvement
+
+* [[OND231-452]](https://ondewo.atlassian.net/browse/OND231-452) Improve normalization by adding a pipeline of normalization steps.
+
+*****************
+
 ## Release ONDEWO S2T API 5.6.0
 
 ### Improvement
