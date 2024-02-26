@@ -14,7 +14,7 @@
 
 ### Improvement
 
-* [[OND231-469]](https://ondewo.atlassian.net/browse/OND231-500) Removed start_of_utterance_threshold and
+* [[OND231-469]](https://ondewo.atlassian.net/browse/OND231-469) Removed start_of_utterance_threshold and
   end_of_utterance_threshold from StreamingSpeechRecognition and UtteranceDetectionOptions
 
 *****************
