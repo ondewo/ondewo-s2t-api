@@ -27,7 +27,7 @@ jobs:
       - uses: ondewo/ondewo-protoc-gen-doc-action@master
       - name: Deploy 🚀
         if: ${{ !env.ACT }}
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: master
           folder: docs # The folder, of which contents the action should deploy.
