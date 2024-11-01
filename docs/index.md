@@ -29,6 +29,15 @@
     - [S2TGetServiceInfoResponse](#ondewo.s2t.S2TGetServiceInfoResponse)
     - [S2TInference](#ondewo.s2t.S2TInference)
     - [S2TNormalization](#ondewo.s2t.S2TNormalization)
+    - [S2tCloudProviderConfig](#ondewo.s2t.S2tCloudProviderConfig)
+    - [S2tCloudProviderConfigAmazonAws](#ondewo.s2t.S2tCloudProviderConfigAmazonAws)
+    - [S2tCloudProviderConfigDeepgram](#ondewo.s2t.S2tCloudProviderConfigDeepgram)
+    - [S2tCloudProviderConfigGoogle](#ondewo.s2t.S2tCloudProviderConfigGoogle)
+    - [S2tCloudProviderConfigMicrosoftAzure](#ondewo.s2t.S2tCloudProviderConfigMicrosoftAzure)
+    - [S2tCloudServiceAmazonAws](#ondewo.s2t.S2tCloudServiceAmazonAws)
+    - [S2tCloudServiceDeepgram](#ondewo.s2t.S2tCloudServiceDeepgram)
+    - [S2tCloudServiceGoogle](#ondewo.s2t.S2tCloudServiceGoogle)
+    - [S2tCloudServiceMicrosoftAzure](#ondewo.s2t.S2tCloudServiceMicrosoftAzure)
     - [S2tPipelineId](#ondewo.s2t.S2tPipelineId)
     - [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig)
     - [StreamingServer](#ondewo.s2t.StreamingServer)
@@ -81,6 +90,10 @@ AcousticModels contains information about different types of acoustic models.
 | wav2vec_triton | [Wav2VecTriton](#ondewo.s2t.Wav2VecTriton) |  | Configuration for the Wav2Vec model using Triton. |
 | whisper | [Whisper](#ondewo.s2t.Whisper) |  | Configuration for the Whisper model. |
 | whisper_triton | [WhisperTriton](#ondewo.s2t.WhisperTriton) |  | Configuration for the Whisper model using Triton. |
+| s2t_cloud_service_amazon_aws | [S2tCloudServiceAmazonAws](#ondewo.s2t.S2tCloudServiceAmazonAws) |  | Amazon Aws cloud service inference settings. |
+| s2t_cloud_service_deepgram | [S2tCloudServiceDeepgram](#ondewo.s2t.S2tCloudServiceDeepgram) |  | Deepgram cloud service inference settings. |
+| s2t_cloud_service_google | [S2tCloudServiceGoogle](#ondewo.s2t.S2tCloudServiceGoogle) |  | Google cloud service inference settings. |
+| s2t_cloud_service_microsoft_azure | [S2tCloudServiceMicrosoftAzure](#ondewo.s2t.S2tCloudServiceMicrosoftAzure) |  | Microsoft Azure cloud service inference settings. |
 
 
 
@@ -476,6 +489,174 @@ S2TNormalization contains configuration for the speech-to-text normalization.
 
 
 
+<a name="ondewo.s2t.S2tCloudProviderConfig"></a>
+
+### S2tCloudProviderConfig
+Configuration for cloud provider settings for Speech-to-Text (S2T).
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| s2t_cloud_provider_config_amazon_aws | [S2tCloudProviderConfigAmazonAws](#ondewo.s2t.S2tCloudProviderConfigAmazonAws) |  | Configuration for Amazon AWS speech-to-text provider. |
+| s2t_cloud_provider_config_deepgram | [S2tCloudProviderConfigDeepgram](#ondewo.s2t.S2tCloudProviderConfigDeepgram) |  | Configuration for DeepGram speech-to-text provider. |
+| s2t_cloud_provider_config_google | [S2tCloudProviderConfigGoogle](#ondewo.s2t.S2tCloudProviderConfigGoogle) |  | Configuration for Google speech-to-text provider. |
+| s2t_cloud_provider_config_microsoft_azure | [S2tCloudProviderConfigMicrosoftAzure](#ondewo.s2t.S2tCloudProviderConfigMicrosoftAzure) |  | Configuration for Microsoft Azure speech-to-text provider. |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2tCloudProviderConfigAmazonAws"></a>
+
+### S2tCloudProviderConfigAmazonAws
+Configuration details specific to the Amazon AWS speech-to-text provider.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| enable_partial_results_stabilization | [bool](#bool) |  | Enables or disables partial_results_stabilization feature. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization |
+| partial_results_stability | [string](#string) |  | You can use this field to set the stability level of the transcription results. A higher stability level means that the transcription results are less likely to change. Higher stability levels can come with lower overall transcription accuracy. Defaults to "high" if not set explicitly. |
+| language_model_name | [string](#string) |  | The name of your customize language model you want to use. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html |
+| vocabulary_name | [string](#string) |  | The name of your customize language model you want to use. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2tCloudProviderConfigDeepgram"></a>
+
+### S2tCloudProviderConfigDeepgram
+Configuration details specific to the Deepgram speech-to-text provider.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| punctuate | [bool](#bool) |  | Enables or disables punctuate feature of Deepgram to add punctuations to the resulted transcript. More details at: https://developers.deepgram.com/docs/punctuation |
+| smart_format | [bool](#bool) |  | Enables or disables smart_format feature of Deepgram transcription result to improve readability. More details at: https://developers.deepgram.com/docs/smart-format |
+| numerals | [bool](#bool) |  | Enables or disables numerals feature of Deepgram to convert numbers to numeric form in the resulted transcript. // More details at: https://developers.deepgram.com/docs/numerals |
+| measurements | [bool](#bool) |  | Enables or disables measurements feature of Deepgram to convert measurement units (i.e. Kilogram) // to abbreviated form (i.e. Kg) in the resulted transcript. // More details at: https://developers.deepgram.com/docs/measurements |
+| dictation | [bool](#bool) |  | Enables or disables dictation feature of Deepgram to convert spoken dictation commands into their corresponding // punctuation marks. More details at: https://developers.deepgram.com/docs/dictation |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2tCloudProviderConfigGoogle"></a>
+
+### S2tCloudProviderConfigGoogle
+Configuration details specific to the Google speech-to-text provider.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| enable_automatic_punctuation | [bool](#bool) |  | Enables or disables automatic_punctuation feature of Google s2t to add punctuations to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/automatic-punctuation |
+| enable_word_time_offsets | [bool](#bool) |  | Enables or disables word_time_offsets feature of Google s2t to add word-level timestamps (time-offsets) to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/async-time-offsets |
+| enable_word_confidence | [bool](#bool) |  | Enables or disables word_confidence feature of Google s2t to add word-level confidence scores to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/word-confidence |
+| transcript_normalization | [bool](#bool) |  | Enables or disables transcript_normalization feature of Google s2t to automatically replace parts of the transcript with phrases of your choosing. More details at: https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization |
+| max_alternatives | [int32](#int32) |  | Maximum number of recognition hypotheses to be returned. The server may return fewer than max_alternatives. Valid values are 0-30. A value of 0 or 1 will return a maximum of one. If omitted, will return a maximum of one. |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2tCloudProviderConfigMicrosoftAzure"></a>
+
+### S2tCloudProviderConfigMicrosoftAzure
+Configuration details specific to the Microsoft Azure speech-to-text provider.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| use_fast_transcription_api | [bool](#bool) |  | Enables or disables the Microsoft Azure fast transcription API. It is faster than SDK but is in preview version. More details at: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create |
+| use_detailed_output_format | [bool](#bool) |  | Enables or disables the `detailed` format for the result of Microsoft Azure s2t service to add timestamps and confidences to the resulted transcript. |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2tCloudServiceAmazonAws"></a>
+
+### S2tCloudServiceAmazonAws
+S2tCloudServiceAmazonAws message contains settings for the Amazon AWS Cloud service inference.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| language | [string](#string) |  | Language of the audio to transcribe by Amazon AWS s2t cloud service. It should be 4-letter language code (BCP-47) e.g. 'en-US' or 'de-DE'. |
+| enable_partial_results_stabilization | [bool](#bool) |  | Enables or disables partial_results_stabilization feature. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization |
+| partial_results_stability | [string](#string) |  | You can use this field to set the stability level of the transcription results. A higher stability level means that the transcription results are less likely to change. Higher stability levels can come with lower overall transcription accuracy. Defaults to "high" if not set explicitly. |
+| language_model_name | [string](#string) |  | The name of your customize language model you want to use. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html |
+| vocabulary_name | [string](#string) |  | The name of your customize language model you want to use. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2tCloudServiceDeepgram"></a>
+
+### S2tCloudServiceDeepgram
+S2tCloudServiceDeepgram message contains settings for the Deepgram Cloud service inference.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| model_name | [string](#string) |  | Model name from one of the speech-to-text models provided by Deepgram for the desired use-case. Provided model names and details at: https://developers.deepgram.com/docs/model |
+| language | [string](#string) |  | Language of the audio to transcribe by Deepgram s2t cloud service. It should be 4-letter language code (BCP-47) e.g. 'en-US' or 'de-DE'. |
+| punctuate | [bool](#bool) |  | Enables or disables punctuate feature of Deepgram to add punctuations to the resulted transcript. More details at: https://developers.deepgram.com/docs/punctuation |
+| smart_format | [bool](#bool) |  | Enables or disables smart_format feature of Deepgram transcription result to improve readability. More details at: https://developers.deepgram.com/docs/smart-format |
+| numerals | [bool](#bool) |  | Enables or disables numerals feature of Deepgram to convert numbers to numeric form in the resulted transcript. More details at: https://developers.deepgram.com/docs/numerals |
+| measurements | [bool](#bool) |  | Enables or disables measurements feature of Deepgram to convert measurement units (i.e. Kilogram) to abbreviated form (i.e. Kg) in the resulted transcript. More details at: https://developers.deepgram.com/docs/measurements |
+| dictation | [bool](#bool) |  | Enables or disables dictation feature of Deepgram to convert spoken dictation commands into their corresponding punctuation marks. More details at: https://developers.deepgram.com/docs/dictation |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2tCloudServiceGoogle"></a>
+
+### S2tCloudServiceGoogle
+S2tCloudServiceGoogle message contains settings for the Google Cloud service inference.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| model_name | [string](#string) |  | Model name from one of the speech-to-text models provided by Google for the desired use-case. Provided model names and details at: https://cloud.google.com/speech-to-text/docs/transcription-model |
+| language | [string](#string) |  | Language of the audio to transcribe by Google s2t cloud service. It should be 4-letter language code (BCP-47) e.g. 'en-US' or 'de-DE'. |
+| enable_automatic_punctuation | [bool](#bool) |  | Enables or disables automatic_punctuation feature of Google s2t to add punctuations to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/automatic-punctuation |
+| enable_word_time_offsets | [bool](#bool) |  | Enables or disables word_time_offsets feature of Google s2t to add word-level timestamps (time-offsets) to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/async-time-offsets |
+| enable_word_confidence | [bool](#bool) |  | Enables or disables word_confidence feature of Google s2t to add word-level confidence scores to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/word-confidence |
+| transcript_normalization | [bool](#bool) |  | Enables or disables transcript_normalization feature of Google s2t to automatically replace parts of the transcript with phrases of your choosing. More details at: https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization |
+| max_alternatives | [int32](#int32) |  | Maximum number of recognition hypotheses to be returned. The server may return fewer than max_alternatives. Valid values are 0-30. A value of 0 or 1 will return a maximum of one. If omitted, will return a maximum of one. |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2tCloudServiceMicrosoftAzure"></a>
+
+### S2tCloudServiceMicrosoftAzure
+S2tCloudServiceMicrosoftAzure message contains settings for the Microsoft Azure Cloud service inference.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| language | [string](#string) |  | Language of the audio to transcribe by Microsoft Azure s2t cloud service. It should be 4-letter language code (BCP-47) e.g. 'en-US' or 'de-DE'. |
+| use_fast_transcription_api | [bool](#bool) |  | Enables or disables the Microsoft Azure fast transcription API. It is faster than SDK but is in preview version. More details at: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create |
+| use_detailed_output_format | [bool](#bool) |  | Enables or disables the `detailed` format for the result of Microsoft Azure s2t service to add timestamps and confidences to the resulted transcript. |
+
+
+
+
+
+
 <a name="ondewo.s2t.S2tPipelineId"></a>
 
 ### S2tPipelineId
@@ -633,6 +814,8 @@ Configuration for a request to transcribe audio
 | return_options | [TranscriptionReturnOptions](#ondewo.s2t.TranscriptionReturnOptions) |  | The transcribe return options |
 | language | [string](#string) | optional | Optional. Specify language of transcription to return |
 | task | [string](#string) | optional | Optional. Specify task of s2t model, e.g. 'transcribe' and 'translate' |
+| s2t_service_config | [google.protobuf.Struct](#google.protobuf.Struct) | optional | s2t_service_config provides the configuration of the service such as API key, bearer tokens, JWT, and other header information as key value pairs, e.g., <pre><code>MY_API_KEY='LKJDIFe244LKJOI'</code></pre> |
+| s2t_cloud_provider_config | [S2tCloudProviderConfig](#ondewo.s2t.S2tCloudProviderConfig) |  | Optional. Defines the cloud provider's specific configuration for using speech to text cloud services The default value is None. |
 
 
 
