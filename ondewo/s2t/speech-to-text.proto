@@ -106,7 +106,6 @@ enum InferenceBackend {
 
 }
 
-
 ///////////////////////////
 // Configuration Message //
 ///////////////////////////
@@ -533,7 +532,6 @@ message ListS2tPipelinesResponse {
     repeated Speech2TextConfig pipeline_configs = 1;
 }
 
-
 ////////////////////////
 // LIST S2T LANGUAGES //
 ////////////////////////
@@ -595,7 +593,6 @@ message S2TGetServiceInfoResponse {
 ///////////////////////////////////
 // SPEECH-2-TEXT PIPELINE CONFIG //
 ///////////////////////////////////
-
 
 // Speech2TextConfig is a configuration message for the speech-to-text pipeline
 message Speech2TextConfig {
@@ -676,7 +673,7 @@ message AcousticModels {
 
     // Configuration for the Whisper model using Triton.
     WhisperTriton whisper_triton = 5;
-    
+
     // Amazon Aws cloud service inference settings.
     S2tCloudServiceAmazonAws s2t_cloud_service_amazon_aws = 6;
 
@@ -694,7 +691,7 @@ message AcousticModels {
 // S2tCloudServiceAmazonAws message contains settings for the Amazon AWS Cloud service inference.
 message S2tCloudServiceAmazonAws {
 
-    // Language of the audio to transcribe by Amazon AWS s2t cloud service. It should be 4-letter language code  
+    // Language of the audio to transcribe by Amazon AWS s2t cloud service. It should be 4-letter language code
     // (BCP-47) e.g. 'en-US' or 'de-DE'.
     string language = 1;
 
@@ -725,7 +722,7 @@ message S2tCloudServiceDeepgram {
     // Provided model names and details at: https://developers.deepgram.com/docs/model
     string model_name = 1;
 
-    // Language of the audio to transcribe by Deepgram s2t cloud service. It should be 4-letter language code  
+    // Language of the audio to transcribe by Deepgram s2t cloud service. It should be 4-letter language code
     // (BCP-47) e.g. 'en-US' or 'de-DE'.
     string language = 2;
 
@@ -759,7 +756,7 @@ message S2tCloudServiceGoogle {
     // Provided model names and details at: https://cloud.google.com/speech-to-text/docs/transcription-model
     string model_name = 1;
 
-    // Language of the audio to transcribe by Google s2t cloud service. It should be 4-letter language code  
+    // Language of the audio to transcribe by Google s2t cloud service. It should be 4-letter language code
     // (BCP-47) e.g. 'en-US' or 'de-DE'.
     string language = 2;
 
@@ -788,11 +785,11 @@ message S2tCloudServiceGoogle {
 
 // S2tCloudServiceMicrosoftAzure message contains settings for the Microsoft Azure Cloud service inference.
 message S2tCloudServiceMicrosoftAzure {
-    
-    // Language of the audio to transcribe by Microsoft Azure s2t cloud service. It should be 4-letter language code  
+
+    // Language of the audio to transcribe by Microsoft Azure s2t cloud service. It should be 4-letter language code
     // (BCP-47) e.g. 'en-US' or 'de-DE'.
     string language = 1;
-    
+
     // Enables or disables the Microsoft Azure fast transcription API. It is faster than SDK but is in preview version.
     // More details at: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create
     bool use_fast_transcription_api = 2;
@@ -817,7 +814,6 @@ message Whisper {
 
     // Default task of the model.
     string task = 4;
-
 
 }
 
@@ -1059,7 +1055,6 @@ message Logging {
 
 }
 
-
 ///////////////////////////////////////////
 // GET LIST OF AVAILABLE LANGUAGE MODELS //
 ///////////////////////////////////////////
@@ -1094,7 +1089,6 @@ message ListS2tLanguageModelsResponse {
     repeated LanguageModelPipelineId lm_pipeline_ids = 1;
 
 }
-
 
 /////////////////////////////////////
 // CUSTOM LANGUAGE MODEL FEATURES  //
