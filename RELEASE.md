@@ -4,7 +4,7 @@
 
 ## Release ONDEWO S2T API 6.0.0
 
-### Improvement
+### New Features
 
 * [[OND231-563]](https://ondewo.atlassian.net/browse/OND231-563) Added cloud providers
 
@@ -12,15 +12,16 @@
 
 ## Release ONDEWO S2T API 5.7.0
 
-### Improvement
+### Improvements
 
-* [[OND231-452]](https://ondewo.atlassian.net/browse/OND231-452) Improve normalization by adding a pipeline of normalization steps.
+* [[OND231-452]](https://ondewo.atlassian.net/browse/OND231-452) Improve normalization by adding a pipeline of
+  normalization steps.
 
 *****************
 
 ## Release ONDEWO S2T API 5.6.0
 
-### Improvement
+### Improvements
 
 * [[OND231-469]](https://ondewo.atlassian.net/browse/OND231-469) Removed start_of_utterance_threshold and
   end_of_utterance_threshold from StreamingSpeechRecognition and UtteranceDetectionOptions
@@ -29,7 +30,7 @@
 
 ## Release ONDEWO S2T API 5.5.0
 
-### Improvement
+### Improvements
 
 * [[OND231-500]](https://ondewo.atlassian.net/browse/OND231-500) Update TranscriptionRequestConfig, Whisper and
   WhisperTriton messages to get language and task of S2T model.
@@ -43,7 +44,7 @@
 
 ## Release ONDEWO S2T API 5.4.0
 
-### Improvement
+### Improvements
 
 * [[OND231-418]](https://ondewo.atlassian.net/browse/OND231-418) Update Transcription message to support
   alternative transcriptions and words, based on the Google speech-to-text output format.
@@ -52,7 +53,7 @@
 
 ## Release ONDEWO S2T API 5.3.0
 
-### Improvement
+### Improvements
 
 * [[OND231-390]](https://ondewo.atlassian.net/browse/OND231-390) Add transcription alternative numbers and
   InferenceBackend config
@@ -162,7 +163,7 @@ Updated README.
 
 ## Release ONDEWO S2T API 0.2.1
 
-### Bug fixes
+### Bug Fixes
 
 Updated licenses.
 
@@ -178,7 +179,7 @@ Move to GitHub!
 
 No longer closed source.
 
-### Bug fixes
+### Bug Fixes
 
 ### Breaking Changes
 
@@ -200,7 +201,7 @@ Refactored individual project APIs into seperate repos.
 
 Easier to develop independently.
 
-### Bug fixes
+### Bug Fixes
 
 ### Breaking Changes
 
