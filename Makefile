@@ -179,7 +179,6 @@ release_client:
 	sudo rm -rf ${REPO_DIR}
 	rm -f temp-notes
 
-
 PYTHON_CLIENT="git@github.com:ondewo/ondewo-s2t-client-python.git"
 
 release_python_client: ## Release Python Client
