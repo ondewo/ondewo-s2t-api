@@ -2,6 +2,14 @@
 
 *****************
 
+## Release ONDEWO S2T API 6.0.0
+
+### Improvement
+
+* [[OND231-563]](https://ondewo.atlassian.net/browse/OND231-563) Added cloud providers
+
+*****************
+
 ## Release ONDEWO S2T API 5.7.0
 
 ### Improvement
