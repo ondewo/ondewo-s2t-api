@@ -179,9 +179,9 @@ release_client:
 # Change Version Number and RELEASE NOTES
 	cd ${REPO_DIR} && sed -i -e '/Release History/r ../temp-notes' ${RELEASEMD}
 	cd ${REPO_DIR} && head -20 ${RELEASEMD}
-	cd ${REPO_DIR} && sed -i -e 's/ONDEWO_S2T_VERSION.*=.*[0-9]*.[0-9]*.[0-9]/ONDEWO_S2T_VERSION = ${ONDEWO_S2T_API_VERSION}/' Makefile
-	cd ${REPO_DIR} && sed -i -e 's/ONDEWO_PROTO_COMPILER_GIT_BRANCH.*=.*tags\/[0-9]*.[0-9]*.[0-9]/ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags\/${PROTO_COMPILER}/' Makefile
-	cd ${REPO_DIR} && sed -i -e 's/S2T_API_GIT_BRANCH=tags\/[0-9]*.[0-9]*.[0-9]/S2T_API_GIT_BRANCH=tags\/${ONDEWO_S2T_API_VERSION}/' Makefile && head -30 Makefile
+	cd ${REPO_DIR} && sed -i -e 's/ONDEWO_S2T_VERSION.*=.*/ONDEWO_S2T_VERSION = ${ONDEWO_S2T_API_VERSION}/' Makefile
+	cd ${REPO_DIR} && sed -i -e 's/ONDEWO_PROTO_COMPILER_GIT_BRANCH.*=.*/ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags\/${PROTO_COMPILER}/' Makefile
+	cd ${REPO_DIR} && sed -i -e 's/S2T_API_GIT_BRANCH.*=.*/S2T_API_GIT_BRANCH=tags\/${ONDEWO_S2T_API_VERSION}/' Makefile && head -30 Makefile
 
 # Build new code
 	make -C ${REPO_DIR} ondewo_release | tee build_log_${REPO_NAME}.txt
