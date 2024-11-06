@@ -186,7 +186,7 @@ message S2tCloudProviderConfig {
     S2tCloudProviderConfigGoogle s2t_cloud_provider_config_google = 3;
 
     // Configuration for Microsoft Azure speech-to-text provider.
-    S2tCloudProviderConfigMicrosoftAzure s2t_cloud_provider_config_microsoft_azure = 4;
+    S2tCloudProviderConfigMicrosoft s2t_cloud_provider_config_microsoft = 4;
 
 }
 
@@ -266,7 +266,7 @@ message S2tCloudProviderConfigGoogle {
 }
 
 // Configuration details specific to the Microsoft Azure speech-to-text provider.
-message S2tCloudProviderConfigMicrosoftAzure {
+message S2tCloudProviderConfigMicrosoft {
 
     // Enables or disables the Microsoft Azure fast transcription API. It is faster than SDK but is in preview version.
     // More details at: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create
@@ -684,7 +684,7 @@ message AcousticModels {
     S2tCloudServiceGoogle s2t_cloud_service_google = 8;
 
     // Microsoft Azure cloud service inference settings.
-    S2tCloudServiceMicrosoftAzure s2t_cloud_service_microsoft_azure = 9;
+    S2tCloudServiceMicrosoft s2t_cloud_service_microsoft = 9;
 
 }
 
@@ -788,8 +788,8 @@ message S2tCloudServiceGoogle {
 
 }
 
-// S2tCloudServiceMicrosoftAzure message contains settings for the Microsoft Azure Cloud service inference.
-message S2tCloudServiceMicrosoftAzure {
+// S2tCloudServiceMicrosoft message contains settings for the Microsoft Azure Cloud service inference.
+message S2tCloudServiceMicrosoft {
 
     // Language of the audio to transcribe by Microsoft Azure s2t cloud service. It should be 4-letter language code
     // (BCP-47) e.g. 'en-US' or 'de-DE'.
