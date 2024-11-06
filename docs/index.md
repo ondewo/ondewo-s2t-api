@@ -33,11 +33,11 @@
     - [S2tCloudProviderConfigAmazon](#ondewo.s2t.S2tCloudProviderConfigAmazon)
     - [S2tCloudProviderConfigDeepgram](#ondewo.s2t.S2tCloudProviderConfigDeepgram)
     - [S2tCloudProviderConfigGoogle](#ondewo.s2t.S2tCloudProviderConfigGoogle)
-    - [S2tCloudProviderConfigMicrosoftAzure](#ondewo.s2t.S2tCloudProviderConfigMicrosoftAzure)
+    - [S2tCloudProviderConfigMicrosoft](#ondewo.s2t.S2tCloudProviderConfigMicrosoft)
     - [S2tCloudServiceAmazon](#ondewo.s2t.S2tCloudServiceAmazon)
     - [S2tCloudServiceDeepgram](#ondewo.s2t.S2tCloudServiceDeepgram)
     - [S2tCloudServiceGoogle](#ondewo.s2t.S2tCloudServiceGoogle)
-    - [S2tCloudServiceMicrosoftAzure](#ondewo.s2t.S2tCloudServiceMicrosoftAzure)
+    - [S2tCloudServiceMicrosoft](#ondewo.s2t.S2tCloudServiceMicrosoft)
     - [S2tPipelineId](#ondewo.s2t.S2tPipelineId)
     - [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig)
     - [StreamingServer](#ondewo.s2t.StreamingServer)
@@ -93,7 +93,7 @@ AcousticModels contains information about different types of acoustic models.
 | s2t_cloud_service_amazon | [S2tCloudServiceAmazon](#ondewo.s2t.S2tCloudServiceAmazon) |  | Amazon web service cloud service inference settings. |
 | s2t_cloud_service_deepgram | [S2tCloudServiceDeepgram](#ondewo.s2t.S2tCloudServiceDeepgram) |  | Deepgram cloud service inference settings. |
 | s2t_cloud_service_google | [S2tCloudServiceGoogle](#ondewo.s2t.S2tCloudServiceGoogle) |  | Google cloud service inference settings. |
-| s2t_cloud_service_microsoft_azure | [S2tCloudServiceMicrosoftAzure](#ondewo.s2t.S2tCloudServiceMicrosoftAzure) |  | Microsoft Azure cloud service inference settings. |
+| s2t_cloud_service_microsoft | [S2tCloudServiceMicrosoft](#ondewo.s2t.S2tCloudServiceMicrosoft) |  | Microsoft Azure cloud service inference settings. |
 
 
 
@@ -500,7 +500,7 @@ Configuration for cloud provider settings for Speech-to-Text (S2T).
 | s2t_cloud_provider_config_amazon | [S2tCloudProviderConfigAmazon](#ondewo.s2t.S2tCloudProviderConfigAmazon) |  | Configuration for Amazon web service speech-to-text provider. |
 | s2t_cloud_provider_config_deepgram | [S2tCloudProviderConfigDeepgram](#ondewo.s2t.S2tCloudProviderConfigDeepgram) |  | Configuration for DeepGram speech-to-text provider. |
 | s2t_cloud_provider_config_google | [S2tCloudProviderConfigGoogle](#ondewo.s2t.S2tCloudProviderConfigGoogle) |  | Configuration for Google speech-to-text provider. |
-| s2t_cloud_provider_config_microsoft_azure | [S2tCloudProviderConfigMicrosoftAzure](#ondewo.s2t.S2tCloudProviderConfigMicrosoftAzure) |  | Configuration for Microsoft Azure speech-to-text provider. |
+| s2t_cloud_provider_config_microsoft | [S2tCloudProviderConfigMicrosoft](#ondewo.s2t.S2tCloudProviderConfigMicrosoft) |  | Configuration for Microsoft Azure speech-to-text provider. |
 
 
 
@@ -563,9 +563,9 @@ Configuration details specific to the Google speech-to-text provider.
 
 
 
-<a name="ondewo.s2t.S2tCloudProviderConfigMicrosoftAzure"></a>
+<a name="ondewo.s2t.S2tCloudProviderConfigMicrosoft"></a>
 
-### S2tCloudProviderConfigMicrosoftAzure
+### S2tCloudProviderConfigMicrosoft
 Configuration details specific to the Microsoft Azure speech-to-text provider.
 
 
@@ -641,10 +641,10 @@ S2tCloudServiceGoogle message contains settings for the Google Cloud service inf
 
 
 
-<a name="ondewo.s2t.S2tCloudServiceMicrosoftAzure"></a>
+<a name="ondewo.s2t.S2tCloudServiceMicrosoft"></a>
 
-### S2tCloudServiceMicrosoftAzure
-S2tCloudServiceMicrosoftAzure message contains settings for the Microsoft Azure Cloud service inference.
+### S2tCloudServiceMicrosoft
+S2tCloudServiceMicrosoft message contains settings for the Microsoft Azure Cloud service inference.
 
 
 | Field | Type | Label | Description |
