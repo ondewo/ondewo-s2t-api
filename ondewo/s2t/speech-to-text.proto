@@ -176,8 +176,8 @@ message TranscribeRequestConfig {
 // Configuration for cloud provider settings for Speech-to-Text (S2T).
 message S2tCloudProviderConfig {
 
-    // Configuration for Amazon AWS speech-to-text provider.
-    S2tCloudProviderConfigAmazonAws s2t_cloud_provider_config_amazon_aws = 1;
+    // Configuration for Amazon web service speech-to-text provider.
+    S2tCloudProviderConfigAmazon s2t_cloud_provider_config_amazon = 1;
 
     // Configuration for DeepGram speech-to-text provider.
     S2tCloudProviderConfigDeepgram s2t_cloud_provider_config_deepgram = 2;
@@ -190,8 +190,8 @@ message S2tCloudProviderConfig {
 
 }
 
-// Configuration details specific to the Amazon AWS speech-to-text provider.
-message S2tCloudProviderConfigAmazonAws {
+// Configuration details specific to the Amazon web service speech-to-text provider.
+message S2tCloudProviderConfigAmazon {
 
     // Enables or disables partial_results_stabilization feature. More details at:
     // https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization
@@ -674,8 +674,8 @@ message AcousticModels {
     // Configuration for the Whisper model using Triton.
     WhisperTriton whisper_triton = 5;
 
-    // Amazon Aws cloud service inference settings.
-    S2tCloudServiceAmazonAws s2t_cloud_service_amazon_aws = 6;
+    // Amazon web service cloud service inference settings.
+    S2tCloudServiceAmazon s2t_cloud_service_amazon = 6;
 
     // Deepgram cloud service inference settings.
     S2tCloudServiceDeepgram s2t_cloud_service_deepgram = 7;
@@ -688,10 +688,10 @@ message AcousticModels {
 
 }
 
-// S2tCloudServiceAmazonAws message contains settings for the Amazon AWS Cloud service inference.
-message S2tCloudServiceAmazonAws {
+// S2tCloudServiceAmazon message contains settings for the Amazon web service Cloud service inference.
+message S2tCloudServiceAmazon {
 
-    // Language of the audio to transcribe by Amazon AWS s2t cloud service. It should be 4-letter language code
+    // Language of the audio to transcribe by Amazon web service s2t cloud service. It should be 4-letter language code
     // (BCP-47) e.g. 'en-US' or 'de-DE'.
     string language = 1;
 
