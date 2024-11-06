@@ -187,7 +187,7 @@
                       </li>
                     
                       <li>
-                        <a href="#ondewo.s2t.S2tCloudProviderConfigAmazonAws" class="title-badge message">S2tCloudProviderConfigAmazonAws</a>
+                        <a href="#ondewo.s2t.S2tCloudProviderConfigAmazon" class="title-badge message">S2tCloudProviderConfigAmazon</a>
                       </li>
                     
                       <li>
@@ -203,7 +203,7 @@
                       </li>
                     
                       <li>
-                        <a href="#ondewo.s2t.S2tCloudServiceAmazonAws" class="title-badge message">S2tCloudServiceAmazonAws</a>
+                        <a href="#ondewo.s2t.S2tCloudServiceAmazon" class="title-badge message">S2tCloudServiceAmazon</a>
                       </li>
                     
                       <li>
@@ -500,10 +500,10 @@ id and a list of the language models loaded in the pipeline.
                 </tr>
               
                 <tr>
-                  <td>s2t_cloud_service_amazon_aws</td>
-                  <td><a href="#ondewo.s2t.S2tCloudServiceAmazonAws">S2tCloudServiceAmazonAws</a></td>
+                  <td>s2t_cloud_service_amazon</td>
+                  <td><a href="#ondewo.s2t.S2tCloudServiceAmazon">S2tCloudServiceAmazon</a></td>
                   <td></td>
-                  <td><p>Amazon Aws cloud service inference settings. </p></td>
+                  <td><p>Amazon web service cloud service inference settings. </p></td>
                 </tr>
               
                 <tr>
@@ -1329,10 +1329,10 @@ Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutor
             <tbody>
               
                 <tr>
-                  <td>s2t_cloud_provider_config_amazon_aws</td>
-                  <td><a href="#ondewo.s2t.S2tCloudProviderConfigAmazonAws">S2tCloudProviderConfigAmazonAws</a></td>
+                  <td>s2t_cloud_provider_config_amazon</td>
+                  <td><a href="#ondewo.s2t.S2tCloudProviderConfigAmazon">S2tCloudProviderConfigAmazon</a></td>
                   <td></td>
-                  <td><p>Configuration for Amazon AWS speech-to-text provider. </p></td>
+                  <td><p>Configuration for Amazon web service speech-to-text provider. </p></td>
                 </tr>
               
                 <tr>
@@ -1363,8 +1363,8 @@ Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutor
 
         
       
-        <h3 id="ondewo.s2t.S2tCloudProviderConfigAmazonAws" class="title-badge message">S2tCloudProviderConfigAmazonAws</h3>
-        <p>Configuration details specific to the Amazon AWS speech-to-text provider.</p>
+        <h3 id="ondewo.s2t.S2tCloudProviderConfigAmazon" class="title-badge message">S2tCloudProviderConfigAmazon</h3>
+        <p>Configuration details specific to the Amazon web service speech-to-text provider.</p>
 
         
           <table class="field-table">
@@ -1563,8 +1563,8 @@ to add timestamps and confidences to the resulted transcript. </p></td>
 
         
       
-        <h3 id="ondewo.s2t.S2tCloudServiceAmazonAws" class="title-badge message">S2tCloudServiceAmazonAws</h3>
-        <p>S2tCloudServiceAmazonAws message contains settings for the Amazon AWS Cloud service inference.</p>
+        <h3 id="ondewo.s2t.S2tCloudServiceAmazon" class="title-badge message">S2tCloudServiceAmazon</h3>
+        <p>S2tCloudServiceAmazon message contains settings for the Amazon web service Cloud service inference.</p>
 
         
           <table class="field-table">
@@ -1577,8 +1577,17 @@ to add timestamps and confidences to the resulted transcript. </p></td>
                   <td>language</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Language of the audio to transcribe by Amazon AWS s2t cloud service. It should be 4-letter language code
+                  <td><p>Language of the audio to transcribe by Amazon web service s2t cloud service. It should be 4-letter language code
 (BCP-47) e.g. 'en-US' or 'de-DE'. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>streaming_available</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Specifies if streaming mode of Amazon web service speech to text is available for the selected language, 
+otherwise batch mode transcription is used. See the list of languages and available transcription modes at:
+https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html </p></td>
                 </tr>
               
                 <tr>

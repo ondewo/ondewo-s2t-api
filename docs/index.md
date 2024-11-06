@@ -30,11 +30,11 @@
     - [S2TInference](#ondewo.s2t.S2TInference)
     - [S2TNormalization](#ondewo.s2t.S2TNormalization)
     - [S2tCloudProviderConfig](#ondewo.s2t.S2tCloudProviderConfig)
-    - [S2tCloudProviderConfigAmazonAws](#ondewo.s2t.S2tCloudProviderConfigAmazonAws)
+    - [S2tCloudProviderConfigAmazon](#ondewo.s2t.S2tCloudProviderConfigAmazon)
     - [S2tCloudProviderConfigDeepgram](#ondewo.s2t.S2tCloudProviderConfigDeepgram)
     - [S2tCloudProviderConfigGoogle](#ondewo.s2t.S2tCloudProviderConfigGoogle)
     - [S2tCloudProviderConfigMicrosoftAzure](#ondewo.s2t.S2tCloudProviderConfigMicrosoftAzure)
-    - [S2tCloudServiceAmazonAws](#ondewo.s2t.S2tCloudServiceAmazonAws)
+    - [S2tCloudServiceAmazon](#ondewo.s2t.S2tCloudServiceAmazon)
     - [S2tCloudServiceDeepgram](#ondewo.s2t.S2tCloudServiceDeepgram)
     - [S2tCloudServiceGoogle](#ondewo.s2t.S2tCloudServiceGoogle)
     - [S2tCloudServiceMicrosoftAzure](#ondewo.s2t.S2tCloudServiceMicrosoftAzure)
@@ -90,7 +90,7 @@ AcousticModels contains information about different types of acoustic models.
 | wav2vec_triton | [Wav2VecTriton](#ondewo.s2t.Wav2VecTriton) |  | Configuration for the Wav2Vec model using Triton. |
 | whisper | [Whisper](#ondewo.s2t.Whisper) |  | Configuration for the Whisper model. |
 | whisper_triton | [WhisperTriton](#ondewo.s2t.WhisperTriton) |  | Configuration for the Whisper model using Triton. |
-| s2t_cloud_service_amazon_aws | [S2tCloudServiceAmazonAws](#ondewo.s2t.S2tCloudServiceAmazonAws) |  | Amazon Aws cloud service inference settings. |
+| s2t_cloud_service_amazon | [S2tCloudServiceAmazon](#ondewo.s2t.S2tCloudServiceAmazon) |  | Amazon web service cloud service inference settings. |
 | s2t_cloud_service_deepgram | [S2tCloudServiceDeepgram](#ondewo.s2t.S2tCloudServiceDeepgram) |  | Deepgram cloud service inference settings. |
 | s2t_cloud_service_google | [S2tCloudServiceGoogle](#ondewo.s2t.S2tCloudServiceGoogle) |  | Google cloud service inference settings. |
 | s2t_cloud_service_microsoft_azure | [S2tCloudServiceMicrosoftAzure](#ondewo.s2t.S2tCloudServiceMicrosoftAzure) |  | Microsoft Azure cloud service inference settings. |
@@ -497,7 +497,7 @@ Configuration for cloud provider settings for Speech-to-Text (S2T).
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| s2t_cloud_provider_config_amazon_aws | [S2tCloudProviderConfigAmazonAws](#ondewo.s2t.S2tCloudProviderConfigAmazonAws) |  | Configuration for Amazon AWS speech-to-text provider. |
+| s2t_cloud_provider_config_amazon | [S2tCloudProviderConfigAmazon](#ondewo.s2t.S2tCloudProviderConfigAmazon) |  | Configuration for Amazon web service speech-to-text provider. |
 | s2t_cloud_provider_config_deepgram | [S2tCloudProviderConfigDeepgram](#ondewo.s2t.S2tCloudProviderConfigDeepgram) |  | Configuration for DeepGram speech-to-text provider. |
 | s2t_cloud_provider_config_google | [S2tCloudProviderConfigGoogle](#ondewo.s2t.S2tCloudProviderConfigGoogle) |  | Configuration for Google speech-to-text provider. |
 | s2t_cloud_provider_config_microsoft_azure | [S2tCloudProviderConfigMicrosoftAzure](#ondewo.s2t.S2tCloudProviderConfigMicrosoftAzure) |  | Configuration for Microsoft Azure speech-to-text provider. |
@@ -507,10 +507,10 @@ Configuration for cloud provider settings for Speech-to-Text (S2T).
 
 
 
-<a name="ondewo.s2t.S2tCloudProviderConfigAmazonAws"></a>
+<a name="ondewo.s2t.S2tCloudProviderConfigAmazon"></a>
 
-### S2tCloudProviderConfigAmazonAws
-Configuration details specific to the Amazon AWS speech-to-text provider.
+### S2tCloudProviderConfigAmazon
+Configuration details specific to the Amazon web service speech-to-text provider.
 
 
 | Field | Type | Label | Description |
@@ -579,15 +579,16 @@ Configuration details specific to the Microsoft Azure speech-to-text provider.
 
 
 
-<a name="ondewo.s2t.S2tCloudServiceAmazonAws"></a>
+<a name="ondewo.s2t.S2tCloudServiceAmazon"></a>
 
-### S2tCloudServiceAmazonAws
-S2tCloudServiceAmazonAws message contains settings for the Amazon AWS Cloud service inference.
+### S2tCloudServiceAmazon
+S2tCloudServiceAmazon message contains settings for the Amazon web service Cloud service inference.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language | [string](#string) |  | Language of the audio to transcribe by Amazon AWS s2t cloud service. It should be 4-letter language code (BCP-47) e.g. 'en-US' or 'de-DE'. |
+| language | [string](#string) |  | Language of the audio to transcribe by Amazon web service s2t cloud service. It should be 4-letter language code (BCP-47) e.g. 'en-US' or 'de-DE'. |
+| streaming_available | [bool](#bool) |  | Specifies if streaming mode of Amazon web service speech to text is available for the selected language, otherwise batch mode transcription is used. See the list of languages and available transcription modes at: https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html |
 | enable_partial_results_stabilization | [bool](#bool) |  | Enables or disables partial_results_stabilization feature. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization |
 | partial_results_stability | [string](#string) |  | You can use this field to set the stability level of the transcription results. A higher stability level means that the transcription results are less likely to change. Higher stability levels can come with lower overall transcription accuracy. Defaults to "high" if not set explicitly. |
 | language_model_name | [string](#string) |  | The name of your customize language model you want to use. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html |
