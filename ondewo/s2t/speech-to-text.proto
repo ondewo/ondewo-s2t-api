@@ -164,12 +164,9 @@ message TranscribeRequestConfig {
     // and other header information as key value pairs, e.g., <pre><code>MY_API_KEY='LKJDIFe244LKJOI'</code></pre>
     optional google.protobuf.Struct s2t_service_config = 11;
 
-    oneof oneof_s2t_cloud_provider_config {
-
-        // Optional. Defines the cloud provider's specific configuration for using speech to text cloud services
-        // The default value is None.
-        optional S2tCloudProviderConfig s2t_cloud_provider_config = 12;
-    }
+    // Optional. Defines the cloud provider's specific configuration for using speech to text cloud services
+    // The default value is None.
+    optional S2tCloudProviderConfig s2t_cloud_provider_config = 12;
 
 }
 
