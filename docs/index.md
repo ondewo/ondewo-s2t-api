@@ -497,10 +497,10 @@ Configuration for cloud provider settings for Speech-to-Text (S2T).
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| s2t_cloud_provider_config_amazon | [S2tCloudProviderConfigAmazon](#ondewo.s2t.S2tCloudProviderConfigAmazon) |  | Configuration for Amazon web service speech-to-text provider. |
-| s2t_cloud_provider_config_deepgram | [S2tCloudProviderConfigDeepgram](#ondewo.s2t.S2tCloudProviderConfigDeepgram) |  | Configuration for DeepGram speech-to-text provider. |
-| s2t_cloud_provider_config_google | [S2tCloudProviderConfigGoogle](#ondewo.s2t.S2tCloudProviderConfigGoogle) |  | Configuration for Google speech-to-text provider. |
-| s2t_cloud_provider_config_microsoft | [S2tCloudProviderConfigMicrosoft](#ondewo.s2t.S2tCloudProviderConfigMicrosoft) |  | Configuration for Microsoft Azure speech-to-text provider. |
+| s2t_cloud_provider_config_amazon | [S2tCloudProviderConfigAmazon](#ondewo.s2t.S2tCloudProviderConfigAmazon) | optional | Optional. Configuration for Amazon web service speech-to-text provider. |
+| s2t_cloud_provider_config_deepgram | [S2tCloudProviderConfigDeepgram](#ondewo.s2t.S2tCloudProviderConfigDeepgram) | optional | Optional. Configuration for DeepGram speech-to-text provider. |
+| s2t_cloud_provider_config_google | [S2tCloudProviderConfigGoogle](#ondewo.s2t.S2tCloudProviderConfigGoogle) | optional | Optional. Configuration for Google speech-to-text provider. |
+| s2t_cloud_provider_config_microsoft | [S2tCloudProviderConfigMicrosoft](#ondewo.s2t.S2tCloudProviderConfigMicrosoft) | optional | Optional. Configuration for Microsoft Azure speech-to-text provider. |
 
 
 
@@ -515,10 +515,10 @@ Configuration details specific to the Amazon web service speech-to-text provider
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| enable_partial_results_stabilization | [bool](#bool) |  | Enables or disables partial_results_stabilization feature. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization |
-| partial_results_stability | [string](#string) |  | You can use this field to set the stability level of the transcription results. A higher stability level means that the transcription results are less likely to change. Higher stability levels can come with lower overall transcription accuracy. Defaults to "high" if not set explicitly. |
-| language_model_name | [string](#string) |  | The name of your customize language model you want to use. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html |
-| vocabulary_name | [string](#string) |  | The name of your customize language model you want to use. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html |
+| enable_partial_results_stabilization | [bool](#bool) | optional | Optional. Enables or disables partial_results_stabilization feature. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization |
+| partial_results_stability | [string](#string) | optional | Optional. You can use this field to set the stability level of the transcription results. A higher stability level means that the transcription results are less likely to change. Higher stability levels can come with lower overall transcription accuracy. Defaults to "high" if not set explicitly. |
+| language_model_name | [string](#string) | optional | Optional. The name of your customize language model you want to use. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html |
+| vocabulary_name | [string](#string) | optional | Optional. The name of your customize language model you want to use. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html |
 
 
 
@@ -533,11 +533,11 @@ Configuration details specific to the Deepgram speech-to-text provider.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| punctuate | [bool](#bool) |  | Enables or disables punctuate feature of Deepgram to add punctuations to the resulted transcript. More details at: https://developers.deepgram.com/docs/punctuation |
-| smart_format | [bool](#bool) |  | Enables or disables smart_format feature of Deepgram transcription result to improve readability. More details at: https://developers.deepgram.com/docs/smart-format |
-| numerals | [bool](#bool) |  | Enables or disables numerals feature of Deepgram to convert numbers to numeric form in the resulted transcript. // More details at: https://developers.deepgram.com/docs/numerals |
-| measurements | [bool](#bool) |  | Enables or disables measurements feature of Deepgram to convert measurement units (i.e. Kilogram) // to abbreviated form (i.e. Kg) in the resulted transcript. // More details at: https://developers.deepgram.com/docs/measurements |
-| dictation | [bool](#bool) |  | Enables or disables dictation feature of Deepgram to convert spoken dictation commands into their corresponding // punctuation marks. More details at: https://developers.deepgram.com/docs/dictation |
+| punctuate | [bool](#bool) | optional | Optional. Enables or disables punctuate feature of Deepgram to add punctuations to the resulted transcript. More details at: https://developers.deepgram.com/docs/punctuation |
+| smart_format | [bool](#bool) | optional | Optional. Enables or disables smart_format feature of Deepgram transcription result to improve readability. More details at: https://developers.deepgram.com/docs/smart-format |
+| numerals | [bool](#bool) | optional | Optional. Enables or disables numerals feature of Deepgram to convert numbers to numeric form in the resulted transcript. More details at: https://developers.deepgram.com/docs/numerals |
+| measurements | [bool](#bool) | optional | Optional. Enables or disables measurements feature of Deepgram to convert measurement units (i.e. Kilogram) to abbreviated form (i.e. Kg) in the resulted transcript. More details at: https://developers.deepgram.com/docs/measurements |
+| dictation | [bool](#bool) | optional | Optional. Enables or disables dictation feature of Deepgram to convert spoken dictation commands into their corresponding punctuation marks. More details at: https://developers.deepgram.com/docs/dictation |
 
 
 
@@ -552,11 +552,11 @@ Configuration details specific to the Google speech-to-text provider.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| enable_automatic_punctuation | [bool](#bool) |  | Enables or disables automatic_punctuation feature of Google s2t to add punctuations to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/automatic-punctuation |
-| enable_word_time_offsets | [bool](#bool) |  | Enables or disables word_time_offsets feature of Google s2t to add word-level timestamps (time-offsets) to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/async-time-offsets |
-| enable_word_confidence | [bool](#bool) |  | Enables or disables word_confidence feature of Google s2t to add word-level confidence scores to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/word-confidence |
-| transcript_normalization | [bool](#bool) |  | Enables or disables transcript_normalization feature of Google s2t to automatically replace parts of the transcript with phrases of your choosing. More details at: https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization |
-| max_alternatives | [int32](#int32) |  | Maximum number of recognition hypotheses to be returned. The server may return fewer than max_alternatives. Valid values are 0-30. A value of 0 or 1 will return a maximum of one. If omitted, will return a maximum of one. |
+| enable_automatic_punctuation | [bool](#bool) | optional | Optional. Enables or disables automatic_punctuation feature of Google s2t to add punctuations to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/automatic-punctuation |
+| enable_word_time_offsets | [bool](#bool) | optional | Optional. Enables or disables word_time_offsets feature of Google s2t to add word-level timestamps (time-offset) to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/async-time-offsets |
+| enable_word_confidence | [bool](#bool) | optional | Optional. Enables or disables word_confidence feature of Google s2t to add word-level confidence scores to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/word-confidence |
+| transcript_normalization | [bool](#bool) | optional | Optional. Enables or disables transcript_normalization feature of Google s2t to automatically replace parts of the transcript with phrases of your choosing. More details at: https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization |
+| max_alternatives | [int32](#int32) | optional | Optional. Maximum number of recognition hypotheses to be returned, may be returned fewer than max_alternatives. Valid values are 0-30. A value of 0 or 1 will return a maximum of one. If omitted, will return a maximum of one. |
 
 
 
@@ -571,8 +571,8 @@ Configuration details specific to the Microsoft Azure speech-to-text provider.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| use_fast_transcription_api | [bool](#bool) |  | Enables or disables the Microsoft Azure fast transcription API. It is faster than SDK but is in preview version. More details at: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create |
-| use_detailed_output_format | [bool](#bool) |  | Enables or disables the `detailed` format for the result of Microsoft Azure s2t service to add timestamps and confidences to the resulted transcript. |
+| use_fast_transcription_api | [bool](#bool) | optional | Optional. Enables or disables the Microsoft Azure fast transcription API. It is faster than SDK but is in preview version. More details at: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create |
+| use_detailed_output_format | [bool](#bool) | optional | Optional. Enables or disables the `detailed` format for the result of Microsoft Azure s2t service to add timestamps and confidences to the resulted transcript. |
 
 
 
@@ -815,8 +815,8 @@ Configuration for a request to transcribe audio
 | return_options | [TranscriptionReturnOptions](#ondewo.s2t.TranscriptionReturnOptions) |  | The transcribe return options |
 | language | [string](#string) | optional | Optional. Specify language of transcription to return |
 | task | [string](#string) | optional | Optional. Specify task of s2t model, e.g. 'transcribe' and 'translate' |
-| s2t_service_config | [google.protobuf.Struct](#google.protobuf.Struct) | optional | s2t_service_config provides the configuration of the service such as API key, bearer tokens, JWT, and other header information as key value pairs, e.g., <pre><code>MY_API_KEY='LKJDIFe244LKJOI'</code></pre> |
-| s2t_cloud_provider_config | [S2tCloudProviderConfig](#ondewo.s2t.S2tCloudProviderConfig) |  | Optional. Defines the cloud provider's specific configuration for using speech to text cloud services The default value is None. |
+| s2t_service_config | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. s2t_service_config provides the configuration of the service such as API key, bearer tokens, JWT, and other header information as key value pairs, e.g., <pre><code>MY_API_KEY='LKJDIFe244LKJOI'</code></pre> |
+| s2t_cloud_provider_config | [S2tCloudProviderConfig](#ondewo.s2t.S2tCloudProviderConfig) | optional | Optional. Defines the cloud provider's specific configuration for using speech to text cloud services The default value is None. |
 
 
 

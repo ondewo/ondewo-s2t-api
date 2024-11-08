@@ -1331,29 +1331,29 @@ Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutor
                 <tr>
                   <td>s2t_cloud_provider_config_amazon</td>
                   <td><a href="#ondewo.s2t.S2tCloudProviderConfigAmazon">S2tCloudProviderConfigAmazon</a></td>
-                  <td></td>
-                  <td><p>Configuration for Amazon web service speech-to-text provider. </p></td>
+                  <td>optional</td>
+                  <td><p>Optional. Configuration for Amazon web service speech-to-text provider. </p></td>
                 </tr>
               
                 <tr>
                   <td>s2t_cloud_provider_config_deepgram</td>
                   <td><a href="#ondewo.s2t.S2tCloudProviderConfigDeepgram">S2tCloudProviderConfigDeepgram</a></td>
-                  <td></td>
-                  <td><p>Configuration for DeepGram speech-to-text provider. </p></td>
+                  <td>optional</td>
+                  <td><p>Optional. Configuration for DeepGram speech-to-text provider. </p></td>
                 </tr>
               
                 <tr>
                   <td>s2t_cloud_provider_config_google</td>
                   <td><a href="#ondewo.s2t.S2tCloudProviderConfigGoogle">S2tCloudProviderConfigGoogle</a></td>
-                  <td></td>
-                  <td><p>Configuration for Google speech-to-text provider. </p></td>
+                  <td>optional</td>
+                  <td><p>Optional. Configuration for Google speech-to-text provider. </p></td>
                 </tr>
               
                 <tr>
                   <td>s2t_cloud_provider_config_microsoft</td>
                   <td><a href="#ondewo.s2t.S2tCloudProviderConfigMicrosoft">S2tCloudProviderConfigMicrosoft</a></td>
-                  <td></td>
-                  <td><p>Configuration for Microsoft Azure speech-to-text provider. </p></td>
+                  <td>optional</td>
+                  <td><p>Optional. Configuration for Microsoft Azure speech-to-text provider. </p></td>
                 </tr>
               
             </tbody>
@@ -1376,16 +1376,16 @@ Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutor
                 <tr>
                   <td>enable_partial_results_stabilization</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Enables or disables partial_results_stabilization feature. More details at:
+                  <td>optional</td>
+                  <td><p>Optional. Enables or disables partial_results_stabilization feature. More details at:
 https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization </p></td>
                 </tr>
               
                 <tr>
                   <td>partial_results_stability</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>You can use this field to set the stability level of the transcription results.
+                  <td>optional</td>
+                  <td><p>Optional. You can use this field to set the stability level of the transcription results.
 A higher stability level means that the transcription results are less likely to change.
 Higher stability levels can come with lower overall transcription accuracy.
 Defaults to "high" if not set explicitly. </p></td>
@@ -1394,16 +1394,16 @@ Defaults to "high" if not set explicitly. </p></td>
                 <tr>
                   <td>language_model_name</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>The name of your customize language model you want to use.
+                  <td>optional</td>
+                  <td><p>Optional. The name of your customize language model you want to use.
 More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html </p></td>
                 </tr>
               
                 <tr>
                   <td>vocabulary_name</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>The name of your customize language model you want to use.
+                  <td>optional</td>
+                  <td><p>Optional. The name of your customize language model you want to use.
 More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html </p></td>
                 </tr>
               
@@ -1427,42 +1427,42 @@ More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabul
                 <tr>
                   <td>punctuate</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Enables or disables punctuate feature of Deepgram to add punctuations to the resulted transcript.
+                  <td>optional</td>
+                  <td><p>Optional. Enables or disables punctuate feature of Deepgram to add punctuations to the resulted transcript.
 More details at: https://developers.deepgram.com/docs/punctuation </p></td>
                 </tr>
               
                 <tr>
                   <td>smart_format</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Enables or disables smart_format feature of Deepgram transcription result to improve readability.
+                  <td>optional</td>
+                  <td><p>Optional. Enables or disables smart_format feature of Deepgram transcription result to improve readability.
 More details at: https://developers.deepgram.com/docs/smart-format </p></td>
                 </tr>
               
                 <tr>
                   <td>numerals</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Enables or disables numerals feature of Deepgram to convert numbers to numeric form in the resulted transcript.
-   // More details at: https://developers.deepgram.com/docs/numerals </p></td>
+                  <td>optional</td>
+                  <td><p>Optional. Enables or disables numerals feature of Deepgram to convert numbers to numeric form in the resulted 
+transcript. More details at: https://developers.deepgram.com/docs/numerals </p></td>
                 </tr>
               
                 <tr>
                   <td>measurements</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Enables or disables measurements feature of Deepgram to convert measurement units (i.e. Kilogram)
-   // to abbreviated form (i.e. Kg) in the resulted transcript.
-   // More details at: https://developers.deepgram.com/docs/measurements </p></td>
+                  <td>optional</td>
+                  <td><p>Optional. Enables or disables measurements feature of Deepgram to convert measurement units (i.e. Kilogram)
+to abbreviated form (i.e. Kg) in the resulted transcript.
+More details at: https://developers.deepgram.com/docs/measurements </p></td>
                 </tr>
               
                 <tr>
                   <td>dictation</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Enables or disables dictation feature of Deepgram to convert spoken dictation commands into their corresponding
-   // punctuation marks. More details at: https://developers.deepgram.com/docs/dictation </p></td>
+                  <td>optional</td>
+                  <td><p>Optional. Enables or disables dictation feature of Deepgram to convert spoken dictation commands into their 
+corresponding punctuation marks. More details at: https://developers.deepgram.com/docs/dictation </p></td>
                 </tr>
               
             </tbody>
@@ -1485,32 +1485,32 @@ More details at: https://developers.deepgram.com/docs/smart-format </p></td>
                 <tr>
                   <td>enable_automatic_punctuation</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Enables or disables automatic_punctuation feature of Google s2t to add punctuations to the resulted transcript.
-More details at: https://cloud.google.com/speech-to-text/docs/automatic-punctuation </p></td>
+                  <td>optional</td>
+                  <td><p>Optional. Enables or disables automatic_punctuation feature of Google s2t to add punctuations to the resulted 
+transcript. More details at: https://cloud.google.com/speech-to-text/docs/automatic-punctuation </p></td>
                 </tr>
               
                 <tr>
                   <td>enable_word_time_offsets</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Enables or disables word_time_offsets feature of Google s2t to add word-level timestamps (time-offsets)
+                  <td>optional</td>
+                  <td><p>Optional. Enables or disables word_time_offsets feature of Google s2t to add word-level timestamps (time-offset)
 to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/async-time-offsets </p></td>
                 </tr>
               
                 <tr>
                   <td>enable_word_confidence</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Enables or disables word_confidence feature of Google s2t to add word-level confidence scores
+                  <td>optional</td>
+                  <td><p>Optional. Enables or disables word_confidence feature of Google s2t to add word-level confidence scores
 to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/word-confidence </p></td>
                 </tr>
               
                 <tr>
                   <td>transcript_normalization</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Enables or disables transcript_normalization feature of Google s2t to automatically
+                  <td>optional</td>
+                  <td><p>Optional. Enables or disables transcript_normalization feature of Google s2t to automatically
 replace parts of the transcript with phrases of your choosing. More details at:
 https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization </p></td>
                 </tr>
@@ -1518,8 +1518,8 @@ https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speec
                 <tr>
                   <td>max_alternatives</td>
                   <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>Maximum number of recognition hypotheses to be returned. The server may return fewer than max_alternatives.
+                  <td>optional</td>
+                  <td><p>Optional. Maximum number of recognition hypotheses to be returned, may be returned fewer than max_alternatives.
 Valid values are 0-30. A value of 0 or 1 will return a maximum of one. If omitted, will return a maximum of one. </p></td>
                 </tr>
               
@@ -1543,16 +1543,17 @@ Valid values are 0-30. A value of 0 or 1 will return a maximum of one. If omitte
                 <tr>
                   <td>use_fast_transcription_api</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Enables or disables the Microsoft Azure fast transcription API. It is faster than SDK but is in preview version.
+                  <td>optional</td>
+                  <td><p>Optional. Enables or disables the Microsoft Azure fast transcription API. It is faster than SDK but is in 
+preview version.
 More details at: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create </p></td>
                 </tr>
               
                 <tr>
                   <td>use_detailed_output_format</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Enables or disables the `detailed` format for the result of Microsoft Azure s2t service
+                  <td>optional</td>
+                  <td><p>Optional. Enables or disables the `detailed` format for the result of Microsoft Azure s2t service
 to add timestamps and confidences to the resulted transcript. </p></td>
                 </tr>
               
@@ -2230,14 +2231,14 @@ takes longer to process!) </p></td>
                   <td>s2t_service_config</td>
                   <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
                   <td>optional</td>
-                  <td><p>s2t_service_config provides the configuration of the service such as API key, bearer tokens, JWT,
+                  <td><p>Optional. s2t_service_config provides the configuration of the service such as API key, bearer tokens, JWT,
 and other header information as key value pairs, e.g., <pre><code>MY_API_KEY='LKJDIFe244LKJOI'</code></pre> </p></td>
                 </tr>
               
                 <tr>
                   <td>s2t_cloud_provider_config</td>
                   <td><a href="#ondewo.s2t.S2tCloudProviderConfig">S2tCloudProviderConfig</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Optional. Defines the cloud provider's specific configuration for using speech to text cloud services
 The default value is None. </p></td>
                 </tr>
