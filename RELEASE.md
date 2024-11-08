@@ -6,7 +6,8 @@
 
 ### New Features
 
-* [[OND231-563]](https://ondewo.atlassian.net/browse/OND231-563) Added cloud providers
+* [[OND231-563]](https://ondewo.atlassian.net/browse/OND231-563) Added configurations for using s2t cloud service 
+  providers amazon, google, microsoft and deepgram as ondewo-s2t models.
 
 *****************
 
