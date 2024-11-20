@@ -516,7 +516,7 @@ Configuration details specific to the Amazon web service speech-to-text provider
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | enable_partial_results_stabilization | [bool](#bool) | optional | Optional. Enables or disables partial_results_stabilization feature. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization |
-| partial_results_stability | [string](#string) | optional | Optional. You can use this field to set the stability level of the transcription results. A higher stability level means that the transcription results are less likely to change. Higher stability levels can come with lower overall transcription accuracy. Defaults to "high" if not set explicitly. |
+| partial_results_stability | [string](#string) | optional | Optional. You can use this field to set the stability level of the transcription results. A higher stability level means that the transcription results are less likely to change. Higher stability levels can come with lower overall transcription accuracy. Acceptable values: ["low", "medium", "high"]. Defaults to "high" if not set explicitly. More details at: https://aws.amazon.com/blogs/machine-learning/amazon-transcribe-now-supports-partial-results-stabilization-for-streaming-audio/ |
 | language_model_name | [string](#string) | optional | Optional. The name of your customize language model you want to use. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html |
 | vocabulary_name | [string](#string) | optional | Optional. The name of your customize language model you want to use. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html |
 
@@ -1090,6 +1090,10 @@ The decoding configuration
 | INFERENCE_BACKEND_UNKNOWN | 0 | Not set |
 | INFERENCE_BACKEND_PYTORCH | 1 | Run pytorch model |
 | INFERENCE_BACKEND_FLAX | 2 | Run flax model |
+| INFERENCE_BACKEND_CLOUD_SERVICE_AMAZON | 3 | Run Amazon S2T cloud service |
+| INFERENCE_BACKEND_CLOUD_SERVICE_DEEPGRAM | 4 | Run Deepgram S2T cloud service |
+| INFERENCE_BACKEND_CLOUD_SERVICE_GOOGLE | 5 | Run Google S2T cloud service |
+| INFERENCE_BACKEND_CLOUD_SERVICE_MICROSOFT | 6 | Run Microsoft Azure S2T cloud service |
 
 
  <!-- end enums -->

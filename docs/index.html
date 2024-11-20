@@ -1388,7 +1388,8 @@ https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#
                   <td><p>Optional. You can use this field to set the stability level of the transcription results.
 A higher stability level means that the transcription results are less likely to change.
 Higher stability levels can come with lower overall transcription accuracy.
-Defaults to "high" if not set explicitly. </p></td>
+Acceptable values: ["low", "medium", "high"]. Defaults to "high" if not set explicitly. More details at:
+https://aws.amazon.com/blogs/machine-learning/amazon-transcribe-now-supports-partial-results-stabilization-for-streaming-audio/ </p></td>
                 </tr>
               
                 <tr>
@@ -2977,6 +2978,30 @@ The accuracy of the time offset can vary, and this is an experimental feature. <
                 <td>INFERENCE_BACKEND_FLAX</td>
                 <td>2</td>
                 <td><p>Run flax model</p></td>
+              </tr>
+            
+              <tr>
+                <td>INFERENCE_BACKEND_CLOUD_SERVICE_AMAZON</td>
+                <td>3</td>
+                <td><p>Run Amazon S2T cloud service</p></td>
+              </tr>
+            
+              <tr>
+                <td>INFERENCE_BACKEND_CLOUD_SERVICE_DEEPGRAM</td>
+                <td>4</td>
+                <td><p>Run Deepgram S2T cloud service</p></td>
+              </tr>
+            
+              <tr>
+                <td>INFERENCE_BACKEND_CLOUD_SERVICE_GOOGLE</td>
+                <td>5</td>
+                <td><p>Run Google S2T cloud service</p></td>
+              </tr>
+            
+              <tr>
+                <td>INFERENCE_BACKEND_CLOUD_SERVICE_MICROSOFT</td>
+                <td>6</td>
+                <td><p>Run Microsoft Azure S2T cloud service</p></td>
               </tr>
             
           </tbody>
