@@ -104,6 +104,18 @@ enum InferenceBackend {
     // Run flax model
     INFERENCE_BACKEND_FLAX = 2;
 
+    // Run Amazon S2T cloud service
+    INFERENCE_BACKEND_CLOUD_SERVICE_AMAZON = 3;
+
+    // Run Deepgram S2T cloud service
+    INFERENCE_BACKEND_CLOUD_SERVICE_DEEPGRAM = 4;
+
+    // Run Google S2T cloud service
+    INFERENCE_BACKEND_CLOUD_SERVICE_GOOGLE = 5;
+
+    // Run Microsoft Azure S2T cloud service
+    INFERENCE_BACKEND_CLOUD_SERVICE_MICROSOFT = 6;
+
 }
 
 ///////////////////////////
@@ -221,7 +233,8 @@ message S2tCloudProviderConfigAmazon {
     // Optional. You can use this field to set the stability level of the transcription results.
     // A higher stability level means that the transcription results are less likely to change.
     // Higher stability levels can come with lower overall transcription accuracy.
-    // Defaults to "high" if not set explicitly.
+    // Acceptable values: ["low", "medium", "high"]. Defaults to "high" if not set explicitly. More details at:
+    // https://aws.amazon.com/blogs/machine-learning/amazon-transcribe-now-supports-partial-results-stabilization-for-streaming-audio/
     optional string partial_results_stability = 2;
 
     // Optional. The name of your customize language model you want to use.

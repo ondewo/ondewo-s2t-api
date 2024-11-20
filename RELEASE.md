@@ -2,6 +2,14 @@
 
 *****************
 
+## Release ONDEWO S2T API 6.1.0
+
+### New Features
+
+* [[OND231-564]](https://ondewo.atlassian.net/browse/OND231-564) Add cloud services to InferenceBackend enum.
+
+*****************
+
 ## Release ONDEWO S2T API 6.0.0
 
 ### New Features
