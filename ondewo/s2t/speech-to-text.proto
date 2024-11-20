@@ -104,6 +104,18 @@ enum InferenceBackend {
     // Run flax model
     INFERENCE_BACKEND_FLAX = 2;
 
+    // Run Amazon S2T cloud service
+    INFERENCE_BACKEND_CLOUD_SERVICE_AMAZON = 3;
+
+    // Run Deepgram S2T cloud service
+    INFERENCE_BACKEND_CLOUD_SERVICE_DEEPGRAM = 4;
+
+    // Run Google S2T cloud service
+    INFERENCE_BACKEND_CLOUD_SERVICE_GOOGLE = 5;
+
+    // Run Microsoft Azure S2T cloud service
+    INFERENCE_BACKEND_CLOUD_SERVICE_MICROSOFT = 6;
+
 }
 
 ///////////////////////////
