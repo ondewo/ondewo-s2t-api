@@ -2,6 +2,14 @@
 
 *****************
 
+## Release ONDEWO S2T API 6.2.0
+
+### New Features
+
+* [[OND231-586]](https://ondewo.atlassian.net/browse/OND231-586) Add configs for turn-detection.
+
+*****************
+
 ## Release ONDEWO S2T API 6.1.0
 
 ### New Features
