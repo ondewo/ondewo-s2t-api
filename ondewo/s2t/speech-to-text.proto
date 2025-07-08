@@ -378,7 +378,7 @@ message TurnDetectionOptions {
     optional string llm_grpc_host = 3;
 
     // Optional. Port number of the server that serves the LLM for turn-detection purpose.
-    optional int32 llm_grpc_host = 4;
+    optional int32 llm_grpc_port = 4;
 
     // Optional. Duration of request timeout in seconds to get result of request to LLM for turn-detection purpose. 
     // If the timeout occurs, result of turn-detection considered as False.
