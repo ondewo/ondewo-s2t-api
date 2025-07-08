@@ -275,6 +275,10 @@
                       </li>
                     
                       <li>
+                        <a href="#ondewo.s2t.TurnDetectionOptions" class="title-badge message">TurnDetectionOptions</a>
+                      </li>
+                    
+                      <li>
                         <a href="#ondewo.s2t.UtteranceDetectionOptions" class="title-badge message">UtteranceDetectionOptions</a>
                       </li>
                     
@@ -2009,6 +2013,13 @@ to add timestamps and confidences to the resulted transcript. </p></td>
                   <td><p>Timeout between audio chunks; if exceeded, the stream will be stopped. </p></td>
                 </tr>
               
+                <tr>
+                  <td>turn_detection</td>
+                  <td><a href="#ondewo.s2t.TurnDetectionOptions">TurnDetectionOptions</a></td>
+                  <td></td>
+                  <td><p>Configuration of the options to turn-detection in utterances </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -2552,6 +2563,61 @@ the word and alternative words. </p></td>
 
         
       
+        <h3 id="ondewo.s2t.TurnDetectionOptions" class="title-badge message">TurnDetectionOptions</h3>
+        <p>Configuration of the options to turn-detection in utterances</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>active</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Indicates if the turn-detection feature is active. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>full_utterance_deployment</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Whether to transcribe the whole utterance when turn moment is detected. It is helpful to increase  
+accuracy of transcriptions in cost of drop in speed. If deactivated, it just transcribe from last short silence 
+period and concatenates the transcriptions of small audio chunks between tiny silences. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>llm_grpc_host</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Host name or IP address of the server that serves the LLM for turn-detection purpose. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>llm_grpc_port</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Port number of the server that serves the LLM for turn-detection purpose. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>llm_request_timeout</td>
+                  <td><a href="#float">float</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Duration of request timeout in seconds to get result of request to LLM for turn-detection purpose. 
+If the timeout occurs, result of turn-detection considered as False. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="ondewo.s2t.UtteranceDetectionOptions" class="title-badge message">UtteranceDetectionOptions</h3>
         <p>Configuration of the options to detect utterances</p>
 
@@ -2574,6 +2640,13 @@ the word and alternative words. </p></td>
                   <td><a href="#float">float</a></td>
                   <td></td>
                   <td><p>if time between audio chunks exceeds next_chunk_timeout, stream will be stopped </p></td>
+                </tr>
+              
+                <tr>
+                  <td>turn_detection</td>
+                  <td><a href="#ondewo.s2t.TurnDetectionOptions">TurnDetectionOptions</a></td>
+                  <td></td>
+                  <td><p>The turn detection options </p></td>
                 </tr>
               
             </tbody>
