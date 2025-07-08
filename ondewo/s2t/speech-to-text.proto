@@ -363,29 +363,6 @@ message UtteranceDetectionOptions {
     }
 }
 
-// Configuration of the options to turn-detection in utterances
-message TurnDetectionOptions {
-
-    // Optional. Indicates if the turn-detection feature is active.
-    optional bool active = 1;
-
-    // Optional. Whether to transcribe the whole utterance when turn moment is detected. It is helpful to increase  
-    // accuracy of transcriptions in cost of drop in speed. If deactivated, it just transcribe from last short silence 
-    // period and concatenates the transcriptions of small audio chunks between tiny silences.
-    optional bool full_utterance_deployment = 2;
-
-    // Optional. Host name or IP address of the server that serves the LLM for turn-detection purpose.
-    optional string llm_grpc_host = 3;
-
-    // Optional. Port number of the server that serves the LLM for turn-detection purpose.
-    optional int32 llm_grpc_port = 4;
-
-    // Optional. Duration of request timeout in seconds to get result of request to LLM for turn-detection purpose. 
-    // If the timeout occurs, result of turn-detection considered as False.
-    optional float llm_request_timeout = 5;
-
-}
-
 // Configuration of the post-processing options
 message PostProcessingOptions {
 
@@ -1022,6 +999,33 @@ message StreamingSpeechRecognition {
 
     // Timeout between audio chunks; if exceeded, the stream will be stopped.
     float next_chunk_timeout = 5;
+
+    // Configuration of the options to turn-detection in utterances
+    TurnDetectionOptions turn_detection = 6;
+
+}
+
+
+// Configuration of the options to turn-detection in utterances
+message TurnDetectionOptions {
+
+    // Optional. Indicates if the turn-detection feature is active.
+    optional bool active = 1;
+
+    // Optional. Whether to transcribe the whole utterance when turn moment is detected. It is helpful to increase  
+    // accuracy of transcriptions in cost of drop in speed. If deactivated, it just transcribe from last short silence 
+    // period and concatenates the transcriptions of small audio chunks between tiny silences.
+    optional bool full_utterance_deployment = 2;
+
+    // Optional. Host name or IP address of the server that serves the LLM for turn-detection purpose.
+    optional string llm_grpc_host = 3;
+
+    // Optional. Port number of the server that serves the LLM for turn-detection purpose.
+    optional int32 llm_grpc_port = 4;
+
+    // Optional. Duration of request timeout in seconds to get result of request to LLM for turn-detection purpose. 
+    // If the timeout occurs, result of turn-detection considered as False.
+    optional float llm_request_timeout = 5;
 
 }
 
