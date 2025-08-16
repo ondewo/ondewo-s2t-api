@@ -19,6 +19,15 @@
     - [ListS2tLanguagesResponse](#ondewo.s2t.ListS2tLanguagesResponse)
     - [ListS2tPipelinesRequest](#ondewo.s2t.ListS2tPipelinesRequest)
     - [ListS2tPipelinesResponse](#ondewo.s2t.ListS2tPipelinesResponse)
+    - [LlmPostProcessingCasingOptions](#ondewo.s2t.LlmPostProcessingCasingOptions)
+    - [LlmPostProcessingInverseNormalizationOptions](#ondewo.s2t.LlmPostProcessingInverseNormalizationOptions)
+    - [LlmPostProcessingNormalizationOptions](#ondewo.s2t.LlmPostProcessingNormalizationOptions)
+    - [LlmPostProcessingPunctuationOptions](#ondewo.s2t.LlmPostProcessingPunctuationOptions)
+    - [LlmPostProcessingSemanticCorrectionOptions](#ondewo.s2t.LlmPostProcessingSemanticCorrectionOptions)
+    - [LlmPostProcessingSpellCorrectionOptions](#ondewo.s2t.LlmPostProcessingSpellCorrectionOptions)
+    - [LlmPostProcessingSummarizationOptions](#ondewo.s2t.LlmPostProcessingSummarizationOptions)
+    - [LlmPostProcessingTranslationOptions](#ondewo.s2t.LlmPostProcessingTranslationOptions)
+    - [LlmPostProcessingUserPromptOptions](#ondewo.s2t.LlmPostProcessingUserPromptOptions)
     - [Logging](#ondewo.s2t.Logging)
     - [PostProcessing](#ondewo.s2t.PostProcessing)
     - [PostProcessingOptions](#ondewo.s2t.PostProcessingOptions)
@@ -28,6 +37,7 @@
     - [S2TDescription](#ondewo.s2t.S2TDescription)
     - [S2TGetServiceInfoResponse](#ondewo.s2t.S2TGetServiceInfoResponse)
     - [S2TInference](#ondewo.s2t.S2TInference)
+    - [S2TLlmPostprocessing](#ondewo.s2t.S2TLlmPostprocessing)
     - [S2TNormalization](#ondewo.s2t.S2TNormalization)
     - [S2tCloudProviderConfig](#ondewo.s2t.S2tCloudProviderConfig)
     - [S2tCloudProviderConfigAmazon](#ondewo.s2t.S2tCloudProviderConfigAmazon)
@@ -322,6 +332,157 @@ ListS2tPipelinesResponse is used to return a list of all speech-to-text pipeline
 
 
 
+<a name="ondewo.s2t.LlmPostProcessingCasingOptions"></a>
+
+### LlmPostProcessingCasingOptions
+Configuration of the options to casing task in LLM post-processing.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| active | [bool](#bool) | optional | Optional. Indicates if the casing task of LLM post-processing is active. |
+
+
+
+
+
+
+<a name="ondewo.s2t.LlmPostProcessingInverseNormalizationOptions"></a>
+
+### LlmPostProcessingInverseNormalizationOptions
+Configuration of the options to inverse-normalization task in LLM post-processing.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| active | [bool](#bool) | optional | Optional. Indicates if the inverse-normalization task of LLM post-processing is active. |
+| email | [bool](#bool) | optional | Optional. Indicates if inverse-normalization of email address sub-task of LLM post-processing is active. |
+| phone_number | [bool](#bool) | optional | Optional. Indicates if inverse-normalization of phone number sub-task of LLM post-processing is active. |
+| date_and_time | [bool](#bool) | optional | Optional. Indicates if inverse-normalization of date and time sub-task of LLM post-processing is active. |
+| credit_card_number | [bool](#bool) | optional | Optional. Indicates if inverse-normalization of credit card number sub-task of LLM post-processing is active. |
+| social_security_number | [bool](#bool) | optional | Optional. Indicates if inverse-normalization of social security number sub-task of LLM post-processing is active |
+| time_zone | [bool](#bool) | optional | Optional. Indicates if inverse-normalization of time zone sub-task of LLM post-processing is active. |
+
+
+
+
+
+
+<a name="ondewo.s2t.LlmPostProcessingNormalizationOptions"></a>
+
+### LlmPostProcessingNormalizationOptions
+Configuration of the options to normalization task in LLM post-processing.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| active | [bool](#bool) | optional | Optional. Indicates if the normalization task of LLM post-processing is active. |
+| email | [bool](#bool) | optional | Optional. Indicates if normalization of email address sub-task of LLM post-processing is active. |
+| phone_number | [bool](#bool) | optional | Optional. Indicates if normalization of phone number sub-task of LLM post-processing is active. |
+| date_and_time | [bool](#bool) | optional | Optional. Indicates if normalization of date and time sub-task of LLM post-processing is active. |
+| credit_card_number | [bool](#bool) | optional | Optional. Indicates if normalization of credit card number sub-task of LLM post-processing is active. |
+| social_security_number | [bool](#bool) | optional | Optional. Indicates if normalization of social security number sub-task of LLM post-processing is active |
+| time_zone | [bool](#bool) | optional | Optional. Indicates if normalization of time zone sub-task of LLM post-processing is active. |
+
+
+
+
+
+
+<a name="ondewo.s2t.LlmPostProcessingPunctuationOptions"></a>
+
+### LlmPostProcessingPunctuationOptions
+Configuration of the options to punctuation task in LLM post-processing.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| active | [bool](#bool) | optional | Optional. Indicates if the punctuation task of LLM post-processing is active. |
+
+
+
+
+
+
+<a name="ondewo.s2t.LlmPostProcessingSemanticCorrectionOptions"></a>
+
+### LlmPostProcessingSemanticCorrectionOptions
+Configuration of the options to semantic-correctionsing task in LLM post-processing.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| active | [bool](#bool) | optional | Optional. Indicates if the semantic-correction task of LLM post-processing is active. |
+
+
+
+
+
+
+<a name="ondewo.s2t.LlmPostProcessingSpellCorrectionOptions"></a>
+
+### LlmPostProcessingSpellCorrectionOptions
+Configuration of the options to spelling-correctionsing task in LLM post-processing.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| active | [bool](#bool) | optional | Optional. Indicates if the spelling-correction task of LLM post-processing is active. |
+
+
+
+
+
+
+<a name="ondewo.s2t.LlmPostProcessingSummarizationOptions"></a>
+
+### LlmPostProcessingSummarizationOptions
+Configuration of the options to summarization task in LLM post-processing.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| active | [bool](#bool) | optional | Optional. Indicates if the summarization task of LLM post-processing is active. |
+| min_char | [int32](#int32) | optional | Optional. Minimum number of characters of the summary generated in summarization task of LLM post-processing. |
+| max_char | [int32](#int32) | optional | Optional. Maximum number of characters of the summary generated in summarization task of LLM post-processing. |
+
+
+
+
+
+
+<a name="ondewo.s2t.LlmPostProcessingTranslationOptions"></a>
+
+### LlmPostProcessingTranslationOptions
+Configuration of the options to translation task in LLM post-processing.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| active | [bool](#bool) | optional | Optional. Indicates if the translation task of LLM post-processing is active. |
+| language | [string](#string) | optional | Optional. Target language of the translation task of LLM post-processing. |
+
+
+
+
+
+
+<a name="ondewo.s2t.LlmPostProcessingUserPromptOptions"></a>
+
+### LlmPostProcessingUserPromptOptions
+Configuration of the options to user-prompt task in LLM post-processing.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| active | [bool](#bool) | optional | Optional. Indicates if the user-prompt task of LLM post-processing is active. This task overwrites |
+| prompt | [string](#string) | optional | Optional. The prompt to give LLM directly for post-processing purpose. |
+
+
+
+
+
+
 <a name="ondewo.s2t.Logging"></a>
 
 ### Logging
@@ -381,6 +542,7 @@ PostProcessors contains configurations for post-processors.
 | ----- | ---- | ----- | ----------- |
 | sym_spell | [SymSpell](#ondewo.s2t.SymSpell) |  | Configuration of the SymSpell spelling correction. |
 | normalization | [S2TNormalization](#ondewo.s2t.S2TNormalization) |  | Configuration of the normalization object. |
+| llm | [S2TLlmPostprocessing](#ondewo.s2t.S2TLlmPostprocessing) |  | Configuration of the LLM post-processing. |
 
 
 
@@ -468,6 +630,32 @@ S2TInference contains information about inference models used in the speech-to-t
 | acoustic_models | [AcousticModels](#ondewo.s2t.AcousticModels) |  | Configuration for the acoustic models. |
 | language_models | [LanguageModels](#ondewo.s2t.LanguageModels) |  | Configuration for the language models. |
 | inference_backend | [InferenceBackend](#ondewo.s2t.InferenceBackend) |  | Configuration for the inference backend. |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2TLlmPostprocessing"></a>
+
+### S2TLlmPostprocessing
+S2TLlmPostprocessing contains configuration for the speech-to-text postprocessing with LLM.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_host | [string](#string) | optional | Optional. Host name or IP address of the server that serves the LLM for post-processing purpose. |
+| llm_port | [int32](#int32) | optional | Optional. Port number of the server that serves the LLM for post-processing purpose. |
+| llm_request_timeout | [float](#float) | optional | Optional. Duration of request timeout in seconds to get result of request to LLM for post-processing purpose. If the timeout occurs, result of post-processing returns the input text with no change. |
+| casing | [LlmPostProcessingCasingOptions](#ondewo.s2t.LlmPostProcessingCasingOptions) | optional | Optional. Configuration of the options to casing task in LLM post-processing. |
+| punctuation | [LlmPostProcessingPunctuationOptions](#ondewo.s2t.LlmPostProcessingPunctuationOptions) | optional | Optional. Configuration of the options to punctuation task in LLM post-processing. |
+| spelling_correction | [LlmPostProcessingSpellCorrectionOptions](#ondewo.s2t.LlmPostProcessingSpellCorrectionOptions) | optional | Optional. Configuration of the options to spelling-correction task in LLM post-processing. |
+| semantic_correction | [LlmPostProcessingSemanticCorrectionOptions](#ondewo.s2t.LlmPostProcessingSemanticCorrectionOptions) | optional | Optional. Configuration of the options to semantic-correction task in LLM post-processing. |
+| translation | [LlmPostProcessingTranslationOptions](#ondewo.s2t.LlmPostProcessingTranslationOptions) | optional | Optional. Configuration of the options to translation task in LLM post-processing. |
+| inverse_normalization | [LlmPostProcessingInverseNormalizationOptions](#ondewo.s2t.LlmPostProcessingInverseNormalizationOptions) | optional | Optional. Configuration of the options to inverse-normalization task in LLM post-processing. |
+| normalization | [LlmPostProcessingNormalizationOptions](#ondewo.s2t.LlmPostProcessingNormalizationOptions) | optional | Optional. Configuration of the options to normalization task in LLM post-processing. |
+| summarization | [LlmPostProcessingSummarizationOptions](#ondewo.s2t.LlmPostProcessingSummarizationOptions) | optional | Optional. Configuration of the options to summarization task in LLM post-processing. |
+| user_prompt | [LlmPostProcessingUserPromptOptions](#ondewo.s2t.LlmPostProcessingUserPromptOptions) | optional | Optional. Configuration of the options to user-prompt task in LLM post-processing. |
 
 
 
@@ -932,8 +1120,8 @@ Configuration of the options to turn-detection in utterances
 | ----- | ---- | ----- | ----------- |
 | active | [bool](#bool) | optional | Optional. Indicates if the turn-detection feature is active. |
 | full_utterance_deployment | [bool](#bool) | optional | Optional. Whether to transcribe the whole utterance when turn moment is detected. It is helpful to increase accuracy of transcriptions in cost of drop in speed. If deactivated, it just transcribe from last short silence period and concatenates the transcriptions of small audio chunks between tiny silences. |
-| llm_grpc_host | [string](#string) | optional | Optional. Host name or IP address of the server that serves the LLM for turn-detection purpose. |
-| llm_grpc_port | [int32](#int32) | optional | Optional. Port number of the server that serves the LLM for turn-detection purpose. |
+| llm_host | [string](#string) | optional | Optional. Host name or IP address of the server that serves the LLM for turn-detection purpose. |
+| llm_port | [int32](#int32) | optional | Optional. Port number of the server that serves the LLM for turn-detection purpose. |
 | llm_request_timeout | [float](#float) | optional | Optional. Duration of request timeout in seconds to get result of request to LLM for turn-detection purpose. If the timeout occurs, result of turn-detection considered as False. |
 
 
