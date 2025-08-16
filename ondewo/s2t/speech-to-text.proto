@@ -1282,15 +1282,6 @@ message LlmPostProcessingUserPromptOptions {
 
 }
 
-// Configuration of the options to caspelling-correctionsing task in LLM post-processing.
-message LlmPostProcessingSpellCorrectionOptions {
-
-    // Optional. Indicates if the spelling-correction task of LLM post-processing is active.
-    optional bool active = 1;
-
-}
-
-
 // Logging contains configuration for logging.
 message Logging {
 
