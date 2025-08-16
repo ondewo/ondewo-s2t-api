@@ -372,9 +372,12 @@ message PostProcessingOptions {
     // Whether to disable normalization
     bool normalize = 2;
 
+    // Whether to disable LLM post-processing
+    bool llm = 3;
+
     // Post-processing configuration specifying the active post-processors in the pipeline, as well as their individual
     // configuration. If not set, all values are replaced by the ones in current pipeline.
-    PostProcessing config = 3;
+    PostProcessing config = 4;
 
 }
 
