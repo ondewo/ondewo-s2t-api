@@ -374,6 +374,7 @@ Configuration of the post-processing options
 | ----- | ---- | ----- | ----------- |
 | spelling_correction | [bool](#bool) |  | Whether to use spelling correction |
 | normalize | [bool](#bool) |  | Whether to disable normalization |
+| llm | [bool](#bool) |  | Whether to disable LLM post-processing |
 | config | [PostProcessing](#ondewo.s2t.PostProcessing) |  | Post-processing configuration specifying the active post-processors in the pipeline, as well as their individual configuration. If not set, all values are replaced by the ones in current pipeline. |
 
 
