@@ -807,8 +807,8 @@ Configuration of the options to summarization task in LLM post-processing.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | active | [bool](#bool) | optional | Optional. Indicates if the summarization task of LLM post-processing is active. |
-| min_char | [int32](#int32) | optional | Optional. Minimum number of characters of the summary generated in summarization task of LLM post-processing. |
-| max_char | [int32](#int32) | optional | Optional. Maximum number of characters of the summary generated in summarization task of LLM post-processing. |
+| min_chars | [int32](#int32) | optional | Optional. Minimum number of characters of the summary generated in summarization task of LLM post-processing. |
+| max_chars | [int32](#int32) | optional | Optional. Maximum number of characters of the summary generated in summarization task of LLM post-processing. |
 
 
 
