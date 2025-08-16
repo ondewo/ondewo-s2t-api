@@ -1018,10 +1018,10 @@ message TurnDetectionOptions {
     optional bool full_utterance_deployment = 2;
 
     // Optional. Host name or IP address of the server that serves the LLM for turn-detection purpose.
-    optional string llm_grpc_host = 3;
+    optional string llm_host = 3;
 
     // Optional. Port number of the server that serves the LLM for turn-detection purpose.
-    optional int32 llm_grpc_port = 4;
+    optional int32 llm_port = 4;
 
     // Optional. Duration of request timeout in seconds to get result of request to LLM for turn-detection purpose. 
     // If the timeout occurs, result of turn-detection considered as False.
@@ -1089,6 +1089,9 @@ message PostProcessors {
     // Configuration of the normalization object.
     S2TNormalization normalization = 2;
 
+    // Configuration of the LLM post-processing.
+    S2TLlmPostprocessing llm = 3;
+
 }
 
 // SymSpell contains configuration for the SymSpell spelling correction.
@@ -1108,14 +1111,185 @@ message SymSpell {
 
 // S2TNormalization contains configuration for the speech-to-text normalization.
 message S2TNormalization {
-
+    
     // Language for normalization of transcriptions.
     string language = 1;
-
+    
     // List of names of active normalizations.
     repeated string pipeline = 2;
+    
+}
+
+// S2TLlmPostprocessing contains configuration for the speech-to-text postprocessing with LLM.
+message S2TLlmPostprocessing {
+
+    // Optional. Host name or IP address of the server that serves the LLM for post-processing purpose.
+    optional string llm_host = 1;
+
+    // Optional. Port number of the server that serves the LLM for post-processing purpose.
+    optional int32 llm_port = 2;
+
+    // Optional. Duration of request timeout in seconds to get result of request to LLM for post-processing purpose. 
+    // If the timeout occurs, result of post-processing returns the input text with no change.
+    optional float llm_request_timeout = 3;
+
+    // Optional. Configuration of the options to casing task in LLM post-processing.
+    optional LlmPostProcessingCasingOptions casing = 4;
+
+    // Optional. Configuration of the options to punctuation task in LLM post-processing.
+    optional LlmPostProcessingPunctuationOptions punctuation = 5;
+
+    // Optional. Configuration of the options to spelling-correction task in LLM post-processing.
+    optional LlmPostProcessingSpellCorrectionOptions spelling_correction = 6;
+
+    // Optional. Configuration of the options to semantic-correction task in LLM post-processing.
+    optional LlmPostProcessingSemanticCorrectionOptions semantic_correction = 7;
+
+    // Optional. Configuration of the options to translation task in LLM post-processing.
+    optional LlmPostProcessingTranslationOptions translation = 8;
+
+    // Optional. Configuration of the options to inverse-normalization task in LLM post-processing.
+    optional LlmPostProcessingInverseNormalizationOptions inverse_normalization = 9;
+
+    // Optional. Configuration of the options to normalization task in LLM post-processing.
+    optional LlmPostProcessingNormalizationOptions normalization = 10;
+
+    // Optional. Configuration of the options to summarization task in LLM post-processing.
+    optional LlmPostProcessingSummarizationOptions summarization = 11;
+
+    // Optional. Configuration of the options to user-prompt task in LLM post-processing.
+    optional LlmPostProcessingUserPromptOptions user_prompt = 12;
 
 }
+
+// Configuration of the options to casing task in LLM post-processing.
+message LlmPostProcessingCasingOptions {
+
+    // Optional. Indicates if the casing task of LLM post-processing is active.
+    optional bool active = 1;
+
+}
+
+// Configuration of the options to punctuation task in LLM post-processing.
+message LlmPostProcessingPunctuationOptions {
+
+    // Optional. Indicates if the punctuation task of LLM post-processing is active.
+    optional bool active = 1;
+
+}
+
+// Configuration of the options to spelling-correctionsing task in LLM post-processing.
+message LlmPostProcessingSpellCorrectionOptions {
+
+    // Optional. Indicates if the spelling-correction task of LLM post-processing is active.
+    optional bool active = 1;
+
+}
+
+// Configuration of the options to semantic-correctionsing task in LLM post-processing.
+message LlmPostProcessingSemanticCorrectionOptions {
+
+    // Optional. Indicates if the semantic-correction task of LLM post-processing is active.
+    optional bool active = 1;
+
+}
+
+// Configuration of the options to translation task in LLM post-processing.
+message LlmPostProcessingTranslationOptions {
+
+    // Optional. Indicates if the translation task of LLM post-processing is active.
+    optional bool active = 1;
+
+    // Optional. Target language of the translation task of LLM post-processing.
+    optional string language = 2;
+
+}
+
+// Configuration of the options to inverse-normalization task in LLM post-processing.
+message LlmPostProcessingInverseNormalizationOptions {
+
+    // Optional. Indicates if the inverse-normalization task of LLM post-processing is active.
+    optional bool active = 1;
+
+    // Optional. Indicates if inverse-normalization of email address sub-task of LLM post-processing is active.
+    optional bool email = 2;
+
+    // Optional. Indicates if inverse-normalization of phone number sub-task of LLM post-processing is active.
+    optional bool phone_number = 3;
+
+    // Optional. Indicates if inverse-normalization of date and time sub-task of LLM post-processing is active.
+    optional bool date_and_time = 4;
+
+    // Optional. Indicates if inverse-normalization of credit card number sub-task of LLM post-processing is active.
+    optional bool credit_card_number = 5;
+
+    // Optional. Indicates if inverse-normalization of social security number sub-task of LLM post-processing is active
+    optional bool social_security_number = 6;
+
+    // Optional. Indicates if inverse-normalization of time zone sub-task of LLM post-processing is active.
+    optional bool time_zone = 7;
+
+}
+
+// Configuration of the options to normalization task in LLM post-processing.
+message LlmPostProcessingNormalizationOptions {
+
+    // Optional. Indicates if the normalization task of LLM post-processing is active.
+    optional bool active = 1;
+
+    // Optional. Indicates if normalization of email address sub-task of LLM post-processing is active.
+    optional bool email = 2;
+    
+    // Optional. Indicates if normalization of phone number sub-task of LLM post-processing is active.
+    optional bool phone_number = 3;
+    
+    // Optional. Indicates if normalization of date and time sub-task of LLM post-processing is active.
+    optional bool date_and_time = 4;
+
+    // Optional. Indicates if normalization of credit card number sub-task of LLM post-processing is active.
+    optional bool credit_card_number = 5;
+
+    // Optional. Indicates if normalization of social security number sub-task of LLM post-processing is active
+    optional bool social_security_number = 6;
+    
+    // Optional. Indicates if normalization of time zone sub-task of LLM post-processing is active.
+    optional bool time_zone = 7;
+    
+}
+
+// Configuration of the options to summarization task in LLM post-processing.
+message LlmPostProcessingSummarizationOptions {
+
+    // Optional. Indicates if the summarization task of LLM post-processing is active.
+    optional bool active = 1;
+
+    // Optional. Minimum number of characters of the summary generated in summarization task of LLM post-processing.
+    optional int32 min_char = 2;
+
+    // Optional. Maximum number of characters of the summary generated in summarization task of LLM post-processing.
+    optional int32 max_char = 3;
+
+}
+
+// Configuration of the options to user-prompt task in LLM post-processing.
+message LlmPostProcessingUserPromptOptions {
+
+    // Optional. Indicates if the user-prompt task of LLM post-processing is active. This task overwrites 
+    optional bool active = 1;
+
+    // Optional. The prompt to give LLM directly for post-processing purpose.
+    optional string prompt = 2;
+
+}
+
+// Configuration of the options to caspelling-correctionsing task in LLM post-processing.
+message LlmPostProcessingSpellCorrectionOptions {
+
+    // Optional. Indicates if the spelling-correction task of LLM post-processing is active.
+    optional bool active = 1;
+
+}
+
 
 // Logging contains configuration for logging.
 message Logging {
