@@ -2,6 +2,14 @@
 
 *****************
 
+## Release ONDEWO S2T API 6.3.0
+
+### New Features
+
+* [[OND231-592]](https://ondewo.atlassian.net/browse/OND231-592) Add configs for LLM post-processor.
+
+*****************
+
 ## Release ONDEWO S2T API 6.2.0
 
 ### New Features
