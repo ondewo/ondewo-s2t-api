@@ -1090,7 +1090,7 @@ message PostProcessors {
     S2TNormalization normalization = 2;
 
     // Configuration of the LLM post-processing.
-    S2TLlmPostprocessing llm = 3;
+    S2TLlmPostProcessing llm = 3;
 
 }
 
@@ -1120,8 +1120,8 @@ message S2TNormalization {
     
 }
 
-// S2TLlmPostprocessing contains configuration for the speech-to-text postprocessing with LLM.
-message S2TLlmPostprocessing {
+// S2TLlmPostProcessing contains configuration for the speech-to-text postprocessing with LLM.
+message S2TLlmPostProcessing {
 
     // Optional. Host name or IP address of the server that serves the LLM for post-processing purpose.
     optional string llm_host = 1;
@@ -1134,36 +1134,36 @@ message S2TLlmPostprocessing {
     optional float llm_request_timeout = 3;
 
     // Optional. Configuration of the options to casing task in LLM post-processing.
-    optional LlmPostProcessingCasingOptions casing = 4;
+    optional S2tLlmPostProcessingCasingOptions casing = 4;
 
     // Optional. Configuration of the options to punctuation task in LLM post-processing.
-    optional LlmPostProcessingPunctuationOptions punctuation = 5;
+    optional S2tLlmPostProcessingPunctuationOptions punctuation = 5;
 
     // Optional. Configuration of the options to spelling-correction task in LLM post-processing.
-    optional LlmPostProcessingSpellCorrectionOptions spelling_correction = 6;
+    optional S2tLlmPostProcessingSpellCorrectionOptions spelling_correction = 6;
 
     // Optional. Configuration of the options to semantic-correction task in LLM post-processing.
-    optional LlmPostProcessingSemanticCorrectionOptions semantic_correction = 7;
+    optional S2tLlmPostProcessingSemanticCorrectionOptions semantic_correction = 7;
 
     // Optional. Configuration of the options to translation task in LLM post-processing.
-    optional LlmPostProcessingTranslationOptions translation = 8;
+    optional S2tLlmPostProcessingTranslationOptions translation = 8;
 
     // Optional. Configuration of the options to inverse-normalization task in LLM post-processing.
-    optional LlmPostProcessingInverseNormalizationOptions inverse_normalization = 9;
+    optional S2tLlmPostProcessingInverseNormalizationOptions inverse_normalization = 9;
 
     // Optional. Configuration of the options to normalization task in LLM post-processing.
-    optional LlmPostProcessingNormalizationOptions normalization = 10;
+    optional S2tLlmPostProcessingNormalizationOptions normalization = 10;
 
     // Optional. Configuration of the options to summarization task in LLM post-processing.
-    optional LlmPostProcessingSummarizationOptions summarization = 11;
+    optional S2tLlmPostProcessingSummarizationOptions summarization = 11;
 
     // Optional. Configuration of the options to user-prompt task in LLM post-processing.
-    optional LlmPostProcessingUserPromptOptions user_prompt = 12;
+    optional S2tLlmPostProcessingUserPromptOptions user_prompt = 12;
 
 }
 
 // Configuration of the options to casing task in LLM post-processing.
-message LlmPostProcessingCasingOptions {
+message S2tLlmPostProcessingCasingOptions {
 
     // Optional. Indicates if the casing task of LLM post-processing is active.
     optional bool active = 1;
@@ -1171,7 +1171,7 @@ message LlmPostProcessingCasingOptions {
 }
 
 // Configuration of the options to punctuation task in LLM post-processing.
-message LlmPostProcessingPunctuationOptions {
+message S2tLlmPostProcessingPunctuationOptions {
 
     // Optional. Indicates if the punctuation task of LLM post-processing is active.
     optional bool active = 1;
@@ -1179,7 +1179,7 @@ message LlmPostProcessingPunctuationOptions {
 }
 
 // Configuration of the options to spelling-correctionsing task in LLM post-processing.
-message LlmPostProcessingSpellCorrectionOptions {
+message S2tLlmPostProcessingSpellCorrectionOptions {
 
     // Optional. Indicates if the spelling-correction task of LLM post-processing is active.
     optional bool active = 1;
@@ -1187,7 +1187,7 @@ message LlmPostProcessingSpellCorrectionOptions {
 }
 
 // Configuration of the options to semantic-correctionsing task in LLM post-processing.
-message LlmPostProcessingSemanticCorrectionOptions {
+message S2tLlmPostProcessingSemanticCorrectionOptions {
 
     // Optional. Indicates if the semantic-correction task of LLM post-processing is active.
     optional bool active = 1;
@@ -1195,7 +1195,7 @@ message LlmPostProcessingSemanticCorrectionOptions {
 }
 
 // Configuration of the options to translation task in LLM post-processing.
-message LlmPostProcessingTranslationOptions {
+message S2tLlmPostProcessingTranslationOptions {
 
     // Optional. Indicates if the translation task of LLM post-processing is active.
     optional bool active = 1;
@@ -1206,7 +1206,7 @@ message LlmPostProcessingTranslationOptions {
 }
 
 // Configuration of the options to inverse-normalization task in LLM post-processing.
-message LlmPostProcessingInverseNormalizationOptions {
+message S2tLlmPostProcessingInverseNormalizationOptions {
 
     // Optional. Indicates if the inverse-normalization task of LLM post-processing is active.
     optional bool active = 1;
@@ -1232,7 +1232,7 @@ message LlmPostProcessingInverseNormalizationOptions {
 }
 
 // Configuration of the options to normalization task in LLM post-processing.
-message LlmPostProcessingNormalizationOptions {
+message S2tLlmPostProcessingNormalizationOptions {
 
     // Optional. Indicates if the normalization task of LLM post-processing is active.
     optional bool active = 1;
@@ -1258,7 +1258,7 @@ message LlmPostProcessingNormalizationOptions {
 }
 
 // Configuration of the options to summarization task in LLM post-processing.
-message LlmPostProcessingSummarizationOptions {
+message S2tLlmPostProcessingSummarizationOptions {
 
     // Optional. Indicates if the summarization task of LLM post-processing is active.
     optional bool active = 1;
@@ -1272,7 +1272,7 @@ message LlmPostProcessingSummarizationOptions {
 }
 
 // Configuration of the options to user-prompt task in LLM post-processing.
-message LlmPostProcessingUserPromptOptions {
+message S2tLlmPostProcessingUserPromptOptions {
 
     // Optional. Indicates if the user-prompt task of LLM post-processing is active. This task overwrites 
     optional bool active = 1;
