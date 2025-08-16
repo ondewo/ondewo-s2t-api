@@ -1264,10 +1264,10 @@ message S2tLlmPostProcessingSummarizationOptions {
     optional bool active = 1;
 
     // Optional. Minimum number of characters of the summary generated in summarization task of LLM post-processing.
-    optional int32 min_char = 2;
+    optional int32 min_chars = 2;
 
     // Optional. Maximum number of characters of the summary generated in summarization task of LLM post-processing.
-    optional int32 max_char = 3;
+    optional int32 max_chars = 3;
 
 }
 
