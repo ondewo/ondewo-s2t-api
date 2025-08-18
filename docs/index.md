@@ -27,11 +27,6 @@
     - [PostProcessors](#ondewo.s2t.PostProcessors)
     - [PtFiles](#ondewo.s2t.PtFiles)
     - [Pyannote](#ondewo.s2t.Pyannote)
-    - [S2TDescription](#ondewo.s2t.S2TDescription)
-    - [S2TGetServiceInfoResponse](#ondewo.s2t.S2TGetServiceInfoResponse)
-    - [S2TInference](#ondewo.s2t.S2TInference)
-    - [S2TLlmPostProcessing](#ondewo.s2t.S2TLlmPostProcessing)
-    - [S2TNormalization](#ondewo.s2t.S2TNormalization)
     - [S2tCloudProviderConfig](#ondewo.s2t.S2tCloudProviderConfig)
     - [S2tCloudProviderConfigAmazon](#ondewo.s2t.S2tCloudProviderConfigAmazon)
     - [S2tCloudProviderConfigDeepgram](#ondewo.s2t.S2tCloudProviderConfigDeepgram)
@@ -41,6 +36,10 @@
     - [S2tCloudServiceDeepgram](#ondewo.s2t.S2tCloudServiceDeepgram)
     - [S2tCloudServiceGoogle](#ondewo.s2t.S2tCloudServiceGoogle)
     - [S2tCloudServiceMicrosoft](#ondewo.s2t.S2tCloudServiceMicrosoft)
+    - [S2tDescription](#ondewo.s2t.S2tDescription)
+    - [S2tGetServiceInfoResponse](#ondewo.s2t.S2tGetServiceInfoResponse)
+    - [S2tInference](#ondewo.s2t.S2tInference)
+    - [S2tLlmPostProcessing](#ondewo.s2t.S2tLlmPostProcessing)
     - [S2tLlmPostProcessingCasingOptions](#ondewo.s2t.S2tLlmPostProcessingCasingOptions)
     - [S2tLlmPostProcessingInverseNormalizationOptions](#ondewo.s2t.S2tLlmPostProcessingInverseNormalizationOptions)
     - [S2tLlmPostProcessingNormalizationOptions](#ondewo.s2t.S2tLlmPostProcessingNormalizationOptions)
@@ -50,6 +49,7 @@
     - [S2tLlmPostProcessingSummarizationOptions](#ondewo.s2t.S2tLlmPostProcessingSummarizationOptions)
     - [S2tLlmPostProcessingTranslationOptions](#ondewo.s2t.S2tLlmPostProcessingTranslationOptions)
     - [S2tLlmPostProcessingUserPromptOptions](#ondewo.s2t.S2tLlmPostProcessingUserPromptOptions)
+    - [S2tNormalization](#ondewo.s2t.S2tNormalization)
     - [S2tPipelineId](#ondewo.s2t.S2tPipelineId)
     - [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig)
     - [StreamingServer](#ondewo.s2t.StreamingServer)
@@ -408,7 +408,7 @@ Configuration of the post-processing options
 | ----- | ---- | ----- | ----------- |
 | spelling_correction | [bool](#bool) |  | Whether to use spelling correction |
 | normalize | [bool](#bool) |  | Whether to disable normalization |
-| llm | [bool](#bool) |  | Whether to disable LLM post-processing |
+| llm_post_processing | [bool](#bool) |  | Whether to disable LLM post-processing |
 | config | [PostProcessing](#ondewo.s2t.PostProcessing) |  | Post-processing configuration specifying the active post-processors in the pipeline, as well as their individual configuration. If not set, all values are replaced by the ones in current pipeline. |
 
 
@@ -425,8 +425,8 @@ PostProcessors contains configurations for post-processors.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | sym_spell | [SymSpell](#ondewo.s2t.SymSpell) |  | Configuration of the SymSpell spelling correction. |
-| normalization | [S2TNormalization](#ondewo.s2t.S2TNormalization) |  | Configuration of the normalization object. |
-| llm | [S2TLlmPostProcessing](#ondewo.s2t.S2TLlmPostProcessing) |  | Configuration of the LLM post-processing. |
+| normalization | [S2tNormalization](#ondewo.s2t.S2tNormalization) |  | Configuration of the normalization object. |
+| llm_post_processing | [S2tLlmPostProcessing](#ondewo.s2t.S2tLlmPostProcessing) |  | Configuration of the LLM post-processing. |
 
 
 
@@ -464,98 +464,6 @@ Library: [pyannote-audio](https://github.com/pyannote/pyannote-audio/blob/develo
 | min_duration_on | [float](#float) |  | Remove active regions shorter than that many seconds Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb) |
 | triton_server_host | [string](#string) |  | Host name of triton inference server that serves the Pyannote model |
 | triton_server_port | [int64](#int64) |  | Port number of triton inference server that serves the Pyannote model |
-
-
-
-
-
-
-<a name="ondewo.s2t.S2TDescription"></a>
-
-### S2TDescription
-S2TDescription contains descriptive information about the speech-to-text pipeline.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| language | [string](#string) |  | Language of the speech-to-text system. |
-| pipeline_owner | [string](#string) |  | Owner of the pipeline. |
-| domain | [string](#string) |  | Domain of the speech-to-text system. |
-| comments | [string](#string) |  | Comments about the system. |
-
-
-
-
-
-
-<a name="ondewo.s2t.S2TGetServiceInfoResponse"></a>
-
-### S2TGetServiceInfoResponse
-S2TGetServiceInfoResponse is used to return version information about the speech-to-text service.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| version | [string](#string) |  | Version number based on semantic versioning, e.g. "4.2.0". |
-
-
-
-
-
-
-<a name="ondewo.s2t.S2TInference"></a>
-
-### S2TInference
-S2TInference contains information about inference models used in the speech-to-text pipeline.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| acoustic_models | [AcousticModels](#ondewo.s2t.AcousticModels) |  | Configuration for the acoustic models. |
-| language_models | [LanguageModels](#ondewo.s2t.LanguageModels) |  | Configuration for the language models. |
-| inference_backend | [InferenceBackend](#ondewo.s2t.InferenceBackend) |  | Configuration for the inference backend. |
-
-
-
-
-
-
-<a name="ondewo.s2t.S2TLlmPostProcessing"></a>
-
-### S2TLlmPostProcessing
-S2TLlmPostProcessing contains configuration for the speech-to-text postprocessing with LLM.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| llm_host | [string](#string) | optional | Optional. Host name or IP address of the server that serves the LLM for post-processing purpose. |
-| llm_port | [int32](#int32) | optional | Optional. Port number of the server that serves the LLM for post-processing purpose. |
-| llm_request_timeout | [float](#float) | optional | Optional. Duration of request timeout in seconds to get result of request to LLM for post-processing purpose. If the timeout occurs, result of post-processing returns the input text with no change. |
-| casing | [S2tLlmPostProcessingCasingOptions](#ondewo.s2t.S2tLlmPostProcessingCasingOptions) | optional | Optional. Configuration of the options to casing task in LLM post-processing. |
-| punctuation | [S2tLlmPostProcessingPunctuationOptions](#ondewo.s2t.S2tLlmPostProcessingPunctuationOptions) | optional | Optional. Configuration of the options to punctuation task in LLM post-processing. |
-| spelling_correction | [S2tLlmPostProcessingSpellCorrectionOptions](#ondewo.s2t.S2tLlmPostProcessingSpellCorrectionOptions) | optional | Optional. Configuration of the options to spelling-correction task in LLM post-processing. |
-| semantic_correction | [S2tLlmPostProcessingSemanticCorrectionOptions](#ondewo.s2t.S2tLlmPostProcessingSemanticCorrectionOptions) | optional | Optional. Configuration of the options to semantic-correction task in LLM post-processing. |
-| translation | [S2tLlmPostProcessingTranslationOptions](#ondewo.s2t.S2tLlmPostProcessingTranslationOptions) | optional | Optional. Configuration of the options to translation task in LLM post-processing. |
-| inverse_normalization | [S2tLlmPostProcessingInverseNormalizationOptions](#ondewo.s2t.S2tLlmPostProcessingInverseNormalizationOptions) | optional | Optional. Configuration of the options to inverse-normalization task in LLM post-processing. |
-| normalization | [S2tLlmPostProcessingNormalizationOptions](#ondewo.s2t.S2tLlmPostProcessingNormalizationOptions) | optional | Optional. Configuration of the options to normalization task in LLM post-processing. |
-| summarization | [S2tLlmPostProcessingSummarizationOptions](#ondewo.s2t.S2tLlmPostProcessingSummarizationOptions) | optional | Optional. Configuration of the options to summarization task in LLM post-processing. |
-| user_prompt | [S2tLlmPostProcessingUserPromptOptions](#ondewo.s2t.S2tLlmPostProcessingUserPromptOptions) | optional | Optional. Configuration of the options to user-prompt task in LLM post-processing. |
-
-
-
-
-
-
-<a name="ondewo.s2t.S2TNormalization"></a>
-
-### S2TNormalization
-S2TNormalization contains configuration for the speech-to-text normalization.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| language | [string](#string) |  | Language for normalization of transcriptions. |
-| pipeline | [string](#string) | repeated | List of names of active normalizations. |
 
 
 
@@ -731,6 +639,82 @@ S2tCloudServiceMicrosoft message contains settings for the Microsoft Azure Cloud
 
 
 
+<a name="ondewo.s2t.S2tDescription"></a>
+
+### S2tDescription
+S2tDescription contains descriptive information about the speech-to-text pipeline.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| language | [string](#string) |  | Language of the speech-to-text system. |
+| pipeline_owner | [string](#string) |  | Owner of the pipeline. |
+| domain | [string](#string) |  | Domain of the speech-to-text system. |
+| comments | [string](#string) |  | Comments about the system. |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2tGetServiceInfoResponse"></a>
+
+### S2tGetServiceInfoResponse
+S2tGetServiceInfoResponse is used to return version information about the speech-to-text service.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| version | [string](#string) |  | Version number based on semantic versioning, e.g. "4.2.0". |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2tInference"></a>
+
+### S2tInference
+S2tInference contains information about inference models used in the speech-to-text pipeline.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| acoustic_models | [AcousticModels](#ondewo.s2t.AcousticModels) |  | Configuration for the acoustic models. |
+| language_models | [LanguageModels](#ondewo.s2t.LanguageModels) |  | Configuration for the language models. |
+| inference_backend | [InferenceBackend](#ondewo.s2t.InferenceBackend) |  | Configuration for the inference backend. |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2tLlmPostProcessing"></a>
+
+### S2tLlmPostProcessing
+S2tLlmPostProcessing contains configuration for the speech-to-text postprocessing with LLM.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_host | [string](#string) | optional | Optional. Host name or IP address of the server that serves the LLM for post-processing purpose. |
+| llm_port | [int32](#int32) | optional | Optional. Port number of the server that serves the LLM for post-processing purpose. |
+| llm_request_timeout | [float](#float) | optional | Optional. Duration of request timeout in seconds to get result of request to LLM for post-processing purpose. If the timeout occurs, result of post-processing returns the input text with no change. |
+| llm_post_processing_casing_options | [S2tLlmPostProcessingCasingOptions](#ondewo.s2t.S2tLlmPostProcessingCasingOptions) | optional | Optional. Configuration of the options to casing task in LLM post-processing. |
+| llm_post_processing_punctuation_options | [S2tLlmPostProcessingPunctuationOptions](#ondewo.s2t.S2tLlmPostProcessingPunctuationOptions) | optional | Optional. Configuration of the options to punctuation task in LLM post-processing. |
+| llm_post_processing_spelling_correction_options | [S2tLlmPostProcessingSpellCorrectionOptions](#ondewo.s2t.S2tLlmPostProcessingSpellCorrectionOptions) | optional | Optional. Configuration of the options to spelling-correction task in LLM post-processing. |
+| llm_post_processing_semantic_correction_options | [S2tLlmPostProcessingSemanticCorrectionOptions](#ondewo.s2t.S2tLlmPostProcessingSemanticCorrectionOptions) | optional | Optional. Configuration of the options to semantic-correction task in LLM post-processing. |
+| llm_post_processing_translation_options | [S2tLlmPostProcessingTranslationOptions](#ondewo.s2t.S2tLlmPostProcessingTranslationOptions) | optional | Optional. Configuration of the options to translation task in LLM post-processing. |
+| llm_post_processing_inverse_normalization_options | [S2tLlmPostProcessingInverseNormalizationOptions](#ondewo.s2t.S2tLlmPostProcessingInverseNormalizationOptions) | optional | Optional. Configuration of the options to inverse-normalization task in LLM post-processing. |
+| llm_post_processing_normalization_options | [S2tLlmPostProcessingNormalizationOptions](#ondewo.s2t.S2tLlmPostProcessingNormalizationOptions) | optional | Optional. Configuration of the options to normalization task in LLM post-processing. |
+| llm_post_processing_summarization_options | [S2tLlmPostProcessingSummarizationOptions](#ondewo.s2t.S2tLlmPostProcessingSummarizationOptions) | optional | Optional. Configuration of the options to summarization task in LLM post-processing. |
+| llm_post_processing_user_prompt_options | [S2tLlmPostProcessingUserPromptOptions](#ondewo.s2t.S2tLlmPostProcessingUserPromptOptions) | optional | Optional. Configuration of the options to user-prompt task in LLM post-processing. |
+
+
+
+
+
+
 <a name="ondewo.s2t.S2tLlmPostProcessingCasingOptions"></a>
 
 ### S2tLlmPostProcessingCasingOptions
@@ -882,6 +866,22 @@ Configuration of the options to user-prompt task in LLM post-processing.
 
 
 
+<a name="ondewo.s2t.S2tNormalization"></a>
+
+### S2tNormalization
+S2tNormalization contains configuration for the speech-to-text normalization.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| language | [string](#string) |  | Language for normalization of transcriptions. |
+| pipeline | [string](#string) | repeated | List of names of active normalizations. |
+
+
+
+
+
+
 <a name="ondewo.s2t.S2tPipelineId"></a>
 
 ### S2tPipelineId
@@ -906,9 +906,9 @@ Speech2TextConfig is a configuration message for the speech-to-text pipeline
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | Unique identifier for the configuration. |
-| description | [S2TDescription](#ondewo.s2t.S2TDescription) |  | Description of the speech-to-text system. |
+| description | [S2tDescription](#ondewo.s2t.S2tDescription) |  | Description of the speech-to-text system. |
 | active | [bool](#bool) |  | Indicates if the configuration is active. |
-| inference | [S2TInference](#ondewo.s2t.S2TInference) |  | Configuration for inference models. |
+| inference | [S2tInference](#ondewo.s2t.S2tInference) |  | Configuration for inference models. |
 | streaming_server | [StreamingServer](#ondewo.s2t.StreamingServer) |  | Configuration for the streaming server. |
 | voice_activity_detection | [VoiceActivityDetection](#ondewo.s2t.VoiceActivityDetection) |  | Configuration for voice activity detection. |
 | post_processing | [PostProcessing](#ondewo.s2t.PostProcessing) |  | Configuration for post-processing. |
@@ -1357,12 +1357,12 @@ Speech-to-text service
 | TranscribeStream | [TranscribeStreamRequest](#ondewo.s2t.TranscribeStreamRequest) stream | [TranscribeStreamResponse](#ondewo.s2t.TranscribeStreamResponse) stream | Transcribes an audio stream. |
 | GetS2tPipeline | [S2tPipelineId](#ondewo.s2t.S2tPipelineId) | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | Gets a speech to text pipeline corresponding to the id specified in S2tPipelineId. If no corresponding id is found, raises ModuleNotFoundError in server. |
 | CreateS2tPipeline | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | [S2tPipelineId](#ondewo.s2t.S2tPipelineId) | Creates a new speech to text pipeline from a Speech2TextConfig and registers the new pipeline in the server. |
-| DeleteS2tPipeline | [S2tPipelineId](#ondewo.s2t.S2tPipelineId) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes a pipeline corresponding to the id parsed in S2TPipelineId. If no corresponding id is found, raises ModuleNotFoundError in server. |
+| DeleteS2tPipeline | [S2tPipelineId](#ondewo.s2t.S2tPipelineId) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes a pipeline corresponding to the id parsed in S2tPipelineId. If no corresponding id is found, raises ModuleNotFoundError in server. |
 | UpdateS2tPipeline | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | [.google.protobuf.Empty](#google.protobuf.Empty) | Updates a pipeline with the id specified in Speech2TextConfig with the new config. If no corresponding id is found, raises ModuleNotFoundError in server. |
 | ListS2tPipelines | [ListS2tPipelinesRequest](#ondewo.s2t.ListS2tPipelinesRequest) | [ListS2tPipelinesResponse](#ondewo.s2t.ListS2tPipelinesResponse) | Lists all speech to text pipelines. |
 | ListS2tLanguages | [ListS2tLanguagesRequest](#ondewo.s2t.ListS2tLanguagesRequest) | [ListS2tLanguagesResponse](#ondewo.s2t.ListS2tLanguagesResponse) | Returns a message containing a list of all languages for which there exist pipelines. |
 | ListS2tDomains | [ListS2tDomainsRequest](#ondewo.s2t.ListS2tDomainsRequest) | [ListS2tDomainsResponse](#ondewo.s2t.ListS2tDomainsResponse) | Returns a message containing a list of all domains for which there exist pipelines. |
-| GetServiceInfo | [.google.protobuf.Empty](#google.protobuf.Empty) | [S2TGetServiceInfoResponse](#ondewo.s2t.S2TGetServiceInfoResponse) | Returns a message containing the version of the running speech to text server. |
+| GetServiceInfo | [.google.protobuf.Empty](#google.protobuf.Empty) | [S2tGetServiceInfoResponse](#ondewo.s2t.S2tGetServiceInfoResponse) | Returns a message containing the version of the running speech to text server. |
 | ListS2tLanguageModels | [ListS2tLanguageModelsRequest](#ondewo.s2t.ListS2tLanguageModelsRequest) | [ListS2tLanguageModelsResponse](#ondewo.s2t.ListS2tLanguageModelsResponse) | Given a list of pipeline ids, returns a list of LanguageModelPipelineId messages containing the pipeline id and a list of the language models loaded in the pipeline. |
 | CreateUserLanguageModel | [CreateUserLanguageModelRequest](#ondewo.s2t.CreateUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Create a user language model. |
 | DeleteUserLanguageModel | [DeleteUserLanguageModelRequest](#ondewo.s2t.DeleteUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Delete a user language model. |

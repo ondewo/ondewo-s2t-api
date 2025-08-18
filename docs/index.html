@@ -177,26 +177,6 @@
                       </li>
                     
                       <li>
-                        <a href="#ondewo.s2t.S2TDescription" class="title-badge message">S2TDescription</a>
-                      </li>
-                    
-                      <li>
-                        <a href="#ondewo.s2t.S2TGetServiceInfoResponse" class="title-badge message">S2TGetServiceInfoResponse</a>
-                      </li>
-                    
-                      <li>
-                        <a href="#ondewo.s2t.S2TInference" class="title-badge message">S2TInference</a>
-                      </li>
-                    
-                      <li>
-                        <a href="#ondewo.s2t.S2TLlmPostProcessing" class="title-badge message">S2TLlmPostProcessing</a>
-                      </li>
-                    
-                      <li>
-                        <a href="#ondewo.s2t.S2TNormalization" class="title-badge message">S2TNormalization</a>
-                      </li>
-                    
-                      <li>
                         <a href="#ondewo.s2t.S2tCloudProviderConfig" class="title-badge message">S2tCloudProviderConfig</a>
                       </li>
                     
@@ -233,6 +213,22 @@
                       </li>
                     
                       <li>
+                        <a href="#ondewo.s2t.S2tDescription" class="title-badge message">S2tDescription</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.S2tGetServiceInfoResponse" class="title-badge message">S2tGetServiceInfoResponse</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.S2tInference" class="title-badge message">S2tInference</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.S2tLlmPostProcessing" class="title-badge message">S2tLlmPostProcessing</a>
+                      </li>
+                    
+                      <li>
                         <a href="#ondewo.s2t.S2tLlmPostProcessingCasingOptions" class="title-badge message">S2tLlmPostProcessingCasingOptions</a>
                       </li>
                     
@@ -266,6 +262,10 @@
                     
                       <li>
                         <a href="#ondewo.s2t.S2tLlmPostProcessingUserPromptOptions" class="title-badge message">S2tLlmPostProcessingUserPromptOptions</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.S2tNormalization" class="title-badge message">S2tNormalization</a>
                       </li>
                     
                       <li>
@@ -434,7 +434,7 @@ found, raises ModuleNotFoundError in server.
 
           <pre>rpc DeleteS2tPipeline (<a href="#ondewo.s2t.S2tPipelineId">S2tPipelineId</a>) returns (<a href="#google.protobuf.Empty">.google.protobuf.Empty)</a></pre>
 
-          Deletes a pipeline corresponding to the id parsed in S2TPipelineId. If no corresponding id is
+          Deletes a pipeline corresponding to the id parsed in S2tPipelineId. If no corresponding id is
 found, raises ModuleNotFoundError in server.
         
           <h4 id="ondewo.s2t.Speech2Text.UpdateS2tPipeline" class="title-badge method">UpdateS2tPipeline</h4>
@@ -464,7 +464,7 @@ found, raises ModuleNotFoundError in server.
         
           <h4 id="ondewo.s2t.Speech2Text.GetServiceInfo" class="title-badge method">GetServiceInfo</h4>
 
-          <pre>rpc GetServiceInfo (<a href="#google.protobuf.Empty">.google.protobuf.Empty</a>) returns (<a href="#ondewo.s2t.S2TGetServiceInfoResponse">S2TGetServiceInfoResponse)</a></pre>
+          <pre>rpc GetServiceInfo (<a href="#google.protobuf.Empty">.google.protobuf.Empty</a>) returns (<a href="#ondewo.s2t.S2tGetServiceInfoResponse">S2tGetServiceInfoResponse)</a></pre>
 
           Returns a message containing the version of the running speech to text server.
         
@@ -1153,7 +1153,7 @@ description: {language: "fr"}, active: true, ...}] </p></td>
                 </tr>
               
                 <tr>
-                  <td>llm</td>
+                  <td>llm_post_processing</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>Whether to disable LLM post-processing </p></td>
@@ -1193,14 +1193,14 @@ configuration. If not set, all values are replaced by the ones in current pipeli
               
                 <tr>
                   <td>normalization</td>
-                  <td><a href="#ondewo.s2t.S2TNormalization">S2TNormalization</a></td>
+                  <td><a href="#ondewo.s2t.S2tNormalization">S2tNormalization</a></td>
                   <td></td>
                   <td><p>Configuration of the normalization object. </p></td>
                 </tr>
               
                 <tr>
-                  <td>llm</td>
-                  <td><a href="#ondewo.s2t.S2TLlmPostProcessing">S2TLlmPostProcessing</a></td>
+                  <td>llm_post_processing</td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessing">S2tLlmPostProcessing</a></td>
                   <td></td>
                   <td><p>Configuration of the LLM post-processing. </p></td>
                 </tr>
@@ -1295,246 +1295,6 @@ Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutor
                   <td><a href="#int64">int64</a></td>
                   <td></td>
                   <td><p>Port number of triton inference server that serves the Pyannote model </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="ondewo.s2t.S2TDescription" class="title-badge message">S2TDescription</h3>
-        <p>S2TDescription contains descriptive information about the speech-to-text pipeline.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>language</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Language of the speech-to-text system. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pipeline_owner</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Owner of the pipeline. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>domain</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Domain of the speech-to-text system. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>comments</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Comments about the system. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="ondewo.s2t.S2TGetServiceInfoResponse" class="title-badge message">S2TGetServiceInfoResponse</h3>
-        <p>S2TGetServiceInfoResponse is used to return version information about the speech-to-text service.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>version</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Version number based on semantic versioning, e.g. "4.2.0". </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="ondewo.s2t.S2TInference" class="title-badge message">S2TInference</h3>
-        <p>S2TInference contains information about inference models used in the speech-to-text pipeline.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>acoustic_models</td>
-                  <td><a href="#ondewo.s2t.AcousticModels">AcousticModels</a></td>
-                  <td></td>
-                  <td><p>Configuration for the acoustic models. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>language_models</td>
-                  <td><a href="#ondewo.s2t.LanguageModels">LanguageModels</a></td>
-                  <td></td>
-                  <td><p>Configuration for the language models. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>inference_backend</td>
-                  <td><a href="#ondewo.s2t.InferenceBackend">InferenceBackend</a></td>
-                  <td></td>
-                  <td><p>Configuration for the inference backend. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="ondewo.s2t.S2TLlmPostProcessing" class="title-badge message">S2TLlmPostProcessing</h3>
-        <p>S2TLlmPostProcessing contains configuration for the speech-to-text postprocessing with LLM.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>llm_host</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. Host name or IP address of the server that serves the LLM for post-processing purpose. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>llm_port</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. Port number of the server that serves the LLM for post-processing purpose. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>llm_request_timeout</td>
-                  <td><a href="#float">float</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. Duration of request timeout in seconds to get result of request to LLM for post-processing purpose. 
-If the timeout occurs, result of post-processing returns the input text with no change. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>casing</td>
-                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingCasingOptions">S2tLlmPostProcessingCasingOptions</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. Configuration of the options to casing task in LLM post-processing. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>punctuation</td>
-                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingPunctuationOptions">S2tLlmPostProcessingPunctuationOptions</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. Configuration of the options to punctuation task in LLM post-processing. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>spelling_correction</td>
-                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSpellCorrectionOptions">S2tLlmPostProcessingSpellCorrectionOptions</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. Configuration of the options to spelling-correction task in LLM post-processing. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>semantic_correction</td>
-                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSemanticCorrectionOptions">S2tLlmPostProcessingSemanticCorrectionOptions</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. Configuration of the options to semantic-correction task in LLM post-processing. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>translation</td>
-                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingTranslationOptions">S2tLlmPostProcessingTranslationOptions</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. Configuration of the options to translation task in LLM post-processing. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>inverse_normalization</td>
-                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingInverseNormalizationOptions">S2tLlmPostProcessingInverseNormalizationOptions</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. Configuration of the options to inverse-normalization task in LLM post-processing. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>normalization</td>
-                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingNormalizationOptions">S2tLlmPostProcessingNormalizationOptions</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. Configuration of the options to normalization task in LLM post-processing. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>summarization</td>
-                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSummarizationOptions">S2tLlmPostProcessingSummarizationOptions</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. Configuration of the options to summarization task in LLM post-processing. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>user_prompt</td>
-                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingUserPromptOptions">S2tLlmPostProcessingUserPromptOptions</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. Configuration of the options to user-prompt task in LLM post-processing. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="ondewo.s2t.S2TNormalization" class="title-badge message">S2TNormalization</h3>
-        <p>S2TNormalization contains configuration for the speech-to-text normalization.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>language</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Language for normalization of transcriptions. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pipeline</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>List of names of active normalizations. </p></td>
                 </tr>
               
             </tbody>
@@ -2048,6 +1808,215 @@ to add timestamps and confidences to the resulted transcript. </p></td>
 
         
       
+        <h3 id="ondewo.s2t.S2tDescription" class="title-badge message">S2tDescription</h3>
+        <p>S2tDescription contains descriptive information about the speech-to-text pipeline.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>language</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Language of the speech-to-text system. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pipeline_owner</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Owner of the pipeline. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>domain</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Domain of the speech-to-text system. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>comments</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Comments about the system. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.S2tGetServiceInfoResponse" class="title-badge message">S2tGetServiceInfoResponse</h3>
+        <p>S2tGetServiceInfoResponse is used to return version information about the speech-to-text service.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>version</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Version number based on semantic versioning, e.g. "4.2.0". </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.S2tInference" class="title-badge message">S2tInference</h3>
+        <p>S2tInference contains information about inference models used in the speech-to-text pipeline.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>acoustic_models</td>
+                  <td><a href="#ondewo.s2t.AcousticModels">AcousticModels</a></td>
+                  <td></td>
+                  <td><p>Configuration for the acoustic models. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>language_models</td>
+                  <td><a href="#ondewo.s2t.LanguageModels">LanguageModels</a></td>
+                  <td></td>
+                  <td><p>Configuration for the language models. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>inference_backend</td>
+                  <td><a href="#ondewo.s2t.InferenceBackend">InferenceBackend</a></td>
+                  <td></td>
+                  <td><p>Configuration for the inference backend. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.S2tLlmPostProcessing" class="title-badge message">S2tLlmPostProcessing</h3>
+        <p>S2tLlmPostProcessing contains configuration for the speech-to-text postprocessing with LLM.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>llm_host</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Host name or IP address of the server that serves the LLM for post-processing purpose. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>llm_port</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Port number of the server that serves the LLM for post-processing purpose. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>llm_request_timeout</td>
+                  <td><a href="#float">float</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Duration of request timeout in seconds to get result of request to LLM for post-processing purpose. 
+If the timeout occurs, result of post-processing returns the input text with no change. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>llm_post_processing_casing_options</td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingCasingOptions">S2tLlmPostProcessingCasingOptions</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Configuration of the options to casing task in LLM post-processing. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>llm_post_processing_punctuation_options</td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingPunctuationOptions">S2tLlmPostProcessingPunctuationOptions</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Configuration of the options to punctuation task in LLM post-processing. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>llm_post_processing_spelling_correction_options</td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSpellCorrectionOptions">S2tLlmPostProcessingSpellCorrectionOptions</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Configuration of the options to spelling-correction task in LLM post-processing. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>llm_post_processing_semantic_correction_options</td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSemanticCorrectionOptions">S2tLlmPostProcessingSemanticCorrectionOptions</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Configuration of the options to semantic-correction task in LLM post-processing. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>llm_post_processing_translation_options</td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingTranslationOptions">S2tLlmPostProcessingTranslationOptions</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Configuration of the options to translation task in LLM post-processing. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>llm_post_processing_inverse_normalization_options</td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingInverseNormalizationOptions">S2tLlmPostProcessingInverseNormalizationOptions</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Configuration of the options to inverse-normalization task in LLM post-processing. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>llm_post_processing_normalization_options</td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingNormalizationOptions">S2tLlmPostProcessingNormalizationOptions</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Configuration of the options to normalization task in LLM post-processing. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>llm_post_processing_summarization_options</td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSummarizationOptions">S2tLlmPostProcessingSummarizationOptions</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Configuration of the options to summarization task in LLM post-processing. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>llm_post_processing_user_prompt_options</td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingUserPromptOptions">S2tLlmPostProcessingUserPromptOptions</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Configuration of the options to user-prompt task in LLM post-processing. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="ondewo.s2t.S2tLlmPostProcessingCasingOptions" class="title-badge message">S2tLlmPostProcessingCasingOptions</h3>
         <p>Configuration of the options to casing task in LLM post-processing.</p>
 
@@ -2376,6 +2345,37 @@ to add timestamps and confidences to the resulted transcript. </p></td>
 
         
       
+        <h3 id="ondewo.s2t.S2tNormalization" class="title-badge message">S2tNormalization</h3>
+        <p>S2tNormalization contains configuration for the speech-to-text normalization.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>language</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Language for normalization of transcriptions. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pipeline</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>List of names of active normalizations. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="ondewo.s2t.S2tPipelineId" class="title-badge message">S2tPipelineId</h3>
         <p>The pipeline id for a specific pipeline configuration</p>
 
@@ -2419,7 +2419,7 @@ to add timestamps and confidences to the resulted transcript. </p></td>
               
                 <tr>
                   <td>description</td>
-                  <td><a href="#ondewo.s2t.S2TDescription">S2TDescription</a></td>
+                  <td><a href="#ondewo.s2t.S2tDescription">S2tDescription</a></td>
                   <td></td>
                   <td><p>Description of the speech-to-text system. </p></td>
                 </tr>
@@ -2433,7 +2433,7 @@ to add timestamps and confidences to the resulted transcript. </p></td>
               
                 <tr>
                   <td>inference</td>
-                  <td><a href="#ondewo.s2t.S2TInference">S2TInference</a></td>
+                  <td><a href="#ondewo.s2t.S2tInference">S2tInference</a></td>
                   <td></td>
                   <td><p>Configuration for inference models. </p></td>
                 </tr>
