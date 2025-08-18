@@ -672,7 +672,7 @@ message Speech2TextConfig {
 
 
 // S2tDescription contains descriptive information about the speech-to-text pipeline.
-message S2tescription {
+message S2tDescription {
 
     // Language of the speech-to-text system.
     string language = 1;
