@@ -17,6 +17,8 @@
     - [ListS2tLanguageModelsResponse](#ondewo.s2t.ListS2tLanguageModelsResponse)
     - [ListS2tLanguagesRequest](#ondewo.s2t.ListS2tLanguagesRequest)
     - [ListS2tLanguagesResponse](#ondewo.s2t.ListS2tLanguagesResponse)
+    - [ListS2tNormalizationPipelinesRequest](#ondewo.s2t.ListS2tNormalizationPipelinesRequest)
+    - [ListS2tNormalizationPipelinesResponse](#ondewo.s2t.ListS2tNormalizationPipelinesResponse)
     - [ListS2tPipelinesRequest](#ondewo.s2t.ListS2tPipelinesRequest)
     - [ListS2tPipelinesResponse](#ondewo.s2t.ListS2tPipelinesResponse)
     - [Logging](#ondewo.s2t.Logging)
@@ -293,6 +295,38 @@ Response message to list available languages
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | languages | [string](#string) | repeated | available languages |
+
+
+
+
+
+
+<a name="ondewo.s2t.ListS2tNormalizationPipelinesRequest"></a>
+
+### ListS2tNormalizationPipelinesRequest
+The request message for ListS2tNormalizationPipelines.
+Filter pipelines by attributed in request.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| language | [string](#string) |  | Optional. Define the language. |
+
+
+
+
+
+
+<a name="ondewo.s2t.ListS2tNormalizationPipelinesResponse"></a>
+
+### ListS2tNormalizationPipelinesResponse
+Pipeline Response representation.
+The response message for ListS2tNormalizationPipelines.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| s2t_normalization_pipelines | [string](#string) | repeated | Required. Representation of a list of normalization pipelines configurations. Retrieved by ListS2tNormalizationPipelines, containing the configurations of normalization pipelines with the specifications received in the ListS2tNormalizationPipelinesRequest. |
 
 
 
@@ -1334,6 +1368,7 @@ Speech-to-text service
 | DeleteUserLanguageModel | [DeleteUserLanguageModelRequest](#ondewo.s2t.DeleteUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Delete a user language model. |
 | AddDataToUserLanguageModel | [AddDataToUserLanguageModelRequest](#ondewo.s2t.AddDataToUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Add data to a user language model. |
 | TrainUserLanguageModel | [TrainUserLanguageModelRequest](#ondewo.s2t.TrainUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Train a user language model. |
+| ListS2tNormalizationPipelines | [ListS2tNormalizationPipelinesRequest](#ondewo.s2t.ListS2tNormalizationPipelinesRequest) | [ListS2tNormalizationPipelinesResponse](#ondewo.s2t.ListS2tNormalizationPipelinesResponse) | Retrieves a list of normalization pipelines based on specific requirements. |
 
  <!-- end services -->
 
