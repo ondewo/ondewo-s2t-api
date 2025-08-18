@@ -6,7 +6,8 @@
 
 ### New Features
 
-* [[OND231-592]](https://ondewo.atlassian.net/browse/OND231-592) Add configs for LLM post-processor.
+* [[OND231-592]](https://ondewo.atlassian.net/browse/OND231-592) Add configs for LLM post-processor and list of 
+  normalizer pipelines.
 
 *****************
 
