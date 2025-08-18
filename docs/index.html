@@ -1153,18 +1153,18 @@ description: {language: "fr"}, active: true, ...}] </p></td>
                 </tr>
               
                 <tr>
-                  <td>llm_post_processing</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Whether to disable LLM post-processing </p></td>
-                </tr>
-              
-                <tr>
                   <td>config</td>
                   <td><a href="#ondewo.s2t.PostProcessing">PostProcessing</a></td>
                   <td></td>
                   <td><p>Post-processing configuration specifying the active post-processors in the pipeline, as well as their individual
 configuration. If not set, all values are replaced by the ones in current pipeline. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>llm_post_processing</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether to disable LLM post-processing </p></td>
                 </tr>
               
             </tbody>
@@ -1948,63 +1948,63 @@ If the timeout occurs, result of post-processing returns the input text with no 
                 </tr>
               
                 <tr>
-                  <td>llm_post_processing_casing_options</td>
+                  <td>s2t_llm_post_processing_casing_options</td>
                   <td><a href="#ondewo.s2t.S2tLlmPostProcessingCasingOptions">S2tLlmPostProcessingCasingOptions</a></td>
                   <td>optional</td>
                   <td><p>Optional. Configuration of the options to casing task in LLM post-processing. </p></td>
                 </tr>
               
                 <tr>
-                  <td>llm_post_processing_punctuation_options</td>
+                  <td>s2t_llm_post_processing_punctuation_options</td>
                   <td><a href="#ondewo.s2t.S2tLlmPostProcessingPunctuationOptions">S2tLlmPostProcessingPunctuationOptions</a></td>
                   <td>optional</td>
                   <td><p>Optional. Configuration of the options to punctuation task in LLM post-processing. </p></td>
                 </tr>
               
                 <tr>
-                  <td>llm_post_processing_spelling_correction_options</td>
+                  <td>s2t_llm_post_processing_spelling_correction_options</td>
                   <td><a href="#ondewo.s2t.S2tLlmPostProcessingSpellCorrectionOptions">S2tLlmPostProcessingSpellCorrectionOptions</a></td>
                   <td>optional</td>
                   <td><p>Optional. Configuration of the options to spelling-correction task in LLM post-processing. </p></td>
                 </tr>
               
                 <tr>
-                  <td>llm_post_processing_semantic_correction_options</td>
+                  <td>s2t_llm_post_processing_semantic_correction_options</td>
                   <td><a href="#ondewo.s2t.S2tLlmPostProcessingSemanticCorrectionOptions">S2tLlmPostProcessingSemanticCorrectionOptions</a></td>
                   <td>optional</td>
                   <td><p>Optional. Configuration of the options to semantic-correction task in LLM post-processing. </p></td>
                 </tr>
               
                 <tr>
-                  <td>llm_post_processing_translation_options</td>
+                  <td>s2t_llm_post_processing_translation_options</td>
                   <td><a href="#ondewo.s2t.S2tLlmPostProcessingTranslationOptions">S2tLlmPostProcessingTranslationOptions</a></td>
                   <td>optional</td>
                   <td><p>Optional. Configuration of the options to translation task in LLM post-processing. </p></td>
                 </tr>
               
                 <tr>
-                  <td>llm_post_processing_inverse_normalization_options</td>
+                  <td>s2t_llm_post_processing_inverse_normalization_options</td>
                   <td><a href="#ondewo.s2t.S2tLlmPostProcessingInverseNormalizationOptions">S2tLlmPostProcessingInverseNormalizationOptions</a></td>
                   <td>optional</td>
                   <td><p>Optional. Configuration of the options to inverse-normalization task in LLM post-processing. </p></td>
                 </tr>
               
                 <tr>
-                  <td>llm_post_processing_normalization_options</td>
+                  <td>s2t_llm_post_processing_normalization_options</td>
                   <td><a href="#ondewo.s2t.S2tLlmPostProcessingNormalizationOptions">S2tLlmPostProcessingNormalizationOptions</a></td>
                   <td>optional</td>
                   <td><p>Optional. Configuration of the options to normalization task in LLM post-processing. </p></td>
                 </tr>
               
                 <tr>
-                  <td>llm_post_processing_summarization_options</td>
+                  <td>s2t_llm_post_processing_summarization_options</td>
                   <td><a href="#ondewo.s2t.S2tLlmPostProcessingSummarizationOptions">S2tLlmPostProcessingSummarizationOptions</a></td>
                   <td>optional</td>
                   <td><p>Optional. Configuration of the options to summarization task in LLM post-processing. </p></td>
                 </tr>
               
                 <tr>
-                  <td>llm_post_processing_user_prompt_options</td>
+                  <td>s2t_llm_post_processing_user_prompt_options</td>
                   <td><a href="#ondewo.s2t.S2tLlmPostProcessingUserPromptOptions">S2tLlmPostProcessingUserPromptOptions</a></td>
                   <td>optional</td>
                   <td><p>Optional. Configuration of the options to user-prompt task in LLM post-processing. </p></td>

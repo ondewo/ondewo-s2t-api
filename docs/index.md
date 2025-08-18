@@ -408,8 +408,8 @@ Configuration of the post-processing options
 | ----- | ---- | ----- | ----------- |
 | spelling_correction | [bool](#bool) |  | Whether to use spelling correction |
 | normalize | [bool](#bool) |  | Whether to disable normalization |
-| llm_post_processing | [bool](#bool) |  | Whether to disable LLM post-processing |
 | config | [PostProcessing](#ondewo.s2t.PostProcessing) |  | Post-processing configuration specifying the active post-processors in the pipeline, as well as their individual configuration. If not set, all values are replaced by the ones in current pipeline. |
+| llm_post_processing | [bool](#bool) |  | Whether to disable LLM post-processing |
 
 
 
@@ -700,15 +700,15 @@ S2tLlmPostProcessing contains configuration for the speech-to-text postprocessin
 | llm_host | [string](#string) | optional | Optional. Host name or IP address of the server that serves the LLM for post-processing purpose. |
 | llm_port | [int32](#int32) | optional | Optional. Port number of the server that serves the LLM for post-processing purpose. |
 | llm_request_timeout | [float](#float) | optional | Optional. Duration of request timeout in seconds to get result of request to LLM for post-processing purpose. If the timeout occurs, result of post-processing returns the input text with no change. |
-| llm_post_processing_casing_options | [S2tLlmPostProcessingCasingOptions](#ondewo.s2t.S2tLlmPostProcessingCasingOptions) | optional | Optional. Configuration of the options to casing task in LLM post-processing. |
-| llm_post_processing_punctuation_options | [S2tLlmPostProcessingPunctuationOptions](#ondewo.s2t.S2tLlmPostProcessingPunctuationOptions) | optional | Optional. Configuration of the options to punctuation task in LLM post-processing. |
-| llm_post_processing_spelling_correction_options | [S2tLlmPostProcessingSpellCorrectionOptions](#ondewo.s2t.S2tLlmPostProcessingSpellCorrectionOptions) | optional | Optional. Configuration of the options to spelling-correction task in LLM post-processing. |
-| llm_post_processing_semantic_correction_options | [S2tLlmPostProcessingSemanticCorrectionOptions](#ondewo.s2t.S2tLlmPostProcessingSemanticCorrectionOptions) | optional | Optional. Configuration of the options to semantic-correction task in LLM post-processing. |
-| llm_post_processing_translation_options | [S2tLlmPostProcessingTranslationOptions](#ondewo.s2t.S2tLlmPostProcessingTranslationOptions) | optional | Optional. Configuration of the options to translation task in LLM post-processing. |
-| llm_post_processing_inverse_normalization_options | [S2tLlmPostProcessingInverseNormalizationOptions](#ondewo.s2t.S2tLlmPostProcessingInverseNormalizationOptions) | optional | Optional. Configuration of the options to inverse-normalization task in LLM post-processing. |
-| llm_post_processing_normalization_options | [S2tLlmPostProcessingNormalizationOptions](#ondewo.s2t.S2tLlmPostProcessingNormalizationOptions) | optional | Optional. Configuration of the options to normalization task in LLM post-processing. |
-| llm_post_processing_summarization_options | [S2tLlmPostProcessingSummarizationOptions](#ondewo.s2t.S2tLlmPostProcessingSummarizationOptions) | optional | Optional. Configuration of the options to summarization task in LLM post-processing. |
-| llm_post_processing_user_prompt_options | [S2tLlmPostProcessingUserPromptOptions](#ondewo.s2t.S2tLlmPostProcessingUserPromptOptions) | optional | Optional. Configuration of the options to user-prompt task in LLM post-processing. |
+| s2t_llm_post_processing_casing_options | [S2tLlmPostProcessingCasingOptions](#ondewo.s2t.S2tLlmPostProcessingCasingOptions) | optional | Optional. Configuration of the options to casing task in LLM post-processing. |
+| s2t_llm_post_processing_punctuation_options | [S2tLlmPostProcessingPunctuationOptions](#ondewo.s2t.S2tLlmPostProcessingPunctuationOptions) | optional | Optional. Configuration of the options to punctuation task in LLM post-processing. |
+| s2t_llm_post_processing_spelling_correction_options | [S2tLlmPostProcessingSpellCorrectionOptions](#ondewo.s2t.S2tLlmPostProcessingSpellCorrectionOptions) | optional | Optional. Configuration of the options to spelling-correction task in LLM post-processing. |
+| s2t_llm_post_processing_semantic_correction_options | [S2tLlmPostProcessingSemanticCorrectionOptions](#ondewo.s2t.S2tLlmPostProcessingSemanticCorrectionOptions) | optional | Optional. Configuration of the options to semantic-correction task in LLM post-processing. |
+| s2t_llm_post_processing_translation_options | [S2tLlmPostProcessingTranslationOptions](#ondewo.s2t.S2tLlmPostProcessingTranslationOptions) | optional | Optional. Configuration of the options to translation task in LLM post-processing. |
+| s2t_llm_post_processing_inverse_normalization_options | [S2tLlmPostProcessingInverseNormalizationOptions](#ondewo.s2t.S2tLlmPostProcessingInverseNormalizationOptions) | optional | Optional. Configuration of the options to inverse-normalization task in LLM post-processing. |
+| s2t_llm_post_processing_normalization_options | [S2tLlmPostProcessingNormalizationOptions](#ondewo.s2t.S2tLlmPostProcessingNormalizationOptions) | optional | Optional. Configuration of the options to normalization task in LLM post-processing. |
+| s2t_llm_post_processing_summarization_options | [S2tLlmPostProcessingSummarizationOptions](#ondewo.s2t.S2tLlmPostProcessingSummarizationOptions) | optional | Optional. Configuration of the options to summarization task in LLM post-processing. |
+| s2t_llm_post_processing_user_prompt_options | [S2tLlmPostProcessingUserPromptOptions](#ondewo.s2t.S2tLlmPostProcessingUserPromptOptions) | optional | Optional. Configuration of the options to user-prompt task in LLM post-processing. |
 
 
 
