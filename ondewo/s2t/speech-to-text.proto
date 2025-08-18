@@ -368,19 +368,19 @@ message UtteranceDetectionOptions {
 
 // Configuration of the post-processing options
 message PostProcessingOptions {
-
+    
     // Whether to use spelling correction
     bool spelling_correction = 1;
-
+    
     // Whether to disable normalization
     bool normalize = 2;
-
-    // Whether to disable LLM post-processing
-    bool llm_post_processing = 3;
-
+    
     // Post-processing configuration specifying the active post-processors in the pipeline, as well as their individual
     // configuration. If not set, all values are replaced by the ones in current pipeline.
-    PostProcessing config = 4;
+    PostProcessing config = 3;
+    
+    // Whether to disable LLM post-processing
+    bool llm_post_processing = 4;
 
 }
 
@@ -1140,31 +1140,31 @@ message S2tLlmPostProcessing {
     optional float llm_request_timeout = 3;
 
     // Optional. Configuration of the options to casing task in LLM post-processing.
-    optional S2tLlmPostProcessingCasingOptions llm_post_processing_casing_options = 4;
+    optional S2tLlmPostProcessingCasingOptions s2t_llm_post_processing_casing_options = 4;
 
     // Optional. Configuration of the options to punctuation task in LLM post-processing.
-    optional S2tLlmPostProcessingPunctuationOptions llm_post_processing_punctuation_options = 5;
+    optional S2tLlmPostProcessingPunctuationOptions s2t_llm_post_processing_punctuation_options = 5;
 
     // Optional. Configuration of the options to spelling-correction task in LLM post-processing.
-    optional S2tLlmPostProcessingSpellCorrectionOptions llm_post_processing_spelling_correction_options = 6;
+    optional S2tLlmPostProcessingSpellCorrectionOptions s2t_llm_post_processing_spelling_correction_options = 6;
 
     // Optional. Configuration of the options to semantic-correction task in LLM post-processing.
-    optional S2tLlmPostProcessingSemanticCorrectionOptions llm_post_processing_semantic_correction_options = 7;
+    optional S2tLlmPostProcessingSemanticCorrectionOptions s2t_llm_post_processing_semantic_correction_options = 7;
 
     // Optional. Configuration of the options to translation task in LLM post-processing.
-    optional S2tLlmPostProcessingTranslationOptions llm_post_processing_translation_options = 8;
+    optional S2tLlmPostProcessingTranslationOptions s2t_llm_post_processing_translation_options = 8;
 
     // Optional. Configuration of the options to inverse-normalization task in LLM post-processing.
-    optional S2tLlmPostProcessingInverseNormalizationOptions llm_post_processing_inverse_normalization_options = 9;
+    optional S2tLlmPostProcessingInverseNormalizationOptions s2t_llm_post_processing_inverse_normalization_options = 9;
 
     // Optional. Configuration of the options to normalization task in LLM post-processing.
-    optional S2tLlmPostProcessingNormalizationOptions llm_post_processing_normalization_options = 10;
+    optional S2tLlmPostProcessingNormalizationOptions s2t_llm_post_processing_normalization_options = 10;
 
     // Optional. Configuration of the options to summarization task in LLM post-processing.
-    optional S2tLlmPostProcessingSummarizationOptions llm_post_processing_summarization_options = 11;
+    optional S2tLlmPostProcessingSummarizationOptions s2t_llm_post_processing_summarization_options = 11;
 
     // Optional. Configuration of the options to user-prompt task in LLM post-processing.
-    optional S2tLlmPostProcessingUserPromptOptions llm_post_processing_user_prompt_options = 12;
+    optional S2tLlmPostProcessingUserPromptOptions s2t_llm_post_processing_user_prompt_options = 12;
 
 }
 
