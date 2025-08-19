@@ -2,6 +2,21 @@
 
 *****************
 
+## Release ONDEWO S2T API 7.0.0
+
+### New Features
+
+* [[OND231-592]](https://ondewo.atlassian.net/browse/OND231-592) Add configs for LLM post-processor and list of 
+  normalizer pipelines.
+
+### Breaking Changes
+
+* [[OND231-592]](https://ondewo.atlassian.net/browse/OND231-592) Changing 
+  `S2TGetServiceInfoResponse` -> `S2tGetServiceInfoResponse`, `S2TDescription` -> `S2tDescription` and 
+  `S2TInference` -> `S2tInference`.
+
+*****************
+
 ## Release ONDEWO S2T API 6.2.0
 
 ### New Features
@@ -14,7 +29,7 @@
 
 ### New Features
 
-* [[OND231-564]](https://ondewo.atlassian.net/browse/OND231-564) Add cloud services to InferenceBackend enum.
+* [[OND231-564]](https://ondewo.atlassian.net/browse/OND231-564) Add cloud services to `InferenceBackend` enum.
 
 *****************
 
@@ -40,8 +55,8 @@
 
 ### Improvements
 
-* [[OND231-469]](https://ondewo.atlassian.net/browse/OND231-469) Removed start_of_utterance_threshold and
-  end_of_utterance_threshold from StreamingSpeechRecognition and UtteranceDetectionOptions
+* [[OND231-469]](https://ondewo.atlassian.net/browse/OND231-469) Removed `start_of_utterance_threshold` and
+  `end_of_utterance_threshold` from `StreamingSpeechRecognition` and `UtteranceDetectionOptions`
 
 *****************
 
@@ -49,13 +64,13 @@
 
 ### Improvements
 
-* [[OND231-500]](https://ondewo.atlassian.net/browse/OND231-500) Update TranscriptionRequestConfig, Whisper and
-  WhisperTriton messages to get language and task of S2T model.
+* [[OND231-500]](https://ondewo.atlassian.net/browse/OND231-500) Update `TranscriptionRequestConfig`, Whisper and
+  `WhisperTriton` messages to get `language` and `task` of S2T model.
 
 ### Breaking Changes
 
-* [[OND231-500]](https://ondewo.atlassian.net/browse/OND231-500) Matchbox, Quartznet and QuartznetTriton models are
-  deprecated and removed from API.
+* [[OND231-500]](https://ondewo.atlassian.net/browse/OND231-500) `Matchbox`, `Quartznet` and `QuartznetTriton` models 
+  are deprecated and removed from API.
 
 *****************
 
@@ -63,7 +78,7 @@
 
 ### Improvements
 
-* [[OND231-418]](https://ondewo.atlassian.net/browse/OND231-418) Update Transcription message to support
+* [[OND231-418]](https://ondewo.atlassian.net/browse/OND231-418) Update `Transcription` message to support
   alternative transcriptions and words, based on the Google speech-to-text output format.
 
 *****************
@@ -73,12 +88,12 @@
 ### Improvements
 
 * [[OND231-390]](https://ondewo.atlassian.net/browse/OND231-390) Add transcription alternative numbers and
-  InferenceBackend config
+  `InferenceBackend` config
 * Improvement of the documentation
 
 ### Breaking Changes
 
-* Grpc message sorting order of TranscriptionReturnOptions have changed to be more intuitive
+* Grpc message sorting order of `TranscriptionReturnOptions` have changed to be more intuitive
 
 *****************
 
@@ -102,12 +117,12 @@
 
 ### New Features
 
-* [[OND231-389]](https://ondewo.atlassian.net/browse/OND231-389) - Add Whisper and WhisperTriton
-* [[OND231-390]](https://ondewo.atlassian.net/browse/OND231-390) - Generalize Decoders for adding Seq2Seq models
+* [[OND231-389]](https://ondewo.atlassian.net/browse/OND231-389) - Add `Whisper` and `WhisperTriton`
+* [[OND231-390]](https://ondewo.atlassian.net/browse/OND231-390) - Generalize `Decoders` for adding Seq2Seq models
 
 ### Breaking Changes
 
-* [[OND231-390]](https://ondewo.atlassian.net/browse/OND231-390) CTCDecoders are now named Decoders only
+* [[OND231-390]](https://ondewo.atlassian.net/browse/OND231-390) `CTCDecoders` are now named `Decoders` only
 
 *****************
 
@@ -140,7 +155,7 @@
 
 ### New Features
 
-* Add `bool registered_only` option in ListS2tPipelinesRequest.
+* Add `bool registered_only` option in `ListS2tPipelinesRequest`.
 
 *****************
 
@@ -148,7 +163,7 @@
 
 ### New Features
 
-* [[OND231-338]](https://ondewo.atlassian.net/browse/OND231-338) - Add mute_audio field in TranscribeStreamRequest.
+* [[OND231-338]](https://ondewo.atlassian.net/browse/OND231-338) - Add `mute_audio` field in `TranscribeStreamRequest`.
 
 *****************
 
@@ -156,8 +171,8 @@
 
 ### Breaking Changes
 
-* [[OND231-334]](https://ondewo.atlassian.net/browse/OND231-338) - Rename Description, GetServiceInfoResponse, Inference
-  and Normalization messages to include S2T
+* [[OND231-334]](https://ondewo.atlassian.net/browse/OND231-338) - Rename `Description`, `GetServiceInfoResponse`, 
+`Inference` and `Normalization` messages to include S2T
 
 *****************
 
@@ -166,7 +181,7 @@
 ### Breaking Changes
 
 * [[OND231-271]](https://ondewo.atlassian.net/browse/OND231-271) - Implement configuration messages for
-  TranscribeFileRequest and TranscribeStreamRequest to the speech-to-text server.
+  `TranscribeFileRequest` and `TranscribeStreamRequest` to the speech-to-text server.
 
 *****************
 

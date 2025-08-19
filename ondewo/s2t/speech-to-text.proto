@@ -34,7 +34,7 @@ service Speech2Text {
     // Creates a new speech to text pipeline from a Speech2TextConfig and registers the new pipeline in the server.
     rpc CreateS2tPipeline (Speech2TextConfig) returns (S2tPipelineId) {};
 
-    // Deletes a pipeline corresponding to the id parsed in S2TPipelineId. If no corresponding id is
+    // Deletes a pipeline corresponding to the id parsed in S2tPipelineId. If no corresponding id is
     // found, raises ModuleNotFoundError in server.
     rpc DeleteS2tPipeline (S2tPipelineId) returns (google.protobuf.Empty) {};
 
@@ -52,7 +52,7 @@ service Speech2Text {
     rpc ListS2tDomains (ListS2tDomainsRequest) returns (ListS2tDomainsResponse) {};
 
     // Returns a message containing the version of the running speech to text server.
-    rpc GetServiceInfo (google.protobuf.Empty) returns (S2TGetServiceInfoResponse) {};
+    rpc GetServiceInfo (google.protobuf.Empty) returns (S2tGetServiceInfoResponse) {};
 
     // Given a list of pipeline ids, returns a list of LanguageModelPipelineId messages containing the pipeline
     // id and a list of the language models loaded in the pipeline.
@@ -69,6 +69,9 @@ service Speech2Text {
 
     // Train a user language model.
     rpc TrainUserLanguageModel (TrainUserLanguageModelRequest) returns (google.protobuf.Empty) {};
+
+    // Retrieves a list of normalization pipelines based on specific requirements.
+    rpc ListS2tNormalizationPipelines(ListS2tNormalizationPipelinesRequest) returns (ListS2tNormalizationPipelinesResponse);
 
 }
 
@@ -365,16 +368,19 @@ message UtteranceDetectionOptions {
 
 // Configuration of the post-processing options
 message PostProcessingOptions {
-
+    
     // Whether to use spelling correction
     bool spelling_correction = 1;
-
+    
     // Whether to disable normalization
     bool normalize = 2;
-
+    
     // Post-processing configuration specifying the active post-processors in the pipeline, as well as their individual
     // configuration. If not set, all values are replaced by the ones in current pipeline.
     PostProcessing config = 3;
+    
+    // Whether to disable LLM post-processing
+    bool llm_post_processing = 4;
 
 }
 
@@ -624,8 +630,8 @@ message ListS2tDomainsResponse {
 // GET SERVICE INFO //
 //////////////////////
 
-// S2TGetServiceInfoResponse is used to return version information about the speech-to-text service.
-message S2TGetServiceInfoResponse {
+// S2tGetServiceInfoResponse is used to return version information about the speech-to-text service.
+message S2tGetServiceInfoResponse {
 
     // Version number based on semantic versioning, e.g. "4.2.0".
     string version = 1;
@@ -642,13 +648,13 @@ message Speech2TextConfig {
     string id = 1;
 
     // Description of the speech-to-text system.
-    S2TDescription description = 2;
+    S2tDescription description = 2;
 
     // Indicates if the configuration is active.
     bool active = 3;
 
     // Configuration for inference models.
-    S2TInference inference = 4;
+    S2tInference inference = 4;
 
     // Configuration for the streaming server.
     StreamingServer streaming_server = 5;
@@ -665,8 +671,8 @@ message Speech2TextConfig {
 }
 
 
-// S2TDescription contains descriptive information about the speech-to-text pipeline.
-message S2TDescription {
+// S2tDescription contains descriptive information about the speech-to-text pipeline.
+message S2tDescription {
 
     // Language of the speech-to-text system.
     string language = 1;
@@ -683,8 +689,8 @@ message S2TDescription {
 }
 
 
-// S2TInference contains information about inference models used in the speech-to-text pipeline.
-message S2TInference {
+// S2tInference contains information about inference models used in the speech-to-text pipeline.
+message S2tInference {
 
     // Configuration for the acoustic models.
     AcousticModels acoustic_models = 1;
@@ -1018,10 +1024,10 @@ message TurnDetectionOptions {
     optional bool full_utterance_deployment = 2;
 
     // Optional. Host name or IP address of the server that serves the LLM for turn-detection purpose.
-    optional string llm_grpc_host = 3;
+    optional string llm_host = 3;
 
     // Optional. Port number of the server that serves the LLM for turn-detection purpose.
-    optional int32 llm_grpc_port = 4;
+    optional int32 llm_port = 4;
 
     // Optional. Duration of request timeout in seconds to get result of request to LLM for turn-detection purpose. 
     // If the timeout occurs, result of turn-detection considered as False.
@@ -1087,7 +1093,10 @@ message PostProcessors {
     SymSpell sym_spell = 1;
 
     // Configuration of the normalization object.
-    S2TNormalization normalization = 2;
+    S2tNormalization normalization = 2;
+
+    // Configuration of the LLM post-processing.
+    S2tLlmPostProcessing llm_post_processing = 3;
 
 }
 
@@ -1106,14 +1115,176 @@ message SymSpell {
 
 }
 
-// S2TNormalization contains configuration for the speech-to-text normalization.
-message S2TNormalization {
-
+// S2tNormalization contains configuration for the speech-to-text normalization.
+message S2tNormalization {
+    
     // Language for normalization of transcriptions.
     string language = 1;
-
+    
     // List of names of active normalizations.
     repeated string pipeline = 2;
+    
+}
+
+// S2tLlmPostProcessing contains configuration for the speech-to-text postprocessing with LLM.
+message S2tLlmPostProcessing {
+
+    // Optional. Host name or IP address of the server that serves the LLM for post-processing purpose.
+    optional string llm_host = 1;
+
+    // Optional. Port number of the server that serves the LLM for post-processing purpose.
+    optional int32 llm_port = 2;
+
+    // Optional. Duration of request timeout in seconds to get result of request to LLM for post-processing purpose. 
+    // If the timeout occurs, result of post-processing returns the input text with no change.
+    optional float llm_request_timeout = 3;
+
+    // Optional. Configuration of the options to casing task in LLM post-processing.
+    optional S2tLlmPostProcessingCasingOptions s2t_llm_post_processing_casing_options = 4;
+
+    // Optional. Configuration of the options to punctuation task in LLM post-processing.
+    optional S2tLlmPostProcessingPunctuationOptions s2t_llm_post_processing_punctuation_options = 5;
+
+    // Optional. Configuration of the options to spelling-correction task in LLM post-processing.
+    optional S2tLlmPostProcessingSpellCorrectionOptions s2t_llm_post_processing_spelling_correction_options = 6;
+
+    // Optional. Configuration of the options to semantic-correction task in LLM post-processing.
+    optional S2tLlmPostProcessingSemanticCorrectionOptions s2t_llm_post_processing_semantic_correction_options = 7;
+
+    // Optional. Configuration of the options to translation task in LLM post-processing.
+    optional S2tLlmPostProcessingTranslationOptions s2t_llm_post_processing_translation_options = 8;
+
+    // Optional. Configuration of the options to inverse-normalization task in LLM post-processing.
+    optional S2tLlmPostProcessingInverseNormalizationOptions s2t_llm_post_processing_inverse_normalization_options = 9;
+
+    // Optional. Configuration of the options to normalization task in LLM post-processing.
+    optional S2tLlmPostProcessingNormalizationOptions s2t_llm_post_processing_normalization_options = 10;
+
+    // Optional. Configuration of the options to summarization task in LLM post-processing.
+    optional S2tLlmPostProcessingSummarizationOptions s2t_llm_post_processing_summarization_options = 11;
+
+    // Optional. Configuration of the options to user-prompt task in LLM post-processing.
+    optional S2tLlmPostProcessingUserPromptOptions s2t_llm_post_processing_user_prompt_options = 12;
+
+}
+
+// Configuration of the options to casing task in LLM post-processing.
+message S2tLlmPostProcessingCasingOptions {
+
+    // Optional. Indicates if the casing task of LLM post-processing is active.
+    optional bool active = 1;
+
+}
+
+// Configuration of the options to punctuation task in LLM post-processing.
+message S2tLlmPostProcessingPunctuationOptions {
+
+    // Optional. Indicates if the punctuation task of LLM post-processing is active.
+    optional bool active = 1;
+
+}
+
+// Configuration of the options to spelling-correctionsing task in LLM post-processing.
+message S2tLlmPostProcessingSpellCorrectionOptions {
+
+    // Optional. Indicates if the spelling-correction task of LLM post-processing is active.
+    optional bool active = 1;
+
+}
+
+// Configuration of the options to semantic-correctionsing task in LLM post-processing.
+message S2tLlmPostProcessingSemanticCorrectionOptions {
+
+    // Optional. Indicates if the semantic-correction task of LLM post-processing is active.
+    optional bool active = 1;
+
+}
+
+// Configuration of the options to translation task in LLM post-processing.
+message S2tLlmPostProcessingTranslationOptions {
+
+    // Optional. Indicates if the translation task of LLM post-processing is active.
+    optional bool active = 1;
+
+    // Optional. Target language of the translation task of LLM post-processing.
+    optional string language = 2;
+
+}
+
+// Configuration of the options to inverse-normalization task in LLM post-processing.
+message S2tLlmPostProcessingInverseNormalizationOptions {
+
+    // Optional. Indicates if the inverse-normalization task of LLM post-processing is active.
+    optional bool active = 1;
+
+    // Optional. Indicates if inverse-normalization of email address sub-task of LLM post-processing is active.
+    optional bool email = 2;
+
+    // Optional. Indicates if inverse-normalization of phone number sub-task of LLM post-processing is active.
+    optional bool phone_number = 3;
+
+    // Optional. Indicates if inverse-normalization of date and time sub-task of LLM post-processing is active.
+    optional bool date_and_time = 4;
+
+    // Optional. Indicates if inverse-normalization of credit card number sub-task of LLM post-processing is active.
+    optional bool credit_card_number = 5;
+
+    // Optional. Indicates if inverse-normalization of social security number sub-task of LLM post-processing is active
+    optional bool social_security_number = 6;
+
+    // Optional. Indicates if inverse-normalization of time zone sub-task of LLM post-processing is active.
+    optional bool time_zone = 7;
+
+}
+
+// Configuration of the options to normalization task in LLM post-processing.
+message S2tLlmPostProcessingNormalizationOptions {
+
+    // Optional. Indicates if the normalization task of LLM post-processing is active.
+    optional bool active = 1;
+
+    // Optional. Indicates if normalization of email address sub-task of LLM post-processing is active.
+    optional bool email = 2;
+    
+    // Optional. Indicates if normalization of phone number sub-task of LLM post-processing is active.
+    optional bool phone_number = 3;
+    
+    // Optional. Indicates if normalization of date and time sub-task of LLM post-processing is active.
+    optional bool date_and_time = 4;
+
+    // Optional. Indicates if normalization of credit card number sub-task of LLM post-processing is active.
+    optional bool credit_card_number = 5;
+
+    // Optional. Indicates if normalization of social security number sub-task of LLM post-processing is active
+    optional bool social_security_number = 6;
+    
+    // Optional. Indicates if normalization of time zone sub-task of LLM post-processing is active.
+    optional bool time_zone = 7;
+    
+}
+
+// Configuration of the options to summarization task in LLM post-processing.
+message S2tLlmPostProcessingSummarizationOptions {
+
+    // Optional. Indicates if the summarization task of LLM post-processing is active.
+    optional bool active = 1;
+
+    // Optional. Minimum number of characters of the summary generated in summarization task of LLM post-processing.
+    optional int32 min_chars = 2;
+
+    // Optional. Maximum number of characters of the summary generated in summarization task of LLM post-processing.
+    optional int32 max_chars = 3;
+
+}
+
+// Configuration of the options to user-prompt task in LLM post-processing.
+message S2tLlmPostProcessingUserPromptOptions {
+
+    // Optional. Indicates if the user-prompt task of LLM post-processing is active. This task overwrites 
+    optional bool active = 1;
+
+    // Optional. The prompt to give LLM directly for post-processing purpose.
+    optional string prompt = 2;
 
 }
 
@@ -1203,5 +1374,29 @@ message TrainUserLanguageModelRequest {
 
     // Order n of the ngram. Example: 3 (for trigram model)
     int64 order = 2;
+
+}
+
+////////////////////////
+// LIST OF S2T NORMALIZATION PIPELINES //
+////////////////////////
+
+// The request message for ListS2tNormalizationPipelines.
+// Filter pipelines by attributed in request.
+message ListS2tNormalizationPipelinesRequest {
+
+    // Optional. Define the language.
+    string language = 1;
+
+}
+
+// Pipeline Response representation.
+// The response message for ListS2tNormalizationPipelines.
+message ListS2tNormalizationPipelinesResponse {
+
+    // Required. Representation of a list of normalization pipelines configurations.
+    // Retrieved by ListS2tNormalizationPipelines, containing the configurations of
+    // normalization pipelines with the specifications received in the ListS2tNormalizationPipelinesRequest.
+    repeated string s2t_normalization_pipelines = 1;
 
 }
