@@ -1184,7 +1184,7 @@ message S2tLlmPostProcessingPunctuationOptions {
 
 }
 
-// Configuration of the options to spelling-correctionsing task in LLM post-processing.
+// Configuration of the options to spelling-correction task in LLM post-processing.
 message S2tLlmPostProcessingSpellCorrectionOptions {
 
     // Optional. Indicates if the spelling-correction task of LLM post-processing is active.
@@ -1192,7 +1192,7 @@ message S2tLlmPostProcessingSpellCorrectionOptions {
 
 }
 
-// Configuration of the options to semantic-correctionsing task in LLM post-processing.
+// Configuration of the options to semantic-correction task in LLM post-processing.
 message S2tLlmPostProcessingSemanticCorrectionOptions {
 
     // Optional. Indicates if the semantic-correction task of LLM post-processing is active.
