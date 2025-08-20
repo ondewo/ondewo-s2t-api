@@ -790,7 +790,7 @@ Configuration of the options to punctuation task in LLM post-processing.
 <a name="ondewo.s2t.S2tLlmPostProcessingSemanticCorrectionOptions"></a>
 
 ### S2tLlmPostProcessingSemanticCorrectionOptions
-Configuration of the options to semantic-correctionsing task in LLM post-processing.
+Configuration of the options to semantic-correction task in LLM post-processing.
 
 
 | Field | Type | Label | Description |
@@ -805,7 +805,7 @@ Configuration of the options to semantic-correctionsing task in LLM post-process
 <a name="ondewo.s2t.S2tLlmPostProcessingSpellCorrectionOptions"></a>
 
 ### S2tLlmPostProcessingSpellCorrectionOptions
-Configuration of the options to spelling-correctionsing task in LLM post-processing.
+Configuration of the options to spelling-correction task in LLM post-processing.
 
 
 | Field | Type | Label | Description |
