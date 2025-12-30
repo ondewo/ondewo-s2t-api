@@ -93,7 +93,7 @@
 <a name="ondewo.s2t.AcousticModels"></a>
 
 ### AcousticModels
-AcousticModels contains information about different types of acoustic models.
+<p>AcousticModels contains information about different types of acoustic models.</p>
 
 
 | Field | Type | Label | Description |
@@ -116,12 +116,12 @@ AcousticModels contains information about different types of acoustic models.
 <a name="ondewo.s2t.AddDataToUserLanguageModelRequest"></a>
 
 ### AddDataToUserLanguageModelRequest
-AddDataToUserLanguageModelRequest is used to request the addition of data to a user-specific language model.
+<p>AddDataToUserLanguageModelRequest is used to request the addition of data to a user-specific language model.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language_model_name | [string](#string) |  | Name of the language model to which to add data. Example: "user_lm_1" |
+| language_model_name | [string](#string) |  | Name of the language model to which to add data. Example: &quot;user_lm_1&quot; |
 | zipped_data | [bytes](#bytes) |  | Zip file containing data in the form of text files. Example: A zip file with text files containing sentences or phrases in the target language. |
 
 
@@ -132,7 +132,7 @@ AddDataToUserLanguageModelRequest is used to request the addition of data to a u
 <a name="ondewo.s2t.CkptFile"></a>
 
 ### CkptFile
-CkptFile contains information about checkpoint files.
+<p>CkptFile contains information about checkpoint files.</p>
 
 
 | Field | Type | Label | Description |
@@ -147,12 +147,12 @@ CkptFile contains information about checkpoint files.
 <a name="ondewo.s2t.CreateUserLanguageModelRequest"></a>
 
 ### CreateUserLanguageModelRequest
-CreateUserLanguageModelRequest is used to request the creation of a new user-specific language model.
+<p>CreateUserLanguageModelRequest is used to request the creation of a new user-specific language model.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language_model_name | [string](#string) |  | Name of the language model to create. Example: "user_lm_1" |
+| language_model_name | [string](#string) |  | Name of the language model to create. Example: &quot;user_lm_1&quot; |
 
 
 
@@ -162,12 +162,12 @@ CreateUserLanguageModelRequest is used to request the creation of a new user-spe
 <a name="ondewo.s2t.DeleteUserLanguageModelRequest"></a>
 
 ### DeleteUserLanguageModelRequest
-DeleteUserLanguageModelRequest is used to request the deletion of a user-specific language model.
+<p>DeleteUserLanguageModelRequest is used to request the deletion of a user-specific language model.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language_model_name | [string](#string) |  | Name of the language model to delete. Example: "user_lm_1" |
+| language_model_name | [string](#string) |  | Name of the language model to delete. Example: &quot;user_lm_1&quot; |
 
 
 
@@ -177,13 +177,13 @@ DeleteUserLanguageModelRequest is used to request the deletion of a user-specifi
 <a name="ondewo.s2t.LanguageModelPipelineId"></a>
 
 ### LanguageModelPipelineId
-LanguageModelPipelineId contains information about a pipeline and its available language models.
+<p>LanguageModelPipelineId contains information about a pipeline and its available language models.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| pipeline_id | [string](#string) |  | A pipeline ID. Example: "pipeline_1" |
-| model_names | [string](#string) | repeated | A list of all available language models for the corresponding pipeline ID. Example: ["model_1", "model_2"] |
+| pipeline_id | [string](#string) |  | A pipeline ID. Example: &quot;pipeline_1&quot; |
+| model_names | [string](#string) | repeated | A list of all available language models for the corresponding pipeline ID. Example: [&quot;model_1&quot;, &quot;model_2&quot;] |
 
 
 
@@ -193,7 +193,7 @@ LanguageModelPipelineId contains information about a pipeline and its available 
 <a name="ondewo.s2t.LanguageModels"></a>
 
 ### LanguageModels
-LanguageModels contains information about language models.
+<p>LanguageModels contains information about language models.</p>
 
 
 | Field | Type | Label | Description |
@@ -212,7 +212,7 @@ LanguageModels contains information about language models.
 <a name="ondewo.s2t.ListS2tDomainsRequest"></a>
 
 ### ListS2tDomainsRequest
-Request message to list available domains. Optionally also filters can be set.
+<p>Request message to list available domains. Optionally also filters can be set.</p>
 
 
 | Field | Type | Label | Description |
@@ -228,12 +228,12 @@ Request message to list available domains. Optionally also filters can be set.
 <a name="ondewo.s2t.ListS2tDomainsResponse"></a>
 
 ### ListS2tDomainsResponse
-Response message to list available domains
+<p>Response message to list available domains</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| domains | [string](#string) | repeated | domains available. Example: ["medical", "finance"] |
+| domains | [string](#string) | repeated | domains available. Example: [&quot;medical&quot;, &quot;finance&quot;] |
 
 
 
@@ -243,12 +243,12 @@ Response message to list available domains
 <a name="ondewo.s2t.ListS2tLanguageModelsRequest"></a>
 
 ### ListS2tLanguageModelsRequest
-ListS2tLanguageModelsRequest is used to request a list of available language models for specified pipelines.
+<p>ListS2tLanguageModelsRequest is used to request a list of available language models for specified pipelines.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| ids | [string](#string) | repeated | List of pipeline IDs to retrieve their available language models. Example: ["pipeline_1", "pipeline_2"] |
+| ids | [string](#string) | repeated | List of pipeline IDs to retrieve their available language models. Example: [&quot;pipeline_1&quot;, &quot;pipeline_2&quot;] |
 
 
 
@@ -258,12 +258,12 @@ ListS2tLanguageModelsRequest is used to request a list of available language mod
 <a name="ondewo.s2t.ListS2tLanguageModelsResponse"></a>
 
 ### ListS2tLanguageModelsResponse
-ListS2tLanguageModelsResponse is used to return the available language models for specified pipelines.
+<p>ListS2tLanguageModelsResponse is used to return the available language models for specified pipelines.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| lm_pipeline_ids | [LanguageModelPipelineId](#ondewo.s2t.LanguageModelPipelineId) | repeated | Response is a list of LanguageModelPipelineId, where each element contains a pipeline ID and its associated language models. Example: [{pipeline_id: "pipeline_1", model_names: ["model_1", "model_2"]}, {pipeline_id: "pipeline_2", model_names: ["model_3"]}] |
+| lm_pipeline_ids | [LanguageModelPipelineId](#ondewo.s2t.LanguageModelPipelineId) | repeated | Response is a list of <code>LanguageModelPipelineId</code>, where each element contains a pipeline ID and its associated language models. Example: [{pipeline_id: &quot;pipeline_1&quot;, model_names: [&quot;model_1&quot;, &quot;model_2&quot;]}, {pipeline_id: &quot;pipeline_2&quot;, model_names: [&quot;model_3&quot;]}] |
 
 
 
@@ -273,13 +273,13 @@ ListS2tLanguageModelsResponse is used to return the available language models fo
 <a name="ondewo.s2t.ListS2tLanguagesRequest"></a>
 
 ### ListS2tLanguagesRequest
-ListS2tLanguagesRequest is used to request a list of available languages. Optionally, filters can be set.
+<p>ListS2tLanguagesRequest is used to request a list of available languages. Optionally, filters can be set.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| domains | [string](#string) | repeated | Filter for domains. Example: ["medical", "finance"] |
-| pipeline_owners | [string](#string) | repeated | Filter for pipeline owners. Example: ["ondewo", "partner_company"] |
+| domains | [string](#string) | repeated | Filter for domains. Example: [&quot;medical&quot;, &quot;finance&quot;] |
+| pipeline_owners | [string](#string) | repeated | Filter for pipeline owners. Example: [&quot;ondewo&quot;, &quot;partner_company&quot;] |
 
 
 
@@ -289,7 +289,7 @@ ListS2tLanguagesRequest is used to request a list of available languages. Option
 <a name="ondewo.s2t.ListS2tLanguagesResponse"></a>
 
 ### ListS2tLanguagesResponse
-Response message to list available languages
+<p>Response message to list available languages</p>
 
 
 | Field | Type | Label | Description |
@@ -304,8 +304,8 @@ Response message to list available languages
 <a name="ondewo.s2t.ListS2tNormalizationPipelinesRequest"></a>
 
 ### ListS2tNormalizationPipelinesRequest
-The request message for ListS2tNormalizationPipelines.
-Filter pipelines by attributed in request.
+<p>The request message for <code>ListS2tNormalizationPipelines</code>.</p>
+<p>Filter pipelines by attributes in request.</p>
 
 
 | Field | Type | Label | Description |
@@ -320,13 +320,12 @@ Filter pipelines by attributed in request.
 <a name="ondewo.s2t.ListS2tNormalizationPipelinesResponse"></a>
 
 ### ListS2tNormalizationPipelinesResponse
-Pipeline Response representation.
-The response message for ListS2tNormalizationPipelines.
+<p>The response message for <code>ListS2tNormalizationPipelines</code>.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| s2t_normalization_pipelines | [string](#string) | repeated | Required. Representation of a list of normalization pipelines configurations. Retrieved by ListS2tNormalizationPipelines, containing the configurations of normalization pipelines with the specifications received in the ListS2tNormalizationPipelinesRequest. |
+| s2t_normalization_pipelines | [string](#string) | repeated | Required. Representation of a list of normalization pipelines configurations. Retrieved by <code>ListS2tNormalizationPipelines</code>, containing the configurations of normalization pipelines with the specifications received in the <code>ListS2tNormalizationPipelinesRequest</code>. |
 
 
 
@@ -336,7 +335,7 @@ The response message for ListS2tNormalizationPipelines.
 <a name="ondewo.s2t.ListS2tPipelinesRequest"></a>
 
 ### ListS2tPipelinesRequest
-Request to list all speech-to-text pipelines. Optionally also filter criteria can be set
+<p>Request to list all speech-to-text pipelines. Optionally also filter criteria can be set</p>
 
 
 | Field | Type | Label | Description |
@@ -354,12 +353,12 @@ Request to list all speech-to-text pipelines. Optionally also filter criteria ca
 <a name="ondewo.s2t.ListS2tPipelinesResponse"></a>
 
 ### ListS2tPipelinesResponse
-ListS2tPipelinesResponse is used to return a list of all speech-to-text pipelines.
+<p>ListS2tPipelinesResponse is used to return a list of all speech-to-text pipelines.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| pipeline_configs | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | repeated | A list of Speech2TextConfig message instances containing the configuration of each pipeline. Example: [{id: "pipeline_1", description: {language: "en"}, active: true, ...}, {id: "pipeline_2", description: {language: "fr"}, active: true, ...}] |
+| pipeline_configs | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | repeated | A list of <code>Speech2TextConfig</code> message instances containing the configuration of each pipeline. Example: [{id: &quot;pipeline_1&quot;, description: {language: &quot;en&quot;}, active: true, ...}, {id: &quot;pipeline_2&quot;, description: {language: &quot;fr&quot;}, active: true, ...}] |
 
 
 
@@ -369,7 +368,7 @@ ListS2tPipelinesResponse is used to return a list of all speech-to-text pipeline
 <a name="ondewo.s2t.Logging"></a>
 
 ### Logging
-Logging contains configuration for logging.
+<p>Logging contains configuration for logging.</p>
 
 
 | Field | Type | Label | Description |
@@ -385,7 +384,7 @@ Logging contains configuration for logging.
 <a name="ondewo.s2t.PostProcessing"></a>
 
 ### PostProcessing
-PostProcessing contains the configuration for post-processing.
+<p>PostProcessing contains the configuration for post-processing.</p>
 
 
 | Field | Type | Label | Description |
@@ -401,7 +400,7 @@ PostProcessing contains the configuration for post-processing.
 <a name="ondewo.s2t.PostProcessingOptions"></a>
 
 ### PostProcessingOptions
-Configuration of the post-processing options
+<p>Configuration of the post-processing options</p>
 
 
 | Field | Type | Label | Description |
@@ -419,7 +418,7 @@ Configuration of the post-processing options
 <a name="ondewo.s2t.PostProcessors"></a>
 
 ### PostProcessors
-PostProcessors contains configurations for post-processors.
+<p>PostProcessors contains configurations for post-processors.</p>
 
 
 | Field | Type | Label | Description |
@@ -436,7 +435,7 @@ PostProcessors contains configurations for post-processors.
 <a name="ondewo.s2t.PtFiles"></a>
 
 ### PtFiles
-PtFiles contains information about PT files.
+<p>PtFiles contains information about PT files.</p>
 
 
 | Field | Type | Label | Description |
@@ -452,16 +451,16 @@ PtFiles contains information about PT files.
 <a name="ondewo.s2t.Pyannote"></a>
 
 ### Pyannote
-Pyannote contains configuration for the Pyannote voice activity detection model.
-Library: [pyannote-audio](https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb)
+<p>Pyannote contains configuration for the Pyannote voice activity detection model.</p>
+<p>Library: <a href="https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb">pyannote-audio</a></p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | model_name | [string](#string) |  | Full name of the Pyannote model. |
 | min_audio_size | [int64](#int64) |  | Minimum audio size for processing. |
-| min_duration_off | [float](#float) |  | Fill inactive regions shorter than that many seconds. Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb) |
-| min_duration_on | [float](#float) |  | Remove active regions shorter than that many seconds Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb) |
+| min_duration_off | [float](#float) |  | Fill inactive regions shorter than that many seconds. Example <a href="https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb">notebook</a> |
+| min_duration_on | [float](#float) |  | Remove active regions shorter than that many seconds. Example <a href="https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb">notebook</a> |
 | triton_server_host | [string](#string) |  | Host name of triton inference server that serves the Pyannote model |
 | triton_server_port | [int64](#int64) |  | Port number of triton inference server that serves the Pyannote model |
 
@@ -473,7 +472,7 @@ Library: [pyannote-audio](https://github.com/pyannote/pyannote-audio/blob/develo
 <a name="ondewo.s2t.S2tCloudProviderConfig"></a>
 
 ### S2tCloudProviderConfig
-Configuration for cloud provider settings for Speech-to-Text (S2T).
+<p>Configuration for cloud provider settings for Speech-to-Text (S2T).</p>
 
 
 | Field | Type | Label | Description |
@@ -491,15 +490,15 @@ Configuration for cloud provider settings for Speech-to-Text (S2T).
 <a name="ondewo.s2t.S2tCloudProviderConfigAmazon"></a>
 
 ### S2tCloudProviderConfigAmazon
-Configuration details specific to the Amazon web service speech-to-text provider.
+<p>Configuration details specific to the Amazon web service speech-to-text provider.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| enable_partial_results_stabilization | [bool](#bool) | optional | Optional. Enables or disables partial_results_stabilization feature. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization |
-| partial_results_stability | [string](#string) | optional | Optional. You can use this field to set the stability level of the transcription results. A higher stability level means that the transcription results are less likely to change. Higher stability levels can come with lower overall transcription accuracy. Acceptable values: ["low", "medium", "high"]. Defaults to "high" if not set explicitly. More details at: https://aws.amazon.com/blogs/machine-learning/amazon-transcribe-now-supports-partial-results-stabilization-for-streaming-audio/ |
-| language_model_name | [string](#string) | optional | Optional. The name of your customize language model you want to use. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html |
-| vocabulary_name | [string](#string) | optional | Optional. The name of your customize language model you want to use. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html |
+| enable_partial_results_stabilization | [bool](#bool) | optional | Optional. Enables or disables <code>partial_results_stabilization</code> feature. More details at: <a href="https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization">https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization</a> |
+| partial_results_stability | [string](#string) | optional | Optional. You can use this field to set the stability level of the transcription results. A higher stability level means that the transcription results are less likely to change. Higher stability levels can come with lower overall transcription accuracy. Acceptable values: [&quot;low&quot;, &quot;medium&quot;, &quot;high&quot;]. Defaults to &quot;high&quot; if not set explicitly. More details at: <a href="https://aws.amazon.com/blogs/machine-learning/amazon-transcribe-now-supports-partial-results-stabilization-for-streaming-audio/">https://aws.amazon.com/blogs/machine-learning/amazon-transcribe-now-supports-partial-results-stabilization-for-streaming-audio/</a> |
+| language_model_name | [string](#string) | optional | Optional. The name of your customize language model you want to use. More details at: <a href="https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html">https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html</a> |
+| vocabulary_name | [string](#string) | optional | Optional. The name of your customize vocabulary you want to use. More details at: <a href="https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html">https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html</a> |
 
 
 
@@ -509,16 +508,16 @@ Configuration details specific to the Amazon web service speech-to-text provider
 <a name="ondewo.s2t.S2tCloudProviderConfigDeepgram"></a>
 
 ### S2tCloudProviderConfigDeepgram
-Configuration details specific to the Deepgram speech-to-text provider.
+<p>Configuration details specific to the Deepgram speech-to-text provider.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| punctuate | [bool](#bool) | optional | Optional. Enables or disables punctuate feature of Deepgram to add punctuations to the resulted transcript. More details at: https://developers.deepgram.com/docs/punctuation |
-| smart_format | [bool](#bool) | optional | Optional. Enables or disables smart_format feature of Deepgram transcription result to improve readability. More details at: https://developers.deepgram.com/docs/smart-format |
-| numerals | [bool](#bool) | optional | Optional. Enables or disables numerals feature of Deepgram to convert numbers to numeric form in the resulted transcript. More details at: https://developers.deepgram.com/docs/numerals |
-| measurements | [bool](#bool) | optional | Optional. Enables or disables measurements feature of Deepgram to convert measurement units (i.e. Kilogram) to abbreviated form (i.e. Kg) in the resulted transcript. More details at: https://developers.deepgram.com/docs/measurements |
-| dictation | [bool](#bool) | optional | Optional. Enables or disables dictation feature of Deepgram to convert spoken dictation commands into their corresponding punctuation marks. More details at: https://developers.deepgram.com/docs/dictation |
+| punctuate | [bool](#bool) | optional | Optional. Enables or disables <code>punctuate</code> feature of Deepgram to add punctuations to the resulted transcript. More details at: <a href="https://developers.deepgram.com/docs/punctuation">https://developers.deepgram.com/docs/punctuation</a> |
+| smart_format | [bool](#bool) | optional | Optional. Enables or disables <code>smart_format</code> feature of Deepgram transcription result to improve readability. More details at: <a href="https://developers.deepgram.com/docs/smart-format">https://developers.deepgram.com/docs/smart-format</a> |
+| numerals | [bool](#bool) | optional | Optional. Enables or disables <code>numerals</code> feature of Deepgram to convert numbers to numeric form in the resulted transcript. More details at: <a href="https://developers.deepgram.com/docs/numerals">https://developers.deepgram.com/docs/numerals</a> |
+| measurements | [bool](#bool) | optional | Optional. Enables or disables <code>measurements</code> feature of Deepgram to convert measurement units (i.e. Kilogram) to abbreviated form (i.e. Kg) in the resulted transcript. More details at: <a href="https://developers.deepgram.com/docs/measurements">https://developers.deepgram.com/docs/measurements</a> |
+| dictation | [bool](#bool) | optional | Optional. Enables or disables <code>dictation</code> feature of Deepgram to convert spoken dictation commands into their corresponding punctuation marks. More details at: <a href="https://developers.deepgram.com/docs/dictation">https://developers.deepgram.com/docs/dictation</a> |
 
 
 
@@ -528,16 +527,16 @@ Configuration details specific to the Deepgram speech-to-text provider.
 <a name="ondewo.s2t.S2tCloudProviderConfigGoogle"></a>
 
 ### S2tCloudProviderConfigGoogle
-Configuration details specific to the Google speech-to-text provider.
+<p>Configuration details specific to the Google speech-to-text provider.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| enable_automatic_punctuation | [bool](#bool) | optional | Optional. Enables or disables automatic_punctuation feature of Google s2t to add punctuations to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/automatic-punctuation |
-| enable_word_time_offsets | [bool](#bool) | optional | Optional. Enables or disables word_time_offsets feature of Google s2t to add word-level timestamps (time-offset) to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/async-time-offsets |
-| enable_word_confidence | [bool](#bool) | optional | Optional. Enables or disables word_confidence feature of Google s2t to add word-level confidence scores to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/word-confidence |
-| transcript_normalization | [bool](#bool) | optional | Optional. Enables or disables transcript_normalization feature of Google s2t to automatically replace parts of the transcript with phrases of your choosing. More details at: https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization |
-| max_alternatives | [int32](#int32) | optional | Optional. Maximum number of recognition hypotheses to be returned, may be returned fewer than max_alternatives. Valid values are 0-30. A value of 0 or 1 will return a maximum of one. If omitted, will return a maximum of one. |
+| enable_automatic_punctuation | [bool](#bool) | optional | Optional. Enables or disables <code>automatic_punctuation</code> feature of Google s2t to add punctuations to the resulted transcript. More details at: <a href="https://cloud.google.com/speech-to-text/docs/automatic-punctuation">https://cloud.google.com/speech-to-text/docs/automatic-punctuation</a> |
+| enable_word_time_offsets | [bool](#bool) | optional | Optional. Enables or disables <code>word_time_offsets</code> feature of Google s2t to add word-level timestamps (time-offset) to the resulted transcript. More details at: <a href="https://cloud.google.com/speech-to-text/docs/async-time-offsets">https://cloud.google.com/speech-to-text/docs/async-time-offsets</a> |
+| enable_word_confidence | [bool](#bool) | optional | Optional. Enables or disables <code>word_confidence</code> feature of Google s2t to add word-level confidence scores to the resulted transcript. More details at: <a href="https://cloud.google.com/speech-to-text/docs/word-confidence">https://cloud.google.com/speech-to-text/docs/word-confidence</a> |
+| transcript_normalization | [bool](#bool) | optional | Optional. Enables or disables <code>transcript_normalization</code> feature of Google s2t to automatically replace parts of the transcript with phrases of your choosing. More details at: <a href="https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization">https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization</a> |
+| max_alternatives | [int32](#int32) | optional | Optional. Maximum number of recognition hypotheses to be returned, may be returned fewer than <code>max_alternatives</code>. Valid values are 0-30. A value of 0 or 1 will return a maximum of one. If omitted, will return a maximum of one. |
 
 
 
@@ -547,13 +546,13 @@ Configuration details specific to the Google speech-to-text provider.
 <a name="ondewo.s2t.S2tCloudProviderConfigMicrosoft"></a>
 
 ### S2tCloudProviderConfigMicrosoft
-Configuration details specific to the Microsoft Azure speech-to-text provider.
+<p>Configuration details specific to the Microsoft Azure speech-to-text provider.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| use_fast_transcription_api | [bool](#bool) | optional | Optional. Enables or disables the Microsoft Azure fast transcription API. It is faster than SDK but is in preview version. More details at: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create |
-| use_detailed_output_format | [bool](#bool) | optional | Optional. Enables or disables the `detailed` format for the result of Microsoft Azure s2t service to add timestamps and confidences to the resulted transcript. |
+| use_fast_transcription_api | [bool](#bool) | optional | Optional. Enables or disables the Microsoft Azure fast transcription API. It is faster than SDK but is in preview version. More details at: <a href="https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create">https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create</a> |
+| use_detailed_output_format | [bool](#bool) | optional | Optional. Enables or disables the <code>detailed</code> format for the result of Microsoft Azure s2t service to add timestamps and confidences to the resulted transcript. |
 
 
 
@@ -563,17 +562,17 @@ Configuration details specific to the Microsoft Azure speech-to-text provider.
 <a name="ondewo.s2t.S2tCloudServiceAmazon"></a>
 
 ### S2tCloudServiceAmazon
-S2tCloudServiceAmazon message contains settings for the Amazon web service Cloud service inference.
+<p>S2tCloudServiceAmazon message contains settings for the Amazon web service Cloud service inference.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language | [string](#string) |  | Language of the audio to transcribe by Amazon web service s2t cloud service. It should be 4-letter language code (BCP-47) e.g. 'en-US' or 'de-DE'. |
-| streaming_available | [bool](#bool) |  | Specifies if streaming mode of Amazon web service speech to text is available for the selected language, otherwise batch mode transcription is used. See the list of languages and available transcription modes at: https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html |
-| enable_partial_results_stabilization | [bool](#bool) |  | Enables or disables partial_results_stabilization feature. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization |
-| partial_results_stability | [string](#string) |  | You can use this field to set the stability level of the transcription results. A higher stability level means that the transcription results are less likely to change. Higher stability levels can come with lower overall transcription accuracy. Defaults to "high" if not set explicitly. |
-| language_model_name | [string](#string) |  | The name of your customize language model you want to use. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html |
-| vocabulary_name | [string](#string) |  | The name of your customize language model you want to use. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html |
+| language | [string](#string) |  | Language of the audio to transcribe by Amazon web service s2t cloud service. It should be 4-letter language code (BCP-47) e.g. &apos;en-US&apos; or &apos;de-DE&apos;. |
+| streaming_available | [bool](#bool) |  | Specifies if streaming mode of Amazon web service speech to text is available for the selected language, otherwise batch mode transcription is used. See the list of languages and available transcription modes at: <a href="https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html">https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html</a> |
+| enable_partial_results_stabilization | [bool](#bool) |  | Enables or disables <code>partial_results_stabilization</code> feature. More details at: <a href="https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization">https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization</a> |
+| partial_results_stability | [string](#string) |  | You can use this field to set the stability level of the transcription results. A higher stability level means that the transcription results are less likely to change. Higher stability levels can come with lower overall transcription accuracy. Defaults to &quot;high&quot; if not set explicitly. |
+| language_model_name | [string](#string) |  | The name of your customize language model you want to use. More details at: <a href="https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html">https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html</a> |
+| vocabulary_name | [string](#string) |  | The name of your customize vocabulary you want to use. More details at: <a href="https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html">https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html</a> |
 
 
 
@@ -583,18 +582,18 @@ S2tCloudServiceAmazon message contains settings for the Amazon web service Cloud
 <a name="ondewo.s2t.S2tCloudServiceDeepgram"></a>
 
 ### S2tCloudServiceDeepgram
-S2tCloudServiceDeepgram message contains settings for the Deepgram Cloud service inference.
+<p>S2tCloudServiceDeepgram message contains settings for the Deepgram Cloud service inference.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| model_name | [string](#string) |  | Model name from one of the speech-to-text models provided by Deepgram for the desired use-case. Provided model names and details at: https://developers.deepgram.com/docs/model |
-| language | [string](#string) |  | Language of the audio to transcribe by Deepgram s2t cloud service. It should be 4-letter language code (BCP-47) e.g. 'en-US' or 'de-DE'. |
-| punctuate | [bool](#bool) |  | Enables or disables punctuate feature of Deepgram to add punctuations to the resulted transcript. More details at: https://developers.deepgram.com/docs/punctuation |
-| smart_format | [bool](#bool) |  | Enables or disables smart_format feature of Deepgram transcription result to improve readability. More details at: https://developers.deepgram.com/docs/smart-format |
-| numerals | [bool](#bool) |  | Enables or disables numerals feature of Deepgram to convert numbers to numeric form in the resulted transcript. More details at: https://developers.deepgram.com/docs/numerals |
-| measurements | [bool](#bool) |  | Enables or disables measurements feature of Deepgram to convert measurement units (i.e. Kilogram) to abbreviated form (i.e. Kg) in the resulted transcript. More details at: https://developers.deepgram.com/docs/measurements |
-| dictation | [bool](#bool) |  | Enables or disables dictation feature of Deepgram to convert spoken dictation commands into their corresponding punctuation marks. More details at: https://developers.deepgram.com/docs/dictation |
+| model_name | [string](#string) |  | Model name from one of the speech-to-text models provided by Deepgram for the desired use-case. Provided model names and details at: <a href="https://developers.deepgram.com/docs/model">https://developers.deepgram.com/docs/model</a> |
+| language | [string](#string) |  | Language of the audio to transcribe by Deepgram s2t cloud service. It should be 4-letter language code (BCP-47) e.g. &apos;en-US&apos; or &apos;de-DE&apos;. |
+| punctuate | [bool](#bool) |  | Enables or disables <code>punctuate</code> feature of Deepgram to add punctuations to the resulted transcript. More details at: <a href="https://developers.deepgram.com/docs/punctuation">https://developers.deepgram.com/docs/punctuation</a> |
+| smart_format | [bool](#bool) |  | Enables or disables <code>smart_format</code> feature of Deepgram transcription result to improve readability. More details at: <a href="https://developers.deepgram.com/docs/smart-format">https://developers.deepgram.com/docs/smart-format</a> |
+| numerals | [bool](#bool) |  | Enables or disables <code>numerals</code> feature of Deepgram to convert numbers to numeric form in the resulted transcript. More details at: <a href="https://developers.deepgram.com/docs/numerals">https://developers.deepgram.com/docs/numerals</a> |
+| measurements | [bool](#bool) |  | Enables or disables <code>measurements</code> feature of Deepgram to convert measurement units (i.e. Kilogram) to abbreviated form (i.e. Kg) in the resulted transcript. More details at: <a href="https://developers.deepgram.com/docs/measurements">https://developers.deepgram.com/docs/measurements</a> |
+| dictation | [bool](#bool) |  | Enables or disables <code>dictation</code> feature of Deepgram to convert spoken dictation commands into their corresponding punctuation marks. More details at: <a href="https://developers.deepgram.com/docs/dictation">https://developers.deepgram.com/docs/dictation</a> |
 
 
 
@@ -604,18 +603,18 @@ S2tCloudServiceDeepgram message contains settings for the Deepgram Cloud service
 <a name="ondewo.s2t.S2tCloudServiceGoogle"></a>
 
 ### S2tCloudServiceGoogle
-S2tCloudServiceGoogle message contains settings for the Google Cloud service inference.
+<p>S2tCloudServiceGoogle message contains settings for the Google Cloud service inference.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| model_name | [string](#string) |  | Model name from one of the speech-to-text models provided by Google for the desired use-case. Provided model names and details at: https://cloud.google.com/speech-to-text/docs/transcription-model |
-| language | [string](#string) |  | Language of the audio to transcribe by Google s2t cloud service. It should be 4-letter language code (BCP-47) e.g. 'en-US' or 'de-DE'. |
-| enable_automatic_punctuation | [bool](#bool) |  | Enables or disables automatic_punctuation feature of Google s2t to add punctuations to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/automatic-punctuation |
-| enable_word_time_offsets | [bool](#bool) |  | Enables or disables word_time_offsets feature of Google s2t to add word-level timestamps (time-offsets) to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/async-time-offsets |
-| enable_word_confidence | [bool](#bool) |  | Enables or disables word_confidence feature of Google s2t to add word-level confidence scores to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/word-confidence |
-| transcript_normalization | [bool](#bool) |  | Enables or disables transcript_normalization feature of Google s2t to automatically replace parts of the transcript with phrases of your choosing. More details at: https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization |
-| max_alternatives | [int32](#int32) |  | Maximum number of recognition hypotheses to be returned. The server may return fewer than max_alternatives. Valid values are 0-30. A value of 0 or 1 will return a maximum of one. If omitted, will return a maximum of one. |
+| model_name | [string](#string) |  | Model name from one of the speech-to-text models provided by Google for the desired use-case. Provided model names and details at: <a href="https://cloud.google.com/speech-to-text/docs/transcription-model">https://cloud.google.com/speech-to-text/docs/transcription-model</a> |
+| language | [string](#string) |  | Language of the audio to transcribe by Google s2t cloud service. It should be 4-letter language code (BCP-47) e.g. &apos;en-US&apos; or &apos;de-DE&apos;. |
+| enable_automatic_punctuation | [bool](#bool) |  | Enables or disables <code>automatic_punctuation</code> feature of Google s2t to add punctuations to the resulted transcript. More details at: <a href="https://cloud.google.com/speech-to-text/docs/automatic-punctuation">https://cloud.google.com/speech-to-text/docs/automatic-punctuation</a> |
+| enable_word_time_offsets | [bool](#bool) |  | Enables or disables <code>word_time_offsets</code> feature of Google s2t to add word-level timestamps (time-offsets) to the resulted transcript. More details at: <a href="https://cloud.google.com/speech-to-text/docs/async-time-offsets">https://cloud.google.com/speech-to-text/docs/async-time-offsets</a> |
+| enable_word_confidence | [bool](#bool) |  | Enables or disables <code>word_confidence</code> feature of Google s2t to add word-level confidence scores to the resulted transcript. More details at: <a href="https://cloud.google.com/speech-to-text/docs/word-confidence">https://cloud.google.com/speech-to-text/docs/word-confidence</a> |
+| transcript_normalization | [bool](#bool) |  | Enables or disables <code>transcript_normalization</code> feature of Google s2t to automatically replace parts of the transcript with phrases of your choosing. More details at: <a href="https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization">https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization</a> |
+| max_alternatives | [int32](#int32) |  | Maximum number of recognition hypotheses to be returned. The server may return fewer than <code>max_alternatives</code>. Valid values are 0-30. A value of 0 or 1 will return a maximum of one. If omitted, will return a maximum of one. |
 
 
 
@@ -625,14 +624,14 @@ S2tCloudServiceGoogle message contains settings for the Google Cloud service inf
 <a name="ondewo.s2t.S2tCloudServiceMicrosoft"></a>
 
 ### S2tCloudServiceMicrosoft
-S2tCloudServiceMicrosoft message contains settings for the Microsoft Azure Cloud service inference.
+<p>S2tCloudServiceMicrosoft message contains settings for the Microsoft Azure Cloud service inference.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language | [string](#string) |  | Language of the audio to transcribe by Microsoft Azure s2t cloud service. It should be 4-letter language code (BCP-47) e.g. 'en-US' or 'de-DE'. |
-| use_fast_transcription_api | [bool](#bool) |  | Enables or disables the Microsoft Azure fast transcription API. It is faster than SDK but is in preview version. More details at: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create |
-| use_detailed_output_format | [bool](#bool) |  | Enables or disables the `detailed` format for the result of Microsoft Azure s2t service to add timestamps and confidences to the resulted transcript. |
+| language | [string](#string) |  | Language of the audio to transcribe by Microsoft Azure s2t cloud service. It should be 4-letter language code (BCP-47) e.g. &apos;en-US&apos; or &apos;de-DE&apos;. |
+| use_fast_transcription_api | [bool](#bool) |  | Enables or disables the Microsoft Azure fast transcription API. It is faster than SDK but is in preview version. More details at: <a href="https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create">https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create</a> |
+| use_detailed_output_format | [bool](#bool) |  | Enables or disables the <code>detailed</code> format for the result of Microsoft Azure s2t service to add timestamps and confidences to the resulted transcript. |
 
 
 
@@ -642,7 +641,7 @@ S2tCloudServiceMicrosoft message contains settings for the Microsoft Azure Cloud
 <a name="ondewo.s2t.S2tDescription"></a>
 
 ### S2tDescription
-S2tDescription contains descriptive information about the speech-to-text pipeline.
+<p>S2tDescription contains descriptive information about the speech-to-text pipeline.</p>
 
 
 | Field | Type | Label | Description |
@@ -660,12 +659,12 @@ S2tDescription contains descriptive information about the speech-to-text pipelin
 <a name="ondewo.s2t.S2tGetServiceInfoResponse"></a>
 
 ### S2tGetServiceInfoResponse
-S2tGetServiceInfoResponse is used to return version information about the speech-to-text service.
+<p>S2tGetServiceInfoResponse is used to return version information about the speech-to-text service.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| version | [string](#string) |  | Version number based on semantic versioning, e.g. "4.2.0". |
+| version | [string](#string) |  | Version number based on semantic versioning, e.g. &quot;4.2.0&quot;. |
 
 
 
@@ -675,7 +674,7 @@ S2tGetServiceInfoResponse is used to return version information about the speech
 <a name="ondewo.s2t.S2tInference"></a>
 
 ### S2tInference
-S2tInference contains information about inference models used in the speech-to-text pipeline.
+<p>S2tInference contains information about inference models used in the speech-to-text pipeline.</p>
 
 
 | Field | Type | Label | Description |
@@ -692,7 +691,7 @@ S2tInference contains information about inference models used in the speech-to-t
 <a name="ondewo.s2t.S2tLlmPostProcessing"></a>
 
 ### S2tLlmPostProcessing
-S2tLlmPostProcessing contains configuration for the speech-to-text postprocessing with LLM.
+<p>S2tLlmPostProcessing contains configuration for the speech-to-text postprocessing with LLM.</p>
 
 
 | Field | Type | Label | Description |
@@ -718,7 +717,7 @@ S2tLlmPostProcessing contains configuration for the speech-to-text postprocessin
 <a name="ondewo.s2t.S2tLlmPostProcessingCasingOptions"></a>
 
 ### S2tLlmPostProcessingCasingOptions
-Configuration of the options to casing task in LLM post-processing.
+<p>Configuration of the options to casing task in LLM post-processing.</p>
 
 
 | Field | Type | Label | Description |
@@ -733,7 +732,7 @@ Configuration of the options to casing task in LLM post-processing.
 <a name="ondewo.s2t.S2tLlmPostProcessingInverseNormalizationOptions"></a>
 
 ### S2tLlmPostProcessingInverseNormalizationOptions
-Configuration of the options to inverse-normalization task in LLM post-processing.
+<p>Configuration of the options to inverse-normalization task in LLM post-processing.</p>
 
 
 | Field | Type | Label | Description |
@@ -754,7 +753,7 @@ Configuration of the options to inverse-normalization task in LLM post-processin
 <a name="ondewo.s2t.S2tLlmPostProcessingNormalizationOptions"></a>
 
 ### S2tLlmPostProcessingNormalizationOptions
-Configuration of the options to normalization task in LLM post-processing.
+<p>Configuration of the options to normalization task in LLM post-processing.</p>
 
 
 | Field | Type | Label | Description |
@@ -775,7 +774,7 @@ Configuration of the options to normalization task in LLM post-processing.
 <a name="ondewo.s2t.S2tLlmPostProcessingPunctuationOptions"></a>
 
 ### S2tLlmPostProcessingPunctuationOptions
-Configuration of the options to punctuation task in LLM post-processing.
+<p>Configuration of the options to punctuation task in LLM post-processing.</p>
 
 
 | Field | Type | Label | Description |
@@ -790,7 +789,7 @@ Configuration of the options to punctuation task in LLM post-processing.
 <a name="ondewo.s2t.S2tLlmPostProcessingSemanticCorrectionOptions"></a>
 
 ### S2tLlmPostProcessingSemanticCorrectionOptions
-Configuration of the options to semantic-correction task in LLM post-processing.
+<p>Configuration of the options to semantic-correction task in LLM post-processing.</p>
 
 
 | Field | Type | Label | Description |
@@ -805,7 +804,7 @@ Configuration of the options to semantic-correction task in LLM post-processing.
 <a name="ondewo.s2t.S2tLlmPostProcessingSpellCorrectionOptions"></a>
 
 ### S2tLlmPostProcessingSpellCorrectionOptions
-Configuration of the options to spelling-correction task in LLM post-processing.
+<p>Configuration of the options to spelling-correction task in LLM post-processing.</p>
 
 
 | Field | Type | Label | Description |
@@ -820,7 +819,7 @@ Configuration of the options to spelling-correction task in LLM post-processing.
 <a name="ondewo.s2t.S2tLlmPostProcessingSummarizationOptions"></a>
 
 ### S2tLlmPostProcessingSummarizationOptions
-Configuration of the options to summarization task in LLM post-processing.
+<p>Configuration of the options to summarization task in LLM post-processing.</p>
 
 
 | Field | Type | Label | Description |
@@ -837,7 +836,7 @@ Configuration of the options to summarization task in LLM post-processing.
 <a name="ondewo.s2t.S2tLlmPostProcessingTranslationOptions"></a>
 
 ### S2tLlmPostProcessingTranslationOptions
-Configuration of the options to translation task in LLM post-processing.
+<p>Configuration of the options to translation task in LLM post-processing.</p>
 
 
 | Field | Type | Label | Description |
@@ -853,7 +852,7 @@ Configuration of the options to translation task in LLM post-processing.
 <a name="ondewo.s2t.S2tLlmPostProcessingUserPromptOptions"></a>
 
 ### S2tLlmPostProcessingUserPromptOptions
-Configuration of the options to user-prompt task in LLM post-processing.
+<p>Configuration of the options to user-prompt task in LLM post-processing.</p>
 
 
 | Field | Type | Label | Description |
@@ -869,7 +868,7 @@ Configuration of the options to user-prompt task in LLM post-processing.
 <a name="ondewo.s2t.S2tNormalization"></a>
 
 ### S2tNormalization
-S2tNormalization contains configuration for the speech-to-text normalization.
+<p>S2tNormalization contains configuration for the speech-to-text normalization.</p>
 
 
 | Field | Type | Label | Description |
@@ -885,7 +884,7 @@ S2tNormalization contains configuration for the speech-to-text normalization.
 <a name="ondewo.s2t.S2tPipelineId"></a>
 
 ### S2tPipelineId
-The pipeline id for a specific pipeline configuration
+<p>The pipeline id for a specific pipeline configuration</p>
 
 
 | Field | Type | Label | Description |
@@ -900,7 +899,7 @@ The pipeline id for a specific pipeline configuration
 <a name="ondewo.s2t.Speech2TextConfig"></a>
 
 ### Speech2TextConfig
-Speech2TextConfig is a configuration message for the speech-to-text pipeline
+<p>Speech2TextConfig is a configuration message for the speech-to-text pipeline</p>
 
 
 | Field | Type | Label | Description |
@@ -922,7 +921,7 @@ Speech2TextConfig is a configuration message for the speech-to-text pipeline
 <a name="ondewo.s2t.StreamingServer"></a>
 
 ### StreamingServer
-StreamingServer contains information about the streaming server.
+<p>StreamingServer contains information about the streaming server.</p>
 
 
 | Field | Type | Label | Description |
@@ -940,7 +939,7 @@ StreamingServer contains information about the streaming server.
 <a name="ondewo.s2t.StreamingSpeechRecognition"></a>
 
 ### StreamingSpeechRecognition
-StreamingSpeechRecognition contains information about streaming speech recognition settings.
+<p>StreamingSpeechRecognition contains information about streaming speech recognition settings.</p>
 
 
 | Field | Type | Label | Description |
@@ -960,7 +959,7 @@ StreamingSpeechRecognition contains information about streaming speech recogniti
 <a name="ondewo.s2t.SymSpell"></a>
 
 ### SymSpell
-SymSpell contains configuration for the SymSpell spelling correction.
+<p>SymSpell contains configuration for the SymSpell spelling correction.</p>
 
 
 | Field | Type | Label | Description |
@@ -977,12 +976,12 @@ SymSpell contains configuration for the SymSpell spelling correction.
 <a name="ondewo.s2t.TrainUserLanguageModelRequest"></a>
 
 ### TrainUserLanguageModelRequest
-TrainUserLanguageModelRequest is used to request the training of a user-specific language model.
+<p>TrainUserLanguageModelRequest is used to request the training of a user-specific language model.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language_model_name | [string](#string) |  | Name of the language model to train. Example: "user_lm_1" |
+| language_model_name | [string](#string) |  | Name of the language model to train. Example: &quot;user_lm_1&quot; |
 | order | [int64](#int64) |  | Order n of the ngram. Example: 3 (for trigram model) |
 
 
@@ -993,7 +992,7 @@ TrainUserLanguageModelRequest is used to request the training of a user-specific
 <a name="ondewo.s2t.TranscribeFileRequest"></a>
 
 ### TranscribeFileRequest
-A request to transcribe an audio file
+<p>A request to transcribe an audio file</p>
 
 
 | Field | Type | Label | Description |
@@ -1009,7 +1008,7 @@ A request to transcribe an audio file
 <a name="ondewo.s2t.TranscribeFileResponse"></a>
 
 ### TranscribeFileResponse
-The response message for a transcribe file request
+<p>The response message for a transcribe file request</p>
 
 
 | Field | Type | Label | Description |
@@ -1026,7 +1025,7 @@ The response message for a transcribe file request
 <a name="ondewo.s2t.TranscribeRequestConfig"></a>
 
 ### TranscribeRequestConfig
-Configuration for a request to transcribe audio
+<p>Configuration for a request to transcribe audio</p>
 
 
 | Field | Type | Label | Description |
@@ -1039,9 +1038,9 @@ Configuration for a request to transcribe audio
 | pyannote | [Pyannote](#ondewo.s2t.Pyannote) |  | Voice activity detection with pyannote |
 | return_options | [TranscriptionReturnOptions](#ondewo.s2t.TranscriptionReturnOptions) |  | The transcribe return options |
 | language | [string](#string) | optional | Optional. Specify language of transcription to return |
-| task | [string](#string) | optional | Optional. Specify task of s2t model, e.g. 'transcribe' and 'translate' |
-| s2t_service_config | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. s2t_service_config provides the configuration of the service such as API key, bearer tokens, JWT, and other header information as key value pairs, e.g., <pre><code>MY_API_KEY='LKJDIFe244LKJOI'</code></pre> A. For Amazon S2T service, the following arguments should be passed in form of a dict: A.1 aws_access_key_id (required) Access key id to access Amazon WEb Service. A.2 aws_secret_access_key (required) Secret access key to access Amazon WEb Service. A.3 region (required) Region name of Amazon Server. Example: s2t_config_service={'aws_access_key_id': 'YOUR_AWS_ACCESS_KEY_ID', 'aws_secret_access_key': 'YOUR_AWS_SECRET_ACCESS_KEY', 'region': 'YOUR_AMAZON_SERVER_REGION_NAME'} B. For Deepgram S2T service, the following argument should be passed in form of a dict: B.1 api_key (required) API key of Deepgram account to access Deepgram S2T service. Example: s2t_config_service={'api_key': 'YOUR_DEEPGRAM_API_KEY'} C. For Google cloud S2T service, the following arguments should be passed in form of a dict: C.1- api_key (required) API key of Google cloud to access its S2T service. C.2- api_endpoint (optional) Regional API endpoint of Google cloud S2T service. (Defaults to 'eu-speech.googleapis.com') Example: s2t_config_service={'api_key': 'YOUR_GOOGLE_CLOUD_API_KEY', 'api_endpoint': 'YOUR_GOOGLE_CLOUD_API_ENDPOINT'} D. For Microsoft Azure S2T service, the following arguments should be passed in form of a dict: D.1 subscription_key (required) Subscription key to access Microsoft Azure Service. D.2 region (required) Region name of Microsoft Azure Server. Example: s2t_config_service={'subscription_key': 'YOUR_MICROSOFT_AZURE_SUBSCRIPTION_KEY', 'region': 'YOUR_MICROSOFT_AZURE_SERVER_REGION_NAME'} Note: ondewo-s2t will raise an error if you don't pass any of the required arguments above. |
-| s2t_cloud_provider_config | [S2tCloudProviderConfig](#ondewo.s2t.S2tCloudProviderConfig) | optional | Optional. Defines the cloud provider's specific configuration for using speech to text cloud services The default value is None. |
+| task | [string](#string) | optional | Optional. Specify task of s2t model, e.g. &apos;transcribe&apos; and &apos;translate&apos; |
+| s2t_service_config | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. <code>s2t_service_config</code> provides the configuration of the service such as API key, bearer tokens, JWT, and other header information as key value pairs, e.g., <pre><code>MY_API_KEY=&apos;LKJDIFe244LKJOI&apos;</code></pre> For Amazon S2T service, the following arguments should be passed in form of a dict: <ul> <li><code>aws_access_key_id</code> (required) Access key id to access Amazon Web Service.</li> <li><code>aws_secret_access_key</code> (required) Secret access key to access Amazon Web Service.</li> <li><code>region</code> (required) Region name of Amazon Server.</li> </ul> Example: <code>s2t_config_service={&apos;aws_access_key_id&apos;: &apos;YOUR_AWS_ACCESS_KEY_ID&apos;, &apos;aws_secret_access_key&apos;: &apos;YOUR_AWS_SECRET_ACCESS_KEY&apos;, &apos;region&apos;: &apos;YOUR_AMAZON_SERVER_REGION_NAME&apos;}</code> For Deepgram S2T service, the following argument should be passed in form of a dict: <ul> <li><code>api_key</code> (required) API key of Deepgram account to access Deepgram S2T service.</li> </ul> Example: <code>s2t_config_service={&apos;api_key&apos;: &apos;YOUR_DEEPGRAM_API_KEY&apos;}</code> <br> For Google cloud S2T service, the following arguments should be passed in form of a dict: <ul> <li><code>api_key</code> (required) API key of Google cloud to access its S2T service.</li> <li><code>api_endpoint</code> (optional) Regional API endpoint of Google cloud S2T service. (Defaults to &apos;eu-speech.googleapis.com&apos;)</li> </ul> Example: <code>s2t_config_service={&apos;api_key&apos;: &apos;YOUR_GOOGLE_CLOUD_API_KEY&apos;, &apos;api_endpoint&apos;: &apos;YOUR_GOOGLE_CLOUD_API_ENDPOINT&apos;}</code> For Microsoft Azure S2T service, the following arguments should be passed in form of a dict: <ul> <li><code>subscription_key</code> (required) Subscription key to access Microsoft Azure Service.</li> <li><code>region</code> (required) Region name of Microsoft Azure Server.</li> </ul> Example: <code>s2t_config_service={&apos;subscription_key&apos;: &apos;YOUR_MICROSOFT_AZURE_SUBSCRIPTION_KEY&apos;, &apos;region&apos;: &apos;YOUR_MICROSOFT_AZURE_SERVER_REGION_NAME&apos;}</code> Note: ondewo-s2t will raise an error if you don&apos;t pass any of the required arguments above. |
+| s2t_cloud_provider_config | [S2tCloudProviderConfig](#ondewo.s2t.S2tCloudProviderConfig) | optional | Optional. Defines the cloud provider&apos;s specific configuration for using speech to text cloud services. The default value is None. |
 
 
 
@@ -1051,7 +1050,7 @@ Configuration for a request to transcribe audio
 <a name="ondewo.s2t.TranscribeStreamRequest"></a>
 
 ### TranscribeStreamRequest
-Request to transcribe an audio stream
+<p>Request to transcribe an audio stream</p>
 
 
 | Field | Type | Label | Description |
@@ -1069,7 +1068,7 @@ Request to transcribe an audio stream
 <a name="ondewo.s2t.TranscribeStreamResponse"></a>
 
 ### TranscribeStreamResponse
-The response message of a stream transcription
+<p>The response message of a stream transcription</p>
 
 
 | Field | Type | Label | Description |
@@ -1091,7 +1090,7 @@ The response message of a stream transcription
 <a name="ondewo.s2t.Transcription"></a>
 
 ### Transcription
-The transcription message
+<p>The transcription message</p>
 
 
 | Field | Type | Label | Description |
@@ -1109,7 +1108,7 @@ The transcription message
 <a name="ondewo.s2t.TranscriptionAlternative"></a>
 
 ### TranscriptionAlternative
-
+<p>The alternative transcription message</p>
 
 
 | Field | Type | Label | Description |
@@ -1126,7 +1125,7 @@ The transcription message
 <a name="ondewo.s2t.TranscriptionReturnOptions"></a>
 
 ### TranscriptionReturnOptions
-Configuration of the return values of a transcribe request
+<p>Configuration of the return values of a transcribe request</p>
 
 
 | Field | Type | Label | Description |
@@ -1148,7 +1147,7 @@ Configuration of the return values of a transcribe request
 <a name="ondewo.s2t.TurnDetectionOptions"></a>
 
 ### TurnDetectionOptions
-Configuration of the options to turn-detection in utterances
+<p>Configuration of the options to turn-detection in utterances</p>
 
 
 | Field | Type | Label | Description |
@@ -1167,7 +1166,7 @@ Configuration of the options to turn-detection in utterances
 <a name="ondewo.s2t.UtteranceDetectionOptions"></a>
 
 ### UtteranceDetectionOptions
-Configuration of the options to detect utterances
+<p>Configuration of the options to detect utterances</p>
 
 
 | Field | Type | Label | Description |
@@ -1184,7 +1183,7 @@ Configuration of the options to detect utterances
 <a name="ondewo.s2t.VoiceActivityDetection"></a>
 
 ### VoiceActivityDetection
-VoiceActivityDetection contains information about voice activity detection settings.
+<p>VoiceActivityDetection contains information about voice activity detection settings.</p>
 
 
 | Field | Type | Label | Description |
@@ -1201,7 +1200,7 @@ VoiceActivityDetection contains information about voice activity detection setti
 <a name="ondewo.s2t.Wav2Vec"></a>
 
 ### Wav2Vec
-Wav2Vec contains information about the Wav2Vec model.
+<p>Wav2Vec contains information about the Wav2Vec model.</p>
 
 
 | Field | Type | Label | Description |
@@ -1217,7 +1216,7 @@ Wav2Vec contains information about the Wav2Vec model.
 <a name="ondewo.s2t.Wav2VecTriton"></a>
 
 ### Wav2VecTriton
-Wav2VecTriton contains information about the Wav2Vec model using Triton.
+<p>Wav2VecTriton contains information about the Wav2Vec model using Triton.</p>
 
 
 | Field | Type | Label | Description |
@@ -1237,7 +1236,7 @@ Wav2VecTriton contains information about the Wav2Vec model using Triton.
 <a name="ondewo.s2t.Whisper"></a>
 
 ### Whisper
-Whisper contains information about the Whisper model.
+<p>Whisper contains information about the Whisper model.</p>
 
 
 | Field | Type | Label | Description |
@@ -1255,7 +1254,7 @@ Whisper contains information about the Whisper model.
 <a name="ondewo.s2t.WhisperTriton"></a>
 
 ### WhisperTriton
-WhisperTriton contains information about the Whisper model using Triton.
+<p>WhisperTriton contains information about the Whisper model using Triton.</p>
 
 
 | Field | Type | Label | Description |
@@ -1277,7 +1276,7 @@ WhisperTriton contains information about the Whisper model using Triton.
 <a name="ondewo.s2t.WordAlternative"></a>
 
 ### WordAlternative
-
+<p>The word alternative message</p>
 
 
 | Field | Type | Label | Description |
@@ -1293,7 +1292,7 @@ WhisperTriton contains information about the Whisper model using Triton.
 <a name="ondewo.s2t.WordDetail"></a>
 
 ### WordDetail
-WordDetail provides word-specific information for recognized words.
+<p>WordDetail provides word-specific information for recognized words.</p>
 
 
 | Field | Type | Label | Description |
@@ -1349,26 +1348,26 @@ The decoding configuration
 <a name="ondewo.s2t.Speech2Text"></a>
 
 ### Speech2Text
-Speech-to-text service
+<p>Speech-to-text service</p>
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| TranscribeFile | [TranscribeFileRequest](#ondewo.s2t.TranscribeFileRequest) | [TranscribeFileResponse](#ondewo.s2t.TranscribeFileResponse) | Transcribes an audio file |
-| TranscribeStream | [TranscribeStreamRequest](#ondewo.s2t.TranscribeStreamRequest) stream | [TranscribeStreamResponse](#ondewo.s2t.TranscribeStreamResponse) stream | Transcribes an audio stream. |
-| GetS2tPipeline | [S2tPipelineId](#ondewo.s2t.S2tPipelineId) | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | Gets a speech to text pipeline corresponding to the id specified in S2tPipelineId. If no corresponding id is found, raises ModuleNotFoundError in server. |
-| CreateS2tPipeline | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | [S2tPipelineId](#ondewo.s2t.S2tPipelineId) | Creates a new speech to text pipeline from a Speech2TextConfig and registers the new pipeline in the server. |
-| DeleteS2tPipeline | [S2tPipelineId](#ondewo.s2t.S2tPipelineId) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes a pipeline corresponding to the id parsed in S2tPipelineId. If no corresponding id is found, raises ModuleNotFoundError in server. |
-| UpdateS2tPipeline | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | [.google.protobuf.Empty](#google.protobuf.Empty) | Updates a pipeline with the id specified in Speech2TextConfig with the new config. If no corresponding id is found, raises ModuleNotFoundError in server. |
-| ListS2tPipelines | [ListS2tPipelinesRequest](#ondewo.s2t.ListS2tPipelinesRequest) | [ListS2tPipelinesResponse](#ondewo.s2t.ListS2tPipelinesResponse) | Lists all speech to text pipelines. |
-| ListS2tLanguages | [ListS2tLanguagesRequest](#ondewo.s2t.ListS2tLanguagesRequest) | [ListS2tLanguagesResponse](#ondewo.s2t.ListS2tLanguagesResponse) | Returns a message containing a list of all languages for which there exist pipelines. |
-| ListS2tDomains | [ListS2tDomainsRequest](#ondewo.s2t.ListS2tDomainsRequest) | [ListS2tDomainsResponse](#ondewo.s2t.ListS2tDomainsResponse) | Returns a message containing a list of all domains for which there exist pipelines. |
-| GetServiceInfo | [.google.protobuf.Empty](#google.protobuf.Empty) | [S2tGetServiceInfoResponse](#ondewo.s2t.S2tGetServiceInfoResponse) | Returns a message containing the version of the running speech to text server. |
-| ListS2tLanguageModels | [ListS2tLanguageModelsRequest](#ondewo.s2t.ListS2tLanguageModelsRequest) | [ListS2tLanguageModelsResponse](#ondewo.s2t.ListS2tLanguageModelsResponse) | Given a list of pipeline ids, returns a list of LanguageModelPipelineId messages containing the pipeline id and a list of the language models loaded in the pipeline. |
-| CreateUserLanguageModel | [CreateUserLanguageModelRequest](#ondewo.s2t.CreateUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Create a user language model. |
-| DeleteUserLanguageModel | [DeleteUserLanguageModelRequest](#ondewo.s2t.DeleteUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Delete a user language model. |
-| AddDataToUserLanguageModel | [AddDataToUserLanguageModelRequest](#ondewo.s2t.AddDataToUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Add data to a user language model. |
-| TrainUserLanguageModel | [TrainUserLanguageModelRequest](#ondewo.s2t.TrainUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Train a user language model. |
-| ListS2tNormalizationPipelines | [ListS2tNormalizationPipelinesRequest](#ondewo.s2t.ListS2tNormalizationPipelinesRequest) | [ListS2tNormalizationPipelinesResponse](#ondewo.s2t.ListS2tNormalizationPipelinesResponse) | Retrieves a list of normalization pipelines based on specific requirements. |
+| TranscribeFile | [TranscribeFileRequest](#ondewo.s2t.TranscribeFileRequest) | [TranscribeFileResponse](#ondewo.s2t.TranscribeFileResponse) | <p>Transcribes an audio file</p> |
+| TranscribeStream | [TranscribeStreamRequest](#ondewo.s2t.TranscribeStreamRequest) stream | [TranscribeStreamResponse](#ondewo.s2t.TranscribeStreamResponse) stream | <p>Transcribes an audio stream.</p> |
+| GetS2tPipeline | [S2tPipelineId](#ondewo.s2t.S2tPipelineId) | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | <p>Gets a speech to text pipeline corresponding to the id specified in <code>S2tPipelineId</code>. If no corresponding id is found, raises <code>ModuleNotFoundError</code> in server.</p> |
+| CreateS2tPipeline | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | [S2tPipelineId](#ondewo.s2t.S2tPipelineId) | <p>Creates a new speech to text pipeline from a <code>Speech2TextConfig</code> and registers the new pipeline in the server.</p> |
+| DeleteS2tPipeline | [S2tPipelineId](#ondewo.s2t.S2tPipelineId) | [.google.protobuf.Empty](#google.protobuf.Empty) | <p>Deletes a pipeline corresponding to the id parsed in <code>S2tPipelineId</code>. If no corresponding id is found, raises <code>ModuleNotFoundError</code> in server.</p> |
+| UpdateS2tPipeline | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | [.google.protobuf.Empty](#google.protobuf.Empty) | <p>Updates a pipeline with the id specified in <code>Speech2TextConfig</code> with the new config. If no corresponding id is found, raises <code>ModuleNotFoundError</code> in server.</p> |
+| ListS2tPipelines | [ListS2tPipelinesRequest](#ondewo.s2t.ListS2tPipelinesRequest) | [ListS2tPipelinesResponse](#ondewo.s2t.ListS2tPipelinesResponse) | <p>Lists all speech to text pipelines.</p> |
+| ListS2tLanguages | [ListS2tLanguagesRequest](#ondewo.s2t.ListS2tLanguagesRequest) | [ListS2tLanguagesResponse](#ondewo.s2t.ListS2tLanguagesResponse) | <p>Returns a message containing a list of all languages for which there exist pipelines.</p> |
+| ListS2tDomains | [ListS2tDomainsRequest](#ondewo.s2t.ListS2tDomainsRequest) | [ListS2tDomainsResponse](#ondewo.s2t.ListS2tDomainsResponse) | <p>Returns a message containing a list of all domains for which there exist pipelines.</p> |
+| GetServiceInfo | [.google.protobuf.Empty](#google.protobuf.Empty) | [S2tGetServiceInfoResponse](#ondewo.s2t.S2tGetServiceInfoResponse) | <p>Returns a message containing the version of the running speech to text server.</p> |
+| ListS2tLanguageModels | [ListS2tLanguageModelsRequest](#ondewo.s2t.ListS2tLanguageModelsRequest) | [ListS2tLanguageModelsResponse](#ondewo.s2t.ListS2tLanguageModelsResponse) | <p>Given a list of pipeline ids, returns a list of <code>LanguageModelPipelineId</code> messages containing the pipeline id and a list of the language models loaded in the pipeline.</p> |
+| CreateUserLanguageModel | [CreateUserLanguageModelRequest](#ondewo.s2t.CreateUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | <p>Create a user language model.</p> |
+| DeleteUserLanguageModel | [DeleteUserLanguageModelRequest](#ondewo.s2t.DeleteUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | <p>Delete a user language model.</p> |
+| AddDataToUserLanguageModel | [AddDataToUserLanguageModelRequest](#ondewo.s2t.AddDataToUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | <p>Add data to a user language model.</p> |
+| TrainUserLanguageModel | [TrainUserLanguageModelRequest](#ondewo.s2t.TrainUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | <p>Train a user language model.</p> |
+| ListS2tNormalizationPipelines | [ListS2tNormalizationPipelinesRequest](#ondewo.s2t.ListS2tNormalizationPipelinesRequest) | [ListS2tNormalizationPipelinesResponse](#ondewo.s2t.ListS2tNormalizationPipelinesResponse) | <p>Retrieves a list of normalization pipelines based on specific requirements.</p> |
 
  <!-- end services -->
 

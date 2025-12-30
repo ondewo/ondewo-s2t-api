@@ -400,7 +400,7 @@
       
         
         <h3 id="ondewo.s2t.Speech2Text" class="title-badge service">Speech2Text</h3>
-        <p>Speech-to-text service</p>
+        <p><p>Speech-to-text service</p></p>
 
         
         <div id="ondewo.s2t.Speech2Text-methods" class="service-methods">Service Methods</div>
@@ -409,101 +409,101 @@
 
           <pre>rpc TranscribeFile (<a href="#ondewo.s2t.TranscribeFileRequest">TranscribeFileRequest</a>) returns (<a href="#ondewo.s2t.TranscribeFileResponse">TranscribeFileResponse)</a></pre>
 
-          Transcribes an audio file
+          <p>Transcribes an audio file</p>
         
           <h4 id="ondewo.s2t.Speech2Text.TranscribeStream" class="title-badge method">TranscribeStream</h4>
 
           <pre>rpc TranscribeStream (stream <a href="#ondewo.s2t.TranscribeStreamRequest">TranscribeStreamRequest</a>) returns (stream <a href="#ondewo.s2t.TranscribeStreamResponse">TranscribeStreamResponse)</a></pre>
 
-          Transcribes an audio stream.
+          <p>Transcribes an audio stream.</p>
         
           <h4 id="ondewo.s2t.Speech2Text.GetS2tPipeline" class="title-badge method">GetS2tPipeline</h4>
 
           <pre>rpc GetS2tPipeline (<a href="#ondewo.s2t.S2tPipelineId">S2tPipelineId</a>) returns (<a href="#ondewo.s2t.Speech2TextConfig">Speech2TextConfig)</a></pre>
 
-          Gets a speech to text pipeline corresponding to the id specified in S2tPipelineId. If no corresponding id is
-found, raises ModuleNotFoundError in server.
+          <p>Gets a speech to text pipeline corresponding to the id specified in <code>S2tPipelineId</code>. If no corresponding id is
+found, raises <code>ModuleNotFoundError</code> in server.</p>
         
           <h4 id="ondewo.s2t.Speech2Text.CreateS2tPipeline" class="title-badge method">CreateS2tPipeline</h4>
 
           <pre>rpc CreateS2tPipeline (<a href="#ondewo.s2t.Speech2TextConfig">Speech2TextConfig</a>) returns (<a href="#ondewo.s2t.S2tPipelineId">S2tPipelineId)</a></pre>
 
-          Creates a new speech to text pipeline from a Speech2TextConfig and registers the new pipeline in the server.
+          <p>Creates a new speech to text pipeline from a <code>Speech2TextConfig</code> and registers the new pipeline in the server.</p>
         
           <h4 id="ondewo.s2t.Speech2Text.DeleteS2tPipeline" class="title-badge method">DeleteS2tPipeline</h4>
 
           <pre>rpc DeleteS2tPipeline (<a href="#ondewo.s2t.S2tPipelineId">S2tPipelineId</a>) returns (<a href="#google.protobuf.Empty">.google.protobuf.Empty)</a></pre>
 
-          Deletes a pipeline corresponding to the id parsed in S2tPipelineId. If no corresponding id is
-found, raises ModuleNotFoundError in server.
+          <p>Deletes a pipeline corresponding to the id parsed in <code>S2tPipelineId</code>. If no corresponding id is
+found, raises <code>ModuleNotFoundError</code> in server.</p>
         
           <h4 id="ondewo.s2t.Speech2Text.UpdateS2tPipeline" class="title-badge method">UpdateS2tPipeline</h4>
 
           <pre>rpc UpdateS2tPipeline (<a href="#ondewo.s2t.Speech2TextConfig">Speech2TextConfig</a>) returns (<a href="#google.protobuf.Empty">.google.protobuf.Empty)</a></pre>
 
-          Updates a pipeline with the id specified in Speech2TextConfig with the new config. If no corresponding id is
-found, raises ModuleNotFoundError in server.
+          <p>Updates a pipeline with the id specified in <code>Speech2TextConfig</code> with the new config. If no corresponding id is
+found, raises <code>ModuleNotFoundError</code> in server.</p>
         
           <h4 id="ondewo.s2t.Speech2Text.ListS2tPipelines" class="title-badge method">ListS2tPipelines</h4>
 
           <pre>rpc ListS2tPipelines (<a href="#ondewo.s2t.ListS2tPipelinesRequest">ListS2tPipelinesRequest</a>) returns (<a href="#ondewo.s2t.ListS2tPipelinesResponse">ListS2tPipelinesResponse)</a></pre>
 
-          Lists all speech to text pipelines.
+          <p>Lists all speech to text pipelines.</p>
         
           <h4 id="ondewo.s2t.Speech2Text.ListS2tLanguages" class="title-badge method">ListS2tLanguages</h4>
 
           <pre>rpc ListS2tLanguages (<a href="#ondewo.s2t.ListS2tLanguagesRequest">ListS2tLanguagesRequest</a>) returns (<a href="#ondewo.s2t.ListS2tLanguagesResponse">ListS2tLanguagesResponse)</a></pre>
 
-          Returns a message containing a list of all languages for which there exist pipelines.
+          <p>Returns a message containing a list of all languages for which there exist pipelines.</p>
         
           <h4 id="ondewo.s2t.Speech2Text.ListS2tDomains" class="title-badge method">ListS2tDomains</h4>
 
           <pre>rpc ListS2tDomains (<a href="#ondewo.s2t.ListS2tDomainsRequest">ListS2tDomainsRequest</a>) returns (<a href="#ondewo.s2t.ListS2tDomainsResponse">ListS2tDomainsResponse)</a></pre>
 
-          Returns a message containing a list of all domains for which there exist pipelines.
+          <p>Returns a message containing a list of all domains for which there exist pipelines.</p>
         
           <h4 id="ondewo.s2t.Speech2Text.GetServiceInfo" class="title-badge method">GetServiceInfo</h4>
 
           <pre>rpc GetServiceInfo (<a href="#google.protobuf.Empty">.google.protobuf.Empty</a>) returns (<a href="#ondewo.s2t.S2tGetServiceInfoResponse">S2tGetServiceInfoResponse)</a></pre>
 
-          Returns a message containing the version of the running speech to text server.
+          <p>Returns a message containing the version of the running speech to text server.</p>
         
           <h4 id="ondewo.s2t.Speech2Text.ListS2tLanguageModels" class="title-badge method">ListS2tLanguageModels</h4>
 
           <pre>rpc ListS2tLanguageModels (<a href="#ondewo.s2t.ListS2tLanguageModelsRequest">ListS2tLanguageModelsRequest</a>) returns (<a href="#ondewo.s2t.ListS2tLanguageModelsResponse">ListS2tLanguageModelsResponse)</a></pre>
 
-          Given a list of pipeline ids, returns a list of LanguageModelPipelineId messages containing the pipeline
-id and a list of the language models loaded in the pipeline.
+          <p>Given a list of pipeline ids, returns a list of <code>LanguageModelPipelineId</code> messages containing the pipeline
+id and a list of the language models loaded in the pipeline.</p>
         
           <h4 id="ondewo.s2t.Speech2Text.CreateUserLanguageModel" class="title-badge method">CreateUserLanguageModel</h4>
 
           <pre>rpc CreateUserLanguageModel (<a href="#ondewo.s2t.CreateUserLanguageModelRequest">CreateUserLanguageModelRequest</a>) returns (<a href="#google.protobuf.Empty">.google.protobuf.Empty)</a></pre>
 
-          Create a user language model.
+          <p>Create a user language model.</p>
         
           <h4 id="ondewo.s2t.Speech2Text.DeleteUserLanguageModel" class="title-badge method">DeleteUserLanguageModel</h4>
 
           <pre>rpc DeleteUserLanguageModel (<a href="#ondewo.s2t.DeleteUserLanguageModelRequest">DeleteUserLanguageModelRequest</a>) returns (<a href="#google.protobuf.Empty">.google.protobuf.Empty)</a></pre>
 
-          Delete a user language model.
+          <p>Delete a user language model.</p>
         
           <h4 id="ondewo.s2t.Speech2Text.AddDataToUserLanguageModel" class="title-badge method">AddDataToUserLanguageModel</h4>
 
           <pre>rpc AddDataToUserLanguageModel (<a href="#ondewo.s2t.AddDataToUserLanguageModelRequest">AddDataToUserLanguageModelRequest</a>) returns (<a href="#google.protobuf.Empty">.google.protobuf.Empty)</a></pre>
 
-          Add data to a user language model.
+          <p>Add data to a user language model.</p>
         
           <h4 id="ondewo.s2t.Speech2Text.TrainUserLanguageModel" class="title-badge method">TrainUserLanguageModel</h4>
 
           <pre>rpc TrainUserLanguageModel (<a href="#ondewo.s2t.TrainUserLanguageModelRequest">TrainUserLanguageModelRequest</a>) returns (<a href="#google.protobuf.Empty">.google.protobuf.Empty)</a></pre>
 
-          Train a user language model.
+          <p>Train a user language model.</p>
         
           <h4 id="ondewo.s2t.Speech2Text.ListS2tNormalizationPipelines" class="title-badge method">ListS2tNormalizationPipelines</h4>
 
           <pre>rpc ListS2tNormalizationPipelines (<a href="#ondewo.s2t.ListS2tNormalizationPipelinesRequest">ListS2tNormalizationPipelinesRequest</a>) returns (<a href="#ondewo.s2t.ListS2tNormalizationPipelinesResponse">ListS2tNormalizationPipelinesResponse)</a></pre>
 
-          Retrieves a list of normalization pipelines based on specific requirements.
+          <p>Retrieves a list of normalization pipelines based on specific requirements.</p>
         
 
         
@@ -515,7 +515,7 @@ id and a list of the language models loaded in the pipeline.
       <div id="ondewo/s2t/speech-to-text.proto-messages" class="object-category">Messages</div>
       
         <h3 id="ondewo.s2t.AcousticModels" class="title-badge message">AcousticModels</h3>
-        <p>AcousticModels contains information about different types of acoustic models.</p>
+        <p><p>AcousticModels contains information about different types of acoustic models.</p></p>
 
         
           <table class="field-table">
@@ -595,7 +595,7 @@ id and a list of the language models loaded in the pipeline.
         
       
         <h3 id="ondewo.s2t.AddDataToUserLanguageModelRequest" class="title-badge message">AddDataToUserLanguageModelRequest</h3>
-        <p>AddDataToUserLanguageModelRequest is used to request the addition of data to a user-specific language model.</p>
+        <p><p>AddDataToUserLanguageModelRequest is used to request the addition of data to a user-specific language model.</p></p>
 
         
           <table class="field-table">
@@ -608,7 +608,7 @@ id and a list of the language models loaded in the pipeline.
                   <td>language_model_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Name of the language model to which to add data. Example: "user_lm_1" </p></td>
+                  <td><p>Name of the language model to which to add data. Example: &quot;user_lm_1&quot; </p></td>
                 </tr>
               
                 <tr>
@@ -627,7 +627,7 @@ Example: A zip file with text files containing sentences or phrases in the targe
         
       
         <h3 id="ondewo.s2t.CkptFile" class="title-badge message">CkptFile</h3>
-        <p>CkptFile contains information about checkpoint files.</p>
+        <p><p>CkptFile contains information about checkpoint files.</p></p>
 
         
           <table class="field-table">
@@ -651,7 +651,7 @@ Example: A zip file with text files containing sentences or phrases in the targe
         
       
         <h3 id="ondewo.s2t.CreateUserLanguageModelRequest" class="title-badge message">CreateUserLanguageModelRequest</h3>
-        <p>CreateUserLanguageModelRequest is used to request the creation of a new user-specific language model.</p>
+        <p><p>CreateUserLanguageModelRequest is used to request the creation of a new user-specific language model.</p></p>
 
         
           <table class="field-table">
@@ -664,7 +664,7 @@ Example: A zip file with text files containing sentences or phrases in the targe
                   <td>language_model_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Name of the language model to create. Example: "user_lm_1" </p></td>
+                  <td><p>Name of the language model to create. Example: &quot;user_lm_1&quot; </p></td>
                 </tr>
               
             </tbody>
@@ -675,7 +675,7 @@ Example: A zip file with text files containing sentences or phrases in the targe
         
       
         <h3 id="ondewo.s2t.DeleteUserLanguageModelRequest" class="title-badge message">DeleteUserLanguageModelRequest</h3>
-        <p>DeleteUserLanguageModelRequest is used to request the deletion of a user-specific language model.</p>
+        <p><p>DeleteUserLanguageModelRequest is used to request the deletion of a user-specific language model.</p></p>
 
         
           <table class="field-table">
@@ -688,7 +688,7 @@ Example: A zip file with text files containing sentences or phrases in the targe
                   <td>language_model_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Name of the language model to delete. Example: "user_lm_1" </p></td>
+                  <td><p>Name of the language model to delete. Example: &quot;user_lm_1&quot; </p></td>
                 </tr>
               
             </tbody>
@@ -699,7 +699,7 @@ Example: A zip file with text files containing sentences or phrases in the targe
         
       
         <h3 id="ondewo.s2t.LanguageModelPipelineId" class="title-badge message">LanguageModelPipelineId</h3>
-        <p>LanguageModelPipelineId contains information about a pipeline and its available language models.</p>
+        <p><p>LanguageModelPipelineId contains information about a pipeline and its available language models.</p></p>
 
         
           <table class="field-table">
@@ -712,14 +712,14 @@ Example: A zip file with text files containing sentences or phrases in the targe
                   <td>pipeline_id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>A pipeline ID. Example: "pipeline_1" </p></td>
+                  <td><p>A pipeline ID. Example: &quot;pipeline_1&quot; </p></td>
                 </tr>
               
                 <tr>
                   <td>model_names</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>A list of all available language models for the corresponding pipeline ID. Example: ["model_1", "model_2"] </p></td>
+                  <td><p>A list of all available language models for the corresponding pipeline ID. Example: [&quot;model_1&quot;, &quot;model_2&quot;] </p></td>
                 </tr>
               
             </tbody>
@@ -730,7 +730,7 @@ Example: A zip file with text files containing sentences or phrases in the targe
         
       
         <h3 id="ondewo.s2t.LanguageModels" class="title-badge message">LanguageModels</h3>
-        <p>LanguageModels contains information about language models.</p>
+        <p><p>LanguageModels contains information about language models.</p></p>
 
         
           <table class="field-table">
@@ -782,7 +782,7 @@ Example: A zip file with text files containing sentences or phrases in the targe
         
       
         <h3 id="ondewo.s2t.ListS2tDomainsRequest" class="title-badge message">ListS2tDomainsRequest</h3>
-        <p>Request message to list available domains. Optionally also filters can be set.</p>
+        <p><p>Request message to list available domains. Optionally also filters can be set.</p></p>
 
         
           <table class="field-table">
@@ -813,7 +813,7 @@ Example: A zip file with text files containing sentences or phrases in the targe
         
       
         <h3 id="ondewo.s2t.ListS2tDomainsResponse" class="title-badge message">ListS2tDomainsResponse</h3>
-        <p>Response message to list available domains</p>
+        <p><p>Response message to list available domains</p></p>
 
         
           <table class="field-table">
@@ -826,7 +826,7 @@ Example: A zip file with text files containing sentences or phrases in the targe
                   <td>domains</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>domains available. Example: ["medical", "finance"] </p></td>
+                  <td><p>domains available. Example: [&quot;medical&quot;, &quot;finance&quot;] </p></td>
                 </tr>
               
             </tbody>
@@ -837,7 +837,7 @@ Example: A zip file with text files containing sentences or phrases in the targe
         
       
         <h3 id="ondewo.s2t.ListS2tLanguageModelsRequest" class="title-badge message">ListS2tLanguageModelsRequest</h3>
-        <p>ListS2tLanguageModelsRequest is used to request a list of available language models for specified pipelines.</p>
+        <p><p>ListS2tLanguageModelsRequest is used to request a list of available language models for specified pipelines.</p></p>
 
         
           <table class="field-table">
@@ -851,7 +851,7 @@ Example: A zip file with text files containing sentences or phrases in the targe
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p>List of pipeline IDs to retrieve their available language models.
-Example: ["pipeline_1", "pipeline_2"] </p></td>
+Example: [&quot;pipeline_1&quot;, &quot;pipeline_2&quot;] </p></td>
                 </tr>
               
             </tbody>
@@ -862,7 +862,7 @@ Example: ["pipeline_1", "pipeline_2"] </p></td>
         
       
         <h3 id="ondewo.s2t.ListS2tLanguageModelsResponse" class="title-badge message">ListS2tLanguageModelsResponse</h3>
-        <p>ListS2tLanguageModelsResponse is used to return the available language models for specified pipelines.</p>
+        <p><p>ListS2tLanguageModelsResponse is used to return the available language models for specified pipelines.</p></p>
 
         
           <table class="field-table">
@@ -875,10 +875,10 @@ Example: ["pipeline_1", "pipeline_2"] </p></td>
                   <td>lm_pipeline_ids</td>
                   <td><a href="#ondewo.s2t.LanguageModelPipelineId">LanguageModelPipelineId</a></td>
                   <td>repeated</td>
-                  <td><p>Response is a list of LanguageModelPipelineId, where each element contains a pipeline ID and its associated
+                  <td><p>Response is a list of <code>LanguageModelPipelineId</code>, where each element contains a pipeline ID and its associated
 language models.
-Example: [{pipeline_id: "pipeline_1", model_names: ["model_1", "model_2"]}, {pipeline_id: "pipeline_2",
-model_names: ["model_3"]}] </p></td>
+Example: [{pipeline_id: &quot;pipeline_1&quot;, model_names: [&quot;model_1&quot;, &quot;model_2&quot;]}, {pipeline_id: &quot;pipeline_2&quot;,
+model_names: [&quot;model_3&quot;]}] </p></td>
                 </tr>
               
             </tbody>
@@ -889,7 +889,7 @@ model_names: ["model_3"]}] </p></td>
         
       
         <h3 id="ondewo.s2t.ListS2tLanguagesRequest" class="title-badge message">ListS2tLanguagesRequest</h3>
-        <p>ListS2tLanguagesRequest is used to request a list of available languages. Optionally, filters can be set.</p>
+        <p><p>ListS2tLanguagesRequest is used to request a list of available languages. Optionally, filters can be set.</p></p>
 
         
           <table class="field-table">
@@ -902,7 +902,7 @@ model_names: ["model_3"]}] </p></td>
                   <td>domains</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>Filter for domains.  Example: ["medical", "finance"] </p></td>
+                  <td><p>Filter for domains.  Example: [&quot;medical&quot;, &quot;finance&quot;] </p></td>
                 </tr>
               
                 <tr>
@@ -910,7 +910,7 @@ model_names: ["model_3"]}] </p></td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p>Filter for pipeline owners.
-Example: ["ondewo", "partner_company"] </p></td>
+Example: [&quot;ondewo&quot;, &quot;partner_company&quot;] </p></td>
                 </tr>
               
             </tbody>
@@ -921,7 +921,7 @@ Example: ["ondewo", "partner_company"] </p></td>
         
       
         <h3 id="ondewo.s2t.ListS2tLanguagesResponse" class="title-badge message">ListS2tLanguagesResponse</h3>
-        <p>Response message to list available languages</p>
+        <p><p>Response message to list available languages</p></p>
 
         
           <table class="field-table">
@@ -945,7 +945,7 @@ Example: ["ondewo", "partner_company"] </p></td>
         
       
         <h3 id="ondewo.s2t.ListS2tNormalizationPipelinesRequest" class="title-badge message">ListS2tNormalizationPipelinesRequest</h3>
-        <p>The request message for ListS2tNormalizationPipelines.</p><p>Filter pipelines by attributed in request.</p>
+        <p><p>The request message for <code>ListS2tNormalizationPipelines</code>.</p></p><p><p>Filter pipelines by attributes in request.</p></p>
 
         
           <table class="field-table">
@@ -969,7 +969,7 @@ Example: ["ondewo", "partner_company"] </p></td>
         
       
         <h3 id="ondewo.s2t.ListS2tNormalizationPipelinesResponse" class="title-badge message">ListS2tNormalizationPipelinesResponse</h3>
-        <p>Pipeline Response representation.</p><p>The response message for ListS2tNormalizationPipelines.</p>
+        <p><p>The response message for <code>ListS2tNormalizationPipelines</code>.</p></p>
 
         
           <table class="field-table">
@@ -983,8 +983,8 @@ Example: ["ondewo", "partner_company"] </p></td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p>Required. Representation of a list of normalization pipelines configurations.
-Retrieved by ListS2tNormalizationPipelines, containing the configurations of
-normalization pipelines with the specifications received in the ListS2tNormalizationPipelinesRequest. </p></td>
+Retrieved by <code>ListS2tNormalizationPipelines</code>, containing the configurations of
+normalization pipelines with the specifications received in the <code>ListS2tNormalizationPipelinesRequest</code>. </p></td>
                 </tr>
               
             </tbody>
@@ -995,7 +995,7 @@ normalization pipelines with the specifications received in the ListS2tNormaliza
         
       
         <h3 id="ondewo.s2t.ListS2tPipelinesRequest" class="title-badge message">ListS2tPipelinesRequest</h3>
-        <p>Request to list all speech-to-text pipelines. Optionally also filter criteria can be set</p>
+        <p><p>Request to list all speech-to-text pipelines. Optionally also filter criteria can be set</p></p>
 
         
           <table class="field-table">
@@ -1041,7 +1041,7 @@ Default false: return registered and persisted (from config files) configs. </p>
         
       
         <h3 id="ondewo.s2t.ListS2tPipelinesResponse" class="title-badge message">ListS2tPipelinesResponse</h3>
-        <p>ListS2tPipelinesResponse is used to return a list of all speech-to-text pipelines.</p>
+        <p><p>ListS2tPipelinesResponse is used to return a list of all speech-to-text pipelines.</p></p>
 
         
           <table class="field-table">
@@ -1054,9 +1054,9 @@ Default false: return registered and persisted (from config files) configs. </p>
                   <td>pipeline_configs</td>
                   <td><a href="#ondewo.s2t.Speech2TextConfig">Speech2TextConfig</a></td>
                   <td>repeated</td>
-                  <td><p>A list of Speech2TextConfig message instances containing the configuration of each pipeline.
-Example: [{id: "pipeline_1", description: {language: "en"}, active: true, ...}, {id: "pipeline_2",
-description: {language: "fr"}, active: true, ...}] </p></td>
+                  <td><p>A list of <code>Speech2TextConfig</code> message instances containing the configuration of each pipeline.
+Example: [{id: &quot;pipeline_1&quot;, description: {language: &quot;en&quot;}, active: true, ...}, {id: &quot;pipeline_2&quot;,
+description: {language: &quot;fr&quot;}, active: true, ...}] </p></td>
                 </tr>
               
             </tbody>
@@ -1067,7 +1067,7 @@ description: {language: "fr"}, active: true, ...}] </p></td>
         
       
         <h3 id="ondewo.s2t.Logging" class="title-badge message">Logging</h3>
-        <p>Logging contains configuration for logging.</p>
+        <p><p>Logging contains configuration for logging.</p></p>
 
         
           <table class="field-table">
@@ -1098,7 +1098,7 @@ description: {language: "fr"}, active: true, ...}] </p></td>
         
       
         <h3 id="ondewo.s2t.PostProcessing" class="title-badge message">PostProcessing</h3>
-        <p>PostProcessing contains the configuration for post-processing.</p>
+        <p><p>PostProcessing contains the configuration for post-processing.</p></p>
 
         
           <table class="field-table">
@@ -1129,7 +1129,7 @@ description: {language: "fr"}, active: true, ...}] </p></td>
         
       
         <h3 id="ondewo.s2t.PostProcessingOptions" class="title-badge message">PostProcessingOptions</h3>
-        <p>Configuration of the post-processing options</p>
+        <p><p>Configuration of the post-processing options</p></p>
 
         
           <table class="field-table">
@@ -1175,7 +1175,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
         
       
         <h3 id="ondewo.s2t.PostProcessors" class="title-badge message">PostProcessors</h3>
-        <p>PostProcessors contains configurations for post-processors.</p>
+        <p><p>PostProcessors contains configurations for post-processors.</p></p>
 
         
           <table class="field-table">
@@ -1213,7 +1213,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
         
       
         <h3 id="ondewo.s2t.PtFiles" class="title-badge message">PtFiles</h3>
-        <p>PtFiles contains information about PT files.</p>
+        <p><p>PtFiles contains information about PT files.</p></p>
 
         
           <table class="field-table">
@@ -1244,7 +1244,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
         
       
         <h3 id="ondewo.s2t.Pyannote" class="title-badge message">Pyannote</h3>
-        <p>Pyannote contains configuration for the Pyannote voice activity detection model.</p><p>Library: [pyannote-audio](https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb)</p>
+        <p><p>Pyannote contains configuration for the Pyannote voice activity detection model.</p></p><p><p>Library: <a href="https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb">pyannote-audio</a></p></p>
 
         
           <table class="field-table">
@@ -1272,15 +1272,15 @@ configuration. If not set, all values are replaced by the ones in current pipeli
                   <td><a href="#float">float</a></td>
                   <td></td>
                   <td><p>Fill inactive regions shorter than that many seconds.
-Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb) </p></td>
+Example <a href="https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb">notebook</a> </p></td>
                 </tr>
               
                 <tr>
                   <td>min_duration_on</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p>Remove active regions shorter than that many seconds
-Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb) </p></td>
+                  <td><p>Remove active regions shorter than that many seconds.
+Example <a href="https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb">notebook</a> </p></td>
                 </tr>
               
                 <tr>
@@ -1305,7 +1305,7 @@ Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutor
         
       
         <h3 id="ondewo.s2t.S2tCloudProviderConfig" class="title-badge message">S2tCloudProviderConfig</h3>
-        <p>Configuration for cloud provider settings for Speech-to-Text (S2T).</p>
+        <p><p>Configuration for cloud provider settings for Speech-to-Text (S2T).</p></p>
 
         
           <table class="field-table">
@@ -1350,7 +1350,7 @@ Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutor
         
       
         <h3 id="ondewo.s2t.S2tCloudProviderConfigAmazon" class="title-badge message">S2tCloudProviderConfigAmazon</h3>
-        <p>Configuration details specific to the Amazon web service speech-to-text provider.</p>
+        <p><p>Configuration details specific to the Amazon web service speech-to-text provider.</p></p>
 
         
           <table class="field-table">
@@ -1363,8 +1363,8 @@ Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutor
                   <td>enable_partial_results_stabilization</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Enables or disables partial_results_stabilization feature. More details at:
-https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization </p></td>
+                  <td><p>Optional. Enables or disables <code>partial_results_stabilization</code> feature. More details at:
+<a href="https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization">https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization</a> </p></td>
                 </tr>
               
                 <tr>
@@ -1374,8 +1374,8 @@ https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#
                   <td><p>Optional. You can use this field to set the stability level of the transcription results.
 A higher stability level means that the transcription results are less likely to change.
 Higher stability levels can come with lower overall transcription accuracy.
-Acceptable values: ["low", "medium", "high"]. Defaults to "high" if not set explicitly. More details at:
-https://aws.amazon.com/blogs/machine-learning/amazon-transcribe-now-supports-partial-results-stabilization-for-streaming-audio/ </p></td>
+Acceptable values: [&quot;low&quot;, &quot;medium&quot;, &quot;high&quot;]. Defaults to &quot;high&quot; if not set explicitly. More details at:
+<a href="https://aws.amazon.com/blogs/machine-learning/amazon-transcribe-now-supports-partial-results-stabilization-for-streaming-audio/">https://aws.amazon.com/blogs/machine-learning/amazon-transcribe-now-supports-partial-results-stabilization-for-streaming-audio/</a> </p></td>
                 </tr>
               
                 <tr>
@@ -1383,15 +1383,15 @@ https://aws.amazon.com/blogs/machine-learning/amazon-transcribe-now-supports-par
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
                   <td><p>Optional. The name of your customize language model you want to use.
-More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html </p></td>
+More details at: <a href="https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html">https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html</a> </p></td>
                 </tr>
               
                 <tr>
                   <td>vocabulary_name</td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
-                  <td><p>Optional. The name of your customize language model you want to use.
-More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html </p></td>
+                  <td><p>Optional. The name of your customize vocabulary you want to use.
+More details at: <a href="https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html">https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html</a> </p></td>
                 </tr>
               
             </tbody>
@@ -1402,7 +1402,7 @@ More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabul
         
       
         <h3 id="ondewo.s2t.S2tCloudProviderConfigDeepgram" class="title-badge message">S2tCloudProviderConfigDeepgram</h3>
-        <p>Configuration details specific to the Deepgram speech-to-text provider.</p>
+        <p><p>Configuration details specific to the Deepgram speech-to-text provider.</p></p>
 
         
           <table class="field-table">
@@ -1415,41 +1415,41 @@ More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabul
                   <td>punctuate</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Enables or disables punctuate feature of Deepgram to add punctuations to the resulted transcript.
-More details at: https://developers.deepgram.com/docs/punctuation </p></td>
+                  <td><p>Optional. Enables or disables <code>punctuate</code> feature of Deepgram to add punctuations to the resulted transcript.
+More details at: <a href="https://developers.deepgram.com/docs/punctuation">https://developers.deepgram.com/docs/punctuation</a> </p></td>
                 </tr>
               
                 <tr>
                   <td>smart_format</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Enables or disables smart_format feature of Deepgram transcription result to improve readability.
-More details at: https://developers.deepgram.com/docs/smart-format </p></td>
+                  <td><p>Optional. Enables or disables <code>smart_format</code> feature of Deepgram transcription result to improve readability.
+More details at: <a href="https://developers.deepgram.com/docs/smart-format">https://developers.deepgram.com/docs/smart-format</a> </p></td>
                 </tr>
               
                 <tr>
                   <td>numerals</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Enables or disables numerals feature of Deepgram to convert numbers to numeric form in the resulted 
-transcript. More details at: https://developers.deepgram.com/docs/numerals </p></td>
+                  <td><p>Optional. Enables or disables <code>numerals</code> feature of Deepgram to convert numbers to numeric form in the resulted 
+transcript. More details at: <a href="https://developers.deepgram.com/docs/numerals">https://developers.deepgram.com/docs/numerals</a> </p></td>
                 </tr>
               
                 <tr>
                   <td>measurements</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Enables or disables measurements feature of Deepgram to convert measurement units (i.e. Kilogram)
+                  <td><p>Optional. Enables or disables <code>measurements</code> feature of Deepgram to convert measurement units (i.e. Kilogram)
 to abbreviated form (i.e. Kg) in the resulted transcript.
-More details at: https://developers.deepgram.com/docs/measurements </p></td>
+More details at: <a href="https://developers.deepgram.com/docs/measurements">https://developers.deepgram.com/docs/measurements</a> </p></td>
                 </tr>
               
                 <tr>
                   <td>dictation</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Enables or disables dictation feature of Deepgram to convert spoken dictation commands into their 
-corresponding punctuation marks. More details at: https://developers.deepgram.com/docs/dictation </p></td>
+                  <td><p>Optional. Enables or disables <code>dictation</code> feature of Deepgram to convert spoken dictation commands into their 
+corresponding punctuation marks. More details at: <a href="https://developers.deepgram.com/docs/dictation">https://developers.deepgram.com/docs/dictation</a> </p></td>
                 </tr>
               
             </tbody>
@@ -1460,7 +1460,7 @@ corresponding punctuation marks. More details at: https://developers.deepgram.co
         
       
         <h3 id="ondewo.s2t.S2tCloudProviderConfigGoogle" class="title-badge message">S2tCloudProviderConfigGoogle</h3>
-        <p>Configuration details specific to the Google speech-to-text provider.</p>
+        <p><p>Configuration details specific to the Google speech-to-text provider.</p></p>
 
         
           <table class="field-table">
@@ -1473,40 +1473,40 @@ corresponding punctuation marks. More details at: https://developers.deepgram.co
                   <td>enable_automatic_punctuation</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Enables or disables automatic_punctuation feature of Google s2t to add punctuations to the resulted 
-transcript. More details at: https://cloud.google.com/speech-to-text/docs/automatic-punctuation </p></td>
+                  <td><p>Optional. Enables or disables <code>automatic_punctuation</code> feature of Google s2t to add punctuations to the resulted 
+transcript. More details at: <a href="https://cloud.google.com/speech-to-text/docs/automatic-punctuation">https://cloud.google.com/speech-to-text/docs/automatic-punctuation</a> </p></td>
                 </tr>
               
                 <tr>
                   <td>enable_word_time_offsets</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Enables or disables word_time_offsets feature of Google s2t to add word-level timestamps (time-offset)
-to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/async-time-offsets </p></td>
+                  <td><p>Optional. Enables or disables <code>word_time_offsets</code> feature of Google s2t to add word-level timestamps (time-offset)
+to the resulted transcript. More details at: <a href="https://cloud.google.com/speech-to-text/docs/async-time-offsets">https://cloud.google.com/speech-to-text/docs/async-time-offsets</a> </p></td>
                 </tr>
               
                 <tr>
                   <td>enable_word_confidence</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Enables or disables word_confidence feature of Google s2t to add word-level confidence scores
-to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/word-confidence </p></td>
+                  <td><p>Optional. Enables or disables <code>word_confidence</code> feature of Google s2t to add word-level confidence scores
+to the resulted transcript. More details at: <a href="https://cloud.google.com/speech-to-text/docs/word-confidence">https://cloud.google.com/speech-to-text/docs/word-confidence</a> </p></td>
                 </tr>
               
                 <tr>
                   <td>transcript_normalization</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Enables or disables transcript_normalization feature of Google s2t to automatically
+                  <td><p>Optional. Enables or disables <code>transcript_normalization</code> feature of Google s2t to automatically
 replace parts of the transcript with phrases of your choosing. More details at:
-https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization </p></td>
+<a href="https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization">https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization</a> </p></td>
                 </tr>
               
                 <tr>
                   <td>max_alternatives</td>
                   <td><a href="#int32">int32</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Maximum number of recognition hypotheses to be returned, may be returned fewer than max_alternatives.
+                  <td><p>Optional. Maximum number of recognition hypotheses to be returned, may be returned fewer than <code>max_alternatives</code>.
 Valid values are 0-30. A value of 0 or 1 will return a maximum of one. If omitted, will return a maximum of one. </p></td>
                 </tr>
               
@@ -1518,7 +1518,7 @@ Valid values are 0-30. A value of 0 or 1 will return a maximum of one. If omitte
         
       
         <h3 id="ondewo.s2t.S2tCloudProviderConfigMicrosoft" class="title-badge message">S2tCloudProviderConfigMicrosoft</h3>
-        <p>Configuration details specific to the Microsoft Azure speech-to-text provider.</p>
+        <p><p>Configuration details specific to the Microsoft Azure speech-to-text provider.</p></p>
 
         
           <table class="field-table">
@@ -1533,14 +1533,14 @@ Valid values are 0-30. A value of 0 or 1 will return a maximum of one. If omitte
                   <td>optional</td>
                   <td><p>Optional. Enables or disables the Microsoft Azure fast transcription API. It is faster than SDK but is in 
 preview version.
-More details at: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create </p></td>
+More details at: <a href="https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create">https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create</a> </p></td>
                 </tr>
               
                 <tr>
                   <td>use_detailed_output_format</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Enables or disables the `detailed` format for the result of Microsoft Azure s2t service
+                  <td><p>Optional. Enables or disables the <code>detailed</code> format for the result of Microsoft Azure s2t service
 to add timestamps and confidences to the resulted transcript. </p></td>
                 </tr>
               
@@ -1552,7 +1552,7 @@ to add timestamps and confidences to the resulted transcript. </p></td>
         
       
         <h3 id="ondewo.s2t.S2tCloudServiceAmazon" class="title-badge message">S2tCloudServiceAmazon</h3>
-        <p>S2tCloudServiceAmazon message contains settings for the Amazon web service Cloud service inference.</p>
+        <p><p>S2tCloudServiceAmazon message contains settings for the Amazon web service Cloud service inference.</p></p>
 
         
           <table class="field-table">
@@ -1566,7 +1566,7 @@ to add timestamps and confidences to the resulted transcript. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Language of the audio to transcribe by Amazon web service s2t cloud service. It should be 4-letter language code
-(BCP-47) e.g. 'en-US' or 'de-DE'. </p></td>
+(BCP-47) e.g. &apos;en-US&apos; or &apos;de-DE&apos;. </p></td>
                 </tr>
               
                 <tr>
@@ -1575,15 +1575,15 @@ to add timestamps and confidences to the resulted transcript. </p></td>
                   <td></td>
                   <td><p>Specifies if streaming mode of Amazon web service speech to text is available for the selected language, 
 otherwise batch mode transcription is used. See the list of languages and available transcription modes at:
-https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html </p></td>
+<a href="https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html">https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html</a> </p></td>
                 </tr>
               
                 <tr>
                   <td>enable_partial_results_stabilization</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Enables or disables partial_results_stabilization feature. More details at:
-https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization </p></td>
+                  <td><p>Enables or disables <code>partial_results_stabilization</code> feature. More details at:
+<a href="https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization">https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization</a> </p></td>
                 </tr>
               
                 <tr>
@@ -1593,7 +1593,7 @@ https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#
                   <td><p>You can use this field to set the stability level of the transcription results.
 A higher stability level means that the transcription results are less likely to change.
 Higher stability levels can come with lower overall transcription accuracy.
-Defaults to "high" if not set explicitly. </p></td>
+Defaults to &quot;high&quot; if not set explicitly. </p></td>
                 </tr>
               
                 <tr>
@@ -1601,15 +1601,15 @@ Defaults to "high" if not set explicitly. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>The name of your customize language model you want to use.
-More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html </p></td>
+More details at: <a href="https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html">https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html</a> </p></td>
                 </tr>
               
                 <tr>
                   <td>vocabulary_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>The name of your customize language model you want to use.
-More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html </p></td>
+                  <td><p>The name of your customize vocabulary you want to use.
+More details at: <a href="https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html">https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html</a> </p></td>
                 </tr>
               
             </tbody>
@@ -1620,7 +1620,7 @@ More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabul
         
       
         <h3 id="ondewo.s2t.S2tCloudServiceDeepgram" class="title-badge message">S2tCloudServiceDeepgram</h3>
-        <p>S2tCloudServiceDeepgram message contains settings for the Deepgram Cloud service inference.</p>
+        <p><p>S2tCloudServiceDeepgram message contains settings for the Deepgram Cloud service inference.</p></p>
 
         
           <table class="field-table">
@@ -1634,7 +1634,7 @@ More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabul
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Model name from one of the speech-to-text models provided by Deepgram for the desired use-case.
-Provided model names and details at: https://developers.deepgram.com/docs/model </p></td>
+Provided model names and details at: <a href="https://developers.deepgram.com/docs/model">https://developers.deepgram.com/docs/model</a> </p></td>
                 </tr>
               
                 <tr>
@@ -1642,48 +1642,48 @@ Provided model names and details at: https://developers.deepgram.com/docs/model 
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Language of the audio to transcribe by Deepgram s2t cloud service. It should be 4-letter language code
-(BCP-47) e.g. 'en-US' or 'de-DE'. </p></td>
+(BCP-47) e.g. &apos;en-US&apos; or &apos;de-DE&apos;. </p></td>
                 </tr>
               
                 <tr>
                   <td>punctuate</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Enables or disables punctuate feature of Deepgram to add punctuations to the resulted transcript.
-More details at: https://developers.deepgram.com/docs/punctuation </p></td>
+                  <td><p>Enables or disables <code>punctuate</code> feature of Deepgram to add punctuations to the resulted transcript.
+More details at: <a href="https://developers.deepgram.com/docs/punctuation">https://developers.deepgram.com/docs/punctuation</a> </p></td>
                 </tr>
               
                 <tr>
                   <td>smart_format</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Enables or disables smart_format feature of Deepgram transcription result to improve readability.
-More details at: https://developers.deepgram.com/docs/smart-format </p></td>
+                  <td><p>Enables or disables <code>smart_format</code> feature of Deepgram transcription result to improve readability.
+More details at: <a href="https://developers.deepgram.com/docs/smart-format">https://developers.deepgram.com/docs/smart-format</a> </p></td>
                 </tr>
               
                 <tr>
                   <td>numerals</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Enables or disables numerals feature of Deepgram to convert numbers to numeric form in the resulted transcript.
-More details at: https://developers.deepgram.com/docs/numerals </p></td>
+                  <td><p>Enables or disables <code>numerals</code> feature of Deepgram to convert numbers to numeric form in the resulted transcript.
+More details at: <a href="https://developers.deepgram.com/docs/numerals">https://developers.deepgram.com/docs/numerals</a> </p></td>
                 </tr>
               
                 <tr>
                   <td>measurements</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Enables or disables measurements feature of Deepgram to convert measurement units (i.e. Kilogram)
+                  <td><p>Enables or disables <code>measurements</code> feature of Deepgram to convert measurement units (i.e. Kilogram)
 to abbreviated form (i.e. Kg) in the resulted transcript.
-More details at: https://developers.deepgram.com/docs/measurements </p></td>
+More details at: <a href="https://developers.deepgram.com/docs/measurements">https://developers.deepgram.com/docs/measurements</a> </p></td>
                 </tr>
               
                 <tr>
                   <td>dictation</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Enables or disables dictation feature of Deepgram to convert spoken dictation commands into their corresponding
-punctuation marks. More details at: https://developers.deepgram.com/docs/dictation </p></td>
+                  <td><p>Enables or disables <code>dictation</code> feature of Deepgram to convert spoken dictation commands into their corresponding
+punctuation marks. More details at: <a href="https://developers.deepgram.com/docs/dictation">https://developers.deepgram.com/docs/dictation</a> </p></td>
                 </tr>
               
             </tbody>
@@ -1694,7 +1694,7 @@ punctuation marks. More details at: https://developers.deepgram.com/docs/dictati
         
       
         <h3 id="ondewo.s2t.S2tCloudServiceGoogle" class="title-badge message">S2tCloudServiceGoogle</h3>
-        <p>S2tCloudServiceGoogle message contains settings for the Google Cloud service inference.</p>
+        <p><p>S2tCloudServiceGoogle message contains settings for the Google Cloud service inference.</p></p>
 
         
           <table class="field-table">
@@ -1708,7 +1708,7 @@ punctuation marks. More details at: https://developers.deepgram.com/docs/dictati
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Model name from one of the speech-to-text models provided by Google for the desired use-case.
-Provided model names and details at: https://cloud.google.com/speech-to-text/docs/transcription-model </p></td>
+Provided model names and details at: <a href="https://cloud.google.com/speech-to-text/docs/transcription-model">https://cloud.google.com/speech-to-text/docs/transcription-model</a> </p></td>
                 </tr>
               
                 <tr>
@@ -1716,47 +1716,47 @@ Provided model names and details at: https://cloud.google.com/speech-to-text/doc
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Language of the audio to transcribe by Google s2t cloud service. It should be 4-letter language code
-(BCP-47) e.g. 'en-US' or 'de-DE'. </p></td>
+(BCP-47) e.g. &apos;en-US&apos; or &apos;de-DE&apos;. </p></td>
                 </tr>
               
                 <tr>
                   <td>enable_automatic_punctuation</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Enables or disables automatic_punctuation feature of Google s2t to add punctuations to the resulted transcript.
-More details at: https://cloud.google.com/speech-to-text/docs/automatic-punctuation </p></td>
+                  <td><p>Enables or disables <code>automatic_punctuation</code> feature of Google s2t to add punctuations to the resulted transcript.
+More details at: <a href="https://cloud.google.com/speech-to-text/docs/automatic-punctuation">https://cloud.google.com/speech-to-text/docs/automatic-punctuation</a> </p></td>
                 </tr>
               
                 <tr>
                   <td>enable_word_time_offsets</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Enables or disables word_time_offsets feature of Google s2t to add word-level timestamps (time-offsets)
-to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/async-time-offsets </p></td>
+                  <td><p>Enables or disables <code>word_time_offsets</code> feature of Google s2t to add word-level timestamps (time-offsets)
+to the resulted transcript. More details at: <a href="https://cloud.google.com/speech-to-text/docs/async-time-offsets">https://cloud.google.com/speech-to-text/docs/async-time-offsets</a> </p></td>
                 </tr>
               
                 <tr>
                   <td>enable_word_confidence</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Enables or disables word_confidence feature of Google s2t to add word-level confidence scores
-to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/word-confidence </p></td>
+                  <td><p>Enables or disables <code>word_confidence</code> feature of Google s2t to add word-level confidence scores
+to the resulted transcript. More details at: <a href="https://cloud.google.com/speech-to-text/docs/word-confidence">https://cloud.google.com/speech-to-text/docs/word-confidence</a> </p></td>
                 </tr>
               
                 <tr>
                   <td>transcript_normalization</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Enables or disables transcript_normalization feature of Google s2t to automatically
+                  <td><p>Enables or disables <code>transcript_normalization</code> feature of Google s2t to automatically
 replace parts of the transcript with phrases of your choosing. More details at:
-https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization </p></td>
+<a href="https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization">https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization</a> </p></td>
                 </tr>
               
                 <tr>
                   <td>max_alternatives</td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
-                  <td><p>Maximum number of recognition hypotheses to be returned. The server may return fewer than max_alternatives.
+                  <td><p>Maximum number of recognition hypotheses to be returned. The server may return fewer than <code>max_alternatives</code>.
 Valid values are 0-30. A value of 0 or 1 will return a maximum of one. If omitted, will return a maximum of one. </p></td>
                 </tr>
               
@@ -1768,7 +1768,7 @@ Valid values are 0-30. A value of 0 or 1 will return a maximum of one. If omitte
         
       
         <h3 id="ondewo.s2t.S2tCloudServiceMicrosoft" class="title-badge message">S2tCloudServiceMicrosoft</h3>
-        <p>S2tCloudServiceMicrosoft message contains settings for the Microsoft Azure Cloud service inference.</p>
+        <p><p>S2tCloudServiceMicrosoft message contains settings for the Microsoft Azure Cloud service inference.</p></p>
 
         
           <table class="field-table">
@@ -1782,7 +1782,7 @@ Valid values are 0-30. A value of 0 or 1 will return a maximum of one. If omitte
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Language of the audio to transcribe by Microsoft Azure s2t cloud service. It should be 4-letter language code
-(BCP-47) e.g. 'en-US' or 'de-DE'. </p></td>
+(BCP-47) e.g. &apos;en-US&apos; or &apos;de-DE&apos;. </p></td>
                 </tr>
               
                 <tr>
@@ -1790,14 +1790,14 @@ Valid values are 0-30. A value of 0 or 1 will return a maximum of one. If omitte
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>Enables or disables the Microsoft Azure fast transcription API. It is faster than SDK but is in preview version.
-More details at: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create </p></td>
+More details at: <a href="https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create">https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create</a> </p></td>
                 </tr>
               
                 <tr>
                   <td>use_detailed_output_format</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Enables or disables the `detailed` format for the result of Microsoft Azure s2t service
+                  <td><p>Enables or disables the <code>detailed</code> format for the result of Microsoft Azure s2t service
 to add timestamps and confidences to the resulted transcript. </p></td>
                 </tr>
               
@@ -1809,7 +1809,7 @@ to add timestamps and confidences to the resulted transcript. </p></td>
         
       
         <h3 id="ondewo.s2t.S2tDescription" class="title-badge message">S2tDescription</h3>
-        <p>S2tDescription contains descriptive information about the speech-to-text pipeline.</p>
+        <p><p>S2tDescription contains descriptive information about the speech-to-text pipeline.</p></p>
 
         
           <table class="field-table">
@@ -1854,7 +1854,7 @@ to add timestamps and confidences to the resulted transcript. </p></td>
         
       
         <h3 id="ondewo.s2t.S2tGetServiceInfoResponse" class="title-badge message">S2tGetServiceInfoResponse</h3>
-        <p>S2tGetServiceInfoResponse is used to return version information about the speech-to-text service.</p>
+        <p><p>S2tGetServiceInfoResponse is used to return version information about the speech-to-text service.</p></p>
 
         
           <table class="field-table">
@@ -1867,7 +1867,7 @@ to add timestamps and confidences to the resulted transcript. </p></td>
                   <td>version</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Version number based on semantic versioning, e.g. "4.2.0". </p></td>
+                  <td><p>Version number based on semantic versioning, e.g. &quot;4.2.0&quot;. </p></td>
                 </tr>
               
             </tbody>
@@ -1878,7 +1878,7 @@ to add timestamps and confidences to the resulted transcript. </p></td>
         
       
         <h3 id="ondewo.s2t.S2tInference" class="title-badge message">S2tInference</h3>
-        <p>S2tInference contains information about inference models used in the speech-to-text pipeline.</p>
+        <p><p>S2tInference contains information about inference models used in the speech-to-text pipeline.</p></p>
 
         
           <table class="field-table">
@@ -1916,7 +1916,7 @@ to add timestamps and confidences to the resulted transcript. </p></td>
         
       
         <h3 id="ondewo.s2t.S2tLlmPostProcessing" class="title-badge message">S2tLlmPostProcessing</h3>
-        <p>S2tLlmPostProcessing contains configuration for the speech-to-text postprocessing with LLM.</p>
+        <p><p>S2tLlmPostProcessing contains configuration for the speech-to-text postprocessing with LLM.</p></p>
 
         
           <table class="field-table">
@@ -2018,7 +2018,7 @@ If the timeout occurs, result of post-processing returns the input text with no 
         
       
         <h3 id="ondewo.s2t.S2tLlmPostProcessingCasingOptions" class="title-badge message">S2tLlmPostProcessingCasingOptions</h3>
-        <p>Configuration of the options to casing task in LLM post-processing.</p>
+        <p><p>Configuration of the options to casing task in LLM post-processing.</p></p>
 
         
           <table class="field-table">
@@ -2042,7 +2042,7 @@ If the timeout occurs, result of post-processing returns the input text with no 
         
       
         <h3 id="ondewo.s2t.S2tLlmPostProcessingInverseNormalizationOptions" class="title-badge message">S2tLlmPostProcessingInverseNormalizationOptions</h3>
-        <p>Configuration of the options to inverse-normalization task in LLM post-processing.</p>
+        <p><p>Configuration of the options to inverse-normalization task in LLM post-processing.</p></p>
 
         
           <table class="field-table">
@@ -2108,7 +2108,7 @@ If the timeout occurs, result of post-processing returns the input text with no 
         
       
         <h3 id="ondewo.s2t.S2tLlmPostProcessingNormalizationOptions" class="title-badge message">S2tLlmPostProcessingNormalizationOptions</h3>
-        <p>Configuration of the options to normalization task in LLM post-processing.</p>
+        <p><p>Configuration of the options to normalization task in LLM post-processing.</p></p>
 
         
           <table class="field-table">
@@ -2174,7 +2174,7 @@ If the timeout occurs, result of post-processing returns the input text with no 
         
       
         <h3 id="ondewo.s2t.S2tLlmPostProcessingPunctuationOptions" class="title-badge message">S2tLlmPostProcessingPunctuationOptions</h3>
-        <p>Configuration of the options to punctuation task in LLM post-processing.</p>
+        <p><p>Configuration of the options to punctuation task in LLM post-processing.</p></p>
 
         
           <table class="field-table">
@@ -2198,7 +2198,7 @@ If the timeout occurs, result of post-processing returns the input text with no 
         
       
         <h3 id="ondewo.s2t.S2tLlmPostProcessingSemanticCorrectionOptions" class="title-badge message">S2tLlmPostProcessingSemanticCorrectionOptions</h3>
-        <p>Configuration of the options to semantic-correction task in LLM post-processing.</p>
+        <p><p>Configuration of the options to semantic-correction task in LLM post-processing.</p></p>
 
         
           <table class="field-table">
@@ -2222,7 +2222,7 @@ If the timeout occurs, result of post-processing returns the input text with no 
         
       
         <h3 id="ondewo.s2t.S2tLlmPostProcessingSpellCorrectionOptions" class="title-badge message">S2tLlmPostProcessingSpellCorrectionOptions</h3>
-        <p>Configuration of the options to spelling-correction task in LLM post-processing.</p>
+        <p><p>Configuration of the options to spelling-correction task in LLM post-processing.</p></p>
 
         
           <table class="field-table">
@@ -2246,7 +2246,7 @@ If the timeout occurs, result of post-processing returns the input text with no 
         
       
         <h3 id="ondewo.s2t.S2tLlmPostProcessingSummarizationOptions" class="title-badge message">S2tLlmPostProcessingSummarizationOptions</h3>
-        <p>Configuration of the options to summarization task in LLM post-processing.</p>
+        <p><p>Configuration of the options to summarization task in LLM post-processing.</p></p>
 
         
           <table class="field-table">
@@ -2284,7 +2284,7 @@ If the timeout occurs, result of post-processing returns the input text with no 
         
       
         <h3 id="ondewo.s2t.S2tLlmPostProcessingTranslationOptions" class="title-badge message">S2tLlmPostProcessingTranslationOptions</h3>
-        <p>Configuration of the options to translation task in LLM post-processing.</p>
+        <p><p>Configuration of the options to translation task in LLM post-processing.</p></p>
 
         
           <table class="field-table">
@@ -2315,7 +2315,7 @@ If the timeout occurs, result of post-processing returns the input text with no 
         
       
         <h3 id="ondewo.s2t.S2tLlmPostProcessingUserPromptOptions" class="title-badge message">S2tLlmPostProcessingUserPromptOptions</h3>
-        <p>Configuration of the options to user-prompt task in LLM post-processing.</p>
+        <p><p>Configuration of the options to user-prompt task in LLM post-processing.</p></p>
 
         
           <table class="field-table">
@@ -2346,7 +2346,7 @@ If the timeout occurs, result of post-processing returns the input text with no 
         
       
         <h3 id="ondewo.s2t.S2tNormalization" class="title-badge message">S2tNormalization</h3>
-        <p>S2tNormalization contains configuration for the speech-to-text normalization.</p>
+        <p><p>S2tNormalization contains configuration for the speech-to-text normalization.</p></p>
 
         
           <table class="field-table">
@@ -2377,7 +2377,7 @@ If the timeout occurs, result of post-processing returns the input text with no 
         
       
         <h3 id="ondewo.s2t.S2tPipelineId" class="title-badge message">S2tPipelineId</h3>
-        <p>The pipeline id for a specific pipeline configuration</p>
+        <p><p>The pipeline id for a specific pipeline configuration</p></p>
 
         
           <table class="field-table">
@@ -2401,7 +2401,7 @@ If the timeout occurs, result of post-processing returns the input text with no 
         
       
         <h3 id="ondewo.s2t.Speech2TextConfig" class="title-badge message">Speech2TextConfig</h3>
-        <p>Speech2TextConfig is a configuration message for the speech-to-text pipeline</p>
+        <p><p>Speech2TextConfig is a configuration message for the speech-to-text pipeline</p></p>
 
         
           <table class="field-table">
@@ -2474,7 +2474,7 @@ If the timeout occurs, result of post-processing returns the input text with no 
         
       
         <h3 id="ondewo.s2t.StreamingServer" class="title-badge message">StreamingServer</h3>
-        <p>StreamingServer contains information about the streaming server.</p>
+        <p><p>StreamingServer contains information about the streaming server.</p></p>
 
         
           <table class="field-table">
@@ -2519,7 +2519,7 @@ If the timeout occurs, result of post-processing returns the input text with no 
         
       
         <h3 id="ondewo.s2t.StreamingSpeechRecognition" class="title-badge message">StreamingSpeechRecognition</h3>
-        <p>StreamingSpeechRecognition contains information about streaming speech recognition settings.</p>
+        <p><p>StreamingSpeechRecognition contains information about streaming speech recognition settings.</p></p>
 
         
           <table class="field-table">
@@ -2578,7 +2578,7 @@ If the timeout occurs, result of post-processing returns the input text with no 
         
       
         <h3 id="ondewo.s2t.SymSpell" class="title-badge message">SymSpell</h3>
-        <p>SymSpell contains configuration for the SymSpell spelling correction.</p>
+        <p><p>SymSpell contains configuration for the SymSpell spelling correction.</p></p>
 
         
           <table class="field-table">
@@ -2617,7 +2617,7 @@ takes longer to process!) </p></td>
         
       
         <h3 id="ondewo.s2t.TrainUserLanguageModelRequest" class="title-badge message">TrainUserLanguageModelRequest</h3>
-        <p>TrainUserLanguageModelRequest is used to request the training of a user-specific language model.</p>
+        <p><p>TrainUserLanguageModelRequest is used to request the training of a user-specific language model.</p></p>
 
         
           <table class="field-table">
@@ -2630,7 +2630,7 @@ takes longer to process!) </p></td>
                   <td>language_model_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Name of the language model to train. Example: "user_lm_1" </p></td>
+                  <td><p>Name of the language model to train. Example: &quot;user_lm_1&quot; </p></td>
                 </tr>
               
                 <tr>
@@ -2648,7 +2648,7 @@ takes longer to process!) </p></td>
         
       
         <h3 id="ondewo.s2t.TranscribeFileRequest" class="title-badge message">TranscribeFileRequest</h3>
-        <p>A request to transcribe an audio file</p>
+        <p><p>A request to transcribe an audio file</p></p>
 
         
           <table class="field-table">
@@ -2679,7 +2679,7 @@ takes longer to process!) </p></td>
         
       
         <h3 id="ondewo.s2t.TranscribeFileResponse" class="title-badge message">TranscribeFileResponse</h3>
-        <p>The response message for a transcribe file request</p>
+        <p><p>The response message for a transcribe file request</p></p>
 
         
           <table class="field-table">
@@ -2717,7 +2717,7 @@ takes longer to process!) </p></td>
         
       
         <h3 id="ondewo.s2t.TranscribeRequestConfig" class="title-badge message">TranscribeRequestConfig</h3>
-        <p>Configuration for a request to transcribe audio</p>
+        <p><p>Configuration for a request to transcribe audio</p></p>
 
         
           <table class="field-table">
@@ -2786,46 +2786,51 @@ takes longer to process!) </p></td>
                   <td>task</td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Specify task of s2t model, e.g. 'transcribe' and 'translate' </p></td>
+                  <td><p>Optional. Specify task of s2t model, e.g. &apos;transcribe&apos; and &apos;translate&apos; </p></td>
                 </tr>
               
                 <tr>
                   <td>s2t_service_config</td>
                   <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
                   <td>optional</td>
-                  <td><p>Optional. s2t_service_config provides the configuration of the service such as API key, bearer tokens, JWT,
-and other header information as key value pairs, e.g., <pre><code>MY_API_KEY='LKJDIFe244LKJOI'</code></pre>
-A. For Amazon S2T service, the following arguments should be passed in form of a dict:    
- A.1 aws_access_key_id (required) Access key id to access Amazon WEb Service.    
- A.2 aws_secret_access_key (required) Secret access key to access Amazon WEb Service.   
- A.3 region (required) Region name of Amazon Server.
- Example:
- s2t_config_service={'aws_access_key_id': 'YOUR_AWS_ACCESS_KEY_ID', 'aws_secret_access_key': 
- 'YOUR_AWS_SECRET_ACCESS_KEY', 'region': 'YOUR_AMAZON_SERVER_REGION_NAME'} 
-B. For Deepgram S2T service, the following argument should be passed in form of a dict:    
- B.1 api_key (required) API key of Deepgram account to access Deepgram S2T service.     
- Example:
- s2t_config_service={'api_key': 'YOUR_DEEPGRAM_API_KEY'}
-C. For Google cloud S2T service, the following arguments should be passed in form of a dict:    
- C.1- api_key (required) API key of Google cloud to access its S2T service. 
- C.2- api_endpoint (optional) Regional API endpoint of Google cloud S2T service. (Defaults to 
- 'eu-speech.googleapis.com')   
- Example:
- s2t_config_service={'api_key': 'YOUR_GOOGLE_CLOUD_API_KEY', 'api_endpoint': 'YOUR_GOOGLE_CLOUD_API_ENDPOINT'}
-D. For Microsoft Azure S2T service, the following arguments should be passed in form of a dict:    
- D.1 subscription_key (required) Subscription key to access Microsoft Azure Service.    
- D.2 region (required) Region name of Microsoft Azure Server.   
- Example:
- s2t_config_service={'subscription_key': 'YOUR_MICROSOFT_AZURE_SUBSCRIPTION_KEY', 'region': 
- 'YOUR_MICROSOFT_AZURE_SERVER_REGION_NAME'} 
-Note: ondewo-s2t will raise an error if you don't pass any of the required arguments above. </p></td>
+                  <td><p>Optional. <code>s2t_service_config</code> provides the configuration of the service such as API key, bearer tokens, JWT,
+and other header information as key value pairs, e.g., <pre><code>MY_API_KEY=&apos;LKJDIFe244LKJOI&apos;</code></pre>
+For Amazon S2T service, the following arguments should be passed in form of a dict:
+<ul>
+  <li><code>aws_access_key_id</code> (required) Access key id to access Amazon Web Service.</li>
+  <li><code>aws_secret_access_key</code> (required) Secret access key to access Amazon Web Service.</li>
+  <li><code>region</code> (required) Region name of Amazon Server.</li>
+</ul>
+Example: <code>s2t_config_service={&apos;aws_access_key_id&apos;: &apos;YOUR_AWS_ACCESS_KEY_ID&apos;, &apos;aws_secret_access_key&apos;: 
+&apos;YOUR_AWS_SECRET_ACCESS_KEY&apos;, &apos;region&apos;: &apos;YOUR_AMAZON_SERVER_REGION_NAME&apos;}</code>
+For Deepgram S2T service, the following argument should be passed in form of a dict:
+<ul>
+  <li><code>api_key</code> (required) API key of Deepgram account to access Deepgram S2T service.</li>
+</ul>
+Example: <code>s2t_config_service={&apos;api_key&apos;: &apos;YOUR_DEEPGRAM_API_KEY&apos;}</code>
+<br>
+For Google cloud S2T service, the following arguments should be passed in form of a dict:
+<ul>
+  <li><code>api_key</code> (required) API key of Google cloud to access its S2T service.</li>
+  <li><code>api_endpoint</code> (optional) Regional API endpoint of Google cloud S2T service. (Defaults to 
+&apos;eu-speech.googleapis.com&apos;)</li>
+</ul>
+Example: <code>s2t_config_service={&apos;api_key&apos;: &apos;YOUR_GOOGLE_CLOUD_API_KEY&apos;, &apos;api_endpoint&apos;: &apos;YOUR_GOOGLE_CLOUD_API_ENDPOINT&apos;}</code>
+For Microsoft Azure S2T service, the following arguments should be passed in form of a dict:
+<ul>
+  <li><code>subscription_key</code> (required) Subscription key to access Microsoft Azure Service.</li>
+  <li><code>region</code> (required) Region name of Microsoft Azure Server.</li>
+</ul>
+Example: <code>s2t_config_service={&apos;subscription_key&apos;: &apos;YOUR_MICROSOFT_AZURE_SUBSCRIPTION_KEY&apos;, &apos;region&apos;: 
+&apos;YOUR_MICROSOFT_AZURE_SERVER_REGION_NAME&apos;}</code>
+Note: ondewo-s2t will raise an error if you don&apos;t pass any of the required arguments above. </p></td>
                 </tr>
               
                 <tr>
                   <td>s2t_cloud_provider_config</td>
                   <td><a href="#ondewo.s2t.S2tCloudProviderConfig">S2tCloudProviderConfig</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Defines the cloud provider's specific configuration for using speech to text cloud services
+                  <td><p>Optional. Defines the cloud provider&apos;s specific configuration for using speech to text cloud services.
 The default value is None. </p></td>
                 </tr>
               
@@ -2837,7 +2842,7 @@ The default value is None. </p></td>
         
       
         <h3 id="ondewo.s2t.TranscribeStreamRequest" class="title-badge message">TranscribeStreamRequest</h3>
-        <p>Request to transcribe an audio stream</p>
+        <p><p>Request to transcribe an audio stream</p></p>
 
         
           <table class="field-table">
@@ -2882,7 +2887,7 @@ The default value is None. </p></td>
         
       
         <h3 id="ondewo.s2t.TranscribeStreamResponse" class="title-badge message">TranscribeStreamResponse</h3>
-        <p>The response message of a stream transcription</p>
+        <p><p>The response message of a stream transcription</p></p>
 
         
           <table class="field-table">
@@ -2956,7 +2961,7 @@ started before the end of an utterance). </p></td>
         
       
         <h3 id="ondewo.s2t.Transcription" class="title-badge message">Transcription</h3>
-        <p>The transcription message</p>
+        <p><p>The transcription message</p></p>
 
         
           <table class="field-table">
@@ -3002,7 +3007,7 @@ indicates an estimated greater likelihood that the recognized words are correct.
         
       
         <h3 id="ondewo.s2t.TranscriptionAlternative" class="title-badge message">TranscriptionAlternative</h3>
-        <p></p>
+        <p><p>The alternative transcription message</p></p>
 
         
           <table class="field-table">
@@ -3041,7 +3046,7 @@ the word and alternative words. </p></td>
         
       
         <h3 id="ondewo.s2t.TranscriptionReturnOptions" class="title-badge message">TranscriptionReturnOptions</h3>
-        <p>Configuration of the return values of a transcribe request</p>
+        <p><p>Configuration of the return values of a transcribe request</p></p>
 
         
           <table class="field-table">
@@ -3114,7 +3119,7 @@ the word and alternative words. </p></td>
         
       
         <h3 id="ondewo.s2t.TurnDetectionOptions" class="title-badge message">TurnDetectionOptions</h3>
-        <p>Configuration of the options to turn-detection in utterances</p>
+        <p><p>Configuration of the options to turn-detection in utterances</p></p>
 
         
           <table class="field-table">
@@ -3169,7 +3174,7 @@ If the timeout occurs, result of turn-detection considered as False. </p></td>
         
       
         <h3 id="ondewo.s2t.UtteranceDetectionOptions" class="title-badge message">UtteranceDetectionOptions</h3>
-        <p>Configuration of the options to detect utterances</p>
+        <p><p>Configuration of the options to detect utterances</p></p>
 
         
           <table class="field-table">
@@ -3207,7 +3212,7 @@ If the timeout occurs, result of turn-detection considered as False. </p></td>
         
       
         <h3 id="ondewo.s2t.VoiceActivityDetection" class="title-badge message">VoiceActivityDetection</h3>
-        <p>VoiceActivityDetection contains information about voice activity detection settings.</p>
+        <p><p>VoiceActivityDetection contains information about voice activity detection settings.</p></p>
 
         
           <table class="field-table">
@@ -3245,7 +3250,7 @@ If the timeout occurs, result of turn-detection considered as False. </p></td>
         
       
         <h3 id="ondewo.s2t.Wav2Vec" class="title-badge message">Wav2Vec</h3>
-        <p>Wav2Vec contains information about the Wav2Vec model.</p>
+        <p><p>Wav2Vec contains information about the Wav2Vec model.</p></p>
 
         
           <table class="field-table">
@@ -3276,7 +3281,7 @@ If the timeout occurs, result of turn-detection considered as False. </p></td>
         
       
         <h3 id="ondewo.s2t.Wav2VecTriton" class="title-badge message">Wav2VecTriton</h3>
-        <p>Wav2VecTriton contains information about the Wav2Vec model using Triton.</p>
+        <p><p>Wav2VecTriton contains information about the Wav2Vec model using Triton.</p></p>
 
         
           <table class="field-table">
@@ -3335,7 +3340,7 @@ If the timeout occurs, result of turn-detection considered as False. </p></td>
         
       
         <h3 id="ondewo.s2t.Whisper" class="title-badge message">Whisper</h3>
-        <p>Whisper contains information about the Whisper model.</p>
+        <p><p>Whisper contains information about the Whisper model.</p></p>
 
         
           <table class="field-table">
@@ -3380,7 +3385,7 @@ If the timeout occurs, result of turn-detection considered as False. </p></td>
         
       
         <h3 id="ondewo.s2t.WhisperTriton" class="title-badge message">WhisperTriton</h3>
-        <p>WhisperTriton contains information about the Whisper model using Triton.</p>
+        <p><p>WhisperTriton contains information about the Whisper model using Triton.</p></p>
 
         
           <table class="field-table">
@@ -3453,7 +3458,7 @@ If the timeout occurs, result of turn-detection considered as False. </p></td>
         
       
         <h3 id="ondewo.s2t.WordAlternative" class="title-badge message">WordAlternative</h3>
-        <p></p>
+        <p><p>The word alternative message</p></p>
 
         
           <table class="field-table">
@@ -3484,7 +3489,7 @@ If the timeout occurs, result of turn-detection considered as False. </p></td>
         
       
         <h3 id="ondewo.s2t.WordDetail" class="title-badge message">WordDetail</h3>
-        <p>WordDetail provides word-specific information for recognized words.</p>
+        <p><p>WordDetail provides word-specific information for recognized words.</p></p>
 
         
           <table class="field-table">
