@@ -96,6 +96,7 @@ enum Decoding {
 
 }
 
+// The inference backend configuration
 enum InferenceBackend {
 
     // Not set
