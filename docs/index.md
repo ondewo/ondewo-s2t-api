@@ -1327,7 +1327,7 @@ The decoding configuration
 <a name="ondewo.s2t.InferenceBackend"></a>
 
 ### InferenceBackend
-
+The inference backend configuration
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
