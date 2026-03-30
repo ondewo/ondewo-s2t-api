@@ -6,8 +6,8 @@
 
 ### New Features
 
-* [[OND231-604]](https://ondewo.atlassian.net/browse/OND231-604) Add `llm_model_name` field to configs to support vllm 
-  hosted models
+* [[OND231-604]](https://ondewo.atlassian.net/browse/OND231-604) Add `llm_model_name` and `llm_headers` fields to 
+  configs to support vllm hosted models
 
 *****************
 
