@@ -1044,6 +1044,9 @@ message TurnDetectionOptions {
     // Optional. Model name of the LLM for turn-detection purpose.
     optional string llm_model_name = 6;
 
+    // Optional. The headers of the request message to LLM for turn-detection purpose.
+    optional google.protobuf.Struct llm_headers = 7;
+
 }
 
 // <p>VoiceActivityDetection contains information about voice activity detection settings.</p>
@@ -1179,6 +1182,9 @@ message S2tLlmPostProcessing {
 
     // Optional. Model name of the LLM for post-processing purpose.
     optional string llm_model_name = 13;
+
+    // Optional. The headers of the request message to LLM for post-processing purpose.
+    optional google.protobuf.Struct llm_headers = 14;
 
 }
 
