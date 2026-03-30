@@ -1041,6 +1041,9 @@ message TurnDetectionOptions {
     // If the timeout occurs, result of turn-detection considered as False.
     optional float llm_request_timeout = 5;
 
+    // Optional. Model name of the LLM for turn-detection purpose.
+    optional string llm_model_name = 6;
+
 }
 
 // <p>VoiceActivityDetection contains information about voice activity detection settings.</p>
@@ -1173,6 +1176,9 @@ message S2tLlmPostProcessing {
 
     // Optional. Configuration of the options to user-prompt task in LLM post-processing.
     optional S2tLlmPostProcessingUserPromptOptions s2t_llm_post_processing_user_prompt_options = 12;
+
+    // Optional. Model name of the LLM for post-processing purpose.
+    optional string llm_model_name = 13;
 
 }
 
