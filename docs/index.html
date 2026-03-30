@@ -2010,6 +2010,20 @@ If the timeout occurs, result of post-processing returns the input text with no 
                   <td><p>Optional. Configuration of the options to user-prompt task in LLM post-processing. </p></td>
                 </tr>
               
+                <tr>
+                  <td>llm_model_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Model name of the LLM for post-processing purpose. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>llm_headers</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. The headers of the request message to LLM for post-processing purpose. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -3164,6 +3178,20 @@ period and concatenates the transcriptions of small audio chunks between tiny si
                   <td>optional</td>
                   <td><p>Optional. Duration of request timeout in seconds to get result of request to LLM for turn-detection purpose. 
 If the timeout occurs, result of turn-detection considered as False. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>llm_model_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Model name of the LLM for turn-detection purpose. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>llm_headers</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. The headers of the request message to LLM for turn-detection purpose. </p></td>
                 </tr>
               
             </tbody>

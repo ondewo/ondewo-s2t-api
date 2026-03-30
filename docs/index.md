@@ -708,6 +708,8 @@
 | s2t_llm_post_processing_normalization_options | [S2tLlmPostProcessingNormalizationOptions](#ondewo.s2t.S2tLlmPostProcessingNormalizationOptions) | optional | Optional. Configuration of the options to normalization task in LLM post-processing. |
 | s2t_llm_post_processing_summarization_options | [S2tLlmPostProcessingSummarizationOptions](#ondewo.s2t.S2tLlmPostProcessingSummarizationOptions) | optional | Optional. Configuration of the options to summarization task in LLM post-processing. |
 | s2t_llm_post_processing_user_prompt_options | [S2tLlmPostProcessingUserPromptOptions](#ondewo.s2t.S2tLlmPostProcessingUserPromptOptions) | optional | Optional. Configuration of the options to user-prompt task in LLM post-processing. |
+| llm_model_name | [string](#string) | optional | Optional. Model name of the LLM for post-processing purpose. |
+| llm_headers | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. The headers of the request message to LLM for post-processing purpose. |
 
 
 
@@ -1157,6 +1159,8 @@
 | llm_host | [string](#string) | optional | Optional. Host name or IP address of the server that serves the LLM for turn-detection purpose. |
 | llm_port | [int32](#int32) | optional | Optional. Port number of the server that serves the LLM for turn-detection purpose. |
 | llm_request_timeout | [float](#float) | optional | Optional. Duration of request timeout in seconds to get result of request to LLM for turn-detection purpose. If the timeout occurs, result of turn-detection considered as False. |
+| llm_model_name | [string](#string) | optional | Optional. Model name of the LLM for turn-detection purpose. |
+| llm_headers | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. The headers of the request message to LLM for turn-detection purpose. |
 
 
 
