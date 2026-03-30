@@ -2,6 +2,15 @@
 
 *****************
 
+## Release ONDEWO S2T API 7.1.0
+
+### New Features
+
+* [[OND231-604]](https://ondewo.atlassian.net/browse/OND231-604) Add `llm_model_name` field to configs to support vllm 
+  hosted models
+
+*****************
+
 ## Release ONDEWO S2T API 7.0.0
 
 ### New Features
