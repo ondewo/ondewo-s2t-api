@@ -2024,6 +2024,21 @@ If the timeout occurs, result of post-processing returns the input text with no 
                   <td><p>Optional. The headers of the request message to LLM for post-processing purpose. </p></td>
                 </tr>
               
+                <tr>
+                  <td>llm_base_url</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Base URL to access cloud LLM for turn-detection purpose. Cloud LLM will be used if `llm_host` or 
+`llm_port` are not set. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>llm_api_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. The api-key to access cloud LLM for turn-detection purpose. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -3192,6 +3207,21 @@ If the timeout occurs, result of turn-detection considered as False. </p></td>
                   <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
                   <td>optional</td>
                   <td><p>Optional. The headers of the request message to LLM for turn-detection purpose. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>llm_base_url</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Base URL to access cloud LLM for turn-detection purpose. Cloud LLM will be used if `llm_host` or 
+`llm_port` are not set. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>llm_api_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. The api-key to access cloud LLM for turn-detection purpose. </p></td>
                 </tr>
               
             </tbody>

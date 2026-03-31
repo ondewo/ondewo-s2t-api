@@ -710,6 +710,8 @@
 | s2t_llm_post_processing_user_prompt_options | [S2tLlmPostProcessingUserPromptOptions](#ondewo.s2t.S2tLlmPostProcessingUserPromptOptions) | optional | Optional. Configuration of the options to user-prompt task in LLM post-processing. |
 | llm_model_name | [string](#string) | optional | Optional. Model name of the LLM for post-processing purpose. |
 | llm_headers | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. The headers of the request message to LLM for post-processing purpose. |
+| llm_base_url | [string](#string) | optional | Optional. Base URL to access cloud LLM for turn-detection purpose. Cloud LLM will be used if `llm_host` or `llm_port` are not set. |
+| llm_api_key | [string](#string) | optional | Optional. The api-key to access cloud LLM for turn-detection purpose. |
 
 
 
@@ -1161,6 +1163,8 @@
 | llm_request_timeout | [float](#float) | optional | Optional. Duration of request timeout in seconds to get result of request to LLM for turn-detection purpose. If the timeout occurs, result of turn-detection considered as False. |
 | llm_model_name | [string](#string) | optional | Optional. Model name of the LLM for turn-detection purpose. |
 | llm_headers | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. The headers of the request message to LLM for turn-detection purpose. |
+| llm_base_url | [string](#string) | optional | Optional. Base URL to access cloud LLM for turn-detection purpose. Cloud LLM will be used if `llm_host` or `llm_port` are not set. |
+| llm_api_key | [string](#string) | optional | Optional. The api-key to access cloud LLM for turn-detection purpose. |
 
 
 
