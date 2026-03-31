@@ -1047,6 +1047,13 @@ message TurnDetectionOptions {
     // Optional. The headers of the request message to LLM for turn-detection purpose.
     optional google.protobuf.Struct llm_headers = 7;
 
+    // Optional. Base URL to access cloud LLM for turn-detection purpose. Cloud LLM will be used if `llm_host` or 
+    // `llm_port` are not set.
+    optional string llm_base_url = 8;
+
+    // Optional. The api-key to access cloud LLM for turn-detection purpose.
+    optional string llm_api_key = 9;
+
 }
 
 // <p>VoiceActivityDetection contains information about voice activity detection settings.</p>
@@ -1185,6 +1192,13 @@ message S2tLlmPostProcessing {
 
     // Optional. The headers of the request message to LLM for post-processing purpose.
     optional google.protobuf.Struct llm_headers = 14;
+
+    // Optional. Base URL to access cloud LLM for turn-detection purpose. Cloud LLM will be used if `llm_host` or 
+    // `llm_port` are not set.
+    optional string llm_base_url = 15;
+
+    // Optional. The api-key to access cloud LLM for turn-detection purpose.
+    optional string llm_api_key = 16;
 
 }
 
