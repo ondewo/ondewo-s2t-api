@@ -157,6 +157,18 @@
                       </li>
                     
                       <li>
+                        <a href="#ondewo.s2t.OpenaiLLMOptions" class="title-badge message">OpenaiLLMOptions</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.OpenaiLLMOptions.DefaultHeadersEntry" class="title-badge message">OpenaiLLMOptions.DefaultHeadersEntry</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.OpenaiLLMOptions.LogitBiasEntry" class="title-badge message">OpenaiLLMOptions.LogitBiasEntry</a>
+                      </li>
+                    
+                      <li>
                         <a href="#ondewo.s2t.PostProcessing" class="title-badge message">PostProcessing</a>
                       </li>
                     
@@ -229,10 +241,6 @@
                       </li>
                     
                       <li>
-                        <a href="#ondewo.s2t.S2tLlmPostProcessingCasingOptions" class="title-badge message">S2tLlmPostProcessingCasingOptions</a>
-                      </li>
-                    
-                      <li>
                         <a href="#ondewo.s2t.S2tLlmPostProcessingInverseNormalizationOptions" class="title-badge message">S2tLlmPostProcessingInverseNormalizationOptions</a>
                       </li>
                     
@@ -241,15 +249,7 @@
                       </li>
                     
                       <li>
-                        <a href="#ondewo.s2t.S2tLlmPostProcessingPunctuationOptions" class="title-badge message">S2tLlmPostProcessingPunctuationOptions</a>
-                      </li>
-                    
-                      <li>
-                        <a href="#ondewo.s2t.S2tLlmPostProcessingSemanticCorrectionOptions" class="title-badge message">S2tLlmPostProcessingSemanticCorrectionOptions</a>
-                      </li>
-                    
-                      <li>
-                        <a href="#ondewo.s2t.S2tLlmPostProcessingSpellCorrectionOptions" class="title-badge message">S2tLlmPostProcessingSpellCorrectionOptions</a>
+                        <a href="#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions" class="title-badge message">S2tLlmPostProcessingSubTaskOptions</a>
                       </li>
                     
                       <li>
@@ -258,10 +258,6 @@
                     
                       <li>
                         <a href="#ondewo.s2t.S2tLlmPostProcessingTranslationOptions" class="title-badge message">S2tLlmPostProcessingTranslationOptions</a>
-                      </li>
-                    
-                      <li>
-                        <a href="#ondewo.s2t.S2tLlmPostProcessingUserPromptOptions" class="title-badge message">S2tLlmPostProcessingUserPromptOptions</a>
                       </li>
                     
                       <li>
@@ -1088,6 +1084,349 @@ description: {language: &quot;fr&quot;}, active: true, ...}] </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Path for logging. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.OpenaiLLMOptions" class="title-badge message">OpenaiLLMOptions</h3>
+        <p><p>Configuration options for OpenAI client chat completion requests used in turn detection and LLM post-processing.</p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>api_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. The API key used to authenticate with the OpenAI API. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. The organization ID associated with the OpenAI account, used for billing and access control. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. The project ID associated with the OpenAI account. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>webhook_secret</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. The webhook secret used to validate incoming webhook events from OpenAI. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>base_url</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. The base URL for the OpenAI API. Overrides the default endpoint, useful for proxies or
+compatible third-party providers. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>websocket_base_url</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. The base URL for OpenAI WebSocket connections. Overrides the default WebSocket endpoint. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>timeout</td>
+                  <td><a href="#float">float</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. The timeout in seconds for requests to the OpenAI API. Applies to the entire request
+lifecycle including connection, sending, and receiving. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_retries</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. The maximum number of retries to attempt when a request fails due to a transient error.
+Defaults to 2. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>default_headers</td>
+                  <td><a href="#ondewo.s2t.OpenaiLLMOptions.DefaultHeadersEntry">OpenaiLLMOptions.DefaultHeadersEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>Optional. Default HTTP headers to include with every request to the OpenAI API. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>default_query</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Default query parameters to append to every request URL sent to the OpenAI API.
+Values can be of any type (string, number, boolean, list), hence the use of Struct. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>strict_response_validation</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. If true, enables strict validation of response payloads returned by the OpenAI API. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>model</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Required. The name or identifier of the OpenAI model to use for chat completion
+(e.g., "gpt-4o", "gpt-4o-mini", "o3"). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>frequency_penalty</td>
+                  <td><a href="#float">float</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. A number between -2.0 and 2.0. Positive values penalize new tokens based on their
+existing frequency in the text so far, decreasing the likelihood of the model repeating the same
+line verbatim. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>logit_bias</td>
+                  <td><a href="#ondewo.s2t.OpenaiLLMOptions.LogitBiasEntry">OpenaiLLMOptions.LogitBiasEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>Optional. Modifies the likelihood of specified tokens appearing in the completion. Maps token IDs
+(as strings) to bias values from -100 to 100. Mathematically added to the logits before sampling. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>logprobs</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Whether to return log probabilities of the output tokens. If true, returns the log
+probabilities of each output token in the response. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_completion_tokens</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. An upper bound for the number of tokens that can be generated for a completion,
+including visible output tokens and reasoning tokens. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_tokens</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. The maximum number of tokens that can be generated in the chat completion.
+Deprecated in favor of max_completion_tokens. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Developer-defined tags and values used for filtering completions in the OpenAI dashboard. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>n</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. The number of chat completion choices to generate for each input message. Note that
+costs are multiplied by the number of choices generated. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>presence_penalty</td>
+                  <td><a href="#float">float</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. A number between -2.0 and 2.0. Positive values penalize new tokens based on whether
+they have already appeared in the text, increasing the likelihood of the model discussing new topics. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>prompt_cache_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. A stable key used to enable prompt caching for identical prompt prefixes, reducing
+latency and cost on repeated requests. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>reasoning_effort</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Constrains the effort level for reasoning models (e.g., o1, o3). Controls the trade-off
+between speed and quality. Accepted values: "low", "medium", "high". </p></td>
+                </tr>
+              
+                <tr>
+                  <td>seed</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. If specified, the system will make a best effort to sample deterministically given the
+same seed and parameters, enabling reproducible outputs. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>service_tier</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Specifies the latency tier to use for processing the request. Affects cost and
+throughput. Accepted values: "auto", "default", "flex", "scale", "priority". </p></td>
+                </tr>
+              
+                <tr>
+                  <td>stop</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Optional. Up to 4 sequences where the API will stop generating further tokens. The returned text
+will not contain the stop sequence. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>store</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Whether to store the output of this chat completion request for use in model
+distillation, evals, or the stored completions dashboard. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>temperature</td>
+                  <td><a href="#float">float</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. What sampling temperature to use, between 0 and 2. Higher values (e.g., 0.8) make the
+output more random, while lower values (e.g., 0.2) make it more focused and deterministic. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>top_logprobs</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. An integer between 0 and 20 specifying the number of most likely tokens to return at
+each token position, each with an associated log probability. Requires logprobs to be true. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>top_p</td>
+                  <td><a href="#float">float</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. An alternative to sampling with temperature, called nucleus sampling. The model
+considers only the tokens with top_p probability mass. Ranges from 0 to 1. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. A unique identifier representing the end-user, which helps OpenAI monitor and detect
+abuse. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>verbosity</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. The verbosity level for the response output. Accepted values: "low", "medium", "high". </p></td>
+                </tr>
+              
+                <tr>
+                  <td>extra_headers</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Additional HTTP headers to send with the request. These are merged with and override
+default_headers for this specific request only. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>extra_query</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Additional query parameters to send with the request. These are merged with and override
+default_query for this specific request only. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>extra_body</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Additional JSON properties to include in the request body. Useful for accessing new or
+undocumented API parameters. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.OpenaiLLMOptions.DefaultHeadersEntry" class="title-badge message">OpenaiLLMOptions.DefaultHeadersEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.OpenaiLLMOptions.LogitBiasEntry" class="title-badge message">OpenaiLLMOptions.LogitBiasEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -1926,51 +2265,50 @@ to add timestamps and confidences to the resulted transcript. </p></td>
             <tbody>
               
                 <tr>
-                  <td>llm_host</td>
+                  <td>s2t_llm_post_processing_openai_options</td>
+                  <td><a href="#ondewo.s2t.OpenaiLLMOptions">OpenaiLLMOptions</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Configuration options for the OpenAI client used for post-processing. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>s2t_llm_post_processing_system_prompt</td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Host name or IP address of the server that serves the LLM for post-processing purpose. </p></td>
+                  <td><p>Optional. System prompt used to guide the LLM model for post-processing. </p></td>
                 </tr>
               
                 <tr>
-                  <td>llm_port</td>
-                  <td><a href="#int32">int32</a></td>
+                  <td>s2t_llm_post_processing_ending_prompt</td>
+                  <td><a href="#string">string</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Port number of the server that serves the LLM for post-processing purpose. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>llm_request_timeout</td>
-                  <td><a href="#float">float</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. Duration of request timeout in seconds to get result of request to LLM for post-processing purpose. 
-If the timeout occurs, result of post-processing returns the input text with no change. </p></td>
+                  <td><p>Optional. Ending prompt appended to the accumulated prompts of the active post-processing tasks. </p></td>
                 </tr>
               
                 <tr>
                   <td>s2t_llm_post_processing_casing_options</td>
-                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingCasingOptions">S2tLlmPostProcessingCasingOptions</a></td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions">S2tLlmPostProcessingSubTaskOptions</a></td>
                   <td>optional</td>
                   <td><p>Optional. Configuration of the options to casing task in LLM post-processing. </p></td>
                 </tr>
               
                 <tr>
                   <td>s2t_llm_post_processing_punctuation_options</td>
-                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingPunctuationOptions">S2tLlmPostProcessingPunctuationOptions</a></td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions">S2tLlmPostProcessingSubTaskOptions</a></td>
                   <td>optional</td>
                   <td><p>Optional. Configuration of the options to punctuation task in LLM post-processing. </p></td>
                 </tr>
               
                 <tr>
                   <td>s2t_llm_post_processing_spelling_correction_options</td>
-                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSpellCorrectionOptions">S2tLlmPostProcessingSpellCorrectionOptions</a></td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions">S2tLlmPostProcessingSubTaskOptions</a></td>
                   <td>optional</td>
                   <td><p>Optional. Configuration of the options to spelling-correction task in LLM post-processing. </p></td>
                 </tr>
               
                 <tr>
                   <td>s2t_llm_post_processing_semantic_correction_options</td>
-                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSemanticCorrectionOptions">S2tLlmPostProcessingSemanticCorrectionOptions</a></td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions">S2tLlmPostProcessingSubTaskOptions</a></td>
                   <td>optional</td>
                   <td><p>Optional. Configuration of the options to semantic-correction task in LLM post-processing. </p></td>
                 </tr>
@@ -2005,62 +2343,9 @@ If the timeout occurs, result of post-processing returns the input text with no 
               
                 <tr>
                   <td>s2t_llm_post_processing_user_prompt_options</td>
-                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingUserPromptOptions">S2tLlmPostProcessingUserPromptOptions</a></td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions">S2tLlmPostProcessingSubTaskOptions</a></td>
                   <td>optional</td>
                   <td><p>Optional. Configuration of the options to user-prompt task in LLM post-processing. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>llm_model_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. Model name of the LLM for post-processing purpose. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>llm_headers</td>
-                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. The headers of the request message to LLM for post-processing purpose. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>llm_base_url</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. Base URL to access cloud LLM for turn-detection purpose. Cloud LLM will be used if `llm_host` or 
-`llm_port` are not set. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>llm_api_key</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. The api-key to access cloud LLM for turn-detection purpose. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="ondewo.s2t.S2tLlmPostProcessingCasingOptions" class="title-badge message">S2tLlmPostProcessingCasingOptions</h3>
-        <p><p>Configuration of the options to casing task in LLM post-processing.</p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>active</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. Indicates if the casing task of LLM post-processing is active. </p></td>
                 </tr>
               
             </tbody>
@@ -2089,44 +2374,44 @@ If the timeout occurs, result of post-processing returns the input text with no 
               
                 <tr>
                   <td>email</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions">S2tLlmPostProcessingSubTaskOptions</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Indicates if inverse-normalization of email address sub-task of LLM post-processing is active. </p></td>
+                  <td><p>Optional. Configuration of the inverse-normalization of email address sub-task. </p></td>
                 </tr>
               
                 <tr>
                   <td>phone_number</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions">S2tLlmPostProcessingSubTaskOptions</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Indicates if inverse-normalization of phone number sub-task of LLM post-processing is active. </p></td>
+                  <td><p>Optional. Configuration of the inverse-normalization of phone number sub-task. </p></td>
                 </tr>
               
                 <tr>
                   <td>date_and_time</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions">S2tLlmPostProcessingSubTaskOptions</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Indicates if inverse-normalization of date and time sub-task of LLM post-processing is active. </p></td>
+                  <td><p>Optional. Configuration of the inverse-normalization of date and time sub-task. </p></td>
                 </tr>
               
                 <tr>
                   <td>credit_card_number</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions">S2tLlmPostProcessingSubTaskOptions</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Indicates if inverse-normalization of credit card number sub-task of LLM post-processing is active. </p></td>
+                  <td><p>Optional. Configuration of the inverse-normalization of credit card number sub-task. </p></td>
                 </tr>
               
                 <tr>
                   <td>social_security_number</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions">S2tLlmPostProcessingSubTaskOptions</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Indicates if inverse-normalization of social security number sub-task of LLM post-processing is active </p></td>
+                  <td><p>Optional. Configuration of the inverse-normalization of social security number sub-task. </p></td>
                 </tr>
               
                 <tr>
                   <td>time_zone</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions">S2tLlmPostProcessingSubTaskOptions</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Indicates if inverse-normalization of time zone sub-task of LLM post-processing is active. </p></td>
+                  <td><p>Optional. Configuration of the inverse-normalization of time zone sub-task. </p></td>
                 </tr>
               
             </tbody>
@@ -2155,44 +2440,44 @@ If the timeout occurs, result of post-processing returns the input text with no 
               
                 <tr>
                   <td>email</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions">S2tLlmPostProcessingSubTaskOptions</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Indicates if normalization of email address sub-task of LLM post-processing is active. </p></td>
+                  <td><p>Optional. Configuration of the normalization of email address sub-task. </p></td>
                 </tr>
               
                 <tr>
                   <td>phone_number</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions">S2tLlmPostProcessingSubTaskOptions</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Indicates if normalization of phone number sub-task of LLM post-processing is active. </p></td>
+                  <td><p>Optional. Configuration of the normalization of phone number sub-task. </p></td>
                 </tr>
               
                 <tr>
                   <td>date_and_time</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions">S2tLlmPostProcessingSubTaskOptions</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Indicates if normalization of date and time sub-task of LLM post-processing is active. </p></td>
+                  <td><p>Optional. Configuration of the normalization of date and time sub-task. </p></td>
                 </tr>
               
                 <tr>
                   <td>credit_card_number</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions">S2tLlmPostProcessingSubTaskOptions</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Indicates if normalization of credit card number sub-task of LLM post-processing is active. </p></td>
+                  <td><p>Optional. Configuration of the normalization of credit card number sub-task. </p></td>
                 </tr>
               
                 <tr>
                   <td>social_security_number</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions">S2tLlmPostProcessingSubTaskOptions</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Indicates if normalization of social security number sub-task of LLM post-processing is active </p></td>
+                  <td><p>Optional. Configuration of the normalization of social security number sub-task. </p></td>
                 </tr>
               
                 <tr>
                   <td>time_zone</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions">S2tLlmPostProcessingSubTaskOptions</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Indicates if normalization of time zone sub-task of LLM post-processing is active. </p></td>
+                  <td><p>Optional. Configuration of the normalization of time zone sub-task. </p></td>
                 </tr>
               
             </tbody>
@@ -2202,8 +2487,8 @@ If the timeout occurs, result of post-processing returns the input text with no 
 
         
       
-        <h3 id="ondewo.s2t.S2tLlmPostProcessingPunctuationOptions" class="title-badge message">S2tLlmPostProcessingPunctuationOptions</h3>
-        <p><p>Configuration of the options to punctuation task in LLM post-processing.</p></p>
+        <h3 id="ondewo.s2t.S2tLlmPostProcessingSubTaskOptions" class="title-badge message">S2tLlmPostProcessingSubTaskOptions</h3>
+        <p><p>Common configuration for an individual LLM post-processing sub-task (e.g. email, phone number,</p><p>date and time, credit card number, social security number, time zone).</p><p>Used by both normalization and inverse-normalization tasks.</p></p>
 
         
           <table class="field-table">
@@ -2216,55 +2501,15 @@ If the timeout occurs, result of post-processing returns the input text with no 
                   <td>active</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Indicates if the punctuation task of LLM post-processing is active. </p></td>
+                  <td><p>Optional. Indicates if this sub-task is active. </p></td>
                 </tr>
               
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="ondewo.s2t.S2tLlmPostProcessingSemanticCorrectionOptions" class="title-badge message">S2tLlmPostProcessingSemanticCorrectionOptions</h3>
-        <p><p>Configuration of the options to semantic-correction task in LLM post-processing.</p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
                 <tr>
-                  <td>active</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td>prompt</td>
+                  <td><a href="#string">string</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Indicates if the semantic-correction task of LLM post-processing is active. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="ondewo.s2t.S2tLlmPostProcessingSpellCorrectionOptions" class="title-badge message">S2tLlmPostProcessingSpellCorrectionOptions</h3>
-        <p><p>Configuration of the options to spelling-correction task in LLM post-processing.</p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>active</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. Indicates if the spelling-correction task of LLM post-processing is active. </p></td>
+                  <td><p>Optional. Custom prompt to guide the LLM for this sub-task. Overrides the default prompt
+when set. </p></td>
                 </tr>
               
             </tbody>
@@ -2334,37 +2579,6 @@ If the timeout occurs, result of post-processing returns the input text with no 
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
                   <td><p>Optional. Target language of the translation task of LLM post-processing. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="ondewo.s2t.S2tLlmPostProcessingUserPromptOptions" class="title-badge message">S2tLlmPostProcessingUserPromptOptions</h3>
-        <p><p>Configuration of the options to user-prompt task in LLM post-processing.</p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>active</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. Indicates if the user-prompt task of LLM post-processing is active. This task overwrites </p></td>
-                </tr>
-              
-                <tr>
-                  <td>prompt</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. The prompt to give LLM directly for post-processing purpose. </p></td>
                 </tr>
               
             </tbody>
@@ -3174,54 +3388,24 @@ period and concatenates the transcriptions of small audio chunks between tiny si
                 </tr>
               
                 <tr>
-                  <td>llm_host</td>
+                  <td>turn_detection_system_prompt</td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Host name or IP address of the server that serves the LLM for turn-detection purpose. </p></td>
+                  <td><p>Optional. System prompt used to guide the turn-detection model. </p></td>
                 </tr>
               
                 <tr>
-                  <td>llm_port</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. Port number of the server that serves the LLM for turn-detection purpose. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>llm_request_timeout</td>
-                  <td><a href="#float">float</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. Duration of request timeout in seconds to get result of request to LLM for turn-detection purpose. 
-If the timeout occurs, result of turn-detection considered as False. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>llm_model_name</td>
+                  <td>turn_detection_user_prompt</td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Model name of the LLM for turn-detection purpose. </p></td>
+                  <td><p>Optional. User prompt used as input to the turn-detection model. </p></td>
                 </tr>
               
                 <tr>
-                  <td>llm_headers</td>
-                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td>turn_detection_llm_openai_options</td>
+                  <td><a href="#ondewo.s2t.OpenaiLLMOptions">OpenaiLLMOptions</a></td>
                   <td>optional</td>
-                  <td><p>Optional. The headers of the request message to LLM for turn-detection purpose. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>llm_base_url</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. Base URL to access cloud LLM for turn-detection purpose. Cloud LLM will be used if `llm_host` or 
-`llm_port` are not set. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>llm_api_key</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>Optional. The api-key to access cloud LLM for turn-detection purpose. </p></td>
+                  <td><p>Optional. Configuration options for the OpenAI client used for turn detection. </p></td>
                 </tr>
               
             </tbody>
