@@ -1031,21 +1031,147 @@ message TurnDetectionOptions {
     // period and concatenates the transcriptions of small audio chunks between tiny silences.
     optional bool full_utterance_deployment = 2;
 
-    // Optional. Host name or IP address of the server that serves the LLM for turn-detection purpose.
-    optional string llm_host = 3;
+    // Optional. System prompt used to guide the turn-detection model.
+    optional string turn_detection_system_prompt = 3;
 
-    // Optional. Port number of the server that serves the LLM for turn-detection purpose.
-    optional int32 llm_port = 4;
+    // Optional. User prompt used as input to the turn-detection model.
+    optional string turn_detection_user_prompt = 4;
 
-    // Optional. Duration of request timeout in seconds to get result of request to LLM for turn-detection purpose. 
-    // If the timeout occurs, result of turn-detection considered as False.
-    optional float llm_request_timeout = 5;
+    // Optional. Configuration options for the OpenAI client used for turn detection.
+    optional OpenaiLLMOptions turn_detection_llm_openai_options = 5;
 
-    // Optional. Model name of the LLM for turn-detection purpose.
-    optional string llm_model_name = 6;
+}
 
-    // Optional. The headers of the request message to LLM for turn-detection purpose.
-    optional google.protobuf.Struct llm_headers = 7;
+// <p>Configuration options for OpenAI client chat completion requests used in turn detection and LLM post-processing.</p>
+message OpenaiLLMOptions {
+
+    // Optional. The API key used to authenticate with the OpenAI API.
+    optional string api_key = 1;
+
+    // Optional. The organization ID associated with the OpenAI account, used for billing and access control.
+    optional string organization = 2;
+
+    // Optional. The project ID associated with the OpenAI account.
+    optional string project = 3;
+
+    // Optional. The webhook secret used to validate incoming webhook events from OpenAI.
+    optional string webhook_secret = 4;
+
+    // Optional. The base URL for the OpenAI API. Overrides the default endpoint, useful for proxies or
+    // compatible third-party providers.
+    optional string base_url = 5;
+
+    // Optional. The base URL for OpenAI WebSocket connections. Overrides the default WebSocket endpoint.
+    optional string websocket_base_url = 6;
+
+    // Optional. The timeout in seconds for requests to the OpenAI API. Applies to the entire request
+    // lifecycle including connection, sending, and receiving.
+    optional float timeout = 7;
+
+    // Optional. The maximum number of retries to attempt when a request fails due to a transient error.
+    // Defaults to 2.
+    optional int32 max_retries = 8;
+
+    // Optional. Default HTTP headers to include with every request to the OpenAI API.
+    map<string, string> default_headers = 9;
+
+    // Optional. Default query parameters to append to every request URL sent to the OpenAI API.
+    // Values can be of any type (string, number, boolean, list), hence the use of Struct.
+    optional google.protobuf.Struct default_query = 10;
+
+    // Optional. If true, enables strict validation of response payloads returned by the OpenAI API.
+    optional bool strict_response_validation = 11;
+
+    // Required. The name or identifier of the OpenAI model to use for chat completion
+    // (e.g., "gpt-4o", "gpt-4o-mini", "o3").
+    optional string model = 12;
+
+    // Optional. A number between -2.0 and 2.0. Positive values penalize new tokens based on their
+    // existing frequency in the text so far, decreasing the likelihood of the model repeating the same
+    // line verbatim.
+    optional float frequency_penalty = 13;
+
+    // Optional. Modifies the likelihood of specified tokens appearing in the completion. Maps token IDs
+    // (as strings) to bias values from -100 to 100. Mathematically added to the logits before sampling.
+    map<string, int32> logit_bias = 14;
+
+    // Optional. Whether to return log probabilities of the output tokens. If true, returns the log
+    // probabilities of each output token in the response.
+    optional bool logprobs = 15;
+
+    // Optional. An upper bound for the number of tokens that can be generated for a completion,
+    // including visible output tokens and reasoning tokens.
+    optional int32 max_completion_tokens = 16;
+
+    // Optional. The maximum number of tokens that can be generated in the chat completion.
+    // Deprecated in favor of max_completion_tokens.
+    optional int32 max_tokens = 17;
+
+    // Optional. Developer-defined tags and values used for filtering completions in the OpenAI dashboard.
+    optional google.protobuf.Struct metadata = 18;
+
+    // Optional. The number of chat completion choices to generate for each input message. Note that
+    // costs are multiplied by the number of choices generated.
+    optional int32 n = 19;
+
+    // Optional. A number between -2.0 and 2.0. Positive values penalize new tokens based on whether
+    // they have already appeared in the text, increasing the likelihood of the model discussing new topics.
+    optional float presence_penalty = 20;
+
+    // Optional. A stable key used to enable prompt caching for identical prompt prefixes, reducing
+    // latency and cost on repeated requests.
+    optional string prompt_cache_key = 21;
+
+    // Optional. Constrains the effort level for reasoning models (e.g., o1, o3). Controls the trade-off
+    // between speed and quality. Accepted values: "low", "medium", "high".
+    optional string reasoning_effort = 22;
+
+    // Optional. If specified, the system will make a best effort to sample deterministically given the
+    // same seed and parameters, enabling reproducible outputs.
+    optional int64 seed = 23;
+
+    // Optional. Specifies the latency tier to use for processing the request. Affects cost and
+    // throughput. Accepted values: "auto", "default", "flex", "scale", "priority".
+    optional string service_tier = 24;
+
+    // Optional. Up to 4 sequences where the API will stop generating further tokens. The returned text
+    // will not contain the stop sequence.
+    repeated string stop = 25;
+
+    // Optional. Whether to store the output of this chat completion request for use in model
+    // distillation, evals, or the stored completions dashboard.
+    optional bool store = 26;
+
+    // Optional. What sampling temperature to use, between 0 and 2. Higher values (e.g., 0.8) make the
+    // output more random, while lower values (e.g., 0.2) make it more focused and deterministic.
+    optional float temperature = 27;
+
+    // Optional. An integer between 0 and 20 specifying the number of most likely tokens to return at
+    // each token position, each with an associated log probability. Requires logprobs to be true.
+    optional int32 top_logprobs = 28;
+
+    // Optional. An alternative to sampling with temperature, called nucleus sampling. The model
+    // considers only the tokens with top_p probability mass. Ranges from 0 to 1.
+    optional float top_p = 29;
+
+    // Optional. A unique identifier representing the end-user, which helps OpenAI monitor and detect
+    // abuse.
+    optional string user = 30;
+
+    // Optional. The verbosity level for the response output. Accepted values: "low", "medium", "high".
+    optional string verbosity = 31;
+
+    // Optional. Additional HTTP headers to send with the request. These are merged with and override
+    // default_headers for this specific request only.
+    optional google.protobuf.Struct extra_headers = 32;
+
+    // Optional. Additional query parameters to send with the request. These are merged with and override
+    // default_query for this specific request only.
+    optional google.protobuf.Struct extra_query = 33;
+
+    // Optional. Additional JSON properties to include in the request body. Useful for accessing new or
+    // undocumented API parameters.
+    optional google.protobuf.Struct extra_body = 34;
 
 }
 
@@ -1143,27 +1269,26 @@ message S2tNormalization {
 // <p>S2tLlmPostProcessing contains configuration for the speech-to-text postprocessing with LLM.</p>
 message S2tLlmPostProcessing {
 
-    // Optional. Host name or IP address of the server that serves the LLM for post-processing purpose.
-    optional string llm_host = 1;
+    // Optional. Configuration options for the OpenAI client used for post-processing.
+    optional OpenaiLLMOptions s2t_llm_post_processing_openai_options = 1;
 
-    // Optional. Port number of the server that serves the LLM for post-processing purpose.
-    optional int32 llm_port = 2;
+    // Optional. System prompt used to guide the LLM model for post-processing.
+    optional string s2t_llm_post_processing_system_prompt = 2;
 
-    // Optional. Duration of request timeout in seconds to get result of request to LLM for post-processing purpose. 
-    // If the timeout occurs, result of post-processing returns the input text with no change.
-    optional float llm_request_timeout = 3;
+    // Optional. Ending prompt appended to the accumulated prompts of the active post-processing tasks.
+    optional string s2t_llm_post_processing_ending_prompt = 3;
 
     // Optional. Configuration of the options to casing task in LLM post-processing.
-    optional S2tLlmPostProcessingCasingOptions s2t_llm_post_processing_casing_options = 4;
+    optional S2tLlmPostProcessingSubTaskOptions s2t_llm_post_processing_casing_options = 4;
 
     // Optional. Configuration of the options to punctuation task in LLM post-processing.
-    optional S2tLlmPostProcessingPunctuationOptions s2t_llm_post_processing_punctuation_options = 5;
+    optional S2tLlmPostProcessingSubTaskOptions s2t_llm_post_processing_punctuation_options = 5;
 
     // Optional. Configuration of the options to spelling-correction task in LLM post-processing.
-    optional S2tLlmPostProcessingSpellCorrectionOptions s2t_llm_post_processing_spelling_correction_options = 6;
+    optional S2tLlmPostProcessingSubTaskOptions s2t_llm_post_processing_spelling_correction_options = 6;
 
     // Optional. Configuration of the options to semantic-correction task in LLM post-processing.
-    optional S2tLlmPostProcessingSemanticCorrectionOptions s2t_llm_post_processing_semantic_correction_options = 7;
+    optional S2tLlmPostProcessingSubTaskOptions s2t_llm_post_processing_semantic_correction_options = 7;
 
     // Optional. Configuration of the options to translation task in LLM post-processing.
     optional S2tLlmPostProcessingTranslationOptions s2t_llm_post_processing_translation_options = 8;
@@ -1178,45 +1303,7 @@ message S2tLlmPostProcessing {
     optional S2tLlmPostProcessingSummarizationOptions s2t_llm_post_processing_summarization_options = 11;
 
     // Optional. Configuration of the options to user-prompt task in LLM post-processing.
-    optional S2tLlmPostProcessingUserPromptOptions s2t_llm_post_processing_user_prompt_options = 12;
-
-    // Optional. Model name of the LLM for post-processing purpose.
-    optional string llm_model_name = 13;
-
-    // Optional. The headers of the request message to LLM for post-processing purpose.
-    optional google.protobuf.Struct llm_headers = 14;
-
-}
-
-// <p>Configuration of the options to casing task in LLM post-processing.</p>
-message S2tLlmPostProcessingCasingOptions {
-
-    // Optional. Indicates if the casing task of LLM post-processing is active.
-    optional bool active = 1;
-
-}
-
-// <p>Configuration of the options to punctuation task in LLM post-processing.</p>
-message S2tLlmPostProcessingPunctuationOptions {
-
-    // Optional. Indicates if the punctuation task of LLM post-processing is active.
-    optional bool active = 1;
-
-}
-
-// <p>Configuration of the options to spelling-correction task in LLM post-processing.</p>
-message S2tLlmPostProcessingSpellCorrectionOptions {
-
-    // Optional. Indicates if the spelling-correction task of LLM post-processing is active.
-    optional bool active = 1;
-
-}
-
-// <p>Configuration of the options to semantic-correction task in LLM post-processing.</p>
-message S2tLlmPostProcessingSemanticCorrectionOptions {
-
-    // Optional. Indicates if the semantic-correction task of LLM post-processing is active.
-    optional bool active = 1;
+    optional S2tLlmPostProcessingSubTaskOptions s2t_llm_post_processing_user_prompt_options = 12;
 
 }
 
@@ -1237,23 +1324,23 @@ message S2tLlmPostProcessingInverseNormalizationOptions {
     // Optional. Indicates if the inverse-normalization task of LLM post-processing is active.
     optional bool active = 1;
 
-    // Optional. Indicates if inverse-normalization of email address sub-task of LLM post-processing is active.
-    optional bool email = 2;
+    // Optional. Configuration of the inverse-normalization of email address sub-task.
+    optional S2tLlmPostProcessingSubTaskOptions email = 2;
 
-    // Optional. Indicates if inverse-normalization of phone number sub-task of LLM post-processing is active.
-    optional bool phone_number = 3;
+    // Optional. Configuration of the inverse-normalization of phone number sub-task.
+    optional S2tLlmPostProcessingSubTaskOptions phone_number = 3;
 
-    // Optional. Indicates if inverse-normalization of date and time sub-task of LLM post-processing is active.
-    optional bool date_and_time = 4;
+    // Optional. Configuration of the inverse-normalization of date and time sub-task.
+    optional S2tLlmPostProcessingSubTaskOptions date_and_time = 4;
 
-    // Optional. Indicates if inverse-normalization of credit card number sub-task of LLM post-processing is active.
-    optional bool credit_card_number = 5;
+    // Optional. Configuration of the inverse-normalization of credit card number sub-task.
+    optional S2tLlmPostProcessingSubTaskOptions credit_card_number = 5;
 
-    // Optional. Indicates if inverse-normalization of social security number sub-task of LLM post-processing is active
-    optional bool social_security_number = 6;
+    // Optional. Configuration of the inverse-normalization of social security number sub-task.
+    optional S2tLlmPostProcessingSubTaskOptions social_security_number = 6;
 
-    // Optional. Indicates if inverse-normalization of time zone sub-task of LLM post-processing is active.
-    optional bool time_zone = 7;
+    // Optional. Configuration of the inverse-normalization of time zone sub-task.
+    optional S2tLlmPostProcessingSubTaskOptions time_zone = 7;
 
 }
 
@@ -1263,24 +1350,24 @@ message S2tLlmPostProcessingNormalizationOptions {
     // Optional. Indicates if the normalization task of LLM post-processing is active.
     optional bool active = 1;
 
-    // Optional. Indicates if normalization of email address sub-task of LLM post-processing is active.
-    optional bool email = 2;
-    
-    // Optional. Indicates if normalization of phone number sub-task of LLM post-processing is active.
-    optional bool phone_number = 3;
-    
-    // Optional. Indicates if normalization of date and time sub-task of LLM post-processing is active.
-    optional bool date_and_time = 4;
+    // Optional. Configuration of the normalization of email address sub-task.
+    optional S2tLlmPostProcessingSubTaskOptions email = 2;
 
-    // Optional. Indicates if normalization of credit card number sub-task of LLM post-processing is active.
-    optional bool credit_card_number = 5;
+    // Optional. Configuration of the normalization of phone number sub-task.
+    optional S2tLlmPostProcessingSubTaskOptions phone_number = 3;
 
-    // Optional. Indicates if normalization of social security number sub-task of LLM post-processing is active
-    optional bool social_security_number = 6;
-    
-    // Optional. Indicates if normalization of time zone sub-task of LLM post-processing is active.
-    optional bool time_zone = 7;
-    
+    // Optional. Configuration of the normalization of date and time sub-task.
+    optional S2tLlmPostProcessingSubTaskOptions date_and_time = 4;
+
+    // Optional. Configuration of the normalization of credit card number sub-task.
+    optional S2tLlmPostProcessingSubTaskOptions credit_card_number = 5;
+
+    // Optional. Configuration of the normalization of social security number sub-task.
+    optional S2tLlmPostProcessingSubTaskOptions social_security_number = 6;
+
+    // Optional. Configuration of the normalization of time zone sub-task.
+    optional S2tLlmPostProcessingSubTaskOptions time_zone = 7;
+
 }
 
 // <p>Configuration of the options to summarization task in LLM post-processing.</p>
@@ -1297,16 +1384,19 @@ message S2tLlmPostProcessingSummarizationOptions {
 
 }
 
-// <p>Configuration of the options to user-prompt task in LLM post-processing.</p>
-message S2tLlmPostProcessingUserPromptOptions {
+// <p>Common configuration for an individual LLM post-processing sub-task (e.g. email, phone number,
+// date and time, credit card number, social security number, time zone).
+// Used by both normalization and inverse-normalization tasks.</p>
+message S2tLlmPostProcessingSubTaskOptions {
 
-    // Optional. Indicates if the user-prompt task of LLM post-processing is active. This task overwrites
+    // Optional. Indicates if this sub-task is active.
     optional bool active = 1;
 
-    // Optional. The prompt to give LLM directly for post-processing purpose.
+    // Optional. Custom prompt to guide the LLM for this sub-task. Overrides the default prompt
+    // when set.
     optional string prompt = 2;
 
-}
+}    
 
 // <p>Logging contains configuration for logging.</p>
 message Logging {

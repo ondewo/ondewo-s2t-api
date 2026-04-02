@@ -2,6 +2,15 @@
 
 *****************
 
+## Release ONDEWO S2T API 7.2.0
+
+### New Features
+
+* [[OND231-604]](https://ondewo.atlassian.net/browse/OND231-604) Add `llm_base_url` and `llm_api-key` fields to 
+  configs to support cloud LLMs.
+
+*****************
+
 ## Release ONDEWO S2T API 7.1.0
 
 ### New Features
