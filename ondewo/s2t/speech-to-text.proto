@@ -1042,6 +1042,66 @@ message TurnDetectionOptions {
 
 }
 
+// <p>Latency tier to use for processing an OpenAI request. Affects cost and throughput.</p>
+enum ServiceTier {
+
+    // Unspecified service tier.
+    SERVICE_TIER_UNSPECIFIED = 0;
+
+    // Auto service tier.
+    SERVICE_TIER_AUTO = 1;
+
+    // Default service tier.
+    SERVICE_TIER_DEFAULT = 2;
+
+    // Flex service tier.
+    SERVICE_TIER_FLEX = 3;
+
+    // Scale service tier.
+    SERVICE_TIER_SCALE = 4;
+
+    // Priority service tier.
+    SERVICE_TIER_PRIORITY = 5;
+
+}
+
+// <p>Verbosity level for the response output.</p>
+enum Verbosity {
+
+    // Unspecified verbosity.
+    VERBOSITY_UNSPECIFIED = 0;
+
+    // Low verbosity.
+    VERBOSITY_LOW = 1;
+
+    // Medium verbosity.
+    VERBOSITY_MEDIUM = 2;
+
+    // High verbosity.
+    VERBOSITY_HIGH = 3;
+
+}
+
+// <p>Effort level for reasoning models (e.g., o1, o3). Controls the trade-off between speed and quality.</p>
+enum ReasoningEffort {
+
+    // Unspecified reasoning effort.
+    REASONING_EFFORT_UNSPECIFIED = 0;
+
+    // Minimal reasoning effort.
+    REASONING_EFFORT_MINIMAL = 1;
+
+    // Low reasoning effort.
+    REASONING_EFFORT_LOW = 2;
+
+    // Medium reasoning effort.
+    REASONING_EFFORT_MEDIUM = 3;
+
+    // High reasoning effort.
+    REASONING_EFFORT_HIGH = 4;
+
+}
+
 // <p>Configuration options for OpenAI client chat completion requests used in turn detection and LLM post-processing.</p>
 message OpenaiLlmOptions {
 
@@ -1123,16 +1183,16 @@ message OpenaiLlmOptions {
     optional string prompt_cache_key = 21;
 
     // Optional. Constrains the effort level for reasoning models (e.g., o1, o3). Controls the trade-off
-    // between speed and quality. Accepted values: "low", "medium", "high".
-    optional string reasoning_effort = 22;
+    // between speed and quality.
+    optional ReasoningEffort reasoning_effort = 22;
 
     // Optional. If specified, the system will make a best effort to sample deterministically given the
     // same seed and parameters, enabling reproducible outputs.
     optional int64 seed = 23;
 
     // Optional. Specifies the latency tier to use for processing the request. Affects cost and
-    // throughput. Accepted values: "auto", "default", "flex", "scale", "priority".
-    optional string service_tier = 24;
+    // throughput.
+    optional ServiceTier service_tier = 24;
 
     // Optional. Up to 4 sequences where the API will stop generating further tokens. The returned text
     // will not contain the stop sequence.
@@ -1158,8 +1218,8 @@ message OpenaiLlmOptions {
     // abuse.
     optional string user = 30;
 
-    // Optional. The verbosity level for the response output. Accepted values: "low", "medium", "high".
-    optional string verbosity = 31;
+    // Optional. The verbosity level for the response output.
+    optional Verbosity verbosity = 31;
 
     // Optional. Additional HTTP headers to send with the request. These are merged with and override
     // default_headers for this specific request only.
