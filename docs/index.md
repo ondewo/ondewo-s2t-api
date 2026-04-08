@@ -22,9 +22,9 @@
     - [ListS2tPipelinesRequest](#ondewo.s2t.ListS2tPipelinesRequest)
     - [ListS2tPipelinesResponse](#ondewo.s2t.ListS2tPipelinesResponse)
     - [Logging](#ondewo.s2t.Logging)
-    - [OpenaiLLMOptions](#ondewo.s2t.OpenaiLLMOptions)
-    - [OpenaiLLMOptions.DefaultHeadersEntry](#ondewo.s2t.OpenaiLLMOptions.DefaultHeadersEntry)
-    - [OpenaiLLMOptions.LogitBiasEntry](#ondewo.s2t.OpenaiLLMOptions.LogitBiasEntry)
+    - [OpenaiLlmOptions](#ondewo.s2t.OpenaiLlmOptions)
+    - [OpenaiLlmOptions.DefaultHeadersEntry](#ondewo.s2t.OpenaiLlmOptions.DefaultHeadersEntry)
+    - [OpenaiLlmOptions.LogitBiasEntry](#ondewo.s2t.OpenaiLlmOptions.LogitBiasEntry)
     - [PostProcessing](#ondewo.s2t.PostProcessing)
     - [PostProcessingOptions](#ondewo.s2t.PostProcessingOptions)
     - [PostProcessors](#ondewo.s2t.PostProcessors)
@@ -380,9 +380,9 @@
 
 
 
-<a name="ondewo.s2t.OpenaiLLMOptions"></a>
+<a name="ondewo.s2t.OpenaiLlmOptions"></a>
 
-### OpenaiLLMOptions
+### OpenaiLlmOptions
 <p>Configuration options for OpenAI client chat completion requests used in turn detection and LLM post-processing.</p>
 
 
@@ -396,12 +396,12 @@
 | websocket_base_url | [string](#string) | optional | Optional. The base URL for OpenAI WebSocket connections. Overrides the default WebSocket endpoint. |
 | timeout | [float](#float) | optional | Optional. The timeout in seconds for requests to the OpenAI API. Applies to the entire request lifecycle including connection, sending, and receiving. |
 | max_retries | [int32](#int32) | optional | Optional. The maximum number of retries to attempt when a request fails due to a transient error. Defaults to 2. |
-| default_headers | [OpenaiLLMOptions.DefaultHeadersEntry](#ondewo.s2t.OpenaiLLMOptions.DefaultHeadersEntry) | repeated | Optional. Default HTTP headers to include with every request to the OpenAI API. |
+| default_headers | [OpenaiLlmOptions.DefaultHeadersEntry](#ondewo.s2t.OpenaiLlmOptions.DefaultHeadersEntry) | repeated | Optional. Default HTTP headers to include with every request to the OpenAI API. |
 | default_query | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Default query parameters to append to every request URL sent to the OpenAI API. Values can be of any type (string, number, boolean, list), hence the use of Struct. |
 | strict_response_validation | [bool](#bool) | optional | Optional. If true, enables strict validation of response payloads returned by the OpenAI API. |
 | model | [string](#string) | optional | Required. The name or identifier of the OpenAI model to use for chat completion (e.g., "gpt-4o", "gpt-4o-mini", "o3"). |
 | frequency_penalty | [float](#float) | optional | Optional. A number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the likelihood of the model repeating the same line verbatim. |
-| logit_bias | [OpenaiLLMOptions.LogitBiasEntry](#ondewo.s2t.OpenaiLLMOptions.LogitBiasEntry) | repeated | Optional. Modifies the likelihood of specified tokens appearing in the completion. Maps token IDs (as strings) to bias values from -100 to 100. Mathematically added to the logits before sampling. |
+| logit_bias | [OpenaiLlmOptions.LogitBiasEntry](#ondewo.s2t.OpenaiLlmOptions.LogitBiasEntry) | repeated | Optional. Modifies the likelihood of specified tokens appearing in the completion. Maps token IDs (as strings) to bias values from -100 to 100. Mathematically added to the logits before sampling. |
 | logprobs | [bool](#bool) | optional | Optional. Whether to return log probabilities of the output tokens. If true, returns the log probabilities of each output token in the response. |
 | max_completion_tokens | [int32](#int32) | optional | Optional. An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and reasoning tokens. |
 | max_tokens | [int32](#int32) | optional | Optional. The maximum number of tokens that can be generated in the chat completion. Deprecated in favor of max_completion_tokens. |
@@ -428,9 +428,9 @@
 
 
 
-<a name="ondewo.s2t.OpenaiLLMOptions.DefaultHeadersEntry"></a>
+<a name="ondewo.s2t.OpenaiLlmOptions.DefaultHeadersEntry"></a>
 
-### OpenaiLLMOptions.DefaultHeadersEntry
+### OpenaiLlmOptions.DefaultHeadersEntry
 
 
 
@@ -444,9 +444,9 @@
 
 
 
-<a name="ondewo.s2t.OpenaiLLMOptions.LogitBiasEntry"></a>
+<a name="ondewo.s2t.OpenaiLlmOptions.LogitBiasEntry"></a>
 
-### OpenaiLLMOptions.LogitBiasEntry
+### OpenaiLlmOptions.LogitBiasEntry
 
 
 
@@ -775,7 +775,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| s2t_llm_post_processing_openai_options | [OpenaiLLMOptions](#ondewo.s2t.OpenaiLLMOptions) | optional | Optional. Configuration options for the OpenAI client used for post-processing. |
+| s2t_llm_post_processing_openai_options | [OpenaiLlmOptions](#ondewo.s2t.OpenaiLlmOptions) | optional | Optional. Configuration options for the OpenAI client used for post-processing. |
 | s2t_llm_post_processing_system_prompt | [string](#string) | optional | Optional. System prompt used to guide the LLM model for post-processing. |
 | s2t_llm_post_processing_ending_prompt | [string](#string) | optional | Optional. Ending prompt appended to the accumulated prompts of the active post-processing tasks. |
 | s2t_llm_post_processing_casing_options | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the options to casing task in LLM post-processing. |
@@ -1177,7 +1177,7 @@ Used by both normalization and inverse-normalization tasks.</p>
 | full_utterance_deployment | [bool](#bool) | optional | Optional. Whether to transcribe the whole utterance when turn moment is detected. It is helpful to increase accuracy of transcriptions in cost of drop in speed. If deactivated, it just transcribe from last short silence period and concatenates the transcriptions of small audio chunks between tiny silences. |
 | turn_detection_system_prompt | [string](#string) | optional | Optional. System prompt used to guide the turn-detection model. |
 | turn_detection_user_prompt | [string](#string) | optional | Optional. User prompt used as input to the turn-detection model. |
-| turn_detection_llm_openai_options | [OpenaiLLMOptions](#ondewo.s2t.OpenaiLLMOptions) | optional | Optional. Configuration options for the OpenAI client used for turn detection. |
+| turn_detection_llm_openai_options | [OpenaiLlmOptions](#ondewo.s2t.OpenaiLlmOptions) | optional | Optional. Configuration options for the OpenAI client used for turn detection. |
 
 
 
