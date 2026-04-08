@@ -75,6 +75,9 @@
   
     - [Decoding](#ondewo.s2t.Decoding)
     - [InferenceBackend](#ondewo.s2t.InferenceBackend)
+    - [ReasoningEffort](#ondewo.s2t.ReasoningEffort)
+    - [ServiceTier](#ondewo.s2t.ServiceTier)
+    - [Verbosity](#ondewo.s2t.Verbosity)
   
     - [Speech2Text](#ondewo.s2t.Speech2Text)
   
@@ -409,16 +412,16 @@
 | n | [int32](#int32) | optional | Optional. The number of chat completion choices to generate for each input message. Note that costs are multiplied by the number of choices generated. |
 | presence_penalty | [float](#float) | optional | Optional. A number between -2.0 and 2.0. Positive values penalize new tokens based on whether they have already appeared in the text, increasing the likelihood of the model discussing new topics. |
 | prompt_cache_key | [string](#string) | optional | Optional. A stable key used to enable prompt caching for identical prompt prefixes, reducing latency and cost on repeated requests. |
-| reasoning_effort | [string](#string) | optional | Optional. Constrains the effort level for reasoning models (e.g., o1, o3). Controls the trade-off between speed and quality. Accepted values: "low", "medium", "high". |
+| reasoning_effort | [ReasoningEffort](#ondewo.s2t.ReasoningEffort) | optional | Optional. Constrains the effort level for reasoning models (e.g., o1, o3). Controls the trade-off between speed and quality. |
 | seed | [int64](#int64) | optional | Optional. If specified, the system will make a best effort to sample deterministically given the same seed and parameters, enabling reproducible outputs. |
-| service_tier | [string](#string) | optional | Optional. Specifies the latency tier to use for processing the request. Affects cost and throughput. Accepted values: "auto", "default", "flex", "scale", "priority". |
+| service_tier | [ServiceTier](#ondewo.s2t.ServiceTier) | optional | Optional. Specifies the latency tier to use for processing the request. Affects cost and throughput. |
 | stop | [string](#string) | repeated | Optional. Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence. |
 | store | [bool](#bool) | optional | Optional. Whether to store the output of this chat completion request for use in model distillation, evals, or the stored completions dashboard. |
 | temperature | [float](#float) | optional | Optional. What sampling temperature to use, between 0 and 2. Higher values (e.g., 0.8) make the output more random, while lower values (e.g., 0.2) make it more focused and deterministic. |
 | top_logprobs | [int32](#int32) | optional | Optional. An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. Requires logprobs to be true. |
 | top_p | [float](#float) | optional | Optional. An alternative to sampling with temperature, called nucleus sampling. The model considers only the tokens with top_p probability mass. Ranges from 0 to 1. |
 | user | [string](#string) | optional | Optional. A unique identifier representing the end-user, which helps OpenAI monitor and detect abuse. |
-| verbosity | [string](#string) | optional | Optional. The verbosity level for the response output. Accepted values: "low", "medium", "high". |
+| verbosity | [Verbosity](#ondewo.s2t.Verbosity) | optional | Optional. The verbosity level for the response output. |
 | extra_headers | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Additional HTTP headers to send with the request. These are merged with and override default_headers for this specific request only. |
 | extra_query | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Additional query parameters to send with the request. These are merged with and override default_query for this specific request only. |
 | extra_body | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Additional JSON properties to include in the request body. Useful for accessing new or undocumented API parameters. |
@@ -1359,6 +1362,51 @@ The inference backend configuration
 | INFERENCE_BACKEND_CLOUD_SERVICE_DEEPGRAM | 4 | Run Deepgram S2T cloud service |
 | INFERENCE_BACKEND_CLOUD_SERVICE_GOOGLE | 5 | Run Google S2T cloud service |
 | INFERENCE_BACKEND_CLOUD_SERVICE_MICROSOFT | 6 | Run Microsoft Azure S2T cloud service |
+
+
+
+<a name="ondewo.s2t.ReasoningEffort"></a>
+
+### ReasoningEffort
+<p>Effort level for reasoning models (e.g., o1, o3). Controls the trade-off between speed and quality.</p>
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| REASONING_EFFORT_UNSPECIFIED | 0 | Unspecified reasoning effort. |
+| REASONING_EFFORT_MINIMAL | 1 | Minimal reasoning effort. |
+| REASONING_EFFORT_LOW | 2 | Low reasoning effort. |
+| REASONING_EFFORT_MEDIUM | 3 | Medium reasoning effort. |
+| REASONING_EFFORT_HIGH | 4 | High reasoning effort. |
+
+
+
+<a name="ondewo.s2t.ServiceTier"></a>
+
+### ServiceTier
+<p>Latency tier to use for processing an OpenAI request. Affects cost and throughput.</p>
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| SERVICE_TIER_UNSPECIFIED | 0 | Unspecified service tier. |
+| SERVICE_TIER_AUTO | 1 | Auto service tier. |
+| SERVICE_TIER_DEFAULT | 2 | Default service tier. |
+| SERVICE_TIER_FLEX | 3 | Flex service tier. |
+| SERVICE_TIER_SCALE | 4 | Scale service tier. |
+| SERVICE_TIER_PRIORITY | 5 | Priority service tier. |
+
+
+
+<a name="ondewo.s2t.Verbosity"></a>
+
+### Verbosity
+<p>Verbosity level for the response output.</p>
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| VERBOSITY_UNSPECIFIED | 0 | Unspecified verbosity. |
+| VERBOSITY_LOW | 1 | Low verbosity. |
+| VERBOSITY_MEDIUM | 2 | Medium verbosity. |
+| VERBOSITY_HIGH | 3 | High verbosity. |
 
 
  <!-- end enums -->

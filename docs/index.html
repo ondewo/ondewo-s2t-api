@@ -370,6 +370,18 @@
                         <a href="#ondewo.s2t.InferenceBackend" class="title-badge enum">InferenceBackend</a>
                       </li>
                     
+                      <li>
+                        <a href="#ondewo.s2t.ReasoningEffort" class="title-badge enum">ReasoningEffort</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.ServiceTier" class="title-badge enum">ServiceTier</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.Verbosity" class="title-badge enum">Verbosity</a>
+                      </li>
+                    
                   </ul>
                   
                   
@@ -1266,10 +1278,10 @@ latency and cost on repeated requests. </p></td>
               
                 <tr>
                   <td>reasoning_effort</td>
-                  <td><a href="#string">string</a></td>
+                  <td><a href="#ondewo.s2t.ReasoningEffort">ReasoningEffort</a></td>
                   <td>optional</td>
                   <td><p>Optional. Constrains the effort level for reasoning models (e.g., o1, o3). Controls the trade-off
-between speed and quality. Accepted values: "low", "medium", "high". </p></td>
+between speed and quality. </p></td>
                 </tr>
               
                 <tr>
@@ -1282,10 +1294,10 @@ same seed and parameters, enabling reproducible outputs. </p></td>
               
                 <tr>
                   <td>service_tier</td>
-                  <td><a href="#string">string</a></td>
+                  <td><a href="#ondewo.s2t.ServiceTier">ServiceTier</a></td>
                   <td>optional</td>
                   <td><p>Optional. Specifies the latency tier to use for processing the request. Affects cost and
-throughput. Accepted values: "auto", "default", "flex", "scale", "priority". </p></td>
+throughput. </p></td>
                 </tr>
               
                 <tr>
@@ -1338,9 +1350,9 @@ abuse. </p></td>
               
                 <tr>
                   <td>verbosity</td>
-                  <td><a href="#string">string</a></td>
+                  <td><a href="#ondewo.s2t.Verbosity">Verbosity</a></td>
                   <td>optional</td>
-                  <td><p>Optional. The verbosity level for the response output. Accepted values: "low", "medium", "high". </p></td>
+                  <td><p>Optional. The verbosity level for the response output. </p></td>
                 </tr>
               
                 <tr>
@@ -3872,6 +3884,129 @@ The accuracy of the time offset can vary, and this is an experimental feature. <
                 <td>INFERENCE_BACKEND_CLOUD_SERVICE_MICROSOFT</td>
                 <td>6</td>
                 <td><p>Run Microsoft Azure S2T cloud service</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="ondewo.s2t.ReasoningEffort" class="title-badge enum">ReasoningEffort</h3>
+        <p><p>Effort level for reasoning models (e.g., o1, o3). Controls the trade-off between speed and quality.</p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>REASONING_EFFORT_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>Unspecified reasoning effort.</p></td>
+              </tr>
+            
+              <tr>
+                <td>REASONING_EFFORT_MINIMAL</td>
+                <td>1</td>
+                <td><p>Minimal reasoning effort.</p></td>
+              </tr>
+            
+              <tr>
+                <td>REASONING_EFFORT_LOW</td>
+                <td>2</td>
+                <td><p>Low reasoning effort.</p></td>
+              </tr>
+            
+              <tr>
+                <td>REASONING_EFFORT_MEDIUM</td>
+                <td>3</td>
+                <td><p>Medium reasoning effort.</p></td>
+              </tr>
+            
+              <tr>
+                <td>REASONING_EFFORT_HIGH</td>
+                <td>4</td>
+                <td><p>High reasoning effort.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="ondewo.s2t.ServiceTier" class="title-badge enum">ServiceTier</h3>
+        <p><p>Latency tier to use for processing an OpenAI request. Affects cost and throughput.</p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>SERVICE_TIER_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>Unspecified service tier.</p></td>
+              </tr>
+            
+              <tr>
+                <td>SERVICE_TIER_AUTO</td>
+                <td>1</td>
+                <td><p>Auto service tier.</p></td>
+              </tr>
+            
+              <tr>
+                <td>SERVICE_TIER_DEFAULT</td>
+                <td>2</td>
+                <td><p>Default service tier.</p></td>
+              </tr>
+            
+              <tr>
+                <td>SERVICE_TIER_FLEX</td>
+                <td>3</td>
+                <td><p>Flex service tier.</p></td>
+              </tr>
+            
+              <tr>
+                <td>SERVICE_TIER_SCALE</td>
+                <td>4</td>
+                <td><p>Scale service tier.</p></td>
+              </tr>
+            
+              <tr>
+                <td>SERVICE_TIER_PRIORITY</td>
+                <td>5</td>
+                <td><p>Priority service tier.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="ondewo.s2t.Verbosity" class="title-badge enum">Verbosity</h3>
+        <p><p>Verbosity level for the response output.</p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>VERBOSITY_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>Unspecified verbosity.</p></td>
+              </tr>
+            
+              <tr>
+                <td>VERBOSITY_LOW</td>
+                <td>1</td>
+                <td><p>Low verbosity.</p></td>
+              </tr>
+            
+              <tr>
+                <td>VERBOSITY_MEDIUM</td>
+                <td>2</td>
+                <td><p>Medium verbosity.</p></td>
+              </tr>
+            
+              <tr>
+                <td>VERBOSITY_HIGH</td>
+                <td>3</td>
+                <td><p>High verbosity.</p></td>
               </tr>
             
           </tbody>
