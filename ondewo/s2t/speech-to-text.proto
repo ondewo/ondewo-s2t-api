@@ -1038,12 +1038,12 @@ message TurnDetectionOptions {
     optional string turn_detection_user_prompt = 4;
 
     // Optional. Configuration options for the OpenAI client used for turn detection.
-    optional OpenaiLLMOptions turn_detection_llm_openai_options = 5;
+    optional OpenaiLlmOptions turn_detection_llm_openai_options = 5;
 
 }
 
 // <p>Configuration options for OpenAI client chat completion requests used in turn detection and LLM post-processing.</p>
-message OpenaiLLMOptions {
+message OpenaiLlmOptions {
 
     // Optional. The API key used to authenticate with the OpenAI API.
     optional string api_key = 1;
@@ -1270,7 +1270,7 @@ message S2tNormalization {
 message S2tLlmPostProcessing {
 
     // Optional. Configuration options for the OpenAI client used for post-processing.
-    optional OpenaiLLMOptions s2t_llm_post_processing_openai_options = 1;
+    optional OpenaiLlmOptions s2t_llm_post_processing_openai_options = 1;
 
     // Optional. System prompt used to guide the LLM model for post-processing.
     optional string s2t_llm_post_processing_system_prompt = 2;
