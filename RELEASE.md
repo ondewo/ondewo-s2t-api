@@ -6,8 +6,8 @@
 
 ### New Features
 
-* [[OND231-604]](https://ondewo.atlassian.net/browse/OND231-604) Add `llm_base_url` and `llm_api-key` fields to 
-  configs to support cloud LLMs.
+* [[OND231-604]](https://ondewo.atlassian.net/browse/OND231-604) Add OpenAI LLM configs as a separated message to 
+  have full access of LLM configurations.
 
 *****************
 
