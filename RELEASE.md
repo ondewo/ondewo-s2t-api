@@ -2,6 +2,15 @@
 
 *****************
 
+## Release ONDEWO S2T API 7.2.0
+
+### New Features
+
+* [[OND231-604]](https://ondewo.atlassian.net/browse/OND231-604) Add OpenAI LLM configs as a separated message to 
+  have full access of LLM configurations.
+
+*****************
+
 ## Release ONDEWO S2T API 7.1.0
 
 ### New Features
