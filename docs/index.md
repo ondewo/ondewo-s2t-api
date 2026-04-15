@@ -865,6 +865,7 @@ Used by both normalization and inverse-normalization tasks.</p>
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | active | [bool](#bool) | optional | Optional. Indicates if the summarization task of LLM post-processing is active. |
+| prompt | [string](#string) | optional | Optional. Custom prompt to guide the LLM for summarization. Overrides the default prompt when set. |
 | min_chars | [int32](#int32) | optional | Optional. Minimum number of characters of the summary generated in summarization task of LLM post-processing. |
 | max_chars | [int32](#int32) | optional | Optional. Maximum number of characters of the summary generated in summarization task of LLM post-processing. |
 
@@ -883,6 +884,7 @@ Used by both normalization and inverse-normalization tasks.</p>
 | ----- | ---- | ----- | ----------- |
 | active | [bool](#bool) | optional | Optional. Indicates if the translation task of LLM post-processing is active. |
 | language | [string](#string) | optional | Optional. Target language of the translation task of LLM post-processing. |
+| prompt | [string](#string) | optional | Optional. Custom prompt to guide the LLM for translation. Overrides the default prompt when set. |
 
 
 
