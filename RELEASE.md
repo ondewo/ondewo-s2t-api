@@ -2,6 +2,15 @@
 
 *****************
 
+## Release ONDEWO S2T API 7.3.0
+
+### New Features
+
+* [[OND231-604]](https://ondewo.atlassian.net/browse/OND231-604) Add missing prompt field for 
+  S2tLlmPostProcessingTranslationOptions and S2tLlmPostProcessingSummarizationOptions
+
+*****************
+
 ## Release ONDEWO S2T API 7.2.0
 
 ### New Features

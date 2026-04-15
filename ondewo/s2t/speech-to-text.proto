@@ -1376,6 +1376,9 @@ message S2tLlmPostProcessingTranslationOptions {
     // Optional. Target language of the translation task of LLM post-processing.
     optional string language = 2;
 
+    // Optional. Custom prompt to guide the LLM for translation. Overrides the default prompt when set.
+    optional string prompt = 3;
+
 }
 
 // <p>Configuration of the options to inverse-normalization task in LLM post-processing.</p>
@@ -1436,11 +1439,14 @@ message S2tLlmPostProcessingSummarizationOptions {
     // Optional. Indicates if the summarization task of LLM post-processing is active.
     optional bool active = 1;
 
+    // Optional. Custom prompt to guide the LLM for summarization. Overrides the default prompt when set.
+    optional string prompt = 2;
+
     // Optional. Minimum number of characters of the summary generated in summarization task of LLM post-processing.
-    optional int32 min_chars = 2;
+    optional int32 min_chars = 3;
 
     // Optional. Maximum number of characters of the summary generated in summarization task of LLM post-processing.
-    optional int32 max_chars = 3;
+    optional int32 max_chars = 4;
 
 }
 
