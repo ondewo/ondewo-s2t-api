@@ -22,6 +22,9 @@
     - [ListS2tPipelinesRequest](#ondewo.s2t.ListS2tPipelinesRequest)
     - [ListS2tPipelinesResponse](#ondewo.s2t.ListS2tPipelinesResponse)
     - [Logging](#ondewo.s2t.Logging)
+    - [OpenaiLlmOptions](#ondewo.s2t.OpenaiLlmOptions)
+    - [OpenaiLlmOptions.DefaultHeadersEntry](#ondewo.s2t.OpenaiLlmOptions.DefaultHeadersEntry)
+    - [OpenaiLlmOptions.LogitBiasEntry](#ondewo.s2t.OpenaiLlmOptions.LogitBiasEntry)
     - [PostProcessing](#ondewo.s2t.PostProcessing)
     - [PostProcessingOptions](#ondewo.s2t.PostProcessingOptions)
     - [PostProcessors](#ondewo.s2t.PostProcessors)
@@ -40,15 +43,11 @@
     - [S2tGetServiceInfoResponse](#ondewo.s2t.S2tGetServiceInfoResponse)
     - [S2tInference](#ondewo.s2t.S2tInference)
     - [S2tLlmPostProcessing](#ondewo.s2t.S2tLlmPostProcessing)
-    - [S2tLlmPostProcessingCasingOptions](#ondewo.s2t.S2tLlmPostProcessingCasingOptions)
     - [S2tLlmPostProcessingInverseNormalizationOptions](#ondewo.s2t.S2tLlmPostProcessingInverseNormalizationOptions)
     - [S2tLlmPostProcessingNormalizationOptions](#ondewo.s2t.S2tLlmPostProcessingNormalizationOptions)
-    - [S2tLlmPostProcessingPunctuationOptions](#ondewo.s2t.S2tLlmPostProcessingPunctuationOptions)
-    - [S2tLlmPostProcessingSemanticCorrectionOptions](#ondewo.s2t.S2tLlmPostProcessingSemanticCorrectionOptions)
-    - [S2tLlmPostProcessingSpellCorrectionOptions](#ondewo.s2t.S2tLlmPostProcessingSpellCorrectionOptions)
+    - [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions)
     - [S2tLlmPostProcessingSummarizationOptions](#ondewo.s2t.S2tLlmPostProcessingSummarizationOptions)
     - [S2tLlmPostProcessingTranslationOptions](#ondewo.s2t.S2tLlmPostProcessingTranslationOptions)
-    - [S2tLlmPostProcessingUserPromptOptions](#ondewo.s2t.S2tLlmPostProcessingUserPromptOptions)
     - [S2tNormalization](#ondewo.s2t.S2tNormalization)
     - [S2tPipelineId](#ondewo.s2t.S2tPipelineId)
     - [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig)
@@ -76,6 +75,9 @@
   
     - [Decoding](#ondewo.s2t.Decoding)
     - [InferenceBackend](#ondewo.s2t.InferenceBackend)
+    - [ReasoningEffort](#ondewo.s2t.ReasoningEffort)
+    - [ServiceTier](#ondewo.s2t.ServiceTier)
+    - [Verbosity](#ondewo.s2t.Verbosity)
   
     - [Speech2Text](#ondewo.s2t.Speech2Text)
   
@@ -375,6 +377,86 @@
 | ----- | ---- | ----- | ----------- |
 | type | [string](#string) |  | Type of logging. |
 | path | [string](#string) |  | Path for logging. |
+
+
+
+
+
+
+<a name="ondewo.s2t.OpenaiLlmOptions"></a>
+
+### OpenaiLlmOptions
+<p>Configuration options for OpenAI client chat completion requests used in turn detection and LLM post-processing.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| api_key | [string](#string) | optional | Optional. The API key used to authenticate with the OpenAI API. |
+| organization | [string](#string) | optional | Optional. The organization ID associated with the OpenAI account, used for billing and access control. |
+| project | [string](#string) | optional | Optional. The project ID associated with the OpenAI account. |
+| webhook_secret | [string](#string) | optional | Optional. The webhook secret used to validate incoming webhook events from OpenAI. |
+| base_url | [string](#string) | optional | Optional. The base URL for the OpenAI API. Overrides the default endpoint, useful for proxies or compatible third-party providers. |
+| websocket_base_url | [string](#string) | optional | Optional. The base URL for OpenAI WebSocket connections. Overrides the default WebSocket endpoint. |
+| timeout | [float](#float) | optional | Optional. The timeout in seconds for requests to the OpenAI API. Applies to the entire request lifecycle including connection, sending, and receiving. |
+| max_retries | [int32](#int32) | optional | Optional. The maximum number of retries to attempt when a request fails due to a transient error. Defaults to 2. |
+| default_headers | [OpenaiLlmOptions.DefaultHeadersEntry](#ondewo.s2t.OpenaiLlmOptions.DefaultHeadersEntry) | repeated | Optional. Default HTTP headers to include with every request to the OpenAI API. |
+| default_query | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Default query parameters to append to every request URL sent to the OpenAI API. Values can be of any type (string, number, boolean, list), hence the use of Struct. |
+| strict_response_validation | [bool](#bool) | optional | Optional. If true, enables strict validation of response payloads returned by the OpenAI API. |
+| model | [string](#string) | optional | Required. The name or identifier of the OpenAI model to use for chat completion (e.g., "gpt-4o", "gpt-4o-mini", "o3"). |
+| frequency_penalty | [float](#float) | optional | Optional. A number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the likelihood of the model repeating the same line verbatim. |
+| logit_bias | [OpenaiLlmOptions.LogitBiasEntry](#ondewo.s2t.OpenaiLlmOptions.LogitBiasEntry) | repeated | Optional. Modifies the likelihood of specified tokens appearing in the completion. Maps token IDs (as strings) to bias values from -100 to 100. Mathematically added to the logits before sampling. |
+| logprobs | [bool](#bool) | optional | Optional. Whether to return log probabilities of the output tokens. If true, returns the log probabilities of each output token in the response. |
+| max_completion_tokens | [int32](#int32) | optional | Optional. An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and reasoning tokens. |
+| max_tokens | [int32](#int32) | optional | Optional. The maximum number of tokens that can be generated in the chat completion. Deprecated in favor of max_completion_tokens. |
+| metadata | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Developer-defined tags and values used for filtering completions in the OpenAI dashboard. |
+| n | [int32](#int32) | optional | Optional. The number of chat completion choices to generate for each input message. Note that costs are multiplied by the number of choices generated. |
+| presence_penalty | [float](#float) | optional | Optional. A number between -2.0 and 2.0. Positive values penalize new tokens based on whether they have already appeared in the text, increasing the likelihood of the model discussing new topics. |
+| prompt_cache_key | [string](#string) | optional | Optional. A stable key used to enable prompt caching for identical prompt prefixes, reducing latency and cost on repeated requests. |
+| reasoning_effort | [ReasoningEffort](#ondewo.s2t.ReasoningEffort) | optional | Optional. Constrains the effort level for reasoning models (e.g., o1, o3). Controls the trade-off between speed and quality. |
+| seed | [int64](#int64) | optional | Optional. If specified, the system will make a best effort to sample deterministically given the same seed and parameters, enabling reproducible outputs. |
+| service_tier | [ServiceTier](#ondewo.s2t.ServiceTier) | optional | Optional. Specifies the latency tier to use for processing the request. Affects cost and throughput. |
+| stop | [string](#string) | repeated | Optional. Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence. |
+| store | [bool](#bool) | optional | Optional. Whether to store the output of this chat completion request for use in model distillation, evals, or the stored completions dashboard. |
+| temperature | [float](#float) | optional | Optional. What sampling temperature to use, between 0 and 2. Higher values (e.g., 0.8) make the output more random, while lower values (e.g., 0.2) make it more focused and deterministic. |
+| top_logprobs | [int32](#int32) | optional | Optional. An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. Requires logprobs to be true. |
+| top_p | [float](#float) | optional | Optional. An alternative to sampling with temperature, called nucleus sampling. The model considers only the tokens with top_p probability mass. Ranges from 0 to 1. |
+| user | [string](#string) | optional | Optional. A unique identifier representing the end-user, which helps OpenAI monitor and detect abuse. |
+| verbosity | [Verbosity](#ondewo.s2t.Verbosity) | optional | Optional. The verbosity level for the response output. |
+| extra_headers | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Additional HTTP headers to send with the request. These are merged with and override default_headers for this specific request only. |
+| extra_query | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Additional query parameters to send with the request. These are merged with and override default_query for this specific request only. |
+| extra_body | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Additional JSON properties to include in the request body. Useful for accessing new or undocumented API parameters. |
+
+
+
+
+
+
+<a name="ondewo.s2t.OpenaiLlmOptions.DefaultHeadersEntry"></a>
+
+### OpenaiLlmOptions.DefaultHeadersEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="ondewo.s2t.OpenaiLlmOptions.LogitBiasEntry"></a>
+
+### OpenaiLlmOptions.LogitBiasEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [int32](#int32) |  |  |
 
 
 
@@ -696,35 +778,18 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| llm_host | [string](#string) | optional | Optional. Host name or IP address of the server that serves the LLM for post-processing purpose. |
-| llm_port | [int32](#int32) | optional | Optional. Port number of the server that serves the LLM for post-processing purpose. |
-| llm_request_timeout | [float](#float) | optional | Optional. Duration of request timeout in seconds to get result of request to LLM for post-processing purpose. If the timeout occurs, result of post-processing returns the input text with no change. |
-| s2t_llm_post_processing_casing_options | [S2tLlmPostProcessingCasingOptions](#ondewo.s2t.S2tLlmPostProcessingCasingOptions) | optional | Optional. Configuration of the options to casing task in LLM post-processing. |
-| s2t_llm_post_processing_punctuation_options | [S2tLlmPostProcessingPunctuationOptions](#ondewo.s2t.S2tLlmPostProcessingPunctuationOptions) | optional | Optional. Configuration of the options to punctuation task in LLM post-processing. |
-| s2t_llm_post_processing_spelling_correction_options | [S2tLlmPostProcessingSpellCorrectionOptions](#ondewo.s2t.S2tLlmPostProcessingSpellCorrectionOptions) | optional | Optional. Configuration of the options to spelling-correction task in LLM post-processing. |
-| s2t_llm_post_processing_semantic_correction_options | [S2tLlmPostProcessingSemanticCorrectionOptions](#ondewo.s2t.S2tLlmPostProcessingSemanticCorrectionOptions) | optional | Optional. Configuration of the options to semantic-correction task in LLM post-processing. |
+| s2t_llm_post_processing_openai_options | [OpenaiLlmOptions](#ondewo.s2t.OpenaiLlmOptions) | optional | Optional. Configuration options for the OpenAI client used for post-processing. |
+| s2t_llm_post_processing_system_prompt | [string](#string) | optional | Optional. System prompt used to guide the LLM model for post-processing. |
+| s2t_llm_post_processing_ending_prompt | [string](#string) | optional | Optional. Ending prompt appended to the accumulated prompts of the active post-processing tasks. |
+| s2t_llm_post_processing_casing_options | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the options to casing task in LLM post-processing. |
+| s2t_llm_post_processing_punctuation_options | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the options to punctuation task in LLM post-processing. |
+| s2t_llm_post_processing_spelling_correction_options | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the options to spelling-correction task in LLM post-processing. |
+| s2t_llm_post_processing_semantic_correction_options | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the options to semantic-correction task in LLM post-processing. |
 | s2t_llm_post_processing_translation_options | [S2tLlmPostProcessingTranslationOptions](#ondewo.s2t.S2tLlmPostProcessingTranslationOptions) | optional | Optional. Configuration of the options to translation task in LLM post-processing. |
 | s2t_llm_post_processing_inverse_normalization_options | [S2tLlmPostProcessingInverseNormalizationOptions](#ondewo.s2t.S2tLlmPostProcessingInverseNormalizationOptions) | optional | Optional. Configuration of the options to inverse-normalization task in LLM post-processing. |
 | s2t_llm_post_processing_normalization_options | [S2tLlmPostProcessingNormalizationOptions](#ondewo.s2t.S2tLlmPostProcessingNormalizationOptions) | optional | Optional. Configuration of the options to normalization task in LLM post-processing. |
 | s2t_llm_post_processing_summarization_options | [S2tLlmPostProcessingSummarizationOptions](#ondewo.s2t.S2tLlmPostProcessingSummarizationOptions) | optional | Optional. Configuration of the options to summarization task in LLM post-processing. |
-| s2t_llm_post_processing_user_prompt_options | [S2tLlmPostProcessingUserPromptOptions](#ondewo.s2t.S2tLlmPostProcessingUserPromptOptions) | optional | Optional. Configuration of the options to user-prompt task in LLM post-processing. |
-| llm_model_name | [string](#string) | optional | Optional. Model name of the LLM for post-processing purpose. |
-| llm_headers | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. The headers of the request message to LLM for post-processing purpose. |
-
-
-
-
-
-
-<a name="ondewo.s2t.S2tLlmPostProcessingCasingOptions"></a>
-
-### S2tLlmPostProcessingCasingOptions
-<p>Configuration of the options to casing task in LLM post-processing.</p>
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| active | [bool](#bool) | optional | Optional. Indicates if the casing task of LLM post-processing is active. |
+| s2t_llm_post_processing_user_prompt_options | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the options to user-prompt task in LLM post-processing. |
 
 
 
@@ -740,12 +805,12 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | active | [bool](#bool) | optional | Optional. Indicates if the inverse-normalization task of LLM post-processing is active. |
-| email | [bool](#bool) | optional | Optional. Indicates if inverse-normalization of email address sub-task of LLM post-processing is active. |
-| phone_number | [bool](#bool) | optional | Optional. Indicates if inverse-normalization of phone number sub-task of LLM post-processing is active. |
-| date_and_time | [bool](#bool) | optional | Optional. Indicates if inverse-normalization of date and time sub-task of LLM post-processing is active. |
-| credit_card_number | [bool](#bool) | optional | Optional. Indicates if inverse-normalization of credit card number sub-task of LLM post-processing is active. |
-| social_security_number | [bool](#bool) | optional | Optional. Indicates if inverse-normalization of social security number sub-task of LLM post-processing is active |
-| time_zone | [bool](#bool) | optional | Optional. Indicates if inverse-normalization of time zone sub-task of LLM post-processing is active. |
+| email | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the inverse-normalization of email address sub-task. |
+| phone_number | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the inverse-normalization of phone number sub-task. |
+| date_and_time | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the inverse-normalization of date and time sub-task. |
+| credit_card_number | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the inverse-normalization of credit card number sub-task. |
+| social_security_number | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the inverse-normalization of social security number sub-task. |
+| time_zone | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the inverse-normalization of time zone sub-task. |
 
 
 
@@ -761,57 +826,30 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | active | [bool](#bool) | optional | Optional. Indicates if the normalization task of LLM post-processing is active. |
-| email | [bool](#bool) | optional | Optional. Indicates if normalization of email address sub-task of LLM post-processing is active. |
-| phone_number | [bool](#bool) | optional | Optional. Indicates if normalization of phone number sub-task of LLM post-processing is active. |
-| date_and_time | [bool](#bool) | optional | Optional. Indicates if normalization of date and time sub-task of LLM post-processing is active. |
-| credit_card_number | [bool](#bool) | optional | Optional. Indicates if normalization of credit card number sub-task of LLM post-processing is active. |
-| social_security_number | [bool](#bool) | optional | Optional. Indicates if normalization of social security number sub-task of LLM post-processing is active |
-| time_zone | [bool](#bool) | optional | Optional. Indicates if normalization of time zone sub-task of LLM post-processing is active. |
+| email | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the normalization of email address sub-task. |
+| phone_number | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the normalization of phone number sub-task. |
+| date_and_time | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the normalization of date and time sub-task. |
+| credit_card_number | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the normalization of credit card number sub-task. |
+| social_security_number | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the normalization of social security number sub-task. |
+| time_zone | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the normalization of time zone sub-task. |
 
 
 
 
 
 
-<a name="ondewo.s2t.S2tLlmPostProcessingPunctuationOptions"></a>
+<a name="ondewo.s2t.S2tLlmPostProcessingSubTaskOptions"></a>
 
-### S2tLlmPostProcessingPunctuationOptions
-<p>Configuration of the options to punctuation task in LLM post-processing.</p>
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| active | [bool](#bool) | optional | Optional. Indicates if the punctuation task of LLM post-processing is active. |
-
-
-
-
-
-
-<a name="ondewo.s2t.S2tLlmPostProcessingSemanticCorrectionOptions"></a>
-
-### S2tLlmPostProcessingSemanticCorrectionOptions
-<p>Configuration of the options to semantic-correction task in LLM post-processing.</p>
+### S2tLlmPostProcessingSubTaskOptions
+<p>Common configuration for an individual LLM post-processing sub-task (e.g. email, phone number,
+date and time, credit card number, social security number, time zone).
+Used by both normalization and inverse-normalization tasks.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| active | [bool](#bool) | optional | Optional. Indicates if the semantic-correction task of LLM post-processing is active. |
-
-
-
-
-
-
-<a name="ondewo.s2t.S2tLlmPostProcessingSpellCorrectionOptions"></a>
-
-### S2tLlmPostProcessingSpellCorrectionOptions
-<p>Configuration of the options to spelling-correction task in LLM post-processing.</p>
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| active | [bool](#bool) | optional | Optional. Indicates if the spelling-correction task of LLM post-processing is active. |
+| active | [bool](#bool) | optional | Optional. Indicates if this sub-task is active. |
+| prompt | [string](#string) | optional | Optional. Custom prompt to guide the LLM for this sub-task. Overrides the default prompt when set. |
 
 
 
@@ -845,22 +883,6 @@
 | ----- | ---- | ----- | ----------- |
 | active | [bool](#bool) | optional | Optional. Indicates if the translation task of LLM post-processing is active. |
 | language | [string](#string) | optional | Optional. Target language of the translation task of LLM post-processing. |
-
-
-
-
-
-
-<a name="ondewo.s2t.S2tLlmPostProcessingUserPromptOptions"></a>
-
-### S2tLlmPostProcessingUserPromptOptions
-<p>Configuration of the options to user-prompt task in LLM post-processing.</p>
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| active | [bool](#bool) | optional | Optional. Indicates if the user-prompt task of LLM post-processing is active. This task overwrites |
-| prompt | [string](#string) | optional | Optional. The prompt to give LLM directly for post-processing purpose. |
 
 
 
@@ -1156,11 +1178,9 @@
 | ----- | ---- | ----- | ----------- |
 | active | [bool](#bool) | optional | Optional. Indicates if the turn-detection feature is active. |
 | full_utterance_deployment | [bool](#bool) | optional | Optional. Whether to transcribe the whole utterance when turn moment is detected. It is helpful to increase accuracy of transcriptions in cost of drop in speed. If deactivated, it just transcribe from last short silence period and concatenates the transcriptions of small audio chunks between tiny silences. |
-| llm_host | [string](#string) | optional | Optional. Host name or IP address of the server that serves the LLM for turn-detection purpose. |
-| llm_port | [int32](#int32) | optional | Optional. Port number of the server that serves the LLM for turn-detection purpose. |
-| llm_request_timeout | [float](#float) | optional | Optional. Duration of request timeout in seconds to get result of request to LLM for turn-detection purpose. If the timeout occurs, result of turn-detection considered as False. |
-| llm_model_name | [string](#string) | optional | Optional. Model name of the LLM for turn-detection purpose. |
-| llm_headers | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. The headers of the request message to LLM for turn-detection purpose. |
+| turn_detection_system_prompt | [string](#string) | optional | Optional. System prompt used to guide the turn-detection model. |
+| turn_detection_user_prompt | [string](#string) | optional | Optional. User prompt used as input to the turn-detection model. |
+| turn_detection_llm_openai_options | [OpenaiLlmOptions](#ondewo.s2t.OpenaiLlmOptions) | optional | Optional. Configuration options for the OpenAI client used for turn detection. |
 
 
 
@@ -1342,6 +1362,51 @@ The inference backend configuration
 | INFERENCE_BACKEND_CLOUD_SERVICE_DEEPGRAM | 4 | Run Deepgram S2T cloud service |
 | INFERENCE_BACKEND_CLOUD_SERVICE_GOOGLE | 5 | Run Google S2T cloud service |
 | INFERENCE_BACKEND_CLOUD_SERVICE_MICROSOFT | 6 | Run Microsoft Azure S2T cloud service |
+
+
+
+<a name="ondewo.s2t.ReasoningEffort"></a>
+
+### ReasoningEffort
+<p>Effort level for reasoning models (e.g., o1, o3). Controls the trade-off between speed and quality.</p>
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| REASONING_EFFORT_UNSPECIFIED | 0 | Unspecified reasoning effort. |
+| REASONING_EFFORT_MINIMAL | 1 | Minimal reasoning effort. |
+| REASONING_EFFORT_LOW | 2 | Low reasoning effort. |
+| REASONING_EFFORT_MEDIUM | 3 | Medium reasoning effort. |
+| REASONING_EFFORT_HIGH | 4 | High reasoning effort. |
+
+
+
+<a name="ondewo.s2t.ServiceTier"></a>
+
+### ServiceTier
+<p>Latency tier to use for processing an OpenAI request. Affects cost and throughput.</p>
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| SERVICE_TIER_UNSPECIFIED | 0 | Unspecified service tier. |
+| SERVICE_TIER_AUTO | 1 | Auto service tier. |
+| SERVICE_TIER_DEFAULT | 2 | Default service tier. |
+| SERVICE_TIER_FLEX | 3 | Flex service tier. |
+| SERVICE_TIER_SCALE | 4 | Scale service tier. |
+| SERVICE_TIER_PRIORITY | 5 | Priority service tier. |
+
+
+
+<a name="ondewo.s2t.Verbosity"></a>
+
+### Verbosity
+<p>Verbosity level for the response output.</p>
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| VERBOSITY_UNSPECIFIED | 0 | Unspecified verbosity. |
+| VERBOSITY_LOW | 1 | Low verbosity. |
+| VERBOSITY_MEDIUM | 2 | Medium verbosity. |
+| VERBOSITY_HIGH | 3 | High verbosity. |
 
 
  <!-- end enums -->

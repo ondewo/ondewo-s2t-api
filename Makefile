@@ -172,6 +172,22 @@ login_to_gh: ## Login to Github CLI with Access Token
 build_gh_release: ## Generate Github Release with CLI
 	gh release create --repo $(GH_REPO) "$(ONDEWO_S2T_API_VERSION)" -n "$(CURRENT_RELEASE_NOTES)" -t "Release ${ONDEWO_S2T_API_VERSION}"
 
+delete_gh_release: ## Delete GitHub Release, release branch and release tag via gh CLI
+	-gh release delete --repo $(GH_REPO) "$(ONDEWO_S2T_API_VERSION)" --yes
+	-gh api repos/ondewo/ondewo-s2t-api/git/refs/heads/release/${ONDEWO_S2T_API_VERSION} -X DELETE
+	-gh api repos/ondewo/ondewo-s2t-api/git/refs/tags/${ONDEWO_S2T_API_VERSION} -X DELETE
+
+unrelease_to_github_via_docker_image: ## Unrelease from Github via docker
+	docker run --rm \
+		-e GITHUB_GH_TOKEN=${GITHUB_GH_TOKEN} \
+		${IMAGE_UTILS_NAME} make login_to_gh delete_gh_release
+
+unrelease: build_utils_docker_image unrelease_to_github_via_docker_image ## Undo a release: delete the GitHub release, release branch, and release tag
+	-git branch -d "release/${ONDEWO_S2T_API_VERSION}"
+	-git tag -d "${ONDEWO_S2T_API_VERSION}"
+	-git fetch --prune
+	@echo "Unrelease of ${ONDEWO_S2T_API_VERSION} complete"
+
 release_all_clients: ## Release all Clients of S2T
 	@make release_python_client || (echo "Already released ${ONDEWO_S2T_API_VERSION} of Python Client")
 	@make release_nodejs_client || (echo "Already released ${ONDEWO_S2T_API_VERSION} of Nodejs Client")
@@ -270,6 +286,9 @@ release_to_github_via_docker_image:  ## Release to Github via docker
 #		DEVOPS-ACCOUNTS
 
 ondewo_release: spc clone_devops_accounts run_release_with_devops ## Release with credentials from devops-accounts repo
+	@rm -rf ${DEVOPS_ACCOUNT_GIT}
+
+ondewo_unrelease: clone_devops_accounts run_unrelease_with_devops ## Unrelease with credentials from devops-accounts repo
 	@rm -rf ${DEVOPS_ACCOUNT_GIT}
 
 clone_devops_accounts: ## Clones devops-accounts repo
