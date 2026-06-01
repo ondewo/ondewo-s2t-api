@@ -741,6 +741,9 @@ message AcousticModels {
     // Microsoft Azure cloud service inference settings.
     S2tCloudServiceMicrosoft s2t_cloud_service_microsoft = 9;
 
+    // Configuration for the Parakeet model.
+    Parakeet parakeet = 10;
+
 }
 
 // <p>S2tCloudServiceAmazon message contains settings for the Amazon web service Cloud service inference.</p>
@@ -937,6 +940,26 @@ message Wav2VecTriton {
 
     // Port number of triton inference server that serves the Wav2VecTriton model
     int64 triton_server_port = 6;
+}
+
+// <p>Parakeet contains information about the Parakeet model.</p>
+message Parakeet {
+
+    // Name of the Triton model.
+    string triton_model_name = 1;
+
+    // Version of the Triton model.
+    string triton_model_version = 2;
+
+    // Timeout for checking model status.
+    int64 check_status_timeout = 3;
+
+    // Host name of triton inference server that serves the Parakeet model
+    string triton_server_host = 4;
+
+    // Port number of triton inference server that serves the Parakeet model
+    int64 triton_server_port = 5;
+
 }
 
 // <p>PtFiles contains information about PT files.</p>
