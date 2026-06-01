@@ -1167,7 +1167,7 @@ message OpenaiLlmOptions {
 
     // Required. The name or identifier of the OpenAI model to use for chat completion
     // (e.g., "gpt-4o", "gpt-4o-mini", "o3").
-    optional string model = 12;
+    string model = 12;
 
     // Optional. A number between -2.0 and 2.0. Positive values penalize new tokens based on their
     // existing frequency in the text so far, decreasing the likelihood of the model repeating the same
