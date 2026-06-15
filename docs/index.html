@@ -169,6 +169,10 @@
                       </li>
                     
                       <li>
+                        <a href="#ondewo.s2t.Parakeet" class="title-badge message">Parakeet</a>
+                      </li>
+                    
+                      <li>
                         <a href="#ondewo.s2t.PostProcessing" class="title-badge message">PostProcessing</a>
                       </li>
                     
@@ -593,6 +597,13 @@ id and a list of the language models loaded in the pipeline.</p>
                   <td><a href="#ondewo.s2t.S2tCloudServiceMicrosoft">S2tCloudServiceMicrosoft</a></td>
                   <td></td>
                   <td><p>Microsoft Azure cloud service inference settings. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>parakeet</td>
+                  <td><a href="#ondewo.s2t.Parakeet">Parakeet</a></td>
+                  <td></td>
+                  <td><p>Configuration for the Parakeet model. </p></td>
                 </tr>
               
             </tbody>
@@ -1199,7 +1210,7 @@ Values can be of any type (string, number, boolean, list), hence the use of Stru
                 <tr>
                   <td>model</td>
                   <td><a href="#string">string</a></td>
-                  <td>optional</td>
+                  <td></td>
                   <td><p>Required. The name or identifier of the OpenAI model to use for chat completion
 (e.g., "gpt-4o", "gpt-4o-mini", "o3"). </p></td>
                 </tr>
@@ -1249,7 +1260,8 @@ Deprecated in favor of max_completion_tokens. </p></td>
                   <td>metadata</td>
                   <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Developer-defined tags and values used for filtering completions in the OpenAI dashboard. </p></td>
+                  <td><p>Optional. Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional
+information about the object in a structured format, and querying for objects via API or the dashboard. </p></td>
                 </tr>
               
                 <tr>
@@ -1272,16 +1284,18 @@ they have already appeared in the text, increasing the likelihood of the model d
                   <td>prompt_cache_key</td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
-                  <td><p>Optional. A stable key used to enable prompt caching for identical prompt prefixes, reducing
-latency and cost on repeated requests. </p></td>
+                  <td><p>Optional. Used by OpenAI to cache responses for similar requests to optimize your cache hit rates. Replaces the 
+`user` field. [Learn more](https://platform.openai.com/docs/guides/prompt-caching). </p></td>
                 </tr>
               
                 <tr>
                   <td>reasoning_effort</td>
                   <td><a href="#ondewo.s2t.ReasoningEffort">ReasoningEffort</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Constrains the effort level for reasoning models (e.g., o1, o3). Controls the trade-off
-between speed and quality. </p></td>
+                  <td><p>Optional. Constrains effort on reasoning for 
+[reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `none`, 
+`minimal`, `low`, `medium`, `high`, and `xhigh`. Reducing reasoning effort can result in faster responses and 
+fewer tokens used on reasoning in a response. </p></td>
                 </tr>
               
                 <tr>
@@ -1296,16 +1310,26 @@ same seed and parameters, enabling reproducible outputs. </p></td>
                   <td>service_tier</td>
                   <td><a href="#ondewo.s2t.ServiceTier">ServiceTier</a></td>
                   <td>optional</td>
-                  <td><p>Optional. Specifies the latency tier to use for processing the request. Affects cost and
-throughput. </p></td>
+                  <td><p>Optional. Specifies the processing type used for serving the request.
+- If set to 'auto', then the request will be processed with the service tier configured in the Project settings.
+  Unless otherwise configured, the Project will use 'default'.
+- If set to 'default', then the request will be processed with the standard pricing and performance for the 
+  selected model.
+- If set to '[flex](https://platform.openai.com/docs/guides/flex-processing)' or
+  '[priority](https://openai.com/api-priority-processing/)', then the request will be processed with the
+   corresponding service tier.
+- When not set, the default behavior is 'auto'.
+When the `service_tier` parameter is set, the response body will include the `service_tier` value based on the 
+processing mode actually used to serve the request. This response value may be different from the value set in 
+the parameter. </p></td>
                 </tr>
               
                 <tr>
                   <td>stop</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>Optional. Up to 4 sequences where the API will stop generating further tokens. The returned text
-will not contain the stop sequence. </p></td>
+                  <td><p>Optional. Not supported with latest reasoning models `o3` and `o4-mini`. Up to 4 sequences where the API will 
+stop generating further tokens. The returned text will not contain the stop sequence. </p></td>
                 </tr>
               
                 <tr>
@@ -1344,15 +1368,19 @@ considers only the tokens with top_p probability mass. Ranges from 0 to 1. </p><
                   <td>user</td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
-                  <td><p>Optional. A unique identifier representing the end-user, which helps OpenAI monitor and detect
-abuse. </p></td>
+                  <td><p>Optional. This field is being replaced by `safety_identifier` and `prompt_cache_key`. Use `prompt_cache_key` 
+instead to maintain caching optimizations. A stable identifier for your end-users. Used to boost cache hit rates
+ by better bucketing similar requests and to help OpenAI detect and prevent abuse.
+[Learn more](https://platform.openai.com/docs/guides/safety-best-practices#safety-identifiers). </p></td>
                 </tr>
               
                 <tr>
                   <td>verbosity</td>
                   <td><a href="#ondewo.s2t.Verbosity">Verbosity</a></td>
                   <td>optional</td>
-                  <td><p>Optional. The verbosity level for the response output. </p></td>
+                  <td><p>Optional. Constrains the verbosity of the model's response. Lower values will result in more concise responses, 
+while higher values will result in more verbose responses. 
+Currently supported values are `low`, `medium`, and `high`. </p></td>
                 </tr>
               
                 <tr>
@@ -1439,6 +1467,58 @@ undocumented API parameters. </p></td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.Parakeet" class="title-badge message">Parakeet</h3>
+        <p><p>Parakeet contains information about the Parakeet model.</p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>triton_model_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name of the Triton model. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>triton_model_version</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Version of the Triton model. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>check_status_timeout</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Timeout for checking model status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>triton_server_host</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Host name of triton inference server that serves the Parakeet model </p></td>
+                </tr>
+              
+                <tr>
+                  <td>triton_server_port</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Port number of triton inference server that serves the Parakeet model </p></td>
                 </tr>
               
             </tbody>

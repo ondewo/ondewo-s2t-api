@@ -25,6 +25,7 @@
     - [OpenaiLlmOptions](#ondewo.s2t.OpenaiLlmOptions)
     - [OpenaiLlmOptions.DefaultHeadersEntry](#ondewo.s2t.OpenaiLlmOptions.DefaultHeadersEntry)
     - [OpenaiLlmOptions.LogitBiasEntry](#ondewo.s2t.OpenaiLlmOptions.LogitBiasEntry)
+    - [Parakeet](#ondewo.s2t.Parakeet)
     - [PostProcessing](#ondewo.s2t.PostProcessing)
     - [PostProcessingOptions](#ondewo.s2t.PostProcessingOptions)
     - [PostProcessors](#ondewo.s2t.PostProcessors)
@@ -109,6 +110,7 @@
 | s2t_cloud_service_deepgram | [S2tCloudServiceDeepgram](#ondewo.s2t.S2tCloudServiceDeepgram) |  | Deepgram cloud service inference settings. |
 | s2t_cloud_service_google | [S2tCloudServiceGoogle](#ondewo.s2t.S2tCloudServiceGoogle) |  | Google cloud service inference settings. |
 | s2t_cloud_service_microsoft | [S2tCloudServiceMicrosoft](#ondewo.s2t.S2tCloudServiceMicrosoft) |  | Microsoft Azure cloud service inference settings. |
+| parakeet | [Parakeet](#ondewo.s2t.Parakeet) |  | Configuration for the Parakeet model. |
 
 
 
@@ -402,26 +404,26 @@
 | default_headers | [OpenaiLlmOptions.DefaultHeadersEntry](#ondewo.s2t.OpenaiLlmOptions.DefaultHeadersEntry) | repeated | Optional. Default HTTP headers to include with every request to the OpenAI API. |
 | default_query | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Default query parameters to append to every request URL sent to the OpenAI API. Values can be of any type (string, number, boolean, list), hence the use of Struct. |
 | strict_response_validation | [bool](#bool) | optional | Optional. If true, enables strict validation of response payloads returned by the OpenAI API. |
-| model | [string](#string) | optional | Required. The name or identifier of the OpenAI model to use for chat completion (e.g., "gpt-4o", "gpt-4o-mini", "o3"). |
+| model | [string](#string) |  | Required. The name or identifier of the OpenAI model to use for chat completion (e.g., "gpt-4o", "gpt-4o-mini", "o3"). |
 | frequency_penalty | [float](#float) | optional | Optional. A number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the likelihood of the model repeating the same line verbatim. |
 | logit_bias | [OpenaiLlmOptions.LogitBiasEntry](#ondewo.s2t.OpenaiLlmOptions.LogitBiasEntry) | repeated | Optional. Modifies the likelihood of specified tokens appearing in the completion. Maps token IDs (as strings) to bias values from -100 to 100. Mathematically added to the logits before sampling. |
 | logprobs | [bool](#bool) | optional | Optional. Whether to return log probabilities of the output tokens. If true, returns the log probabilities of each output token in the response. |
 | max_completion_tokens | [int32](#int32) | optional | Optional. An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and reasoning tokens. |
 | max_tokens | [int32](#int32) | optional | Optional. The maximum number of tokens that can be generated in the chat completion. Deprecated in favor of max_completion_tokens. |
-| metadata | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Developer-defined tags and values used for filtering completions in the OpenAI dashboard. |
+| metadata | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard. |
 | n | [int32](#int32) | optional | Optional. The number of chat completion choices to generate for each input message. Note that costs are multiplied by the number of choices generated. |
 | presence_penalty | [float](#float) | optional | Optional. A number between -2.0 and 2.0. Positive values penalize new tokens based on whether they have already appeared in the text, increasing the likelihood of the model discussing new topics. |
-| prompt_cache_key | [string](#string) | optional | Optional. A stable key used to enable prompt caching for identical prompt prefixes, reducing latency and cost on repeated requests. |
-| reasoning_effort | [ReasoningEffort](#ondewo.s2t.ReasoningEffort) | optional | Optional. Constrains the effort level for reasoning models (e.g., o1, o3). Controls the trade-off between speed and quality. |
+| prompt_cache_key | [string](#string) | optional | Optional. Used by OpenAI to cache responses for similar requests to optimize your cache hit rates. Replaces the `user` field. [Learn more](https://platform.openai.com/docs/guides/prompt-caching). |
+| reasoning_effort | [ReasoningEffort](#ondewo.s2t.ReasoningEffort) | optional | Optional. Constrains effort on reasoning for [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `none`, `minimal`, `low`, `medium`, `high`, and `xhigh`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. |
 | seed | [int64](#int64) | optional | Optional. If specified, the system will make a best effort to sample deterministically given the same seed and parameters, enabling reproducible outputs. |
-| service_tier | [ServiceTier](#ondewo.s2t.ServiceTier) | optional | Optional. Specifies the latency tier to use for processing the request. Affects cost and throughput. |
-| stop | [string](#string) | repeated | Optional. Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence. |
+| service_tier | [ServiceTier](#ondewo.s2t.ServiceTier) | optional | Optional. Specifies the processing type used for serving the request. - If set to 'auto', then the request will be processed with the service tier configured in the Project settings. Unless otherwise configured, the Project will use 'default'. - If set to 'default', then the request will be processed with the standard pricing and performance for the selected model. - If set to '[flex](https://platform.openai.com/docs/guides/flex-processing)' or '[priority](https://openai.com/api-priority-processing/)', then the request will be processed with the corresponding service tier. - When not set, the default behavior is 'auto'. When the `service_tier` parameter is set, the response body will include the `service_tier` value based on the processing mode actually used to serve the request. This response value may be different from the value set in the parameter. |
+| stop | [string](#string) | repeated | Optional. Not supported with latest reasoning models `o3` and `o4-mini`. Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence. |
 | store | [bool](#bool) | optional | Optional. Whether to store the output of this chat completion request for use in model distillation, evals, or the stored completions dashboard. |
 | temperature | [float](#float) | optional | Optional. What sampling temperature to use, between 0 and 2. Higher values (e.g., 0.8) make the output more random, while lower values (e.g., 0.2) make it more focused and deterministic. |
 | top_logprobs | [int32](#int32) | optional | Optional. An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. Requires logprobs to be true. |
 | top_p | [float](#float) | optional | Optional. An alternative to sampling with temperature, called nucleus sampling. The model considers only the tokens with top_p probability mass. Ranges from 0 to 1. |
-| user | [string](#string) | optional | Optional. A unique identifier representing the end-user, which helps OpenAI monitor and detect abuse. |
-| verbosity | [Verbosity](#ondewo.s2t.Verbosity) | optional | Optional. The verbosity level for the response output. |
+| user | [string](#string) | optional | Optional. This field is being replaced by `safety_identifier` and `prompt_cache_key`. Use `prompt_cache_key` instead to maintain caching optimizations. A stable identifier for your end-users. Used to boost cache hit rates by better bucketing similar requests and to help OpenAI detect and prevent abuse. [Learn more](https://platform.openai.com/docs/guides/safety-best-practices#safety-identifiers). |
+| verbosity | [Verbosity](#ondewo.s2t.Verbosity) | optional | Optional. Constrains the verbosity of the model's response. Lower values will result in more concise responses, while higher values will result in more verbose responses. Currently supported values are `low`, `medium`, and `high`. |
 | extra_headers | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Additional HTTP headers to send with the request. These are merged with and override default_headers for this specific request only. |
 | extra_query | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Additional query parameters to send with the request. These are merged with and override default_query for this specific request only. |
 | extra_body | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Additional JSON properties to include in the request body. Useful for accessing new or undocumented API parameters. |
@@ -457,6 +459,25 @@
 | ----- | ---- | ----- | ----------- |
 | key | [string](#string) |  |  |
 | value | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="ondewo.s2t.Parakeet"></a>
+
+### Parakeet
+<p>Parakeet contains information about the Parakeet model.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| triton_model_name | [string](#string) |  | Name of the Triton model. |
+| triton_model_version | [string](#string) |  | Version of the Triton model. |
+| check_status_timeout | [int64](#int64) |  | Timeout for checking model status. |
+| triton_server_host | [string](#string) |  | Host name of triton inference server that serves the Parakeet model |
+| triton_server_port | [int64](#int64) |  | Port number of triton inference server that serves the Parakeet model |
 
 
 
