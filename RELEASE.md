@@ -2,6 +2,14 @@
 
 *****************
 
+## Release ONDEWO S2T API 7.4.0
+
+### New Features
+
+* [[OND231-606]](https://ondewo.atlassian.net/browse/OND231-606) Add Parakeet model to the configurations.
+
+*****************
+
 ## Release ONDEWO S2T API 7.3.0
 
 ### New Features
