@@ -14,7 +14,7 @@
 
 ### New Features
 
-* [[OND231-604]](https://ondewo.atlassian.net/browse/OND231-604) Add missing prompt field for 
+* [[OND231-604]](https://ondewo.atlassian.net/browse/OND231-604) Add missing prompt field for
   S2tLlmPostProcessingTranslationOptions and S2tLlmPostProcessingSummarizationOptions
 
 *****************
@@ -23,7 +23,7 @@
 
 ### New Features
 
-* [[OND231-604]](https://ondewo.atlassian.net/browse/OND231-604) Add OpenAI LLM configs as a separated message to 
+* [[OND231-604]](https://ondewo.atlassian.net/browse/OND231-604) Add OpenAI LLM configs as a separated message to
   have full access of LLM configurations.
 
 *****************
@@ -32,7 +32,7 @@
 
 ### New Features
 
-* [[OND231-604]](https://ondewo.atlassian.net/browse/OND231-604) Add `llm_model_name` and `llm_headers` fields to 
+* [[OND231-604]](https://ondewo.atlassian.net/browse/OND231-604) Add `llm_model_name` and `llm_headers` fields to
   configs to support vllm hosted models
 
 *****************
@@ -41,13 +41,13 @@
 
 ### New Features
 
-* [[OND231-592]](https://ondewo.atlassian.net/browse/OND231-592) Add configs for LLM post-processor and list of 
+* [[OND231-592]](https://ondewo.atlassian.net/browse/OND231-592) Add configs for LLM post-processor and list of
   normalizer pipelines.
 
 ### Breaking Changes
 
-* [[OND231-592]](https://ondewo.atlassian.net/browse/OND231-592) Changing 
-  `S2TGetServiceInfoResponse` -> `S2tGetServiceInfoResponse`, `S2TDescription` -> `S2tDescription` and 
+* [[OND231-592]](https://ondewo.atlassian.net/browse/OND231-592) Changing
+  `S2TGetServiceInfoResponse` -> `S2tGetServiceInfoResponse`, `S2TDescription` -> `S2tDescription` and
   `S2TInference` -> `S2tInference`.
 
 *****************
@@ -72,7 +72,7 @@
 
 ### New Features
 
-* [[OND231-563]](https://ondewo.atlassian.net/browse/OND231-563) Added configurations for using s2t cloud service 
+* [[OND231-563]](https://ondewo.atlassian.net/browse/OND231-563) Added configurations for using s2t cloud service
   providers amazon, google, microsoft and deepgram as ondewo-s2t models.
 
 *****************
@@ -104,7 +104,7 @@
 
 ### Breaking Changes
 
-* [[OND231-500]](https://ondewo.atlassian.net/browse/OND231-500) `Matchbox`, `Quartznet` and `QuartznetTriton` models 
+* [[OND231-500]](https://ondewo.atlassian.net/browse/OND231-500) `Matchbox`, `Quartznet` and `QuartznetTriton` models
   are deprecated and removed from API.
 
 *****************
@@ -206,7 +206,7 @@
 
 ### Breaking Changes
 
-* [[OND231-334]](https://ondewo.atlassian.net/browse/OND231-338) - Rename `Description`, `GetServiceInfoResponse`, 
+* [[OND231-334]](https://ondewo.atlassian.net/browse/OND231-338) - Rename `Description`, `GetServiceInfoResponse`,
 `Inference` and `Normalization` messages to include S2T
 
 *****************
