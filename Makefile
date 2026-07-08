@@ -167,7 +167,7 @@ create_release_tag: ## Create Release Tag and push it to origin
 	git push origin ${ONDEWO_S2T_API_VERSION}
 
 login_to_gh: ## Login to Github CLI with Access Token
-	echo $(GITHUB_GH_TOKEN) | gh auth login -p ssh --with-token
+	@echo $(GITHUB_GH_TOKEN) | gh auth login -p ssh --with-token
 
 build_gh_release: ## Generate Github Release with CLI
 	gh release create --repo $(GH_REPO) "$(ONDEWO_S2T_API_VERSION)" -n "$(CURRENT_RELEASE_NOTES)" -t "Release ${ONDEWO_S2T_API_VERSION}"
@@ -178,7 +178,7 @@ delete_gh_release: ## Delete GitHub Release, release branch and release tag via 
 	-gh api repos/ondewo/ondewo-s2t-api/git/refs/tags/${ONDEWO_S2T_API_VERSION} -X DELETE
 
 unrelease_to_github_via_docker_image: ## Unrelease from Github via docker
-	docker run --rm \
+	@docker run --rm \
 		-e GITHUB_GH_TOKEN=${GITHUB_GH_TOKEN} \
 		${IMAGE_UTILS_NAME} make login_to_gh delete_gh_release
 
@@ -278,7 +278,7 @@ push_to_gh: login_to_gh build_gh_release ## Logs into GitHub CLI and Releases
 	@echo 'Released to Github'
 
 release_to_github_via_docker_image:  ## Release to Github via docker
-	docker run --rm \
+	@docker run --rm \
 		-e GITHUB_GH_TOKEN=${GITHUB_GH_TOKEN} \
 		${IMAGE_UTILS_NAME} make push_to_gh
 
