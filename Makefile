@@ -220,7 +220,7 @@ release_client:
 # Change Version Number and RELEASE NOTES
 	cd ${REPO_DIR} && perl -i -pe 'BEGIN{open F,"<","../temp-notes" or die; local $$/; $$c=<F>; close F} $$_ .= $$c if /Release History/' ${RELEASEMD}
 	cd ${REPO_DIR} && head -20 ${RELEASEMD}
-	cd ${REPO_DIR} && perl -i -pe 's/ONDEWO_S2T_VERSION.*=.*/ONDEWO_S2T_VERSION = ${ONDEWO_S2T_API_VERSION}/' Makefile
+	cd ${REPO_DIR} && perl -i -pe 's/ONDEWO_S2T_VERSION.*=.*/ONDEWO_S2T_VERSION=${ONDEWO_S2T_API_VERSION}/' Makefile
 	cd ${REPO_DIR} && perl -i -pe 's/ONDEWO_PROTO_COMPILER_GIT_BRANCH.*=.*/ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags\/${PROTO_COMPILER}/' Makefile
 	cd ${REPO_DIR} && perl -i -pe 's/S2T_API_GIT_BRANCH.*=.*/S2T_API_GIT_BRANCH=tags\/${ONDEWO_S2T_API_VERSION}/' Makefile && head -30 Makefile
 
