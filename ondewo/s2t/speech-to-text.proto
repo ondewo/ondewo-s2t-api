@@ -1391,18 +1391,24 @@ message Silero {
     // Speech probability, in [0, 1], above which a frame counts as speech. A run of speech
     // ends at the hysteresis threshold <code>threshold - 0.15</code>, as it does upstream, so
     // this sets both the onset and - through that offset - the release point.
-    float threshold = 3;
+    // Optional, and explicitly so: 0 is a legitimate value here, and without presence tracking
+    // it would be indistinguishable from an unset field and silently replaced by the default.
+    optional float threshold = 3;
 
     // Speech runs shorter than this many milliseconds are discarded. A run still open at the
     // end of the buffer is kept regardless, since more audio may extend it.
-    float min_speech_duration_ms = 4;
+    // Optional for the same reason as <code>threshold</code>: 0 means &apos;discard nothing&apos;.
+    optional float min_speech_duration_ms = 4;
 
     // Silence, in milliseconds, that must follow the last speech before an utterance is
     // declared to have ended.
-    float min_silence_duration_ms = 5;
+    // Optional for the same reason as <code>threshold</code>: 0 means &apos;end the utterance as
+    // soon as the speech stops&apos;.
+    optional float min_silence_duration_ms = 5;
 
     // Padding, in milliseconds, added on each side of the detected boundary.
-    float speech_pad_ms = 6;
+    // Optional for the same reason as <code>threshold</code>: 0 means &apos;no padding&apos;.
+    optional float speech_pad_ms = 6;
 
     // Host name of triton inference server that serves the Silero model
     string triton_server_host = 7;
@@ -1433,11 +1439,15 @@ message WespeakerTsd {
 
     // Cosine similarity, in [-1, 1], above which a candidate utterance is judged to come
     // from the same speaker as the reference.
-    float similarity_threshold = 5;
+    // Optional, and explicitly so: 0 sits in the middle of the valid range, and without
+    // presence tracking it would be indistinguishable from an unset field.
+    optional float similarity_threshold = 5;
 
     // Utterances shorter than this many seconds carry too little speaker information to
     // judge, and are treated as undecided rather than rejected.
-    float min_audio_length = 6;
+    // Optional for the same reason as <code>similarity_threshold</code>: 0 means &apos;judge
+    // every utterance, however short&apos;.
+    optional float min_audio_length = 6;
 
     // The reference audio is cropped to its most recent this-many seconds before being
     // embedded.
