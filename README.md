@@ -131,7 +131,7 @@ On a major (breaking) API bump, override the section so the clients are not publ
 
 ```bash
 make release_all_clients GENERIC_RELEASE_SECTION='Breaking Changes' \
-  GENERIC_RELEASE_EXTRA='* `S2TGetServiceInfoResponse` is renamed to `S2tGetServiceInfoResponse`. \n'
+  GENERIC_RELEASE_EXTRA='* `S2TGetServiceInfoResponse` is renamed to `S2tGetServiceInfoResponse`.\n'
 ```
 
 `release_client` will not insert the generated notes into a client whose `RELEASE.md` already

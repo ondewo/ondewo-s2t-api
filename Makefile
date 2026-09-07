@@ -203,10 +203,10 @@ GENERIC_RELEASE_SECTION?=Improvements
 GENERIC_RELEASE_EXTRA?=
 # Emitted markdownlint-clean, and deliberately on ONE line. Every ` \n` used to leave a trailing space
 # on each generated line and a leading space on the list item, and make's line-continuation collapses
-# `\<newline><tab>` to a further space, so the block tripped MD009/MD032/MD030 in EVERY client and the
-# first pre-commit run of every release `Failed - files were modified by this hook` (11 auto-fixes in
-# the Python client for 7.5.0 alone). It self-healed on the re-run, but it also left the heading as
-# `\#\# Release ... <VERSION> ` WITH a trailing space, which the release_client guard below cannot
+# `\<newline><tab>` to a further space, so the block tripped MD009/MD007/MD022/MD012/MD032 in EVERY
+# client and the first pre-commit run of every release `Failed - files were modified by this hook` (11
+# auto-fixes in the Python client for 7.5.0 alone). It self-healed on the re-run, but it also left the
+# heading as `\#\# Release ... <VERSION> ` WITH a trailing space, which the release_client guard below cannot
 # match because that grep anchors on `$$` - so the duplicate-entry guard only worked on entries a
 # previous markdownlint run had already stripped. Keep this byte-identical to what markdownlint
 # normalises to: no trailing spaces, a blank line around the heading and around the list.
