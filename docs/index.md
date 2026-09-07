@@ -51,6 +51,7 @@
     - [S2tLlmPostProcessingTranslationOptions](#ondewo.s2t.S2tLlmPostProcessingTranslationOptions)
     - [S2tNormalization](#ondewo.s2t.S2tNormalization)
     - [S2tPipelineId](#ondewo.s2t.S2tPipelineId)
+    - [Silero](#ondewo.s2t.Silero)
     - [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig)
     - [StreamingServer](#ondewo.s2t.StreamingServer)
     - [StreamingSpeechRecognition](#ondewo.s2t.StreamingSpeechRecognition)
@@ -69,6 +70,7 @@
     - [VoiceActivityDetection](#ondewo.s2t.VoiceActivityDetection)
     - [Wav2Vec](#ondewo.s2t.Wav2Vec)
     - [Wav2VecTriton](#ondewo.s2t.Wav2VecTriton)
+    - [WespeakerTsd](#ondewo.s2t.WespeakerTsd)
     - [Whisper](#ondewo.s2t.Whisper)
     - [WhisperTriton](#ondewo.s2t.WhisperTriton)
     - [WordAlternative](#ondewo.s2t.WordAlternative)
@@ -78,6 +80,8 @@
     - [InferenceBackend](#ondewo.s2t.InferenceBackend)
     - [ReasoningEffort](#ondewo.s2t.ReasoningEffort)
     - [ServiceTier](#ondewo.s2t.ServiceTier)
+    - [TsdMethod](#ondewo.s2t.TsdMethod)
+    - [VadMethod](#ondewo.s2t.VadMethod)
     - [Verbosity](#ondewo.s2t.Verbosity)
   
     - [Speech2Text](#ondewo.s2t.Speech2Text)
@@ -943,6 +947,32 @@ Used by both normalization and inverse-normalization tasks.</p>
 
 
 
+<a name="ondewo.s2t.Silero"></a>
+
+### Silero
+<p>Silero contains configuration for the Silero voice activity detection model.</p>
+<p>Unlike <code>Pyannote</code>, Silero is configured with its own parameters rather than
+<code>(min_duration_on, min_duration_off)</code>. They carry exactly the meaning they have
+upstream in <code>get_speech_timestamps</code> / <code>VADIterator</code>.</p>
+<p>Library: <a href="https://github.com/snakers4/silero-vad">silero-vad</a></p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| model_name | [string](#string) |  | Full name of the Silero model. |
+| min_audio_size | [int64](#int64) |  | Minimum audio size for processing. |
+| threshold | [float](#float) | optional | Speech probability, in [0, 1], above which a frame counts as speech. A run of speech ends at the hysteresis threshold <code>threshold - 0.15</code>, as it does upstream, so this sets both the onset and - through that offset - the release point. Optional, and explicitly so: 0 is a legitimate value here, and without presence tracking it would be indistinguishable from an unset field and silently replaced by the default. |
+| min_speech_duration_ms | [float](#float) | optional | Speech runs shorter than this many milliseconds are discarded. A run still open at the end of the buffer is kept regardless, since more audio may extend it. Optional for the same reason as <code>threshold</code>: 0 means &apos;discard nothing&apos;. |
+| min_silence_duration_ms | [float](#float) | optional | Silence, in milliseconds, that must follow the last speech before an utterance is declared to have ended. Optional for the same reason as <code>threshold</code>: 0 means &apos;end the utterance as soon as the speech stops&apos;. |
+| speech_pad_ms | [float](#float) | optional | Padding, in milliseconds, added on each side of the detected boundary. Optional for the same reason as <code>threshold</code>: 0 means &apos;no padding&apos;. |
+| triton_server_host | [string](#string) |  | Host name of triton inference server that serves the Silero model |
+| triton_server_port | [int64](#int64) |  | Port number of triton inference server that serves the Silero model |
+
+
+
+
+
+
 <a name="ondewo.s2t.Speech2TextConfig"></a>
 
 ### Speech2TextConfig
@@ -1235,9 +1265,13 @@ Used by both normalization and inverse-normalization tasks.</p>
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| active | [string](#string) |  | Indicates if voice activity detection is active. |
+| active | [string](#string) |  | Deprecated in favour of <code>vad_method</code>, but still honoured so that configurations written before that field existed keep working unchanged. One of &apos;pyannote&apos; or &apos;silero&apos;. Read only when <code>vad_method</code> is <code>VAD_METHOD_UNSPECIFIED</code>. |
 | sampling_rate | [int64](#int64) |  | Sampling rate for voice activity detection. |
-| pyannote | [Pyannote](#ondewo.s2t.Pyannote) |  | Configuration for the Pyannote model. |
+| pyannote | [Pyannote](#ondewo.s2t.Pyannote) |  | Configuration for the Pyannote model. Read when Pyannote is the resolved VAD or TSD method. |
+| silero | [Silero](#ondewo.s2t.Silero) |  | Configuration for the Silero model. Read when Silero is the resolved VAD method. |
+| wespeaker_tsd | [WespeakerTsd](#ondewo.s2t.WespeakerTsd) |  | Configuration for WeSpeaker target-speaker detection. Read when WeSpeaker is the resolved TSD method. |
+| vad_method | [VadMethod](#ondewo.s2t.VadMethod) |  | Which model splits the stream into utterances. Takes precedence over <code>active</code>; leave unset to keep using <code>active</code>. |
+| tsd_method | [TsdMethod](#ondewo.s2t.TsdMethod) |  | Which model decides whether an utterance came from the main speaker. Independent of <code>vad_method</code>, except that <code>TSD_METHOD_PYANNOTE</code> requires Pyannote to also be the active VAD. Leave unset to keep the behaviour of older configurations. |
 
 
 
@@ -1274,6 +1308,31 @@ Used by both normalization and inverse-normalization tasks.</p>
 | check_status_timeout | [int64](#int64) |  | Timeout for checking model status. |
 | triton_server_host | [string](#string) |  | Host name of triton inference server that serves the Wav2VecTriton model |
 | triton_server_port | [int64](#int64) |  | Port number of triton inference server that serves the Wav2VecTriton model |
+
+
+
+
+
+
+<a name="ondewo.s2t.WespeakerTsd"></a>
+
+### WespeakerTsd
+<p>WespeakerTsd contains configuration for the WeSpeaker target-speaker detection (TSD)
+model. Given a reference speaker embedding, it decides whether a newly detected utterance
+was spoken by the same person, so that speech from a different speaker (e.g. background
+noise, crosstalk, or a barge-in) can be rejected.</p>
+<p>Library: <a href="https://huggingface.co/pyannote/wespeaker-voxceleb-resnet34-LM">wespeaker-voxceleb-resnet34-LM</a></p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| active | [bool](#bool) |  | Indicates if target-speaker detection is active. |
+| model_name | [string](#string) |  | Full name of the WeSpeaker model. |
+| triton_server_host | [string](#string) |  | Host name of triton inference server that serves the WeSpeaker model |
+| triton_server_port | [int64](#int64) |  | Port number of triton inference server that serves the WeSpeaker model |
+| similarity_threshold | [float](#float) | optional | Cosine similarity, in [-1, 1], above which a candidate utterance is judged to come from the same speaker as the reference. Optional, and explicitly so: 0 sits in the middle of the valid range, and without presence tracking it would be indistinguishable from an unset field. |
+| min_audio_length | [float](#float) | optional | Utterances shorter than this many seconds carry too little speaker information to judge, and are treated as undecided rather than rejected. Optional for the same reason as <code>similarity_threshold</code>: 0 means &apos;judge every utterance, however short&apos;. |
+| reference_max_length | [float](#float) |  | The reference audio is cropped to its most recent this-many seconds before being embedded. |
 
 
 
@@ -1416,6 +1475,35 @@ The inference backend configuration
 | SERVICE_TIER_FLEX | 3 | Flex service tier. |
 | SERVICE_TIER_SCALE | 4 | Scale service tier. |
 | SERVICE_TIER_PRIORITY | 5 | Priority service tier. |
+
+
+
+<a name="ondewo.s2t.TsdMethod"></a>
+
+### TsdMethod
+<p>TsdMethod selects the model used for target-speaker detection (TSD): deciding whether a
+newly detected utterance came from the main speaker of the call, so that speech from anyone
+else (crosstalk, background speakers, barge-in) can be rejected.</p>
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| TSD_METHOD_UNSPECIFIED | 0 | No explicit choice. TSD then follows the behaviour of older configurations that predate this field, which is keyed on the active VAD: Pyannote whenever Pyannote is the VAD, since its segmentation model doubles as a speaker filter; otherwise WeSpeaker if <code>wespeaker_tsd.active</code> is set; otherwise no TSD at all. Note that <code>wespeaker_tsd.active</code> is deliberately not consulted on the Pyannote path, because it was never consulted there before this field existed. |
+| TSD_METHOD_NONE | 1 | Disable target-speaker detection. Every detected utterance is transcribed, whoever spoke it. |
+| TSD_METHOD_PYANNOTE | 2 | Reuse the Pyannote segmentation model, which distinguishes speakers in addition to detecting speech. Available only when Pyannote is also the active VAD. |
+| TSD_METHOD_WESPEAKER | 3 | Use the dedicated WeSpeaker embedding model, configured by <code>VoiceActivityDetection.wespeaker_tsd</code>. Works with any VAD. |
+
+
+
+<a name="ondewo.s2t.VadMethod"></a>
+
+### VadMethod
+<p>VadMethod selects the model used to split the audio stream into utterances.</p>
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| VAD_METHOD_UNSPECIFIED | 0 | No explicit choice. The method is then taken from the legacy <code>VoiceActivityDetection.active</code> string, and from Pyannote if that is empty too. |
+| VAD_METHOD_PYANNOTE | 1 | Use the Pyannote segmentation model, configured by <code>VoiceActivityDetection.pyannote</code>. |
+| VAD_METHOD_SILERO | 2 | Use the Silero model, configured by <code>VoiceActivityDetection.silero</code>. |
 
 
 
