@@ -169,8 +169,21 @@ Invariants that were fixed here and must not regress:
   pre-commit, aborting the release.
 - **`GENERIC_RELEASE_SECTION` / `GENERIC_RELEASE_EXTRA` drive the generated heading.** Default `Improvements`;
   on a breaking bump run
-  `make release_all_clients GENERIC_RELEASE_SECTION='Breaking Changes' GENERIC_RELEASE_EXTRA='* … \n'` so five
+  `make release_all_clients GENERIC_RELEASE_SECTION='Breaking Changes' GENERIC_RELEASE_EXTRA='* …\n'` so five
   client majors are not published under "Improvements".
+- **`GENERIC_RELEASE_NOTES` is emitted markdownlint-clean, via `printf '%b'` reading the environment.** Three
+  things are load-bearing and must not regress. It is **one line, and no separator is padded with a space
+  before or after it**: the old form wrote each separator as space-backslash-n-space, which left a trailing
+  space on every generated line and indented the list item, so the first pre-commit run of every client
+  release reported `Failed - files were modified by this hook` (11 auto-fixes in the Python client at 7.5.0).
+  It self-healed on the re-run, but the trailing space on the heading also defeated the duplicate-entry guard
+  above, whose grep anchors the version on end-of-line — so that guard only ever matched entries a previous
+  markdownlint pass had already stripped. It uses **`printf '%b'`, not `echo`**, because `echo` adds a newline
+  on top of the trailing `\n` and left a doubled blank line. And it is read as **`"$$GENERIC_RELEASE_NOTES"`
+  from the environment** (line 1 is a bare `export`) rather than interpolated into the command text: the value
+  used to carry its own double quotes, so a backtick in `GENERIC_RELEASE_EXTRA` was command-substituted —
+  which silently gutted the breaking-change example one bullet up into `* is renamed to .`. Verified by
+  generating the 7.5.0 Python entry and diffing it byte-for-byte against what the release actually committed.
 - **`release_all_clients` fails loudly.** The piped sub-make runs under `bash -c 'set -o pipefail; make -C … |
   tee …'` (a plain `sh` pipe returns `tee`'s 0 and masks failures), and a **marker file**
   (`.already_released_marker-<client>`) distinguishes an "already released" SKIP from a real FAILURE, because
