@@ -30,3 +30,59 @@ accept your pull requests.
    recommended coding standards for this organization.
 1. Ensure that your code has an appropriate set of unit tests which all pass.
 1. Submit a pull request.
+
+## Developing In This Repository
+
+This repository holds exactly one hand-written source file, `ondewo/s2t/speech-to-text.proto`.
+There is no Python, Node or Java toolchain here and no test suite -- everything else is either
+generated (`docs/`) or release automation (`Makefile`).
+
+### Setup
+
+```bash
+make setup_developer_environment_locally   # installs the pre-commit hooks and nvm/node
+```
+
+The pre-commit hooks must be installed for **both** stages, which is what the target does:
+
+```bash
+pre-commit install
+pre-commit install --hook-type commit-msg
+```
+
+### Branch And Commit Naming
+
+Branches carry the JIRA ticket: `feature|bugfix|support|hotfix/OND231-624-short-description`.
+
+Write the commit subject as plain [Conventional Commits](https://www.conventionalcommits.org/)
+(`feat: ...`, `fix(release): ...`, `docs: ...`). **Never prepend the ticket id yourself** -- the
+`giticket` hook reads it from the branch name and prepends `[OND231-624]` (with a trailing space)
+for you. Writing it by hand produces `[OND231-624] [OND231-624] feat: ...`.
+
+The hook order in `.pre-commit-config.yaml` matters and must not be swapped:
+`conventional-pre-commit` validates the subject the author wrote, and only then does `giticket`
+decorate it. Reversed, giticket rewrites the message into something conventional-pre-commit cannot
+parse and every ticket-branch commit is rejected.
+
+### Changing The API
+
+* Edit `ondewo/s2t/speech-to-text.proto`.
+* Regenerate the documentation and commit `docs/` **in the same commit**:
+
+  ```bash
+  make build_docs && make clean_docs_builder
+  ```
+
+  If you skip this, the `Generate Documentation` workflow regenerates `docs/` on push and commits
+  it back to `master` itself, which is why `docs/` must never be hand-edited.
+* Add a `RELEASE.md` entry under a new `## Release ONDEWO S2T API X.Y.Z` heading, terminated by a
+  `*****************` separator. Both are parsed by the release tooling -- the heading by
+  `CURRENT_RELEASE_NOTES`, the separator as the end of the entry.
+* Bump `ONDEWO_S2T_API_VERSION` in the `Makefile` to match.
+
+### Do Not Add A `google/api/*` Import
+
+`ondewo/s2t/speech-to-text.proto` may only import protoc's bundled well-known types
+(`google/protobuf/*`). The documentation action runs `protoc -I. -Igoogleapis` but no `googleapis`
+checkout ever reaches the workspace, so a `google/api/annotations.proto` import fails the CI job
+with `File not found.` and publishes no documentation at all.

@@ -8,15 +8,21 @@
 
 This repository contains the original interface definitions of public ONDEWO APIs that support gRPC protocols. Reading the original interface definitions can provide a better understanding of ONDEWO APIs and help you to utilize them more efficiently. You can also use these definitions with open source tools to generate client libraries, documentation, and other artifacts.
 
+The API documentation is generated from `ondewo/s2t/speech-to-text.proto` by
+[protoc-gen-doc](https://github.com/pseudomuto/protoc-gen-doc) in two formats:
+
+* [html](https://ondewo.github.io/ondewo-s2t-api)
+* [markdown](docs/index.md)
+
 The core components of all the client libraries are built directly from files in this repo using [the proto compiler.](https://github.com/ondewo/ondewo-proto-compiler)
 
 For an end-user, the APIs in this repo function mostly as documentation for the endpoints. For specific implementations, look in the following repos for working implementations:
 
 * [Python](https://github.com/ondewo/ondewo-s2t-client-python)
-* [Angular](https://github.com/ondewo/ondewo-survey-client-angular)
-* [JavaScript](https://github.com/ondewo/ondewo-survey-client-javascript)
-* [TypeScript](https://github.com/ondewo/ondewo-survey-client-typescript)
-* [NodeJS](https://github.com/ondewo/ondewo-survey-client-nodejs)
+* [Angular](https://github.com/ondewo/ondewo-s2t-client-angular)
+* [JavaScript](https://github.com/ondewo/ondewo-s2t-client-js)
+* [TypeScript](https://github.com/ondewo/ondewo-s2t-client-typescript)
+* [NodeJS](https://github.com/ondewo/ondewo-s2t-client-nodejs)
 
 Please note that some of these implementations are works-in-progress. The repo will make clear the status of the implementation.
 
@@ -37,20 +43,27 @@ Please use the issue tracker in this repo for discussions about this API, or the
 
 ## Repository Structure
 
-```
+```bash
 .
+├── CLAUDE.md
 ├── CONTRIBUTING.md
 ├── Dockerfile.utils
-├── docs
+├── docs                                  # generated + deployed by CI, never edited by hand
 │   ├── index.html
 │   ├── index.md
 │   └── style.css
+├── .github
+│   └── workflows
+│       └── generate-doc-and-deploy.yaml
+├── .gitignore
 ├── install_nvm.sh
 ├── LICENSE
 ├── Makefile
+├── .markdownlint-cli2.yaml
 ├── ondewo
 │   └── s2t
-│       └── speech-to-text.proto
+│       └── speech-to-text.proto          # the single source of truth
+├── .pre-commit-config.yaml
 ├── README.md
 └── RELEASE.md
 ```
@@ -101,22 +114,42 @@ The variable for the GitHub Access Token is inside the Makefile, but the value i
 
 Every available Client of this API can be released from this repository, to make the release process for major and minor changes easier.
 
-The generic `release_client` command depends on 4 variables:
+The generic `release_client` command depends on these variables:
 
 * `ONDEWO_S2T_API_VERSION` -- Current API version
 * `GENERIC_CLIENT` -- specifies `SSH git link` to client-repository
 * `RELEASEMD` -- position of `RELEASE.md` inside the client-repository
 * `GENERIC_RELEASE_NOTES` -- template text of client release notes
+* `GENERIC_RELEASE_SECTION` -- heading the generated notes are filed under (default `Improvements`)
+* `GENERIC_RELEASE_EXTRA` -- optional extra bullet appended to the generated notes
 
-To release all clients in sequence, use the `make release_all_clients` command.
+`make release_all_clients` releases all five clients **in parallel**; one failing client does not
+abort the others, and the run ends with a per-client `RELEASED` / `SKIP` / `FAILED` summary.
+
+On a major (breaking) API bump, override the section so the clients are not published under
+"Improvements":
+
+```bash
+make release_all_clients GENERIC_RELEASE_SECTION='Breaking Changes' \
+  GENERIC_RELEASE_EXTRA='* `S2TGetServiceInfoResponse` is renamed to `S2tGetServiceInfoResponse`. \n'
+```
+
+`release_client` will not insert the generated notes into a client whose `RELEASE.md` already
+documents this version -- a hand-curated client entry is kept as it is.
 
 ## Proto Documentation
 
 The documentation for this, and all other APIs and their available versions, can be found on [ondewo.github.io](https://ondewo.github.io). For Offline usage, it can also be found in the `docs` folder.
 
-As part of the `pre-commit` hooks, `update_githubio` is run. It will preemptively stop if:
+`make update_githubio` publishes the generated docs to the `ondewo.github.io` repository. It is a
+manual target -- no pre-commit hook runs it. It will preemptively stop if:
 
 * The command is not run on the `master` branch
 * There already exists a version-object with the specified version in the `data.js` of the `ondewo.github.io` repository
 
 > :warning:  This command is dependent on your installation of NPM and NodeJS -- Make sure to install both, or run `make setup_developer_environment_locally`
+
+The `docs/` folder is regenerated and committed back to `master` by the `Generate Documentation`
+GitHub Actions workflow on every push. Never edit it by hand -- change
+`ondewo/s2t/speech-to-text.proto` and let CI regenerate, or run `make build_docs` locally and
+commit the result in the same commit as the `.proto` change.
