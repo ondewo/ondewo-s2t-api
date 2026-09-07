@@ -2,6 +2,30 @@
 
 *****************
 
+## Release ONDEWO S2T API 7.5.0
+
+### New Features
+
+* [[OND231-624]](https://ondewo.atlassian.net/browse/OND231-624) Add `Silero` and `WespeakerTsd`
+  configuration messages to `VoiceActivityDetection`, alongside `Pyannote`, so Silero voice
+  activity detection and WeSpeaker target-speaker detection pipelines can be configured the
+  same way Pyannote pipelines already are.
+* [[OND231-624]](https://ondewo.atlassian.net/browse/OND231-624) Add the `VadMethod` and
+  `TsdMethod` enums together with the `VoiceActivityDetection.vad_method` and
+  `VoiceActivityDetection.tsd_method` fields, which select the voice activity detection model
+  (Pyannote or Silero) and the target-speaker detection model (Pyannote, WeSpeaker, or none)
+  explicitly.
+
+### Backwards Compatibility
+
+Existing configurations keep working untouched. Both new fields default to `*_UNSPECIFIED`, which
+reproduces the previous behaviour: the VAD falls back to the `VoiceActivityDetection.active`
+string, and target-speaker detection falls back to Pyannote whenever Pyannote is the active VAD,
+otherwise to WeSpeaker when `wespeaker_tsd.active` is set, otherwise to none. `active` is
+deprecated in favour of `vad_method` but is still read whenever `vad_method` is unset.
+
+*****************
+
 ## Release ONDEWO S2T API 7.4.0
 
 ### New Features
