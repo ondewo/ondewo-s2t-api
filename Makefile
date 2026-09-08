@@ -229,7 +229,11 @@ release_client:
 	@# GENERIC_RELEASE_EXTRA was command-substituted by the shell - which silently gutted the repo's own
 	@# documented breaking-change example, turning '`S2TGetServiceInfoResponse` is renamed to
 	@# `S2tGetServiceInfoResponse`.' into ' is renamed to .' plus two 'not found' errors.
-	@printf '%b' "$$GENERIC_RELEASE_NOTES" > temp-notes-${REPO_NAME} && perl -i -pe 's/\\//g' temp-notes-${REPO_NAME} && perl -i -pe 's/REPONAME/${UPPER_REPO_NAME}/g' temp-notes-${REPO_NAME}
+	@# The final slurp-mode perl normalises the file to EXACTLY one trailing newline: printf '%b' adds
+	@# none of its own, so a GENERIC_RELEASE_EXTRA not ending in \n left the file unterminated, the insert
+	@# below then swallowed the blank line before the next ***** separator and markdownlint had to apply an
+	@# MD032/blanks-around-lists fix - the "files were modified by this hook" failure this block avoids.
+	@printf '%b' "$$GENERIC_RELEASE_NOTES" > temp-notes-${REPO_NAME} && perl -i -pe 's/\\//g' temp-notes-${REPO_NAME} && perl -i -pe 's/REPONAME/${UPPER_REPO_NAME}/g' temp-notes-${REPO_NAME} && perl -0777 -i -pe 's/\n*\z/\n/' temp-notes-${REPO_NAME}
 	git clone ${GENERIC_CLIENT}
 # Check if Client is already uptodate with API Version
 	@! git -C ${REPO_DIR} branch -a | grep -q ${ONDEWO_S2T_API_VERSION} || (echo "Already Released ${ONDEWO_S2T_API_VERSION} \n\n\n"  && touch .already_released_marker-${REPO_NAME} && rm -rf ${REPO_DIR} && rm -f temp-notes-${REPO_NAME} && exit 1)
