@@ -88,13 +88,19 @@ make -n setup_developer_environment_locally    # must parse (catches Makefile br
 make build_docs && make clean_docs_builder     # must exit 0 and leave docs/ unchanged
 ```
 
-`pre-commit` is **not** on `PATH` on this machine — always invoke it as `uvx pre-commit …` (`uv` lives at
-`~/.local/bin/uv`). `make precommit_hooks_run_all_files` calls a bare `pre-commit` and will fail for that
-reason alone; that is a machine-setup detail, not a repo defect.
+`pre-commit` **is** on `PATH` now (`~/.local/bin/pre-commit` -> the `uv tool` install, 4.6.2), so a bare
+`pre-commit …` works and `make precommit_hooks_run_all_files` runs. `uvx pre-commit …` also works and is
+harmless. This changed on 2026-09-08; older notes in this fleet still claim it is missing from `PATH`.
 
-Git hooks are **not** installed in this working copy (`.git/hooks/` holds only `.sample` files and
-`core.hooksPath` is unset), so commits here do not run pre-commit. Run the hooks explicitly, or install them
-with `pre-commit install && pre-commit install --hook-type commit-msg`.
+Git hooks **are** installed in this working copy, and in all 42 API/client repos of the fleet
+(`pre-commit install && pre-commit install --hook-type commit-msg`, done 2026-09-08). Commits here now run
+the `pre-commit` stage, and commit messages run `conventional-pre-commit` then `giticket`. The generated
+hook resolves the interpreter via the stable `~/.local/share/uv/tools/pre-commit/bin/python`, not an
+ephemeral `uvx` path, so it keeps working across sessions.
+
+Until then hooks were installed in exactly **one** of the 42 repos, which is why several defects accumulated
+unseen — `ondewo-survey-api` shipped `giticket` ahead of `conventional-pre-commit` (rejecting every commit on
+a ticket branch), and most client `RELEASE.md` files carried a lint backlog the hooks would have caught.
 
 ## Pre-commit
 
