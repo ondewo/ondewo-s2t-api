@@ -65,6 +65,10 @@
     - [Transcription](#ondewo.s2t.Transcription)
     - [TranscriptionAlternative](#ondewo.s2t.TranscriptionAlternative)
     - [TranscriptionReturnOptions](#ondewo.s2t.TranscriptionReturnOptions)
+    - [TurnDetectionContextTurn](#ondewo.s2t.TurnDetectionContextTurn)
+    - [TurnDetectionConversationContext](#ondewo.s2t.TurnDetectionConversationContext)
+    - [TurnDetectionHoldBand](#ondewo.s2t.TurnDetectionHoldBand)
+    - [TurnDetectionHoldBands](#ondewo.s2t.TurnDetectionHoldBands)
     - [TurnDetectionOptions](#ondewo.s2t.TurnDetectionOptions)
     - [UtteranceDetectionOptions](#ondewo.s2t.UtteranceDetectionOptions)
     - [VoiceActivityDetection](#ondewo.s2t.VoiceActivityDetection)
@@ -81,6 +85,7 @@
     - [ReasoningEffort](#ondewo.s2t.ReasoningEffort)
     - [ServiceTier](#ondewo.s2t.ServiceTier)
     - [TsdMethod](#ondewo.s2t.TsdMethod)
+    - [TurnDetectionContextTurn.Role](#ondewo.s2t.TurnDetectionContextTurn.Role)
     - [VadMethod](#ondewo.s2t.VadMethod)
     - [Verbosity](#ondewo.s2t.Verbosity)
   
@@ -1221,6 +1226,68 @@ upstream in <code>get_speech_timestamps</code> / <code>VADIterator</code>.</p>
 
 
 
+<a name="ondewo.s2t.TurnDetectionContextTurn"></a>
+
+### TurnDetectionContextTurn
+<p>One turn of the conversation context of the turn detection.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| role | [TurnDetectionContextTurn.Role](#ondewo.s2t.TurnDetectionContextTurn.Role) |  | Who spoke the turn. |
+| text | [string](#string) |  | The text of the turn. |
+
+
+
+
+
+
+<a name="ondewo.s2t.TurnDetectionConversationContext"></a>
+
+### TurnDetectionConversationContext
+<p>The conversation context handed to an end-of-utterance turn-detection model.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| turns | [TurnDetectionContextTurn](#ondewo.s2t.TurnDetectionContextTurn) | repeated | The turns of the conversation, oldest first. They EXCLUDE the caller's utterance under evaluation, which the server appends itself. |
+
+
+
+
+
+
+<a name="ondewo.s2t.TurnDetectionHoldBand"></a>
+
+### TurnDetectionHoldBand
+<p>One hold band of an end-of-utterance turn-detection model.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| upper_probability | [float](#float) |  | The exclusive upper bound of the end-of-utterance probabilities this band covers, valid range: 0 - 1. |
+| max_silence_seconds | [float](#float) |  | Seconds of silence a turn in this band waits before it is committed, valid range: 0 - 4. The server never holds longer than <code>incomplete_max_silence_seconds</code>. |
+
+
+
+
+
+
+<a name="ondewo.s2t.TurnDetectionHoldBands"></a>
+
+### TurnDetectionHoldBands
+<p>The hold bands of an end-of-utterance turn-detection model.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| bands | [TurnDetectionHoldBand](#ondewo.s2t.TurnDetectionHoldBand) | repeated | The bands; the first band, sorted by <code>upper_probability</code>, whose upper probability exceeds the end-of-utterance probability decides the hold. A probability above every band is finished at once. |
+
+
+
+
+
+
 <a name="ondewo.s2t.TurnDetectionOptions"></a>
 
 ### TurnDetectionOptions
@@ -1234,6 +1301,12 @@ upstream in <code>get_speech_timestamps</code> / <code>VADIterator</code>.</p>
 | turn_detection_system_prompt | [string](#string) | optional | Optional. System prompt used to guide the turn-detection model. |
 | turn_detection_user_prompt | [string](#string) | optional | Optional. User prompt used as input to the turn-detection model. |
 | turn_detection_llm_openai_options | [OpenaiLlmOptions](#ondewo.s2t.OpenaiLlmOptions) | optional | Optional. Configuration options for the OpenAI client used for turn detection. |
+| conversation_context | [TurnDetectionConversationContext](#ondewo.s2t.TurnDetectionConversationContext) | optional | Optional. The latest turns of the conversation before the caller's utterance under evaluation, handed to an end-of-utterance model (the LiveKit-shaped model that scores the probability of the end-of-utterance token) as preceding chat turns, so that it can judge the utterance against what was said before, e.g. a bare number answering a question for a number. The server keeps the context per stream, outside the effective request config: a request whose turn detection carries this field replaces it, an empty wrapper (no turns) clears it, and a request without it (including one that carries other turn detection options) keeps it. That is why it is a wrapper: the server merges request configs per whole top-level field, so a field it did not store itself could not survive a later request that carries turn detection without it. The server caps the number of turns and the length of each turn it uses. Unset or empty: the utterance is judged alone, exactly as before this field existed. Used only by an end-of-utterance model; ignored by a chat-LLM turn detector. Honoured only in a request config (<code>TranscribeRequestConfig.utterance_detection.turn_detection</code>); ignored in a pipeline config (<code>StreamingSpeechRecognition.turn_detection</code>), where a per-stream context has no meaning. |
+| end_of_turn_probability_threshold | [float](#float) | optional | Optional. The end-of-utterance probability at or above which the caller is taken to have finished the turn, valid range: 0 - 1. Unset = the server's configured value (default: the threshold configured for the language of the stream). Used only by an end-of-utterance model; ignored by a chat-LLM turn detector. Precedence: the request config's value, then the pipeline config's value, then the server's configured value. |
+| hold_bands | [TurnDetectionHoldBands](#ondewo.s2t.TurnDetectionHoldBands) | optional | Optional. The hold bands of an end-of-utterance model: how long a turn judged finished, but only with a probability below a band's upper bound, waits for further silence before it is committed. Unset = the server's configured value (default: the bands configured for the language of the stream). A wrapper only so that "set with no bands" (a turn at or above the threshold is committed at once) means something different from "unset". Used only by an end-of-utterance model; ignored by a chat-LLM turn detector. Precedence: the request config's value, then the pipeline config's value, then the server's configured value. |
+| uncertain_min_words | [uint32](#uint32) | optional | Optional. The minimum number of words an utterance needs before a hold band may hold it; a shorter utterance judged finished is committed at once. Unset = the server's configured value (default: 3). Used only by an end-of-utterance model; ignored by a chat-LLM turn detector. Precedence: the request config's value, then the pipeline config's value, then the server's configured value. |
+| incomplete_max_silence_seconds | [float](#float) | optional | Optional. Seconds of silence after an utterance judged NOT finished before it is finished anyway, valid range: 0 - 4. The server raises a value below the voice activity detection's <code>min_duration_off</code> to it. Unset = the server's configured value (default: the <code>min_duration_off</code> in use). Applies to every "not finished" verdict, whichever turn detector gave it. Precedence: the request config's value, then the pipeline config's value, then the server's configured value. |
+| exact_probability | [bool](#bool) | optional | Optional. Whether an end-of-utterance model computes the exact probability of the end-of-utterance token instead of reading it from the returned top log probabilities. Unset = the server's configured value (default: false). Requires a deployment that returns prompt log probabilities (vLLM <code>prompt_logprobs</code>); on any other deployment the probability reads 0, so every turn is judged not finished and waits for <code>incomplete_max_silence_seconds</code>. Used only by an end-of-utterance model; ignored by a chat-LLM turn detector. Precedence: the request config's value, then the pipeline config's value, then the server's configured value. |
 
 
 
@@ -1491,6 +1564,19 @@ else (crosstalk, background speakers, barge-in) can be rejected.</p>
 | TSD_METHOD_NONE | 1 | Disable target-speaker detection. Every detected utterance is transcribed, whoever spoke it. |
 | TSD_METHOD_PYANNOTE | 2 | Reuse the Pyannote segmentation model, which distinguishes speakers in addition to detecting speech. Available only when Pyannote is also the active VAD. |
 | TSD_METHOD_WESPEAKER | 3 | Use the dedicated WeSpeaker embedding model, configured by <code>VoiceActivityDetection.wespeaker_tsd</code>. Works with any VAD. |
+
+
+
+<a name="ondewo.s2t.TurnDetectionContextTurn.Role"></a>
+
+### TurnDetectionContextTurn.Role
+<p>Who spoke the turn.</p>
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| ROLE_UNSPECIFIED | 0 | Unspecified role. The server ignores a turn without a role. |
+| ROLE_USER | 1 | The caller, i.e. the speaker whose turns are detected. |
+| ROLE_ASSISTANT | 2 | The voice assistant. Its text is what the caller HEARD, i.e. the spoken prefix of an interrupted utterance. |
 
 
 

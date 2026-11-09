@@ -329,6 +329,22 @@
                       </li>
                     
                       <li>
+                        <a href="#ondewo.s2t.TurnDetectionContextTurn" class="title-badge message">TurnDetectionContextTurn</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.TurnDetectionConversationContext" class="title-badge message">TurnDetectionConversationContext</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.TurnDetectionHoldBand" class="title-badge message">TurnDetectionHoldBand</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.TurnDetectionHoldBands" class="title-badge message">TurnDetectionHoldBands</a>
+                      </li>
+                    
+                      <li>
                         <a href="#ondewo.s2t.TurnDetectionOptions" class="title-badge message">TurnDetectionOptions</a>
                       </li>
                     
@@ -392,6 +408,10 @@
                     
                       <li>
                         <a href="#ondewo.s2t.TsdMethod" class="title-badge enum">TsdMethod</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.TurnDetectionContextTurn.Role" class="title-badge enum">TurnDetectionContextTurn.Role</a>
                       </li>
                     
                       <li>
@@ -3566,6 +3586,119 @@ the word and alternative words. </p></td>
 
         
       
+        <h3 id="ondewo.s2t.TurnDetectionContextTurn" class="title-badge message">TurnDetectionContextTurn</h3>
+        <p><p>One turn of the conversation context of the turn detection.</p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>role</td>
+                  <td><a href="#ondewo.s2t.TurnDetectionContextTurn.Role">TurnDetectionContextTurn.Role</a></td>
+                  <td></td>
+                  <td><p>Who spoke the turn. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>text</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The text of the turn. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.TurnDetectionConversationContext" class="title-badge message">TurnDetectionConversationContext</h3>
+        <p><p>The conversation context handed to an end-of-utterance turn-detection model.</p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>turns</td>
+                  <td><a href="#ondewo.s2t.TurnDetectionContextTurn">TurnDetectionContextTurn</a></td>
+                  <td>repeated</td>
+                  <td><p>The turns of the conversation, oldest first. They EXCLUDE the caller's utterance under evaluation, which
+the server appends itself. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.TurnDetectionHoldBand" class="title-badge message">TurnDetectionHoldBand</h3>
+        <p><p>One hold band of an end-of-utterance turn-detection model.</p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>upper_probability</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p>The exclusive upper bound of the end-of-utterance probabilities this band covers, valid range: 0 - 1. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_silence_seconds</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p>Seconds of silence a turn in this band waits before it is committed, valid range: 0 - 4. The server never
+holds longer than <code>incomplete_max_silence_seconds</code>. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.TurnDetectionHoldBands" class="title-badge message">TurnDetectionHoldBands</h3>
+        <p><p>The hold bands of an end-of-utterance turn-detection model.</p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>bands</td>
+                  <td><a href="#ondewo.s2t.TurnDetectionHoldBand">TurnDetectionHoldBand</a></td>
+                  <td>repeated</td>
+                  <td><p>The bands; the first band, sorted by <code>upper_probability</code>, whose upper probability exceeds the
+end-of-utterance probability decides the hold. A probability above every band is finished at once. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="ondewo.s2t.TurnDetectionOptions" class="title-badge message">TurnDetectionOptions</h3>
         <p><p>Configuration of the options to turn-detection in utterances</p></p>
 
@@ -3611,6 +3744,81 @@ period and concatenates the transcriptions of small audio chunks between tiny si
                   <td><a href="#ondewo.s2t.OpenaiLlmOptions">OpenaiLlmOptions</a></td>
                   <td>optional</td>
                   <td><p>Optional. Configuration options for the OpenAI client used for turn detection. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>conversation_context</td>
+                  <td><a href="#ondewo.s2t.TurnDetectionConversationContext">TurnDetectionConversationContext</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. The latest turns of the conversation before the caller's utterance under evaluation, handed to an
+end-of-utterance model (the LiveKit-shaped model that scores the probability of the end-of-utterance token)
+as preceding chat turns, so that it can judge the utterance against what was said before, e.g. a bare
+number answering a question for a number. The server keeps the context per stream, outside the effective
+request config: a request whose turn detection carries this field replaces it, an empty wrapper (no turns)
+clears it, and a request without it (including one that carries other turn detection options) keeps it. That
+is why it is a wrapper: the server merges request configs per whole top-level field, so a field it did not
+store itself could not survive a later request that carries turn detection without it. The server caps the
+number of turns and the length of each turn it uses. Unset or empty: the utterance is judged alone, exactly
+as before this field existed. Used only by an end-of-utterance model; ignored by a chat-LLM turn detector.
+Honoured only in a request config (<code>TranscribeRequestConfig.utterance_detection.turn_detection</code>);
+ignored in a pipeline config (<code>StreamingSpeechRecognition.turn_detection</code>), where a per-stream
+context has no meaning. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>end_of_turn_probability_threshold</td>
+                  <td><a href="#float">float</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. The end-of-utterance probability at or above which the caller is taken to have finished the turn,
+valid range: 0 - 1. Unset = the server's configured value (default: the threshold configured for the
+language of the stream). Used only by an end-of-utterance model; ignored by a chat-LLM turn detector.
+Precedence: the request config's value, then the pipeline config's value, then the server's configured value. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>hold_bands</td>
+                  <td><a href="#ondewo.s2t.TurnDetectionHoldBands">TurnDetectionHoldBands</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. The hold bands of an end-of-utterance model: how long a turn judged finished, but only with a
+probability below a band's upper bound, waits for further silence before it is committed. Unset = the
+server's configured value (default: the bands configured for the language of the stream). A wrapper only so
+that "set with no bands" (a turn at or above the threshold is committed at once) means something different
+from "unset". Used only by an end-of-utterance model; ignored by a chat-LLM turn detector. Precedence: the
+request config's value, then the pipeline config's value, then the server's configured value. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>uncertain_min_words</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. The minimum number of words an utterance needs before a hold band may hold it; a shorter utterance
+judged finished is committed at once. Unset = the server's configured value (default: 3). Used only by an
+end-of-utterance model; ignored by a chat-LLM turn detector. Precedence: the request config's value, then
+the pipeline config's value, then the server's configured value. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>incomplete_max_silence_seconds</td>
+                  <td><a href="#float">float</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Seconds of silence after an utterance judged NOT finished before it is finished anyway, valid
+range: 0 - 4. The server raises a value below the voice activity detection's <code>min_duration_off</code>
+to it. Unset = the server's configured value (default: the <code>min_duration_off</code> in use). Applies to
+every "not finished" verdict, whichever turn detector gave it. Precedence: the request config's value, then
+the pipeline config's value, then the server's configured value. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>exact_probability</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. Whether an end-of-utterance model computes the exact probability of the end-of-utterance token
+instead of reading it from the returned top log probabilities. Unset = the server's configured value
+(default: false). Requires a deployment that returns prompt log probabilities (vLLM
+<code>prompt_logprobs</code>); on any other deployment the probability reads 0, so every turn is judged not
+finished and waits for <code>incomplete_max_silence_seconds</code>. Used only by an end-of-utterance model;
+ignored by a chat-LLM turn detector. Precedence: the request config's value, then the pipeline config's
+value, then the server's configured value. </p></td>
                 </tr>
               
             </tbody>
@@ -4315,6 +4523,36 @@ detecting speech. Available only when Pyannote is also the active VAD.</p></td>
                 <td>3</td>
                 <td><p>Use the dedicated WeSpeaker embedding model, configured by
 <code>VoiceActivityDetection.wespeaker_tsd</code>. Works with any VAD.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="ondewo.s2t.TurnDetectionContextTurn.Role" class="title-badge enum">TurnDetectionContextTurn.Role</h3>
+        <p><p>Who spoke the turn.</p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>ROLE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>Unspecified role. The server ignores a turn without a role.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ROLE_USER</td>
+                <td>1</td>
+                <td><p>The caller, i.e. the speaker whose turns are detected.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ROLE_ASSISTANT</td>
+                <td>2</td>
+                <td><p>The voice assistant. Its text is what the caller HEARD, i.e. the spoken prefix of an interrupted
+utterance.</p></td>
               </tr>
             
           </tbody>
