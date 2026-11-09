@@ -2,6 +2,29 @@
 
 *****************
 
+## Release ONDEWO S2T API 7.6.0
+
+### New Features
+
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) `TurnDetectionOptions.conversation_context`
+  (`TurnDetectionConversationContext` of `TurnDetectionContextTurn`s with `ROLE_USER` / `ROLE_ASSISTANT`): the
+  latest turns before the caller's utterance, handed to an end-of-utterance model so it can judge the utterance
+  against what was said before (e.g. a bare number answering a question for a number). The assistant turns carry
+  what the caller HEARD. The server keeps the context per stream: a request carrying it replaces it, an empty
+  wrapper clears it, a request without it keeps it. Honoured in a request config only, not in a pipeline config.
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Per-call overrides of the end-of-turn decision on
+  `TurnDetectionOptions`: `end_of_turn_probability_threshold` (0 - 1), `hold_bands` (`TurnDetectionHoldBands`),
+  `uncertain_min_words`, `incomplete_max_silence_seconds` (0 - 4) and `exact_probability`. Each falls back to the
+  pipeline config's value, then to the server's configured value; all but `incomplete_max_silence_seconds` apply
+  to an end-of-utterance model only and are ignored by a chat-LLM turn detector.
+
+### Backwards Compatibility
+
+Every new field is `optional`; unset reproduces the 7.5.0 behaviour exactly (the utterance is judged alone, with the
+server's configured decision values). A 7.5.0 client never sends them.
+
+*****************
+
 ## Release ONDEWO S2T API 7.5.0
 
 ### New Features
