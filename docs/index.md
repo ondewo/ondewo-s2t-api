@@ -1324,6 +1324,7 @@ upstream in <code>get_speech_timestamps</code> / <code>VADIterator</code>.</p>
 | transcribe_not_final | [bool](#bool) |  | Return also immediate transcription results |
 | next_chunk_timeout | [float](#float) |  | if time between audio chunks exceeds next_chunk_timeout, stream will be stopped |
 | turn_detection | [TurnDetectionOptions](#ondewo.s2t.TurnDetectionOptions) |  | The turn detection options |
+| min_audio_chunk_size | [int64](#int64) | optional | Optional. The processing chunk of THIS stream, in samples at the pipeline's sampling rate: the server buffers the incoming audio until it holds this many samples and only then runs the voice-activity search, the sliding transcription and the turn detector, so it is the cadence at which an utterance can end (8000 samples at 16 kHz = 0.5 s; 1600 = 0.1 s). Overrides <code>StreamingSpeechRecognition.min_audio_chunk_size</code> of the pipeline config for this stream only. Allowed: 320 - 32000 (20 ms - 2 s at 16 kHz); a smaller chunk costs proportionally more voice-activity and transcription requests. Read from the first request of a stream that carries it; a later request cannot change a running stream's chunk. Unset: the pipeline's value. |
 
 
 

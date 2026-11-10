@@ -3859,6 +3859,19 @@ value, then the server's configured value. </p></td>
                   <td><p>The turn detection options </p></td>
                 </tr>
               
+                <tr>
+                  <td>min_audio_chunk_size</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td>optional</td>
+                  <td><p>Optional. The processing chunk of THIS stream, in samples at the pipeline's sampling rate: the server buffers
+the incoming audio until it holds this many samples and only then runs the voice-activity search, the sliding
+transcription and the turn detector, so it is the cadence at which an utterance can end (8000 samples at
+16 kHz = 0.5 s; 1600 = 0.1 s). Overrides <code>StreamingSpeechRecognition.min_audio_chunk_size</code> of the
+pipeline config for this stream only. Allowed: 320 - 32000 (20 ms - 2 s at 16 kHz); a smaller chunk costs
+proportionally more voice-activity and transcription requests. Read from the first request of a stream that
+carries it; a later request cannot change a running stream's chunk. Unset: the pipeline's value. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
