@@ -17,6 +17,11 @@
   `uncertain_min_words`, `incomplete_max_silence_seconds` (0 - 4) and `exact_probability`. Each falls back to the
   pipeline config's value, then to the server's configured value; all but `incomplete_max_silence_seconds` apply
   to an end-of-utterance model only and are ignored by a chat-LLM turn detector.
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Per-stream processing chunk:
+  `UtteranceDetectionOptions.min_audio_chunk_size` (samples at the pipeline's sampling rate, 320 - 32000) overrides
+  the pipeline's `StreamingSpeechRecognition.min_audio_chunk_size` for one stream. The chunk is the cadence at which
+  the voice-activity search, the sliding transcription and the turn detector run, i.e. at which an utterance can end
+  (parakeet general: 8000 = 0.5 s). Read from the first request of a stream that carries it.
 
 ### Backwards Compatibility
 
