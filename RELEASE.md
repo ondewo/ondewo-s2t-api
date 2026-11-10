@@ -22,6 +22,14 @@
   the pipeline's `StreamingSpeechRecognition.min_audio_chunk_size` for one stream. The chunk is the cadence at which
   the voice-activity search, the sliding transcription and the turn detector run, i.e. at which an utterance can end
   (parakeet general: 8000 = 0.5 s). Read from the first request of a stream that carries it.
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Two more turn-detection models, selected by
+  `TurnDetectionOptions.turn_detection_llm_openai_options.model`: `pipecat-smart-turn…` (pipecat Smart Turn v3.2,
+  audio only, served by Triton) and `ondewo-s2t-model-de-turn-detection…` (the ONDEWO German turn-detection model,
+  text and timing, served by vLLM, addressed by the OpenAI options). Smart Turn is configured per request by
+  `pipecat_triton_model_name`, `pipecat_triton_server_host`, `pipecat_triton_server_port`,
+  `pipecat_max_audio_seconds` (1 - 8) and `pipecat_timeout_seconds`, each falling back to the pipeline config's
+  value, then to the server's configured value, as the `Pyannote` Triton fields do. A model name starting with
+  `pipecat-` or `ondewo-s2t-model-` that matches neither prefix is refused with INVALID_ARGUMENT.
 
 ### Backwards Compatibility
 
