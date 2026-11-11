@@ -2999,8 +2999,12 @@ Optional for the same reason as <code>threshold</code>: 0 means &apos;no padding
                 <tr>
                   <td>transcribe_not_final</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Indicates whether to transcribe non-final results. </p></td>
+                  <td>optional</td>
+                  <td><p>Indicates whether to transcribe non-final results for every stream of this pipeline. Unset: the server
+default, which is now <code>true</code>; an explicit <code>false</code> opts the pipeline out of non-final
+results. A request's <code>UtteranceDetectionOptions.transcribe_not_final</code> overrides it. Declared
+<code>optional</code> (same field number, wire-compatible) so an explicit <code>false</code> can be told
+apart from unset. </p></td>
                 </tr>
               
                 <tr>
@@ -3906,7 +3910,10 @@ finished and waits for <code>incomplete_max_silence_seconds</code>. Valid range:
                   <td>transcribe_not_final</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Return also immediate transcription results </p></td>
+                  <td><p>Return also immediate transcription results (non-final transcriptions of an utterance while it is
+still being spoken). Unset: the pipeline's <code>StreamingSpeechRecognition.transcribe_not_final</code>,
+then the server default, which is now <code>true</code>; an explicit <code>false</code> opts this
+request out of non-final results. </p></td>
                 </tr>
               
                 <tr>
