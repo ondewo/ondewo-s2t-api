@@ -37,11 +37,18 @@
   pipeline's new `StreamingSpeechRecognition.transcribe_not_final_period_seconds`, which in turn overrides the
   server setting `ONDEWO_S2T_INFERENCE_SLIDING_PERIOD_OF_TRANSCRIPT`. The effective cadence is rounded up to whole
   `min_audio_chunk_size` chunks.
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) The pipeline-level
+  `StreamingSpeechRecognition.transcribe_not_final` is now `optional bool` (same field number 1, wire-compatible), so
+  a pipeline config can carry an explicit `false`. On both `transcribe_not_final` fields (the request-level
+  `UtteranceDetectionOptions.transcribe_not_final` and the pipeline field) unset means the server default, which is
+  now `true` (non-final results on); an explicit `false` opts out.
 
 ### Backwards Compatibility
 
 Every new field is `optional`; unset reproduces the 7.5.0 behaviour exactly (the utterance is judged alone, with the
-server's configured decision values). A 7.5.0 client never sends them.
+server's configured decision values). A 7.5.0 client never sends them. Making the pipeline
+`transcribe_not_final` `optional` does not change the wire format; a server built against 7.6.0 treats an unset
+value as its default (now `true`), so a client that wants finals only must send an explicit `false`.
 
 *****************
 
