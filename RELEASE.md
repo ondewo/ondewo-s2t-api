@@ -31,6 +31,13 @@
   value, then to the server's configured value, as the `Pyannote` Triton fields do. A model name starting with
   `pipecat-` or `ondewo-s2t-model-` that matches neither prefix is refused with INVALID_ARGUMENT.
 
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Per-request partial-transcription period:
+  `UtteranceDetectionOptions.transcribe_not_final_period_seconds` (seconds, (0, 5]) is the minimum new audio
+  between two non-final transcriptions of an utterance, for streaming and non-streaming requests. It overrides the
+  pipeline's new `StreamingSpeechRecognition.transcribe_not_final_period_seconds`, which in turn overrides the
+  server setting `ONDEWO_S2T_INFERENCE_SLIDING_PERIOD_OF_TRANSCRIPT`. The effective cadence is rounded up to whole
+  `min_audio_chunk_size` chunks.
+
 ### Backwards Compatibility
 
 Every new field is `optional`; unset reproduces the 7.5.0 behaviour exactly (the utterance is judged alone, with the
