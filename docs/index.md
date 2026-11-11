@@ -1032,6 +1032,7 @@ upstream in <code>get_speech_timestamps</code> / <code>VADIterator</code>.</p>
 | min_audio_chunk_size | [int64](#int64) |  | Minimum audio chunk size for processing. |
 | next_chunk_timeout | [float](#float) |  | Timeout between audio chunks; if exceeded, the stream will be stopped. |
 | turn_detection | [TurnDetectionOptions](#ondewo.s2t.TurnDetectionOptions) |  | Configuration of the options to turn-detection in utterances |
+| transcribe_not_final_period_seconds | [float](#float) | optional | Optional. The minimum new audio, in seconds, between two non-final transcriptions of an utterance (the partial-transcription cadence) for every stream of this pipeline. Overrides the server setting <code>ONDEWO_S2T_INFERENCE_SLIDING_PERIOD_OF_TRANSCRIPT</code>; a request's <code>UtteranceDetectionOptions.transcribe_not_final_period_seconds</code> overrides it. Allowed: (0, 5]; the effective cadence is rounded up to whole <code>min_audio_chunk_size</code> chunks. Unset: the server setting. |
 
 
 
@@ -1330,6 +1331,7 @@ upstream in <code>get_speech_timestamps</code> / <code>VADIterator</code>.</p>
 | next_chunk_timeout | [float](#float) |  | if time between audio chunks exceeds next_chunk_timeout, stream will be stopped |
 | turn_detection | [TurnDetectionOptions](#ondewo.s2t.TurnDetectionOptions) |  | The turn detection options |
 | min_audio_chunk_size | [int64](#int64) | optional | Optional. The processing chunk of THIS stream, in samples at the pipeline's sampling rate: the server buffers the incoming audio until it holds this many samples and only then runs the voice-activity search, the sliding transcription and the turn detector, so it is the cadence at which an utterance can end (8000 samples at 16 kHz = 0.5 s; 1600 = 0.1 s). Overrides <code>StreamingSpeechRecognition.min_audio_chunk_size</code> of the pipeline config for this stream only. Allowed: 320 - 32000 (20 ms - 2 s at 16 kHz); a smaller chunk costs proportionally more voice-activity and transcription requests. Read from the first request of a stream that carries it; a later request cannot change a running stream's chunk. Unset: the pipeline's value. |
+| transcribe_not_final_period_seconds | [float](#float) | optional | Optional. The minimum new audio, in seconds, between two non-final transcriptions of an utterance (the partial-transcription cadence; applies only while <code>transcribe_not_final</code> is in force). Overrides <code>StreamingSpeechRecognition.transcribe_not_final_period_seconds</code> of the pipeline config and the server setting <code>ONDEWO_S2T_INFERENCE_SLIDING_PERIOD_OF_TRANSCRIPT</code> for this request only. Allowed: (0, 5]; a shorter period costs proportionally more transcription requests. The server checks the period once per processing chunk, so the effective cadence is rounded up to whole <code>min_audio_chunk_size</code> chunks. Unset: the pipeline's value, then the server setting. |
 
 
 
