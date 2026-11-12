@@ -1163,6 +1163,7 @@ upstream in <code>get_speech_timestamps</code> / <code>VADIterator</code>.</p>
 | audio | [bytes](#bytes) |  | audio bytes of the transcribed utterance |
 | utterance_start | [bool](#bool) |  | is it a start of the utterance |
 | audio_uuid | [string](#string) |  | id of the transcribed audio file |
+| end_of_speech_candidate | [bool](#bool) |  | Whether this response is an end-of-speech candidate. Sent only when the request set <code>TranscriptionReturnOptions.return_end_of_speech_candidate</code>, only under server-side turn detection, and only on the chunk where the server found the end of the caller's speech and its turn detector held the utterance open (not finished, an uncertain hold band, or the minimum endpointing delay), so the final may follow seconds later. Not sent without turn detection, when the detector judges the turn finished (the final is then sent on that same chunk), or while the utterance has no text yet. Never set on a final. At most once per pause: if the caller resumes speaking and pauses again, the next pause may send another one. With non-final results on, it is a FLAG on the non-final response the server sends for that chunk anyway, so it is an ordinary partial plus the hint, not an extra response; with non-final results off, the server sends one non-final response carrying the current text in <code>transcriptions</code>. It is a hint, not a commit: the utterance's final still follows, or the utterance continues if the caller resumes, and the final text may differ. Always false otherwise. |
 | config | [TranscribeRequestConfig](#ondewo.s2t.TranscribeRequestConfig) |  | The configuration for the transcription |
 
 
@@ -1221,6 +1222,7 @@ upstream in <code>get_speech_timestamps</code> / <code>VADIterator</code>.</p>
 | return_alternative_words | [bool](#bool) |  | Whether or not to return alternative results from beam-search |
 | return_alternative_words_nr | [int32](#int32) |  | Optional. Number of alternative words to results |
 | return_word_timing | [bool](#bool) |  | Optional. Whether or not to return timestamps of start and end of the words. Only used in TranscribeFile. |
+| return_end_of_speech_candidate | [bool](#bool) |  | Optional. Whether the server should send an end-of-speech candidate on a stream (see <code>TranscribeStreamResponse.end_of_speech_candidate</code> for what is sent and when). Only used in TranscribeStream, and only acted on under server-side turn detection. Fixed per stream, like <code>return_start_of_speech</code>: the server completes each request config from the one in effect, so a later request without <code>return_options</code> keeps it, but a later <code>return_options</code> block replaces every return option at once and must repeat this field, or the candidate stops for the rest of the stream. Defaults to false: no candidate is sent, exactly as before this field existed. |
 
 
 
