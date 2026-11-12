@@ -43,6 +43,14 @@
   `UtteranceDetectionOptions.transcribe_not_final` and the pipeline field) unset means the server default, which is
   now `true` (non-final results on); an explicit `false` opts out.
 
+### Bug Fixes
+
+* [[OND211-2443]](https://ondewo.atlassian.net/browse/OND211-2443) The release tooling no longer puts the GitHub
+  token on a process command line (world-readable `/proc/<pid>/cmdline`): `gh` reads it from stdin, `docker run`
+  forwards `GITHUB_GH_TOKEN` by name, and the devops hand-off passes it in the sub-make's environment.
+* The release notes generated into each client's `RELEASE.md` are markdownlint-clean and end in exactly one
+  newline, so a client release no longer fails its first pre-commit run on rewritten notes.
+
 ### Backwards Compatibility
 
 Every new field is `optional`; unset reproduces the 7.5.0 behaviour exactly (the utterance is judged alone, with the
