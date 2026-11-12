@@ -2,6 +2,75 @@
 
 *****************
 
+## Release ONDEWO S2T API 7.6.0
+
+### New Features
+
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) `TurnDetectionOptions.conversation_context`
+  (`TurnDetectionConversationContext` of `TurnDetectionContextTurn`s with `ROLE_USER` / `ROLE_ASSISTANT`): the
+  latest turns before the caller's utterance, handed to an end-of-utterance model so it can judge the utterance
+  against what was said before (e.g. a bare number answering a question for a number). The assistant turns carry
+  what the caller HEARD. The server keeps the context per stream: a request carrying it replaces it, an empty
+  wrapper clears it, a request without it keeps it. Honoured in a request config only, not in a pipeline config.
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Per-call overrides of the end-of-turn decision on
+  `TurnDetectionOptions`: `end_of_turn_probability_threshold` (0 - 1), `hold_bands` (`TurnDetectionHoldBands`),
+  `uncertain_min_words`, `incomplete_max_silence_seconds` (0 - 4) and `exact_probability`. Each falls back to the
+  pipeline config's value, then to the server's configured value; all but `incomplete_max_silence_seconds` apply
+  to an end-of-utterance model only and are ignored by a chat-LLM turn detector.
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Per-stream processing chunk:
+  `UtteranceDetectionOptions.min_audio_chunk_size` (samples at the pipeline's sampling rate, 320 - 32000) overrides
+  the pipeline's `StreamingSpeechRecognition.min_audio_chunk_size` for one stream. The chunk is the cadence at which
+  the voice-activity search, the sliding transcription and the turn detector run, i.e. at which an utterance can end
+  (parakeet general: 8000 = 0.5 s). Read from the first request of a stream that carries it.
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Two more turn-detection models, selected by
+  `TurnDetectionOptions.turn_detection_llm_openai_options.model`: `pipecat-smart-turn…` (pipecat Smart Turn v3.2,
+  audio only, served by Triton) and `ondewo-s2t-model-de-turn-detection…` (the ONDEWO German turn-detection model,
+  text and timing, served by vLLM, addressed by the OpenAI options). Smart Turn is configured per request by
+  `pipecat_triton_model_name`, `pipecat_triton_server_host`, `pipecat_triton_server_port`,
+  `pipecat_max_audio_seconds` (1 - 8) and `pipecat_timeout_seconds`, each falling back to the pipeline config's
+  value, then to the server's configured value, as the `Pyannote` Triton fields do. A model name starting with
+  `pipecat-` or `ondewo-s2t-model-` that matches neither prefix is refused with INVALID_ARGUMENT.
+
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Per-request partial-transcription period:
+  `UtteranceDetectionOptions.transcribe_not_final_period_seconds` (seconds, (0, 5]) is the minimum new audio
+  between two non-final transcriptions of an utterance, for streaming and non-streaming requests. It overrides the
+  pipeline's new `StreamingSpeechRecognition.transcribe_not_final_period_seconds`, which in turn overrides the
+  server setting `ONDEWO_S2T_INFERENCE_SLIDING_PERIOD_OF_TRANSCRIPT`. The effective cadence is rounded up to whole
+  `min_audio_chunk_size` chunks.
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) The pipeline-level
+  `StreamingSpeechRecognition.transcribe_not_final` is now `optional bool` (same field number 1, wire-compatible), so
+  a pipeline config can carry an explicit `false`. On both `transcribe_not_final` fields (the request-level
+  `UtteranceDetectionOptions.transcribe_not_final` and the pipeline field) unset means the server default, which is
+  now `true` (non-final results on); an explicit `false` opts out.
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) End-of-speech candidate on a stream:
+  `TranscribeStreamResponse.end_of_speech_candidate` marks the chunk where the server found the end of the caller's
+  speech and its turn detector held the utterance open (not finished, an uncertain hold band, or the minimum
+  endpointing delay), so a client can start work speculatively before the final. Only under server-side turn
+  detection; never on a final, never when the detector judges the turn finished at once; at most once per pause,
+  re-armed when the caller resumes speaking. With non-final results on it is a flag on that chunk's partial, without
+  them one non-final response carrying the current text. A hint, not a commit: the final still follows (or the
+  utterance continues) and may differ. Opt in with `TranscriptionReturnOptions.return_end_of_speech_candidate`,
+  fixed per stream like `return_start_of_speech` (a mid-stream `return_options` block must repeat it).
+
+### Bug Fixes
+
+* [[OND211-2443]](https://ondewo.atlassian.net/browse/OND211-2443) The release tooling no longer puts the GitHub
+  token on a process command line (world-readable `/proc/<pid>/cmdline`): `gh` reads it from stdin, `docker run`
+  forwards `GITHUB_GH_TOKEN` by name, and the devops hand-off passes it in the sub-make's environment.
+* The release notes generated into each client's `RELEASE.md` are markdownlint-clean and end in exactly one
+  newline, so a client release no longer fails its first pre-commit run on rewritten notes.
+
+### Backwards Compatibility
+
+Every new field is `optional`; unset reproduces the 7.5.0 behaviour exactly (the utterance is judged alone, with the
+server's configured decision values). A 7.5.0 client never sends them. Making the pipeline
+`transcribe_not_final` `optional` does not change the wire format; a server built against 7.6.0 treats an unset
+value as its default (now `true`), so a client that wants finals only must send an explicit `false`.
+`return_end_of_speech_candidate` defaults to `false`, so a client that does not opt in never receives a response
+with `end_of_speech_candidate` set.
+
+*****************
+
 ## Release ONDEWO S2T API 7.5.0
 
 ### New Features
