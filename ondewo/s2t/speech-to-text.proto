@@ -349,6 +349,15 @@ message TranscriptionReturnOptions {
     // Optional. Whether or not to return timestamps of start and end of the words. Only used in TranscribeFile.
     bool return_word_timing = 8;
 
+    // Optional. Whether the server should send an end-of-speech candidate on a stream (see
+    // <code>TranscribeStreamResponse.end_of_speech_candidate</code> for what is sent and when). Only used in
+    // TranscribeStream, and only acted on under server-side turn detection. Fixed per stream, like
+    // <code>return_start_of_speech</code>: the server completes each request config from the one in effect, so a
+    // later request without <code>return_options</code> keeps it, but a later <code>return_options</code> block
+    // replaces every return option at once and must repeat this field, or the candidate stops for the rest of the
+    // stream. Defaults to false: no candidate is sent, exactly as before this field existed.
+    bool return_end_of_speech_candidate = 9;
+
 }
 
 // <p>Configuration of the options to detect utterances</p>
@@ -526,6 +535,20 @@ message TranscribeStreamResponse {
 
     // id of the transcribed audio file
     string audio_uuid = 7;
+
+    // Whether this response is an end-of-speech candidate. Sent only when the request set
+    // <code>TranscriptionReturnOptions.return_end_of_speech_candidate</code>, only under server-side turn
+    // detection, and only on the chunk where the server found the end of the caller's speech and its turn detector
+    // held the utterance open (not finished, an uncertain hold band, or the minimum endpointing delay), so the final
+    // may follow seconds later. Not sent without turn detection, when the detector judges the turn finished (the
+    // final is then sent on that same chunk), or while the utterance has no text yet. Never set on a final.
+    // At most once per pause: if the caller resumes speaking and pauses again, the next pause may send another one.
+    // With non-final results on, it is a FLAG on the non-final response the server sends for that chunk anyway, so
+    // it is an ordinary partial plus the hint, not an extra response; with non-final results off, the server sends
+    // one non-final response carrying the current text in <code>transcriptions</code>. It is a hint, not a commit:
+    // the utterance's final still follows, or the utterance continues if the caller resumes, and the final text may
+    // differ. Always false otherwise.
+    bool end_of_speech_candidate = 9;
 
     // The configuration to override the default configuration
     oneof oneof_config {

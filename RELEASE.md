@@ -42,6 +42,15 @@
   a pipeline config can carry an explicit `false`. On both `transcribe_not_final` fields (the request-level
   `UtteranceDetectionOptions.transcribe_not_final` and the pipeline field) unset means the server default, which is
   now `true` (non-final results on); an explicit `false` opts out.
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) End-of-speech candidate on a stream:
+  `TranscribeStreamResponse.end_of_speech_candidate` marks the chunk where the server found the end of the caller's
+  speech and its turn detector held the utterance open (not finished, an uncertain hold band, or the minimum
+  endpointing delay), so a client can start work speculatively before the final. Only under server-side turn
+  detection; never on a final, never when the detector judges the turn finished at once; at most once per pause,
+  re-armed when the caller resumes speaking. With non-final results on it is a flag on that chunk's partial, without
+  them one non-final response carrying the current text. A hint, not a commit: the final still follows (or the
+  utterance continues) and may differ. Opt in with `TranscriptionReturnOptions.return_end_of_speech_candidate`,
+  fixed per stream like `return_start_of_speech` (a mid-stream `return_options` block must repeat it).
 
 ### Bug Fixes
 
@@ -57,6 +66,8 @@ Every new field is `optional`; unset reproduces the 7.5.0 behaviour exactly (the
 server's configured decision values). A 7.5.0 client never sends them. Making the pipeline
 `transcribe_not_final` `optional` does not change the wire format; a server built against 7.6.0 treats an unset
 value as its default (now `true`), so a client that wants finals only must send an explicit `false`.
+`return_end_of_speech_candidate` defaults to `false`, so a client that does not opt in never receives a response
+with `end_of_speech_candidate` set.
 
 *****************
 
