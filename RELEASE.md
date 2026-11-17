@@ -6,31 +6,36 @@
 
 ### New Features
 
-* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) `TurnDetectionOptions.conversation_context`
-  (`TurnDetectionConversationContext` of `TurnDetectionContextTurn`s with `ROLE_USER` / `ROLE_ASSISTANT`): the
-  latest turns before the caller's utterance, handed to an end-of-utterance model so it can judge the utterance
-  against what was said before (e.g. a bare number answering a question for a number). The assistant turns carry
-  what the caller HEARD. The server keeps the context per stream: a request carrying it replaces it, an empty
-  wrapper clears it, a request without it keeps it. Honoured in a request config only, not in a pipeline config.
-* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Per-call overrides of the end-of-turn decision on
-  `TurnDetectionOptions`: `end_of_turn_probability_threshold` (0 - 1), `hold_bands` (`TurnDetectionHoldBands`),
-  `uncertain_min_words`, `incomplete_max_silence_seconds` (0 - 4) and `exact_probability`. Each falls back to the
-  pipeline config's value, then to the server's configured value; all but `incomplete_max_silence_seconds` apply
-  to an end-of-utterance model only and are ignored by a chat-LLM turn detector.
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) `TurnDetectionOptions.oneof_turn_detector` chooses
+  the turn detector explicitly, each with only the options it reads:
+  `turn_detection_chat_llm_options` (`TurnDetectionChatLlmOptions`: `openai_llm_options`, `system_prompt`,
+  `user_prompt`), `turn_detection_end_of_utterance_llm_options` (`TurnDetectionEndOfUtteranceLlmOptions`, e.g.
+  `livekit/turn-detector`: `openai_llm_options`, `end_of_turn_probability_threshold` (0 - 1),
+  `turn_detection_hold_bands` (`TurnDetectionHoldBands`), `uncertain_min_words`, `exact_probability`),
+  `turn_detection_ondewo_de_options` (`TurnDetectionOndewoDeOptions`: the ONDEWO German turn-detection model on
+  vLLM, e.g. `ondewo-s2t-model-de-vad-tsd-ondewo-qwen3-0.6b`, formerly
+  `ondewo-s2t-model-de-turn-detection-qwen3-0.6b-lf2-ps`), `turn_detection_ondewo_de_fusion_options`
+  (`TurnDetectionOndewoDeFusionOptions`: the ONDEWO German fusion turn detector, `openai_llm_options` and
+  `end_of_turn_probability_threshold`) and `turn_detection_pipecat_smart_turn_options`
+  (`TurnDetectionPipecatSmartTurnOptions`: pipecat Smart Turn v3.2 on Triton, `model_name`, `triton_server_host`,
+  `triton_server_port`, `max_audio_seconds` (1 - 8), `timeout_seconds`). Every option falls back to the pipeline
+  config's value, then to the server's configured value; a request config that chooses a different detector than
+  the pipeline config uses only its own detector's options.
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) `TurnDetectionOptions.incomplete_max_silence_seconds`
+  (0 - 4): seconds of silence after an utterance judged not finished before it is finished anyway, for every
+  detector.
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120)
+  `TurnDetectionOptions.turn_detection_conversation_context` (`TurnDetectionConversationContext` of
+  `turn_detection_context_turns` with `ROLE_USER` / `ROLE_ASSISTANT`): the latest turns before the caller's
+  utterance, handed to the end-of-utterance LLM so it can judge the utterance against what was said before (e.g. a
+  bare number answering a question for a number). The assistant turns carry what the caller HEARD. The server keeps
+  the context per stream: a request carrying it replaces it, an empty wrapper clears it, a request without it keeps
+  it. Honoured in a request config only, not in a pipeline config.
 * [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Per-stream processing chunk:
   `UtteranceDetectionOptions.min_audio_chunk_size` (samples at the pipeline's sampling rate, 320 - 32000) overrides
   the pipeline's `StreamingSpeechRecognition.min_audio_chunk_size` for one stream. The chunk is the cadence at which
   the voice-activity search, the sliding transcription and the turn detector run, i.e. at which an utterance can end
   (parakeet general: 8000 = 0.5 s). Read from the first request of a stream that carries it.
-* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Two more turn-detection models, selected by
-  `TurnDetectionOptions.turn_detection_llm_openai_options.model`: `pipecat-smart-turn…` (pipecat Smart Turn v3.2,
-  audio only, served by Triton) and `ondewo-s2t-model-de-turn-detection…` (the ONDEWO German turn-detection model,
-  text and timing, served by vLLM, addressed by the OpenAI options). Smart Turn is configured per request by
-  `pipecat_triton_model_name`, `pipecat_triton_server_host`, `pipecat_triton_server_port`,
-  `pipecat_max_audio_seconds` (1 - 8) and `pipecat_timeout_seconds`, each falling back to the pipeline config's
-  value, then to the server's configured value, as the `Pyannote` Triton fields do. A model name starting with
-  `pipecat-` or `ondewo-s2t-model-` that matches neither prefix is refused with INVALID_ARGUMENT.
-
 * [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Per-request partial-transcription period:
   `UtteranceDetectionOptions.transcribe_not_final_period_seconds` (seconds, (0, 5]) is the minimum new audio
   between two non-final transcriptions of an utterance, for streaming and non-streaming requests. It overrides the
@@ -63,7 +68,13 @@
 ### Backwards Compatibility
 
 Every new field is `optional`; unset reproduces the 7.5.0 behaviour exactly (the utterance is judged alone, with the
-server's configured decision values). A 7.5.0 client never sends them. Making the pipeline
+server's configured decision values). A 7.5.0 client never sends them.
+`TurnDetectionOptions.turn_detection_system_prompt`, `turn_detection_user_prompt` and
+`turn_detection_llm_openai_options` are deprecated but still honoured: when `oneof_turn_detector` is not set they
+choose the detector by the name in `turn_detection_llm_openai_options.model`, as before, with the server's
+configured values for every detector-specific option. Field numbers 6 - 12 of `TurnDetectionOptions` were
+used by never-released 7.6.0 pre-release fields with other meanings and are reused here; a server or client built
+from such a pre-release must be rebuilt against this release. Making the pipeline
 `transcribe_not_final` `optional` does not change the wire format; a server built against 7.6.0 treats an unset
 value as its default (now `true`), so a client that wants finals only must send an explicit `false`.
 `return_end_of_speech_candidate` defaults to `false`, so a client that does not opt in never receives a response
