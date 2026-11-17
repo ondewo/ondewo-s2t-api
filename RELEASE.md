@@ -14,11 +14,13 @@
   `turn_detection_hold_bands` (`TurnDetectionHoldBands`), `uncertain_min_words`, `exact_probability`),
   `turn_detection_ondewo_de_options` (`TurnDetectionOndewoDeOptions`: the ONDEWO German turn-detection model on
   vLLM, e.g. `ondewo-s2t-model-de-vad-tsd-ondewo-qwen3-0.6b`, formerly
-  `ondewo-s2t-model-de-turn-detection-qwen3-0.6b-lf2-ps`), `turn_detection_ondewo_de_fusion_options`
+  `ondewo-s2t-model-de-turn-detection-qwen3-0.6b-lf2-ps`; `openai_llm_options` and
+  `end_of_turn_probability_threshold`), `turn_detection_ondewo_de_fusion_options`
   (`TurnDetectionOndewoDeFusionOptions`: the ONDEWO German fusion turn detector, `openai_llm_options` and
   `end_of_turn_probability_threshold`) and `turn_detection_pipecat_smart_turn_options`
   (`TurnDetectionPipecatSmartTurnOptions`: pipecat Smart Turn v3.2 on Triton, `model_name`, `triton_server_host`,
-  `triton_server_port`, `max_audio_seconds` (1 - 8), `timeout_seconds`). Every option falls back to the pipeline
+  `triton_server_port`, `max_audio_seconds` (1 - 8), `timeout_seconds`, `end_of_turn_probability_threshold`
+  (0 - 1)). Every option falls back to the pipeline
   config's value, then to the server's configured value; a request config that chooses a different detector than
   the pipeline config uses only its own detector's options.
 * [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) `TurnDetectionOptions.incomplete_max_silence_seconds`
