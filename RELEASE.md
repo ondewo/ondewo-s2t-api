@@ -59,6 +59,21 @@
   utterance continues) and may differ. Opt in with `TranscriptionReturnOptions.return_end_of_speech_candidate`,
   fixed per stream like `return_start_of_speech` (a mid-stream `return_options` block must repeat it).
 
+### Breaking Changes
+
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) The clients of this release are generated with
+  ondewo-proto-compiler 5.17.0 (protoc 35.1), pinned exactly by the new `ONDEWO_PROTO_COMPILER_VERSION` in the
+  Makefile instead of "the first tag the GitHub API returned". The generated code requires these runtimes or newer:
+  * Python: `protobuf>=7.35.1` and `grpcio>=1.85.1` (every `_pb2.py` carries `# Protobuf Python Version: 7.35.1`,
+    every `_pb2_grpc.py` `GRPC_GENERATED_VERSION = '1.85.1'`, and both refuse an older runtime at import), so
+    `requires-python >=3.10`. The `.pyi` stubs come from mypy-protobuf 5.1.0.
+  * js, typescript: grpc-web 2.1.1 (`protoc-gen-grpc-web` 2.1.1), `google-protobuf ^4.0.3`. grpc-web 2.1.1 limits
+    a response to 4 MB by default; a client that receives more must set `maxReceiveMessageSize`.
+  * Angular: `"grpc-web": "2.1.1"` as an exact direct dependency plus `"overrides": { "grpc-web": "$grpc-web" }`
+    (`@ngx-grpc/grpc-web-client` still declares the peer `grpc-web ^1.2.1`), `@ngx-grpc/*` `~3.1.2`,
+    `google-protobuf ~3.21.4`.
+  * Nodejs: `@grpc/grpc-js` 1.14.7 and `google-protobuf` 3.21.4.
+
 ### Bug Fixes
 
 * [[OND211-2443]](https://ondewo.atlassian.net/browse/OND211-2443) The release tooling no longer puts the GitHub

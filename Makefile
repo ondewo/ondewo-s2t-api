@@ -22,6 +22,13 @@ ONDEWO_S2T_API_VERSION=7.6.0
 # You need to setup an access token at https://github.com/settings/tokens - permissions are important
 GITHUB_GH_TOKEN?=ENTER_YOUR_TOKEN_HERE
 
+# The ondewo-proto-compiler every client is built with, pinned EXACTLY and written into each client's
+# ONDEWO_PROTO_COMPILER_GIT_BRANCH as tags/<version>. It used to be "the first tag the GitHub API
+# returned": unauthenticated (60 requests/hour, so a rate-limited run wrote an empty `tags/`), in an
+# undocumented order, and any new compiler tag silently moved every client's pin mid-release. Move it
+# deliberately.
+ONDEWO_PROTO_COMPILER_VERSION=5.17.0
+
 # Terminate on the ***** separator that delimits release entries, NOT on /\*\*/ — that matched the first
 # markdown **bold** span inside the entry and silently truncated the notes there. It is correct today only
 # because no entry yet uses inline bold; the moment one does, every line after it is dropped from
@@ -216,8 +223,6 @@ release_client:
 	$(eval REPO_NAME:= $(shell echo ${GENERIC_CLIENT} | cut -c 41- | cut -d '.' -f 1))
 	$(eval REPO_DIR:= $(shell echo "ondewo-s2t-client-${REPO_NAME}"))
 	$(eval UPPER_REPO_NAME:= $(shell echo ${REPO_NAME} | perl -pe 's/^(.)/\u$$1/'))
-# Get newest Proto-Compiler Version
-	$(eval PROTO_COMPILER:= $(shell curl https://api.github.com/repos/ondewo/ondewo-proto-compiler/tags | grep "\"name\"" | head -1 | cut -d '"' -f 4))
 # Clone Repo
 	rm -rf ${REPO_DIR}
 	rm -f build_log_${REPO_NAME}.txt
@@ -251,7 +256,7 @@ release_client:
 	fi
 	cd ${REPO_DIR} && head -20 ${RELEASEMD}
 	cd ${REPO_DIR} && perl -i -pe 's/ONDEWO_S2T_VERSION.*=.*/ONDEWO_S2T_VERSION=${ONDEWO_S2T_API_VERSION}/' Makefile
-	cd ${REPO_DIR} && perl -i -pe 's/ONDEWO_PROTO_COMPILER_GIT_BRANCH.*=.*/ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags\/${PROTO_COMPILER}/' Makefile
+	cd ${REPO_DIR} && perl -i -pe 's/ONDEWO_PROTO_COMPILER_GIT_BRANCH.*=.*/ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags\/${ONDEWO_PROTO_COMPILER_VERSION}/' Makefile
 	cd ${REPO_DIR} && perl -i -pe 's/S2T_API_GIT_BRANCH.*=.*/S2T_API_GIT_BRANCH=tags\/${ONDEWO_S2T_API_VERSION}/' Makefile && head -30 Makefile
 
 # Build new code
