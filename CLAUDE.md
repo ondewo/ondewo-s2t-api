@@ -17,12 +17,12 @@ documentation. There is **no executable code of any kind** — `git ls-files '*.
 
 Consequences that hold for every task here:
 
-- **There are no tests and no coverage gate, and none can be invented.** "100% coverage" is not applicable —
-  there is no executable surface to cover. The gate that actually protects this repo is the `Generate
-  Documentation` workflow (below); treat it as this repo's CI.
-- **There is no `ondewo-proto-compiler` submodule** (`.gitmodules` does not exist). Nothing in this repo pins a
-  compiler version, so there is no pin to bump here — see "Proto compiler" below for where the version really
-  comes from.
+- **The protos have no tests and no coverage gate, and none can be invented.** "100% coverage" is not
+  applicable — there is no executable surface to cover. The gate that actually protects this repo is the
+  `Generate Documentation` workflow (below); treat it as this repo's CI. The one executable surface is the
+  client-release driver, tested by `python3 scripts/test_release_driver.py` (see "Release Tooling").
+- **There is no `ondewo-proto-compiler` submodule** (`.gitmodules` does not exist). The compiler the clients
+  are built with is pinned in the Makefile as `ONDEWO_PROTO_COMPILER_VERSION` — see "Proto compiler" below.
 - Python conventions (loguru logging, Google-style docstrings, ruff/mypy/uv) do **not** apply here. They belong
   to the client repos.
 
@@ -168,38 +168,57 @@ Invariants that were fixed here and must not regress:
   error from `gh release create -n "$(CURRENT_RELEASE_NOTES)"`. Measured on a scratch copy of `RELEASE.md`
   with one bold bullet added to the 7.5.0 entry: old pattern 5 lines, new pattern 26. No committed entry uses
   inline bold yet, which is the only reason it never fired. Verify with `make TEST`.
-- **`release_client` guards the RELEASE.md insert.** It inserts the generated boilerplate only when
-  `grep -qE "^#+ Release ONDEWO S2T ${UPPER_REPO_NAME} Client ${ONDEWO_S2T_API_VERSION}$"` misses. Without the
-  guard, a client whose entry was curated by hand gets a second identical heading, which buries the curated
+- **All eleven clients go through ONE driver, `scripts/release_client.sh`.** `CLIENTS` lists python nodejs
+  typescript angular js cpp csharp go java php rust; `make preflight_client CLIENT=<x>` / `make release_client
+  CLIENT=<x>` (or `preflight_<x>_client` / `release_<x>_client`) run one, `preflight_all_clients` /
+  `release_all_clients` all of them, the latter only after every preflight passed. `CLIENT_RELEASE_MD` (src/ for
+  the js family) and `CLIENT_DISPLAY_NAME` (`C++`, `PHP`, else ucfirst) replace the old per-language targets.
+  The driver knows two kinds of client: a CONTRACT client (`release_preflight` + `release_verify`, the sip/vtsi
+  shape) is SKIP only when its tag exists AND `release_verify` passes; a LEGACY client (neither target, every
+  s2t client today) runs its own `ondewo_release` and `TEST` exactly as the old per-language targets did, and
+  the published GitHub release `<version>` (REST API, unauthenticated) decides SKIP (200), INCOMPLETE (404) or
+  FAILED (anything else). A half-finished release is INCOMPLETE, never SKIP. When an s2t client gains the two
+  contract targets the driver switches to them with no change here.
+- **No bare `export`.** Line 1 used to be a bare `export`, which handed EVERY Makefile variable (the token
+  placeholder, the notes, `DEVOPS_ACCOUNT_DIR`, the API version) to every client make. Only
+  `RELEASE_NOTES_TEMPLATE` is exported, and only to `preflight_client` / `release_client`; the driver also
+  unsets every command-line variable of the driver make before it runs a client target.
+- **The driver guards the RELEASE.md insert.** It inserts the generated boilerplate only when an anchored
+  `^#+ Release ONDEWO S2T <Name> Client <version>$` heading is missing (`\Q…\E`-quoted, so `7.6.10` does not
+  count as `7.6.1`). Without the guard, a client whose entry was curated by hand gets a second identical heading, which buries the curated
   entry (the notes slice takes the first match) and trips markdownlint MD025/MD024 in the client's own
   pre-commit, aborting the release.
 - **`GENERIC_RELEASE_SECTION` / `GENERIC_RELEASE_EXTRA` drive the generated heading.** Default `Improvements`;
   on a breaking bump run
-  `make release_all_clients GENERIC_RELEASE_SECTION='Breaking Changes' GENERIC_RELEASE_EXTRA='* …\n'` so five
+  `make release_all_clients GENERIC_RELEASE_SECTION='Breaking Changes' GENERIC_RELEASE_EXTRA='* …\n'` so the
   client majors are not published under "Improvements".
-- **`GENERIC_RELEASE_NOTES` is emitted markdownlint-clean, via `printf '%b'` reading the environment.** Three
-  things are load-bearing and must not regress. It is **one line, and no separator is padded with a space
+- **`GENERIC_RELEASE_NOTES` is emitted markdownlint-clean, and reaches the driver through the environment.**
+  Three things are load-bearing and must not regress. It is **one line, and no separator is padded with a space
   before or after it**: the old form wrote each separator as space-backslash-n-space, which left a trailing
   space on every generated line and indented the list item, so the first pre-commit run of every client
   release reported `Failed - files were modified by this hook` (11 auto-fixes in the Python client at 7.5.0).
   It self-healed on the re-run, but the trailing space on the heading also defeated the duplicate-entry guard
   above, whose grep anchors the version on end-of-line — so that guard only ever matched entries a previous
-  markdownlint pass had already stripped. It uses **`printf '%b'`, not `echo`**, because `echo` adds a newline
-  on top of the trailing `\n` and left a doubled blank line. And it is read as **`"$$GENERIC_RELEASE_NOTES"`
-  from the environment** (line 1 is a bare `export`) rather than interpolated into the command text: the value
-  used to carry its own double quotes, so a backtick in `GENERIC_RELEASE_EXTRA` was command-substituted —
-  which silently gutted the breaking-change example one bullet up into `* is renamed to .`. Verified by
+  markdownlint pass had already stripped. The driver turns `\n` into newlines and ends the notes in exactly
+  ONE newline (`echo` once added a second, which left a doubled blank line). And it arrives as
+  **`RELEASE_NOTES_TEMPLATE` in the environment** rather than interpolated into a command: the value used to
+  carry its own double quotes, so a backtick in `GENERIC_RELEASE_EXTRA` was command-substituted — which
+  silently gutted the breaking-change example one bullet up into `* is renamed to .` (pinned by
+  `test_generic_release_section_and_extra_reach_the_notes_verbatim`). Verified by
   generating the 7.5.0 Python entry and diffing it byte-for-byte against what the release actually committed.
-- **`release_all_clients` fails loudly.** The piped sub-make runs under `bash -c 'set -o pipefail; make -C … |
-  tee …'` (a plain `sh` pipe returns `tee`'s 0 and masks failures), and a **marker file**
-  (`.already_released_marker-<client>`) distinguishes an "already released" SKIP from a real FAILURE, because
-  make flattens recipe exit codes to 2 and the code alone cannot tell them apart.
+- **`release_all_clients` fails loudly.** The driver runs under `set -euo pipefail` (a plain `sh` pipe into
+  `tee` returns `tee`'s 0 and masks failures), and **marker files** (`.already_released_marker-<client>`,
+  `.incomplete_marker-<client>`) tell SKIP and INCOMPLETE apart from a real FAILURE, because make flattens
+  recipe exit codes to 2 and the code alone cannot tell them apart.
 - **Every token-bearing recipe line is `@`-prefixed** so make never echoes a secret — `docker run -e <TOKEN>`,
-  `echo $(TOKEN) | gh auth`, and the credential sub-make `make release $(info)` (which expands the token at
-  runtime and is easy to miss).
+  `echo $(TOKEN) | gh auth`. Credentials come from `scripts/with_devops_accounts.sh`: one devops-accounts clone
+  per run in a private `mktemp -d` (never in this checkout), removed on every exit path; `--github-token` (this
+  repo's own `ondewo_release`) reads the token into the sub-make's environment and deletes the clone first.
 
-`make -n release_client GENERIC_CLIENT=… RELEASEMD=…` expands the whole recipe without running anything and is
-the fastest way to check a change to it.
+`python3 scripts/test_release_driver.py` runs the real Makefile and driver against fake client and devops
+repositories (nothing is cloned from or published to anywhere) and is the fastest way to check a change to
+them. `make -n release_all_clients` prints only the wrapper line and clones nothing; dry-run the inner targets
+(`release_all_clients_after_preflight`, `release_client CLIENT=<x>`) to see the steps.
 
 There are **no** `install_python_requirements`, `flake8` or `mypy` targets any more. They were removed because
 the four URLs `install_python_requirements` wget'd from `ondewo-s2t-client-python/master`
@@ -221,21 +240,10 @@ recipe failure, and takes every other target with it.
 
 ## Proto Compiler
 
-This repo has **no** `ondewo-proto-compiler` submodule and no pinned compiler version — do not go looking for
-one to bump. The version is resolved at _release_ time, inside `release_client`:
-
-```make
-$(eval PROTO_COMPILER:= $(shell curl https://api.github.com/repos/ondewo/ondewo-proto-compiler/tags \
-    | grep "\"name\"" | head -1 | cut -d '"' -f 4))
-```
-
-and written into each **client's** Makefile as `ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags/<VERSION>`. Today that
-resolves to `5.14.0`, which is also the newest semver tag.
-
-Sharp edge: GitHub's `/tags` endpoint is **not** semver-ordered, so `head -1` means "most recently created
-tag", not "highest version". It agrees with the newest semver today; re-tagging an older release would silently
-feed the wrong version to every client release. Left as-is deliberately (pre-existing, out of scope), but do
-not treat it as a semver lookup.
+This repo has **no** `ondewo-proto-compiler` submodule. The compiler every client is built with is pinned
+exactly in the Makefile as `ONDEWO_PROTO_COMPILER_VERSION` and written into each **client's** Makefile as
+`ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags/<VERSION>` by `scripts/release_client.sh`. It used to be "the first tag
+the GitHub `/tags` endpoint returned", which is neither semver-ordered nor stable; move the pin deliberately.
 
 Note for anyone bumping compiler versions elsewhere: `5.11.0..5.14.0` is entirely Angular/JS/Node/TS **codegen**
 fixes (`git diff --stat 5.11.0..5.14.0 -- python/` is empty). Moving a pin changes which image `make build`
@@ -371,7 +379,6 @@ the release reads. Keep `src/RELEASE.md` in step by hand if it exists.
 
 `make release` in this repo runs:
 
-
 The **npm publish happens LAST**. So a failure before it means nothing shipped, but the
 branch, tag and GitHub release may already exist — and `spc` will then refuse a re-run. Recover
 by running only the remaining step, not the whole target.
@@ -451,7 +458,6 @@ cat RELEASE.md | perl -ne 'print if /<the exact heading> <version>/../^\*{5}/' |
 GitHub's release API returned 500 twice in one session, leaving the registry and the tag correct and
 **no release object at all** (nlu-client-js and -angular 7.1.1); `gh release create` after the fact
 repairs it without touching the artefact.
-
 
 ```bash
 git tag --list <version> ; gh release view <version> --json body --jq '.body|length'
