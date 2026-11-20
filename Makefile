@@ -255,9 +255,9 @@ release_client:
 		perl -i -pe 'BEGIN{open F,"<","../temp-notes-${REPO_NAME}" or die; local $$/; $$c=<F>; close F} $$_ .= $$c if /Release History/' ${RELEASEMD}; \
 	fi
 	cd ${REPO_DIR} && head -20 ${RELEASEMD}
-	cd ${REPO_DIR} && perl -i -pe 's/ONDEWO_S2T_VERSION.*=.*/ONDEWO_S2T_VERSION=${ONDEWO_S2T_API_VERSION}/' Makefile
-	cd ${REPO_DIR} && perl -i -pe 's/ONDEWO_PROTO_COMPILER_GIT_BRANCH.*=.*/ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags\/${ONDEWO_PROTO_COMPILER_VERSION}/' Makefile
-	cd ${REPO_DIR} && perl -i -pe 's/S2T_API_GIT_BRANCH.*=.*/S2T_API_GIT_BRANCH=tags\/${ONDEWO_S2T_API_VERSION}/' Makefile && head -30 Makefile
+	cd ${REPO_DIR} && perl -i -pe 's/^ONDEWO_S2T_VERSION\s*=.*/ONDEWO_S2T_VERSION=${ONDEWO_S2T_API_VERSION}/' Makefile
+	cd ${REPO_DIR} && perl -i -pe 's/^ONDEWO_PROTO_COMPILER_GIT_BRANCH\s*=.*/ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags\/${ONDEWO_PROTO_COMPILER_VERSION}/' Makefile
+	cd ${REPO_DIR} && perl -i -pe 's/^((ONDEWO_)?S2T_API_GIT_BRANCH)\s*=.*/$$1=tags\/${ONDEWO_S2T_API_VERSION}/' Makefile && head -30 Makefile
 
 # Build new code
 	bash -c 'set -o pipefail; make -C ${REPO_DIR} ondewo_release | tee build_log_${REPO_NAME}.txt'
