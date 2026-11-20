@@ -537,6 +537,33 @@ class TestReleaseClient(DriverFixture):
             self.assertNotIn(leaked, env, f"{leaked} leaked into the client release")
 
 
+    def test_the_callers_github_credentials_never_reach_a_client_and_gh_gets_a_private_config(self) -> None:
+        # A set GH_TOKEN made the legacy rust client's `gh auth login --with-token` refuse AFTER its tag was
+        # pushed (ondewo-s2t-client-rust 7.6.0); without it, that login would rewrite the caller's gh config.
+        self.make_client("python", "Python")
+        caller_gh_config: Path = self.root / "caller-gh-config"
+        self.env.update(
+            {
+                "GH_TOKEN": "caller-token",
+                "GITHUB_TOKEN": "caller-token",
+                "GH_ENTERPRISE_TOKEN": "caller-token",
+                "GITHUB_ENTERPRISE_TOKEN": "caller-token",
+                "GH_HOST": "github.invalid",
+                "GH_CONFIG_DIR": str(caller_gh_config),
+            }
+        )
+        result = self.run_make("release_python_client")
+        self.assertEqual(result.returncode, 0, result.stdout)
+        env: Dict[str, str] = dict(
+            line.split("=", 1) for line in (self.control / "python.env").read_text(encoding="utf-8").splitlines() if "=" in line
+        )
+        for leaked in ("GH_TOKEN", "GITHUB_TOKEN", "GH_ENTERPRISE_TOKEN", "GITHUB_ENTERPRISE_TOKEN", "GH_HOST"):
+            self.assertNotIn(leaked, env, f"{leaked} leaked into the client release")
+        self.assertNotEqual(env["GH_CONFIG_DIR"], str(caller_gh_config))
+        self.assertTrue(env["GH_CONFIG_DIR"].startswith(str(self.tmpdir.resolve())), env["GH_CONFIG_DIR"])
+        self.assertFalse(caller_gh_config.exists(), "the caller's gh config directory was touched")
+        self.assert_everything_cleaned_up(result)
+
     def test_the_client_clone_and_make_are_not_under_the_drivers_private_umask(self) -> None:
         # A client builds docker images from its checkout and runs them as the caller's uid; a 0600 checkout
         # made the php proto-compiler entrypoint unreadable there (ondewo-sip-api 5.5.2). release_all_clients sets umask 077.
