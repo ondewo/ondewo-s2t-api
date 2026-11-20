@@ -23,6 +23,12 @@ For an end-user, the APIs in this repo function mostly as documentation for the 
 * [JavaScript](https://github.com/ondewo/ondewo-s2t-client-js)
 * [TypeScript](https://github.com/ondewo/ondewo-s2t-client-typescript)
 * [NodeJS](https://github.com/ondewo/ondewo-s2t-client-nodejs)
+* [C++](https://github.com/ondewo/ondewo-s2t-client-cpp)
+* [C#](https://github.com/ondewo/ondewo-s2t-client-csharp)
+* [Go](https://github.com/ondewo/ondewo-s2t-client-go)
+* [Java](https://github.com/ondewo/ondewo-s2t-client-java)
+* [PHP](https://github.com/ondewo/ondewo-s2t-client-php)
+* [Rust](https://github.com/ondewo/ondewo-s2t-client-rust)
 
 Please note that some of these implementations are works-in-progress. The repo will make clear the status of the implementation.
 
@@ -100,31 +106,81 @@ TODOs after Pull Request was merged in:
    >make ondewo_release
 
 ---
-The `make ondewo_release` command can be divided into 5 steps:
+The `make ondewo_release` command can be divided into 4 steps:
 
-* cloning the devops-accounts repository and extracting the credentials
+* cloning the devops-accounts repository into a private temporary directory, reading the GitHub token
+  into the environment and deleting the clone (`scripts/with_devops_accounts.sh --github-token`)
 * creating and pushing the release branch
 * creating and pushing the release tag
 * creating the GitHub release
 
 The variable for the GitHub Access Token is inside the Makefile, but the value is overwritten during
-`make ondewo_release`, because it is passed from the devops-accounts repo as an argument to the actual `release` command.
+`make ondewo_release`, because it is passed from the devops-accounts repo in the environment of the actual
+`release` command (never on its command line).
 
 ## Automatic Release Process - Clients
 
-Every available Client of this API can be released from this repository, to make the release process for major and minor changes easier.
+All eleven `ondewo-s2t-client-<language>` SDKs (`CLIENTS` in the Makefile: python nodejs typescript
+angular js cpp csharp go java php rust) are released from this repository, after the API itself, by one
+driver, `scripts/release_client.sh`:
 
-The generic `release_client` command depends on these variables:
+```bash
+make preflight_all_clients                  # read-only: every client's preflight, serially
+make release_all_clients                    # preflight_all_clients, then all clients in parallel
+make preflight_client CLIENT=python         # one client's preflight (likewise preflight_<language>_client)
+make release_client CLIENT=python           # one client (likewise release_<language>_client)
+```
+
+What `release_all_clients` does:
+
+1. Clones ondewo-devops-accounts **once** into a private `mktemp -d` directory outside every
+   repository (`scripts/with_devops_accounts.sh`) and hands each client its own copy as
+   `DEVOPS_ACCOUNT_DIR`; every copy and the clone are deleted on every exit path, Ctrl-C included.
+2. Runs `preflight_all_clients`. **A single failing preflight stops the run before any client is
+   released.**
+3. Releases the clients in parallel, each into a fresh `release_run_<language>.log`, and prints a
+   `RELEASED` / `SKIP` / `INCOMPLETE` / `FAILED` summary. One failing client does not abort the others;
+   the run fails if any client is not `RELEASED` or `SKIP`.
+
+For every client, in preflight and release alike, the driver clones the client, inserts the generated
+release notes into its `RELEASE.md` (`src/RELEASE.md` for nodejs, typescript, angular and js) unless it
+already documents the version under `## Release ONDEWO S2T <Name> Client <version>` (`<Name>` is the
+capitalised language, except `C++` and `PHP`), and rewrites the anchored `ONDEWO_S2T_VERSION=`,
+`ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags/<ONDEWO_PROTO_COMPILER_VERSION>` and `(ONDEWO_)S2T_API_GIT_BRANCH=`
+assignments of its Makefile. Then the client's Makefile and what origin already has decide.
+
+A **contract** client has the read-only targets `release_preflight` (credentials valid, version new on
+origin and registry) and `release_verify` (tag, GitHub release and registry serve the version):
+
+| On the client's origin | Result |
+| --- | --- |
+| tag `<version>` and `release_verify` passes | **SKIP**: already released and verified |
+| tag `<version>` but `release_verify` fails | **INCOMPLETE**: a half-finished release; finish it by hand |
+| branch `release/<version>` but no tag | **INCOMPLETE**: a half-finished release; finish or undo it by hand |
+| neither | preflight: `release_preflight`; release: `ondewo_release`, then `release_verify` |
+
+A **legacy** client has neither target -- every s2t client today. It is released exactly as before,
+through its own `ondewo_release` (which clones the devops accounts itself) followed by `make TEST`, and
+the GitHub release `<version>`, which its `ondewo_release` creates last, tells the states apart:
+
+| On the client's origin | Result |
+| --- | --- |
+| tag or `release/<version>`, GitHub release published (HTTP 200) | **SKIP**: already released |
+| tag or `release/<version>`, no GitHub release (HTTP 404) | **INCOMPLETE**: a half-finished release |
+| tag or `release/<version>`, any other answer (403/429 rate limit) | **FAILED**: nothing changed, re-run later |
+| neither | preflight: the driver's own checks only; release: `ondewo_release`, `TEST`, then the GitHub release must appear |
+
+A client with only one of `release_preflight` / `release_verify` fails with that message. The client
+clone is removed on every exit path; files a client container wrote as root are removed through a
+digest-pinned busybox container, never `sudo`. The proto compiler is pinned exactly in
+`ONDEWO_PROTO_COMPILER_VERSION`; move it deliberately.
+
+The generated notes come from these variables:
 
 * `ONDEWO_S2T_API_VERSION` -- Current API version
-* `GENERIC_CLIENT` -- specifies `SSH git link` to client-repository
-* `RELEASEMD` -- position of `RELEASE.md` inside the client-repository
 * `GENERIC_RELEASE_NOTES` -- template text of client release notes
 * `GENERIC_RELEASE_SECTION` -- heading the generated notes are filed under (default `Improvements`)
 * `GENERIC_RELEASE_EXTRA` -- optional extra bullet appended to the generated notes
-
-`make release_all_clients` releases all five clients **in parallel**; one failing client does not
-abort the others, and the run ends with a per-client `RELEASED` / `SKIP` / `FAILED` summary.
 
 On a major (breaking) API bump, override the section so the clients are not published under
 "Improvements":
@@ -134,8 +190,10 @@ make release_all_clients GENERIC_RELEASE_SECTION='Breaking Changes' \
   GENERIC_RELEASE_EXTRA='* `S2TGetServiceInfoResponse` is renamed to `S2tGetServiceInfoResponse`.\n'
 ```
 
-`release_client` will not insert the generated notes into a client whose `RELEASE.md` already
-documents this version -- a hand-curated client entry is kept as it is.
+**Host requirements:** git (with SSH access to GitHub and Bitbucket), make, perl, bash, curl and docker,
+plus whatever each client's own release documents. The behaviour above is tested against fake client
+repositories by `python3 scripts/test_release_driver.py` (also run by the `Release credential hygiene`
+workflow).
 
 ## Proto Documentation
 
