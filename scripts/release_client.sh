@@ -37,7 +37,8 @@
 # A client with only ONE of the two contract targets FAILS with that message: half a contract proves
 # nothing. INCOMPLETE leaves .incomplete_marker-<name>, SKIP in release mode .already_released_marker-<name>;
 # the Makefile turns them into the summary. The GitHub API is asked unauthenticated (60 calls/hour) at
-# GITHUB_API_URL (default https://api.github.com), once per legacy client whose version exists on origin.
+# GITHUB_API_URL (default https://api.github.com), once per legacy client whose version exists on origin,
+# with the caller's GH_TOKEN / GITHUB_TOKEN when one is set (see github_release_http_code).
 #
 # Every exit path removes the client clone and this client's private temporary directory (the notes and
 # its copy of the devops clone) (EXIT trap; INT/TERM/HUP become an exit so the trap runs for them too). No sudo: files a client
@@ -127,6 +128,7 @@ origin_has_ref() {
 # GH_TOKEN environment variable is being used for authentication"), which stranded ondewo-s2t-client-rust
 # 7.6.0 between its pushed tag and its GitHub release. Without them, the same login would have rewritten the
 # caller's gh configuration, so the client also gets a private GH_CONFIG_DIR (see run_client_target).
+caller_github_token="${GH_TOKEN:-${GITHUB_TOKEN:-}}"
 driver_variables=(MAKEFLAGS MFLAGS MAKELEVEL MAKEOVERRIDES RELEASE_NOTES_TEMPLATE
     GH_TOKEN GITHUB_TOKEN GH_ENTERPRISE_TOKEN GITHUB_ENTERPRISE_TOKEN GH_HOST GH_CONFIG_DIR)
 if [[ "${MAKEFLAGS:-}" == *"-- "* ]]; then
@@ -198,8 +200,18 @@ grep -qxE "(ONDEWO_)?S2T_API_GIT_BRANCH=tags/${version//./\\.}" "${makefile}" \
 
 # The HTTP code of GET <api>/repos/ondewo/<client>/releases/tags/<version>: 200 published, 404 not.
 # The REST API, not the github.com page, which answers 200 for a bare tag without any release.
+# Authenticated with the caller's GH_TOKEN / GITHUB_TOKEN when one is set: the unauthenticated quota is 60
+# calls an hour PER ADDRESS, shared with every other release running on the host, and ondewo-s2t-client-php
+# 7.6.0 was published completely and still reported FAILED on six HTTP 403s. The token reaches curl as a
+# config read from stdin (`-K -`), never on its command line, which /proc/<pid>/cmdline shows to every user.
 github_release_http_code() {
-    curl -s -o /dev/null -w '%{http_code}' -L "${github_api_url}/repos/ondewo/${repo_dir}/releases/tags/${version}" || true
+    local endpoint="${github_api_url}/repos/ondewo/${repo_dir}/releases/tags/${version}"
+    if [ -n "${caller_github_token}" ]; then
+        printf 'header = "Authorization: Bearer %s"\n' "${caller_github_token}" \
+            | curl -s -K - -o /dev/null -w '%{http_code}' -L "${endpoint}" || true
+    else
+        curl -s -o /dev/null -w '%{http_code}' -L "${endpoint}" || true
+    fi
 }
 
 # ---------------------------------------------------------------- what origin already has

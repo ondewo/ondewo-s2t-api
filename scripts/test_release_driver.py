@@ -103,6 +103,8 @@ FAKE_CURL: str = """\
 url="${@: -1}"
 repository="$(printf '%s' "${url}" | sed -E 's#.*/repos/ondewo/([^/]+)/releases/tags/.*#\\1#')"
 echo "${url}" >> "${FAKE_CLIENT_CONTROL_DIR}/curl.log"
+echo "$*" >> "${FAKE_CLIENT_CONTROL_DIR}/curl.argv"
+case " $* " in *" -K - "*) cat >> "${FAKE_CLIENT_CONTROL_DIR}/curl.stdin" ;; esac
 cat "${FAKE_CLIENT_CONTROL_DIR}/${repository}.github" 2>/dev/null || printf 404
 """
 
@@ -639,6 +641,25 @@ class TestLegacyClient(DriverFixture):
         self.assertNotIn("SKIP", result.stdout)
         self.assertFalse((self.control / "rust.log").exists(), result.stdout)
         self.assert_everything_cleaned_up(result)
+
+    def test_the_github_api_is_asked_with_the_callers_token_on_stdin_never_on_argv(self) -> None:
+        # The unauthenticated quota (60/hour per address) ran out mid-release and reported a published
+        # ondewo-s2t-client-php 7.6.0 as FAILED on HTTP 403.
+        self.make_client("php", "PHP", contract=False)
+        self.github_answers("php", "200")
+        self.env["GH_TOKEN"] = "caller-secret-token"
+        result = self.run_make("release_php_client")
+        self.assertEqual(result.returncode, 0, result.stdout)
+        self.assertIn('header = "Authorization: Bearer caller-secret-token"', (self.control / "curl.stdin").read_text(encoding="utf-8"))
+        self.assertNotIn("caller-secret-token", (self.control / "curl.argv").read_text(encoding="utf-8"))
+        self.assertNotIn("caller-secret-token", result.stdout)
+
+    def test_without_a_caller_token_the_github_api_is_asked_unauthenticated(self) -> None:
+        self.make_client("php", "PHP", contract=False)
+        self.github_answers("php", "200")
+        result = self.run_make("release_php_client")
+        self.assertEqual(result.returncode, 0, result.stdout)
+        self.assertFalse((self.control / "curl.stdin").exists(), result.stdout)
 
     def test_a_legacy_release_whose_github_release_never_appears_is_failed(self) -> None:
         self.make_client("csharp", "Csharp", contract=False)
