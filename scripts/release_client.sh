@@ -122,7 +122,13 @@ origin_has_ref() {
 # ONDEWO_S2T_API_VERSION=..., ...) to its children BOTH in MAKEFLAGS and as an environment variable, and
 # a client Makefile that reads one with `?=` would silently take the driver's value. So the client make
 # starts without MAKEFLAGS and without each variable named in it.
-driver_variables=(MAKEFLAGS MFLAGS MAKELEVEL MAKEOVERRIDES RELEASE_NOTES_TEMPLATE)
+# The caller's own GitHub credentials do not reach a client either: a legacy client logs gh in with the
+# devops token (`gh auth login --with-token`), and gh refuses that while GH_TOKEN is set ("The value of the
+# GH_TOKEN environment variable is being used for authentication"), which stranded ondewo-s2t-client-rust
+# 7.6.0 between its pushed tag and its GitHub release. Without them, the same login would have rewritten the
+# caller's gh configuration, so the client also gets a private GH_CONFIG_DIR (see run_client_target).
+driver_variables=(MAKEFLAGS MFLAGS MAKELEVEL MAKEOVERRIDES RELEASE_NOTES_TEMPLATE
+    GH_TOKEN GITHUB_TOKEN GH_ENTERPRISE_TOKEN GITHUB_ENTERPRISE_TOKEN GH_HOST GH_CONFIG_DIR)
 if [[ "${MAKEFLAGS:-}" == *"-- "* ]]; then
     while read -r variable; do
         driver_variables+=("${variable}")
@@ -132,12 +138,16 @@ unset_driver_variables=()
 for variable in "${driver_variables[@]}"; do unset_driver_variables+=(-u "${variable}"); done
 
 # Runs a client target with a private copy of the devops clone, so a client that deletes "its" clone
-# cannot pull it from under a client releasing in parallel.
+# cannot pull it from under a client releasing in parallel, and with a private gh configuration
+# directory, so the token a client's `gh auth login` stores is removed with private_root on exit.
 run_client_target() {
     local devops_copy="${private_root}/ondewo-devops-accounts"
+    local gh_config="${private_root}/gh-config"
     rm -rf "${devops_copy}"
     cp -R "${DEVOPS_ACCOUNT_DIR}" "${devops_copy}"
-    (umask "${CLIENT_UMASK}" && exec env "${unset_driver_variables[@]}" DEVOPS_ACCOUNT_DIR="${devops_copy}" make -C "${repo_dir}" "$1")
+    mkdir -p "${gh_config}"
+    (umask "${CLIENT_UMASK}" && exec env "${unset_driver_variables[@]}" DEVOPS_ACCOUNT_DIR="${devops_copy}" \
+        GH_CONFIG_DIR="${gh_config}" make -C "${repo_dir}" "$1")
 }
 
 client_has_target() {
